@@ -14,7 +14,9 @@ import com.team.project.users.dto.UsersDto;
 public interface UsersService {
 	public Map<String, Object> isExistId(String inputId);
 	public void addUser(UsersDto dto);
-	public void loginProcess(UsersDto dto, HttpSession session, HttpServletResponse response);
+	public void login(String id, String inputPwd, HttpSession session, HttpServletRequest request, ModelAndView mView,
+			HttpServletResponse response);
+	public void logout(HttpSession session);
 	public void getInfo(HttpSession session, ModelAndView mView);
 	public void updateUserPwd(HttpSession session, UsersDto dto, ModelAndView mView);
 	public Map<String, Object> saveProfileImage(HttpServletRequest request, 

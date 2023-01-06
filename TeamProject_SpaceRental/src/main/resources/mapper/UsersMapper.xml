@@ -8,8 +8,8 @@
 		VALUES( #{id}, #{pwd}, #{email}, SYSDATE, #{code})
 	</insert>
 	
-	<select id="getData" parameterType="string" resultType="usersDto">
-		SELECT id, pwd, profile, email, regdate
+	<select id="getData" resultType="usersDto" parameterType="String">
+		SELECT code, pwd, email, regdate, profile
 		FROM space_users
 		WHERE id=#{id}
 	</select>
@@ -45,7 +45,3 @@
 	</delete>	
 	
 </mapper>
-
-
-
-

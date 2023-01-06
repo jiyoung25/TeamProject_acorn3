@@ -30,15 +30,7 @@ public class UsersDaoImpl implements UsersDao{
 
 	@Override
 	public UsersDto getData(String id) {
-		/*
-		 * 	mapper's namespace => users
-		 * 	sql's id = getData
-		 * 	parameterType => String
-		 * 	selectOne() 메소드를 호출한 경우 resultType 이 메소드의 리턴 type 이 된다.
-		 * 	resultType => UsersDto
-		 */
-		UsersDto dto = session.selectOne("users.getData", id);
-		return dto;
+		return session.selectOne("users.getData", id);
 	}
 
 	//비밀번호 수정
@@ -58,5 +50,4 @@ public class UsersDaoImpl implements UsersDao{
 	public void delete(String id) {
 		session.delete("users.delete", id);
 	}
-
 }
