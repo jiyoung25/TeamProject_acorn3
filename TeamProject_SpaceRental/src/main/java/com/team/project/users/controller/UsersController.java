@@ -44,4 +44,12 @@ public class UsersController {
 		
 		return mView;
 	}
+	
+	@RequestMapping("/users/logout")
+	public String logout(HttpSession session) {
+		
+		service.logout(session);
+		
+		return "redirect:/";
+	}
 }

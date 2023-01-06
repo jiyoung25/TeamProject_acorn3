@@ -53,4 +53,9 @@ public class UsersServiceImpl implements UsersService {
 		}
 	}
 
+	@Override
+	public void logout(HttpSession session) {
+		session.removeAttribute("id");
+	}
+
 }
