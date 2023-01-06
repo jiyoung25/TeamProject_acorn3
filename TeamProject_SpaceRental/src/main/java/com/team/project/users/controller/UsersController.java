@@ -14,36 +14,20 @@ public class UsersController {
 	
 	@Autowired
 	private UsersService service;
-	
-	@RequestMapping(method = RequestMethod.GET, value = "/users/signupselect")
-	public String signupForm() {
+
+	@RequestMapping("/users/signupform")
+	public String signupform() {
 		
-		return "users/signupselect";
+		return "users/signupform";
 	}
 	
-	@RequestMapping(method = RequestMethod.GET, value = "/users/signupform_manager")
-	public String signupFormManager() {
-		
-		return "users/signupform_manager";
+	// 회원 가입 요청처리
+	@RequestMapping(method = RequestMethod.POST, value = "/users/signup")
+	public ModelAndView signup(ModelAndView mView, UsersDto dto) {
+		service.addUser(dto);
+		mView.addObject("code", dto.getCode());
+		mView.setViewName("users/signup");
+		return mView;
 	}
-	
-	@RequestMapping(method = RequestMethod.GET, value = "/users/signupform_seller")
-	public String signupFormSeller() {
-		
-		return "users/signupform_seller";
-	}
-	
-	@RequestMapping(method = RequestMethod.GET, value = "/users/signupform_users")
-	public String signupFormUsers() {
-		
-		return "users/signupform_users";
-	}
-	
-	//회원 가입 요청처리
-		@RequestMapping(method = RequestMethod.POST, value = "/users/signup")
-		public ModelAndView signup(ModelAndView mView, UsersDto dto ) {
-			service.addUser(dto);
-			mView.setViewName("users/signup");
-			return mView;
-		}
+
 }

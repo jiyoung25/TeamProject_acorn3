@@ -11,7 +11,17 @@
 <body>
 	<div class="container">
 		<p>
-			${code.value }   가입 되었습니다.
+			<c:choose>
+				<c:when test="${code eq 1 }">
+					관리자님 가입되었습니다.
+				</c:when>
+				<c:when test="${code eq 2 }">
+					판매자님 가입되었습니다.
+				</c:when>
+				<c:otherwise>
+					회원님 가입되었습니다.
+				</c:otherwise>
+			</c:choose>
 			<a href="${pageContext.request.contextPath}/users/loginform">로그인 하러가기</a>
 		</p>
 	</div>
