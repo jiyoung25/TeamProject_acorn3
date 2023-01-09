@@ -2,7 +2,7 @@
     position: fixed;
     _position: absolute;
     _z-index: -1;
-    width: 300px;
+    width: 330px;
     overflow: hidden;
     right: 60px;
     bottom: 60px;
@@ -16,6 +16,7 @@
     width: 80px;
     height: 80px;
     color: #FACC2E;
+    
 }
 #chatIcon:hover{
     color:#FFBF00;
@@ -123,4 +124,8 @@
     background-color: grey;
     border-radius: 10px;
     box-shadow: inset 0px 0px 5px white;
+}
+
+.btn-light{
+	margin:7px; !important
 }

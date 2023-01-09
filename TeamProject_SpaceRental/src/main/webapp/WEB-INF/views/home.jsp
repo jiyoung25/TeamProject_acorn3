@@ -18,8 +18,8 @@
 	crossorigin="anonymous"></script>
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
-<link rel="stylesheet" href="${pageContext.request.contextPath}/chatbot.css">
-<script src="${pageContext.request.contextPath}/js/gura_util.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/chatbot.css">
+<script src="${pageContext.request.contextPath}/js/chatbot.js"></script>
 <title>home</title>
 </head>
 <body>
@@ -47,42 +47,10 @@
 					</div>
 					<div id="chatbot_body" class="wrap">
 						<div id="chatbot_main"></div>
-							<div class="chat ch1 animate__animated animate__fadeInLeft">
-								<div class="icon"></div>
-								<div class="textbox">테스트하기</div>
-							</div>
-							<div class="chat ch2 animate__animated animate__fadeInRight">
-								<div class="textbox">테스트하기2</div>
-							</div>
-							<div class="chat ch1 animate__animated animate__fadeInLeft">
-								<div class="icon"></div>
-								<div class="textbox">짧</div>
-							</div>
-							<div class="chat ch2 animate__animated animate__fadeInRight">
-								<div class="textbox">길게 글 쓰기 긴 글 체크하기 긴 글 길게 쓰면 어떻게 나오나
-								길게 길게 길게 길게 길게 길게 길게</div>
-							</div>
-							<div class="chat ch1 animate__animated animate__fadeInLeft">
-								<div class="icon"></div>
-								<div class="textbox">안녕하세요. 반갑습니다.</div>
-							</div>
-							<div class="chat ch2 animate__animated animate__fadeInRight">
-								<div class="textbox">스크롤 테스트</div>
-							</div>
-							<div class="chat ch1 animate__animated animate__fadeInLeft">
-								<div class="icon"></div>
-								<div class="textbox">스크롤 테스트2</div>
-							</div>
-							<div class="chat ch1 animate__animated animate__fadeInLeft">
-								<div class="icon"></div>
-								<div class="textbox">스크롤 테스트3</div>
-							</div>
-							<component v-bind:is="componentQuestion"></component>
-							<component v-bind:is="componentAnswer"></component>
 						<div id="chatbot_question">
 							<c:forEach var="tmp" items="${qnaList }" >
 								<button type="button" class="btn btn-light" value="${tmp.num }"
-								v-on:click="onChatbot(event)">
+									onClick="onChatbot(event)">
 									${tmp.question }
 								</button>
 							</c:forEach>
@@ -104,59 +72,14 @@
         let divBox = new Vue({
             el: "#divBox",
             data: {
-                isChatBotOn: false,
-                componentQuestion:"",
-                componentAnswer:"",
-                msg: "",
-                question:"",
-                answer:""
+                isChatBotOn: false
             },
             methods: {
                 onChat: function () {
                     this.isChatBotOn = !this.isChatBotOn;
-                },
-                onChatbot: function(e) {
-        			let num = e.target.value;
-        	        fetch("chatbot/qna?num="+num)
-        	        .then(function(response){
-        	        	console.log(response);
-        	            return response.text();
-        	        })
-        	        .then(function(data){
-        	        	question = JSON.parse(data).question;
-        	        	this.question = question;
-        	            answer = JSON.parse(data).answer;
-        	            this.answer = answer;
-        	        })
-        	        
-        	        this.componentQuestion = 'my-question';
-        	        this.componentAnswer = 'my-answer';
                 }
-            },
-            
+            }
         });
-        
-	    Vue.component('my-question',{
-	    	template:`<div class="chat ch2 animate__animated animate__fadeInRight">
-				<div class="textbox">{{question}}</div>
-				</div>`,
-			data(){
-					return{
-						question : divBox.question
-					}
-				}
-	    })
-	    Vue.component('my-answer',{
-	    	template:`<div class="chat ch1 animate__animated animate__fadeInLeft">
-				<div class="icon"></div>
-				<div class="textbox">{{answer}}</div>
-			</div>`,
-			data(){
-				return{
-					answer : divBox.answer
-				}
-			}
-	    })
     </script>
 </body>
 </html>
