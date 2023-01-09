@@ -1,0 +1,131 @@
+#divBox {
+    position: fixed;
+    _position: absolute;
+    _z-index: -1;
+    width: 330px;
+    overflow: hidden;
+    right: 60px;
+    bottom: 60px;
+    margin: 0;
+    padding: 0;
+    border-radius: 10px;
+}
+
+#chatIcon {
+    margin-left: 150px;
+    width: 100px;
+    height: 100px;
+    color: #FACC2E;
+    padding:10px;
+    filter: drop-shadow(3px 3px 3px #808080);
+}
+#chatIcon:hover{
+    filter: drop-shadow(5px 5px 5px #000);
+}
+
+#chatbot{
+	box-shadow: 10px 10px 10px 10px gray;
+}
+
+#chatbot_head {
+    background-color: #808080;
+}
+
+#chatbot_body {
+	padding-top:0px;
+    background-color: beige;
+    height: 500px;
+}
+
+.btn-close {
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-left: 5px;
+}
+
+.wrap {
+    padding: 40px 0;
+    background-color: #A8C0D6;
+    overflow: scroll;
+    overflow-x: hidden
+}
+
+.wrap .chat {
+    display: flex;
+    align-items: flex-start;
+    padding: 20px;
+}
+
+.wrap .chat .icon {
+    position: relative;
+    overflow: hidden;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #eee;
+}
+
+.wrap .chat .textbox {
+    position: relative;
+    display: inline-block;
+    max-width: calc(100% - 70px);
+    padding: 10px;
+    margin-top: 7px;
+    font-size: 13px;
+    border-radius: 10px;
+}
+
+.wrap .chat .textbox::before {
+    position: absolute;
+    display: block;
+    top: 0;
+    font-size: 1.5rem;
+}
+
+.wrap .ch1 .textbox {
+    margin-left: 20px;
+    background-color: #ddd;
+}
+
+.wrap .ch1 .textbox::before {
+    left: -15px;
+    content: "◀";
+    color: #ddd;
+}
+
+.wrap .ch2 {
+    flex-direction: row-reverse;
+}
+
+.wrap .ch2 .textbox {
+    margin-right: 20px;
+    background-color: #F9EB54;
+}
+
+.wrap .ch2 .textbox::before {
+    right: -15px;
+    content: "▶";
+    color: #F9EB54;
+}
+
+.wrap::-webkit-scrollbar {
+    width: 10px;
+}
+
+.wrap::-webkit-scrollbar-thumb {
+    background-color: #2f3542;
+    border-radius: 10px;
+    background-clip: padding-box;
+    border: 2px solid transparent;
+}
+
+.wrap::-webkit-scrollbar-track {
+    background-color: grey;
+    border-radius: 10px;
+    box-shadow: inset 0px 0px 5px white;
+}
+
+.btn-light{
+	margin:7px; !important
+}

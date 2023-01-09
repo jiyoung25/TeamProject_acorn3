@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="chatbot">
+	<select id="getList" resultType="com.team.project.chatbot.dto.ChatbotDto">
+		SELECT *
+		FROM
+			(SELECT result1.*, ROWNUM AS rnum
+				FROM
+				(SELECT num, question, answer
+				FROM chatbot) result1)
+		ORDER BY num ASC
+	</select>
+	<select id="getData" resultType="com.team.project.chatbot.dto.ChatbotDto" parameterType="int">
+		SELECT num, question, answer
+		FROM chatbot
+		WHERE num = #{num}
+	</select>
+</mapper>
