@@ -44,7 +44,7 @@ public class UsersController {
 		mView.setViewName("users/loginform");
 		
 		return mView;
-	}
+
 	
 	@PostMapping("/users/login")
 	public ModelAndView login(HttpServletRequest request, HttpSession session, String id, ModelAndView mView,

@@ -16,7 +16,7 @@
 			<label for="pwd">비밀번호</label>
 			<input type="password" name="inputPwd" id="pwd" />
 			<br>
-			<input type="checkbox" name="r emember" value="true" ${not empty cookie.savedId? 'checked':''  } />아이디 기억하기
+			<input type="checkbox" name="remember" value="true" ${not empty cookie.savedId? 'checked':''  } />아이디 기억하기
 			<br>
 			<button type="submit">로그인</button>
 		</form>
