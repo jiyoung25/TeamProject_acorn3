@@ -9,12 +9,14 @@
 </head>
 <body>
 	<div class="container">
+	
 		<h1>홈</h1>
 		<ul>
 			<li><a href="${pageContext.request.contextPath}/users/signupform">회원가입</a></li>
 			<li><a href="${pageContext.request.contextPath}/users/loginform">로그인</a></li>
 			<li><a href="javascript:" onclick="logoutConfirm()">로그아웃 하기</a></li>
 		</ul>
+		
 	</div>
 	<script>
 		function logoutConfirm(){
