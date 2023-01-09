@@ -44,6 +44,7 @@ public class UsersController {
 		mView.setViewName("users/loginform");
 		
 		return mView;
+	}
 
 	
 	@PostMapping("/users/login")
