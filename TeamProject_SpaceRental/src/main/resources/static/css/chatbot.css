@@ -13,18 +13,18 @@
 
 #chatIcon {
     margin-left: 150px;
-    width: 80px;
-    height: 80px;
+    width: 100px;
+    height: 100px;
     color: #FACC2E;
-    
+    padding:10px;
+    filter: drop-shadow(3px 3px 3px #808080);
 }
 #chatIcon:hover{
-    color:#FFBF00;
+    filter: drop-shadow(5px 5px 5px #000);
 }
 
-#Box {
-    height: 2000px;
-    background-color: white;
+#chatbot{
+	box-shadow: 10px 10px 10px 10px gray;
 }
 
 #chatbot_head {
