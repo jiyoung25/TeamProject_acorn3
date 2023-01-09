@@ -32,6 +32,16 @@
 			<li><a href="${pageContext.request.contextPath}/users/loginform">로그인</a></li>
 			<li><a href="javascript:" onclick="logoutConfirm()">로그아웃 하기</a></li>
 		</ul>
+		
+		<ul>
+			<c:forEach var="tmp" items="${categoryList }">
+				<li><a href="${pageContext.request.contextPath}/category/list?num=${tmp.cate_num }">${tmp.cate_name }</a></li>
+				<script>
+					console.log("${tmp.cate_num}");
+				</script>
+			</c:forEach>
+		</ul>
+		
 		<div id="divBox" class="animate__animated animate__fadeIn">
 			<span v-on:click="onChat" v-if="!isChatBotOn">
 				<img id="chatIcon" src="${pageContext.request.contextPath}/image/speak.png"/>
