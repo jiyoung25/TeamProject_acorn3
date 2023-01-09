@@ -15,14 +15,14 @@
 				<h3>로그인 성공</h3>
 				<p>
 					<strong>${id }</strong>님 로그인 되었습니다.
-					<a href="${url }">확인</a>
+					<a href="${pageContext.request.contextPath}/">확인</a>
 				</p>
 			</c:when>
 			<c:otherwise>
 				<h3>로그인 실패</h3>
 				<p>
 					로그인 정보를 다시 확인해주세요.
-					<a href="loginform?url=${encodedUrl }">로그인 다시 시도하기</a>
+					<a href="${pageContext.request.contextPath}/users/loginform">로그인 다시 시도하기</a>
 				</p>
 			</c:otherwise>
 		</c:choose>

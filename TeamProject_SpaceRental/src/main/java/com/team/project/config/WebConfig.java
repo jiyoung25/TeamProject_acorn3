@@ -17,6 +17,9 @@ public class WebConfig implements WebMvcConfigurer{
 	//인터셉터 동작하도록 등록하기
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
+		registry.addInterceptor(loginInterceptor)
+		.addPathPatterns("/users/*")
+		.excludePathPatterns("/users/signupform", "/users/signup", "/users/loginform", "/users/login");
 	}
 }
 
