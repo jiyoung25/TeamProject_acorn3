@@ -19,7 +19,7 @@ public class WebConfig implements WebMvcConfigurer{
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(loginInterceptor)
 		.addPathPatterns("/users/*")
-		.excludePathPatterns("/users/signupform", "/users/signup", "/users/loginform", "/users/login");
+		.excludePathPatterns("/users/signupform", "/users/signup", "/users/loginform", "/users/login", "/users/checkid");
 	}
 }
 

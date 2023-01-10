@@ -41,7 +41,7 @@
 			<br />
 			<div>
 				<label class="control-label" for="email">이메일</label> 
-				<input class="form-control" type="text" name="email" id="email" placeholder="xxx.example.com"/>
+				<input class="form-control" type="text" name="email" id="email" placeholder="xxx@example.com"/>
 				<small class="form-text text-muted"></small>
 			</div>
 			<br />
@@ -132,7 +132,7 @@
 		}
 		
 		//2. 서버에 페이지 전환없이 전송을 하고 응답을 받는다.
-		fetch("checkid.jsp?inputId="+inputId)
+		fetch("${pageContext.request.contextPath}/users/checkid?inputId="+inputId)
 		.then(function(response){
 			return response.json();
 		})
