@@ -1,6 +1,7 @@
 package com.team.project.users.controller;
 
 import java.net.URLEncoder;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.team.project.users.service.UsersService;
@@ -22,6 +25,14 @@ public class UsersController {
 	
 	@Autowired
 	private UsersService service;
+	
+	//아이디 중복 확인을 해서 json 문자열을 리턴해주는 메소드 
+	@RequestMapping("/users/checkid")
+	@ResponseBody
+	public Map<String, Object> checkid(@RequestParam String inputId){
+		//UsersService 가 리턴해주는 Map 을 리턴해서 json 문자열을 응답한다. 
+		return service.isExistId(inputId);
+	}
 	
 	@RequestMapping("/users/signupform")
 	public String signupform() {
