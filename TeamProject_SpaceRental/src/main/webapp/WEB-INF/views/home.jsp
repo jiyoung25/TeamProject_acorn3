@@ -189,12 +189,12 @@
         });
         
         
-        <!-- 
+        <%-- 
         
 			로그아웃하기는 사이드바 하단에 추가예정 
 			<li><a href="javascript:" onclick="logoutConfirm()">로그아웃 하기</a></li>
 		
-		-->
+		--%>
     </script>
     
 </body>
