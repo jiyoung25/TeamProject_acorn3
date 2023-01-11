@@ -26,10 +26,7 @@
 	              <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
 	
 	                <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">회원가입</p>
-	
-	                <form class="mx-1 mx-md-4">
-	                <form action="${pageContext.request.contextPath}/users/signup" method="post" id="myForm">
-	                
+	                <form action="${pageContext.request.contextPath}/users/signup" class="mx-1 mx-md-4" method="post" id="myForm">
 	                <div>
 						<label for="admin">관리자</label>
 						<input type="radio" name="code" value="1" id="admin" />
@@ -41,23 +38,22 @@
 	
 	                  <div class="d-flex flex-row align-items-center mb-4">
 	                    <i class="fas fa-user fa-lg me-3 fa-fw"></i>
-	                    <div class="form-outline flex-fill mb-0">
+	                    <div class="flex-fill mb-0">
 	                      <input type="text" name="id" id="id" class="form-control" />
 	                      <label class="form-label" for="id">아이디</label>
 	                    </div>
 	                  </div>
-	
 	                  <div class="d-flex flex-row align-items-center mb-4">
 	                    <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
-	                    <div class="form-outline flex-fill mb-0">
+	                    <div class="flex-fill mb-0">
 	                      <input type="text" name="email" id="email" class="form-control"  />
 	                      <label class="form-label" for="email">이메일</label>
 	                    </div>
 	                  </div>
-	
+	                  
 	                  <div class="d-flex flex-row align-items-center mb-4">
 	                    <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
-	                    <div class="form-outline flex-fill mb-0">
+	                    <div class="flex-fill mb-0">
 	                      <input type="password" name="pwd" id="pwd" class="form-control" />
 	                      <label class="form-label" for="pwd">비밀번호</label>
 	                      
@@ -66,31 +62,27 @@
 	
 	                  <div class="d-flex flex-row align-items-center mb-4">
 	                    <i class="fas fa-key fa-lg me-3 fa-fw"></i>
-	                    <div class="form-outline flex-fill mb-0">
-	                      <input type="password" name="pw2" id="pw2" class="form-control" />
+	                    <div class="flex-fill mb-0">
+	                      <input type="password" name="pwd2" id="pwd2" class="form-control" />
 	                      <label class="form-label" for="pwd2">비밀번호 확인</label>
 	                    </div>
 	                  </div>
 	
 	                  <div class="form-check d-flex justify-content-center mb-5">
-	                    <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3c" />
+	                    <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3" />
 	                    <label class="form-check-label" for="form2Example3">
 	                      <a href="#!">서비스 약관</a>에 모두 동의합니다.
 	                    </label>
 	                  </div>
-	
 	                  <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-	                    <button type="submit" class="btn btn-primary btn-lg">회원가입</button>
+	                    	<button type="submit" class="btn btn-primary btn-lg">회원가입</button>
 	                  </div>
-	
 	                </form>
 	
 	              </div>
 	              <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
-	
 	                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/lotus.webp"
 	                  class="img-fluid" alt="Sample image">
-	
 	              </div>
 	            </div>
 	          </div>

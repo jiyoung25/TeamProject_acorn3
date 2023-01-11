@@ -4,12 +4,12 @@
 	
 	<insert id="insert" parameterType="usersDto">
 		INSERT INTO space_users
-		(id, pwd, email, regdate, code)
-		VALUES( #{id}, #{pwd}, #{email}, SYSDATE, #{code})
+		(users_num, id, pwd, email, regdate, code)
+		VALUES(space_users_seq.NEXTVAL ,#{id}, #{pwd}, #{email}, SYSDATE, #{code})
 	</insert>
 	
 	<select id="getData" resultType="usersDto" parameterType="String">
-		SELECT code, pwd, email, regdate, profile
+		SELECT users_num, code, pwd, email, regdate, profile
 		FROM space_users
 		WHERE id=#{id}
 	</select>
@@ -39,7 +39,7 @@
 		WHERE id=#{id }
 	</update>
 	
-	<delete id="delete" parameterType="string">
+	<delete id="delete" parameterType="String">
 		DELETE FROM space_users
 		WHERE id=#{id}
 	</delete>	
