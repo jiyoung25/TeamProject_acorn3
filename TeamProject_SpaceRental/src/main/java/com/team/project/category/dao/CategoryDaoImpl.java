@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.team.project.category.dto.CategoryDto;
+import com.team.project.space.dto.SpaceDto;
 
 @Repository
 public class CategoryDaoImpl implements CategoryDao {
@@ -18,15 +19,4 @@ public class CategoryDaoImpl implements CategoryDao {
 	public List<CategoryDto> getCategoryList() {
 		return session.selectList("category.getCategoryList");
 	}
-	
-	@Override
-	public List<CategoryDto> getSpaceAllList(CategoryDto dto) {
-		return session.selectList("category.getSpaceAllList", dto);
-	}
-
-	@Override
-	public List<CategoryDto> getSpaceList(CategoryDto dto) {
-		return session.selectList("category.getSpaceList", dto);
-	}
-
 }

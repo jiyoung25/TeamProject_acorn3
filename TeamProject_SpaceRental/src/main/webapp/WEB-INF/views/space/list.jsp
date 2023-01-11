@@ -5,16 +5,12 @@
 <html>
 <head>
 <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
-<title>
-	<c:choose>
-		<c:when test="${cate_num eq 1 }">
-			${cate_name } 목록
-		</c:when>
-		
-	</c:choose>
-</title>
+<title>느어엉</title>
 </head>
 <body>
-
+	<h3>공간 리스트</h3>
+	<c:forEach var="tmp" items="${list }">
+		${tmp.space_name}
+	</c:forEach>
 </body>
 </html>

@@ -8,5 +8,4 @@ import com.team.project.category.dto.CategoryDto;
 
 public interface CategoryService {
 	public ModelAndView getCategory(ModelAndView mView);
-	public ModelAndView getSpaceList(HttpServletRequest request, int num);
 }
