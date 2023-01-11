@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.team.project.category.dto.CategoryDto;
 import com.team.project.category.service.CategoryService;
 import com.team.project.chatbot.service.ChatbotService;
 
@@ -18,9 +19,8 @@ public class HomeController {
 	@RequestMapping("/")
 	public ModelAndView home(ModelAndView mView) {
 		chatbotService.getQnaList(mView);
-		categoryService.getCategoryList(mView);
+		categoryService.getCategory(mView);
 		mView.setViewName("home");
-		
 		return mView;
 	}
 }

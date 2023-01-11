@@ -34,8 +34,8 @@
 		</ul>
 		
 		<ul>
-			<c:forEach var="tmp" items="${categoryList }">
-				<li><a href="${pageContext.request.contextPath}/category/list?num=${tmp.cate_num }">${tmp.cate_name }</a></li>
+			<c:forEach var="tmp" items="${category }">
+				<li><a href="${pageContext.request.contextPath}/space/list?num=${tmp.cate_num }">${tmp.cate_name }</a></li>
 				<script>
 					console.log("${tmp.cate_num}");
 				</script>

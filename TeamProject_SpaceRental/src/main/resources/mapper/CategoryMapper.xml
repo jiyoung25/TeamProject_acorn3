@@ -1,13 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="category">
-	<select id="getList" resultType="categoryDto">
-		SELECT cate_num, cate_name
-		FROM space_category
+	<select id="getSpaceAllList" resultType="categoryDto" parameterType="categoryDto">
+		SELECT *
+		FROM
+			(SELECT result1.*, ROWNUM AS rnum
+			FROM
+				(SELECT space_num, users_num, space_name, mainImagePath, addr, seller_space.cate_name cate_name
+				FROM seller_space
+				INNER JOIN space_category ON seller_space.cate_name=space_category.cate_name) result1)
+		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
+		ORDER BY rnum ASC
 	</select>
-	<select id="getData" resultType="categoryDto" parameterType="int">
-		SELECT cate_name
+	<select id="getSpaceList" resultType="categoryDto" parameterType="categoryDto">
+		SELECT *
+		FROM
+			(SELECT result1.*, ROWNUM AS rnum
+			FROM
+				(SELECT space_num, users_num, space_name, mainImagePath, addr, seller_space.cate_name cate_name
+				FROM seller_space
+				INNER JOIN space_category ON seller_space.cate_name=space_category.cate_name
+				WHERE space_category.cate_num= #{num}) result1)
+		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
+		ORDER BY rnum ASC
+	</select>
+	<select id="getCategoryList" resultType="categoryDto">
+		SELECT cate_name, cate_num
 		FROM space_category
-		WHERE cate_num=#{num}
+		ORDER BY cate_num ASC
 	</select>
 </mapper>

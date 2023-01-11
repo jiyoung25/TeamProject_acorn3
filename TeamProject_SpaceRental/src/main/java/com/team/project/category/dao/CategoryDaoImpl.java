@@ -13,15 +13,20 @@ public class CategoryDaoImpl implements CategoryDao {
 	
 	@Autowired
 	private SqlSession session;
+
+	@Override
+	public List<CategoryDto> getCategoryList() {
+		return session.selectList("category.getCategoryList");
+	}
 	
 	@Override
-	public List<CategoryDto> getList() {
-		return session.selectList("category.getList");
+	public List<CategoryDto> getSpaceAllList(CategoryDto dto) {
+		return session.selectList("category.getSpaceAllList", dto);
 	}
 
 	@Override
-	public CategoryDto getData(int num) {
-		return session.selectOne("category.getData", num);
+	public List<CategoryDto> getSpaceList(CategoryDto dto) {
+		return session.selectList("category.getSpaceList", dto);
 	}
 
 }

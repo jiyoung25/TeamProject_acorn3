@@ -6,15 +6,19 @@ import org.apache.ibatis.type.Alias;
 public class CategoryDto {
 	private int cate_num;
 	private String cate_name;
+	private int startRowNum;
+	private int endRowNum;
 	
 	public CategoryDto() {
 		
 	}
 	
-	public CategoryDto(int cate_num, String cate_name) {
+	public CategoryDto(int cate_num, String cate_name, int startRowNum, int endRowNum) {
 		super();
 		this.cate_num = cate_num;
 		this.cate_name = cate_name;
+		this.startRowNum = startRowNum;
+		this.endRowNum = endRowNum;
 	}
 
 	public int getCate_num() {
@@ -31,5 +35,21 @@ public class CategoryDto {
 
 	public void setCate_name(String cate_name) {
 		this.cate_name = cate_name;
+	}
+
+	public int getStartRowNum() {
+		return startRowNum;
+	}
+
+	public void setStartRowNum(int startRowNum) {
+		this.startRowNum = startRowNum;
+	}
+
+	public int getEndRowNum() {
+		return endRowNum;
+	}
+
+	public void setEndRowNum(int endRowNum) {
+		this.endRowNum = endRowNum;
 	}
 }
