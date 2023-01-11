@@ -42,7 +42,6 @@
 			</div>
 		</div>
 	</nav>
-	
 	<!--carousel-->		
 	<div id="carouselExampleCaptions" class="carousel slide bg-light" data-bs-ride="carousel">
 		<div class="carousel-indicators">
@@ -142,6 +141,14 @@
 		</div>
 	
 		<!-- chatbot -->
+		<ul>
+			<c:forEach var="tmp" items="${category }">
+				<li><a href="${pageContext.request.contextPath}/space/list?cate_num=${tmp.cate_num }">${tmp.cate_name }</a></li>
+				<script>
+					console.log("${tmp.cate_num}");
+				</script>
+			</c:forEach>
+		</ul>
 		<div id="divBox" class="animate__animated animate__fadeIn">
 			<span v-on:click="onChat" v-if="!isChatBotOn">
 				<img id="chatIcon" src="${pageContext.request.contextPath}/image/speak.png"/>
