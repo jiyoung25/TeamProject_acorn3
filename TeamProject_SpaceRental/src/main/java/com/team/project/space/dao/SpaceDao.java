@@ -2,6 +2,8 @@ package com.team.project.space.dao;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.team.project.category.dto.CategoryDto;
 import com.team.project.space.dto.SpaceDto;
 

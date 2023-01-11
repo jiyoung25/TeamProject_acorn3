@@ -77,7 +77,11 @@
 		<div class="tmp"></div>
 		<h3 id="qna">Q&A</h3>
 		<div class="tmp"></div>
+		<a href="${pageContext.request.contextPath}/space/list?cate_num=${cate_num}" >목록으로</a>
+	
 	</div>
+	
+	
 	<script>
 			let selectTime = new Vue({
 			el:"#selectTime",
