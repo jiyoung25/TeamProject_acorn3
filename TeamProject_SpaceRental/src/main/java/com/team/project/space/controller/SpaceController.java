@@ -19,6 +19,7 @@ public class SpaceController {
 	@GetMapping("/space/list")
 	public String spaceList(HttpServletRequest request, int cate_num) {
 		service.getSpaceList(request, cate_num);
+		request.setAttribute("cate_num", cate_num);
 		
 		return "space/list";
 	}
