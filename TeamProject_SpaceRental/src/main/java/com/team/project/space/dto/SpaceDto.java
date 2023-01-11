@@ -13,15 +13,24 @@ public class SpaceDto {
 	private String addr; //공간 주소
 	private String cate_name; //등록한 공간의 카테고리 이름
 	private int cate_num;
+	
+	//페이지 넘버링을 위한 정보
 	private int startRowNum;
 	private int endRowNum;
+	
+	//검색을 위한 정보
+	private String keyword;
+	private String condition;
+	private String spaceName;
 	
 	public SpaceDto() {
 		
 	}
 	
+	
 	public SpaceDto(int space_num, String space_name, int users_num, String oneliner, String intro,
-			String mainImagePath, String addr, String cate_name, int cate_num, int startRowNum, int endRowNum) {
+			String mainImagePath, String addr, String cate_name, int cate_num, int startRowNum, int endRowNum,
+			String keyword, String condition, String writer, String spaceName) {
 		super();
 		this.space_num = space_num;
 		this.space_name = space_name;
@@ -34,6 +43,9 @@ public class SpaceDto {
 		this.cate_num = cate_num;
 		this.startRowNum = startRowNum;
 		this.endRowNum = endRowNum;
+		this.keyword = keyword;
+		this.condition = condition;
+		this.spaceName = spaceName;
 	}
 	public int getSpace_num() {
 		return space_num;
@@ -95,11 +107,28 @@ public class SpaceDto {
 	public void setEndRowNum(int endRowNum) {
 		this.endRowNum = endRowNum;
 	}
-
 	public int getCate_num() {
 		return cate_num;
 	}
 	public void setCate_num(int cate_num) {
 		this.cate_num = cate_num;
+	}
+	public String getKeyword() {
+		return keyword;
+	}
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
+	public String getCondition() {
+		return condition;
+	}
+	public void setCondition(String condition) {
+		this.condition = condition;
+	}
+	public String getSpaceName() {
+		return spaceName;
+	}
+	public void setSpaceName(String spaceName) {
+		this.spaceName = spaceName;
 	}
 }

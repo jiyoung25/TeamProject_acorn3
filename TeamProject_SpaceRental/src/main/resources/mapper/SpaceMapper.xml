@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="space">
+
+	<sql id="searchCondition">
+		<choose>
+			<when test="spaceName != null">
+				WHERE space_name LIKE '%'||#{spaceName }||'%'
+			</when>
+		</choose>
+	</sql>
+	
 	<select id="getSpaceAllList" resultType="spaceDto" parameterType="spaceDto">
 		SELECT *
 		FROM
@@ -20,7 +29,8 @@
 				(SELECT space_num, users_num, space_name, mainImagePath, addr, seller_space.cate_name cate_name
 				FROM seller_space
 				INNER JOIN space_category ON seller_space.cate_name=space_category.cate_name
-				WHERE space_category.cate_num= #{cate_num}) result1)
+						WHERE space_category.cate_num = #{cate_num}
+				) result1)
 		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
 		ORDER BY rnum ASC
 	</select>
