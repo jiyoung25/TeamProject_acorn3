@@ -39,23 +39,25 @@
 	                  <div class="d-flex flex-row align-items-center mb-4">
 	                    <i class="fas fa-user fa-lg me-3 fa-fw"></i>
 	                    <div class="flex-fill mb-0">
-	                      <input type="text" name="id" id="id" class="form-control" />
 	                      <label class="form-label" for="id">아이디</label>
+	                      <input type="text" name="id" id="id" class="form-control" />
+	                      <small class="form-text text-muted">5~20자의 영문 소문자.</small>
 	                    </div>
 	                  </div>
 	                  <div class="d-flex flex-row align-items-center mb-4">
 	                    <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
 	                    <div class="flex-fill mb-0">
-	                      <input type="text" name="email" id="email" class="form-control"  />
 	                      <label class="form-label" for="email">이메일</label>
+	                      <input type="text" name="email" id="email" class="form-control" placeholder="xxx@example.com" />
 	                    </div>
 	                  </div>
 	                  
 	                  <div class="d-flex flex-row align-items-center mb-4">
 	                    <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
 	                    <div class="flex-fill mb-0">
-	                      <input type="password" name="pwd" id="pwd" class="form-control" />
 	                      <label class="form-label" for="pwd">비밀번호</label>
+	                      <input type="password" name="pwd" id="pwd" class="form-control" />
+	                      <small class="form-text text-muted">8자리이상 영문 대 소문자, 숫자, 특수문자를 사용하세요.</small>
 	                      
 	                    </div>
 	                  </div>
@@ -91,45 +93,6 @@
 	    </div>
 	  </div>
 	</section>
-	<div class="container">
-		<h1>SignupForm</h1>
-		<form action="${pageContext.request.contextPath}/users/signup"
-			method="post" id="myForm">
-			<div>
-				<label for="admin">관리자</label>
-				<input type="radio" name="code" value="1" id="admin" />
-				<label for="seller">판매자</label>
-				<input type="radio" name="code" value="2" id="seller" />
-				<label for="member">회원</label>
-				<input type="radio" name="code" value="3" id="member" />
-			</div>
-			<br />
-			<div>
-				<label class="control-label" for="id">아이디</label> 
-				<input class="form-control" type="text" name="id" id="id" />
-				<small class="form-text text-muted">영문자 소문자로 시작하고 5글자~10글자 이내로 입력하세요</small>
-			</div>
-			<br />
-			<div>
-				<label class="control-label" for="pwd">비밀번호</label> 
-				<input class="form-control" type="password" name="pwd" id="pwd" />
-				<small class="form-text text-muted">숫자, 특문 각 1회 이상, 영문은 2개 이상 사용하여 8자리 이상으로 입력하세요</small>
-			</div>
-			<br />
-			<div>
-				<label class="control-label" for="pwd2">비밀번호 확인</label> 
-				<input class="form-control" type="password" name="pwd2" id="pwd2"/>
-			</div>
-			<br />
-			<div>
-				<label class="control-label" for="email">이메일</label> 
-				<input class="form-control" type="text" name="email" id="email" placeholder="xxx@example.com"/>
-				<small class="form-text text-muted"></small>
-			</div>
-			<br />
-			<button type="submit">가입</button>
-		</form>
-	</div>
 	
 	<script>
 	//유효성 여부를 저장할 변수를 만들고 초기값 대입 
