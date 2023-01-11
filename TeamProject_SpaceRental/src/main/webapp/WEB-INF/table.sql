@@ -1,42 +1,49 @@
 CREATE TABLE space_users(
-   code NUMBER NOT NULL,
-   users_num NUMBER NOT NULL,
-   id VARCHAR2(100) PRIMARY KEY,
-   pwd VARCHAR2(100) NOT NULL,
-   email VARCHAR2(100) NOT NULL,
-   profile VARCHAR2(100),
-   regdate DATE
+   code NUMBER NOT NULL, -- 회원 코드 관리자/판매자/구매자
+   users_num NUMBER NOT NULL, -- 회원 번호
+   id VARCHAR2(100) PRIMARY KEY, -- 회원 아이디
+   pwd VARCHAR2(100) NOT NULL, -- 회원 비밀번호
+   email VARCHAR2(100) NOT NULL, -- 회원 이메일
+   profile VARCHAR2(100), -- 회원 프로필 이미지 경로
+   regdate DATE -- 가입일
 );
 
 CREATE TABLE reserv_list(
-    users_num NUMBER PRIMARY KEY,
-    space_num NUMBER NOT NULL,
-    seller_num NOT NULL,
-    reserv_num NUMBER NOT NULL,
-    reserv_date VARHAR2(100) NOT NULL
+    reserv_num NUMBER PRIMARY KEY, -- 예약 번호
+    users_num NUMBER NOT NULL, -- 예약자(구매자) 번호
+    users_id VARCHAR2 NOT NULL, -- 예약자(구매자) 아이디
+    space_num NUMBER NOT NULL, -- 공간 글 번호
+    reserv_date VARHAR2(100) NOT NULL -- 예약 날짜와 시간
 );
 
 CREATE TABLE dibson_list(
-    user_num NUMBER PRIMARY KEY,
-    dibson_num NUMBER NOT NULL,
-    space_num NUMBER NOT NULL
+    dibson_num NUMBER PRIMARY KEY, -- 찜 번호
+    users_num NUMBER NOT NULL, -- 찜한 회원 (구매자) 번호
+    users_id VARCHAR2(100) NOT NULL, -- 찜한 회원(구매자) 아이디
+    space_num NUMBER NOT NULL, -- 찜한 공간 번호
 );
 
 CREATE TABLE review(
-    review_num NUMBER PRIMARY KEY,
-    users_num NUMBER PRIMARY KEY,
-    space_num NUMBER NOT NULL,
-    review_title NOT NULL,
-    review_content NOT NULL,
-    review_rating NOT NULL
+    review_num NUMBER PRIMARY KEY, -- 리뷰 번호
+    users_num NUMBER NOT NULL, -- 리뷰글 올린 회원(구매자) 번호
+    space_num NUMBER NOT NULL, -- 리뷰 공간(상품) 번호
+    review_writer VARCHAR2(100) NOT NULL, -- 리뷰 작성자
+    review_title NOT NULL, -- 리뷰 제목
+    review_content NOT NULL, -- 리뷰 내용
+    review_regdate NOT NULL, -- 리뷰 작성일
+    -- review_rating, -- 리뷰 평가는 나중에 여유될 때 할 것
+    viewcount NUMBER -- 리뷰 조회수
 );
 
 CREATE TABLE qna(
-    qna_num NUMBER PRIMARY KEY,
-    users_num NUMBER PRIMARY KEY,
-    space_num NUMBER NOT NULL,
-    qna_title VARCHAR2(100) NOT NULL,
-    qna_content VARCHAR2(100) NOT NULL
+    qna_num NUMBER PRIMARY KEY, -- qna번호
+    users_num NUMBER NOT NULL, -- qna 작성자(구매자) 번호
+    space_num NUMBER NOT NULL, -- 공간 글 번호
+    qna_title VARCHAR2(100) NOT NULL, -- qna 제목
+    qna_content VARCHAR2(100) NOT NULL, -- qna 내용
+    qna_writer VARCHAR2(100) NOT NULL, -- qna 작성자 아이디
+    qna_regdate NOT NULL, -- 리뷰 작성일
+    viewcount NUMBER -- 조회수
 );
 
 CREATE TABLE chatbot(
@@ -64,23 +71,26 @@ CREATE SEQUENCE space_category_seq
 CREATE TABLE seller_space(
     space_num NUMBER PRIMARY KEY, --번호
     space_name VARCHAR2(50) NOT NULL, --공간이름
-    users_num NUMBER,
+    users_num NUMBER, --판매자 번호
     oneliner VARCHAR2(60) NOT NULL, --한줄소개
     intro VARCHAR2(1000) NOT NULL, --소개
     mainImagePath VARCHAR2(100) NOT NULL, --대표이미지 경로
-    addr VARCHAR2(50) --주소
+    addr VARCHAR2(50), --주소
+    cate_name VARCHAR2(100) NOT NULL --카테고리 이름
 );
 
 CREATE TABLE review_comment(
-    review_num NUMBER NOT NULL,
-    users_num NUMBER NOT NULL,
-    space_num NUMBER NOT NULL,
-    review_comment VARCHAR2(200) NOT NULL
+    review_num NUMBER NOT NULL, --리뷰 번호
+    users_num NUMBER NOT NULL, --리뷰 등록한 사람 번호
+    space_num NUMBER NOT NULL,  --공간 글 번호
+    review_comment VARCHAR2(200) NOT NULL,  --리뷰 답변
+    review_regdate VARCHAR2(100) NOT NULL -- 리뷰 답변 등록일
 );
 
 CREATE TABLE qna_comment(
     qna_num NUMBER NOT NULL,
     users_num NUMBER NOT NULL,
     space_num NUMBER NOT NULL,
-    qna_comment VARCHAR2(200) NOT NULL
+    qna_comment VARCHAR2(200) NOT NULL,
+    qna_regdate VARCHAR2(100) NOT NULL -- qna 답변 등록일
 );
