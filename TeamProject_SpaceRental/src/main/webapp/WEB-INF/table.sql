@@ -4,7 +4,7 @@ CREATE TABLE space_users(
    id VARCHAR2(100) PRIMARY KEY,
    pwd VARCHAR2(100) NOT NULL,
    email VARCHAR2(100) NOT NULL,
-   profile VARCHAR2(100) NOT NULL,
+   profile VARCHAR2(100),
    regdate DATE
 );
 

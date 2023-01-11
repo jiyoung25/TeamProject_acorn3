@@ -15,26 +15,26 @@
   src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.js"></script>
 <style>
 .gradient-custom-2 {
-/* fallback for old browsers */
-background: #fccb90;
-
-/* Chrome 10-25, Safari 5.1-6 */
-background: -webkit-linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
-
-/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-background: linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
+	/* fallback for old browsers */
+	background: #fccb90;
+	
+	/* Chrome 10-25, Safari 5.1-6 */
+	background: -webkit-linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
+	
+	/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+	background: linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
 }
 
-@media (min-width: 768px) {
-.gradient-form {
-height: 100vh !important;
+@media screen and (min-width: 768px) {
+	.gradient-form {
+		height: 100vh !important;
+	}
 }
-}
-@media (min-width: 769px) {
-.gradient-custom-2 {
-border-top-right-radius: .3rem;
-border-bottom-right-radius: .3rem;
-}
+@media screen and (min-width: 768px) {
+	.gradient-custom-2 {
+		border-top-right-radius: .3rem;
+		border-bottom-right-radius: .3rem;
+	}
 }
 </style>  
 </head>
@@ -53,34 +53,31 @@ border-bottom-right-radius: .3rem;
                     style="width: 185px;" alt="logo">
                   <h4 class="mt-1 mb-5 pb-1">Acorn Rental</h4>
                 </div>
-
-                <form>
                   <p>아이디/비밀번호 입력</p>
-
-                  <div class="form-outline mb-4">
+                  <div class="mb-4">
                   <form action="${pageContext.request.contextPath}/users/login" method="post">
-                    <input type="text" name="id" id="id" class="form-control" value="${cookie.savedId.value }"
-                      placeholder="" />
+                    <input type="text" name="id" id="form2Example11" class="form-control" value="${cookie.savedId.value }"
+                      placeholder="" autofocus />
                     <label class="form-label" for="form2Example11">아이디</label>
-                    <input type="checkbox" name="remember" value="true" ${not empty cookie.savedId? 'checked':''  } />아이디 기억하기
                   </div>
 
-                  <div class="form-outline mb-4">
-                    <input type="password" id="Pwd" name="inputPwd" class="form-control" />
+                  <div class="mb-4">
+                    <input type="password" id="form2Example22" name="inputPwd" class="form-control" />
                     <label class="form-label" for="form2Example22">비밀번호</label>
                   </div>
 
                   <div class="text-center pt-1 mb-5 pb-1">
-                    <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="button">Log
+                    <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="submit">Log
                       in</button>
-                    <a class="text-muted" href="#!">비밀번호를 잊으셨나요?</a>
+                      	<input type="checkbox" name="remember" value="true" ${not empty cookie.savedId? 'checked':''  } />아이디 기억하기
+                    	<br />
+                    	<a class="text-muted" href="#!">비밀번호를 잊으셨나요?</a>
                   </div>
 
                   <div class="d-flex align-items-center justify-content-center pb-4">
                     <p class="mb-0 me-2">아이디가 없으신가요?</p>
                     <button type="button" class="btn btn-outline-danger"><a href="${pageContext.request.contextPath}/users/signupform">회원가입</a></button>
                   </div>
-
                 </form>
 
               </div>
