@@ -8,6 +8,8 @@ CREATE TABLE space_users(
    regdate DATE -- 가입일
 );
 
+CREATE SEQUENCE space_users_seq
+
 CREATE TABLE reserv_list(
     reserv_num NUMBER PRIMARY KEY, -- 예약 번호
     users_num NUMBER NOT NULL, -- 예약자(구매자) 번호
@@ -74,10 +76,12 @@ CREATE TABLE seller_space(
     users_num NUMBER, --판매자 번호
     oneliner VARCHAR2(60) NOT NULL, --한줄소개
     intro VARCHAR2(1000) NOT NULL, --소개
-    mainImagePath VARCHAR2(100) NOT NULL, --대표이미지 경로
+    imagePath VARCHAR2(100) NOT NULL, --대표이미지 경로
     addr VARCHAR2(50), --주소
     cate_name VARCHAR2(100) NOT NULL --카테고리 이름
 );
+
+CREATE SEQUENCE seller_space_seq
 
 CREATE TABLE review_comment(
     review_num NUMBER NOT NULL, --리뷰 번호
