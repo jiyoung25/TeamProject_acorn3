@@ -11,7 +11,7 @@ CREATE TABLE space_users(
 CREATE TABLE reserv_list(
     reserv_num NUMBER PRIMARY KEY, -- 예약 번호
     users_num NUMBER NOT NULL, -- 예약자(구매자) 번호
-    users_id VARCHAR2 NOT NULL, -- 예약자(구매자) 아이디
+    users_id VARCHAR2(100) NOT NULL, -- 예약자(구매자) 아이디
     space_num NUMBER NOT NULL, -- 공간 글 번호
     reserv_date VARHAR2(100) NOT NULL -- 예약 날짜와 시간
 );
@@ -20,7 +20,7 @@ CREATE TABLE dibson_list(
     dibson_num NUMBER PRIMARY KEY, -- 찜 번호
     users_num NUMBER NOT NULL, -- 찜한 회원 (구매자) 번호
     users_id VARCHAR2(100) NOT NULL, -- 찜한 회원(구매자) 아이디
-    space_num NUMBER NOT NULL, -- 찜한 공간 번호
+    space_num NUMBER NOT NULL -- 찜한 공간 번호
 );
 
 CREATE TABLE review(
@@ -28,9 +28,9 @@ CREATE TABLE review(
     users_num NUMBER NOT NULL, -- 리뷰글 올린 회원(구매자) 번호
     space_num NUMBER NOT NULL, -- 리뷰 공간(상품) 번호
     review_writer VARCHAR2(100) NOT NULL, -- 리뷰 작성자
-    review_title NOT NULL, -- 리뷰 제목
-    review_content NOT NULL, -- 리뷰 내용
-    review_regdate NOT NULL, -- 리뷰 작성일
+    review_title VARCHAR2(100) NOT NULL, -- 리뷰 제목
+    review_content VARCHAR2(1000) NOT NULL, -- 리뷰 내용
+    review_regdate DATE NOT NULL, -- 리뷰 작성일
     -- review_rating, -- 리뷰 평가는 나중에 여유될 때 할 것
     viewcount NUMBER -- 리뷰 조회수
 );
