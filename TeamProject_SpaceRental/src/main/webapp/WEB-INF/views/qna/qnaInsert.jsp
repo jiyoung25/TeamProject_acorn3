@@ -11,7 +11,7 @@
 <body>
 	<script>
 		alert("새글이 추가 되었습니다.");
-		location.href="${pageContext.request.contextPath}/space/detail";
+		location.href="${pageContext.request.contextPath}/space/detail?cate_num=${cate_num}&space_num=${space_num}";
 	</script>
 </body>
 </html>
