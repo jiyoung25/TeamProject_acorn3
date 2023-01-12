@@ -5,18 +5,22 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.team.project.category.dto.CategoryDto;
+import com.team.project.category.service.CategoryService;
 import com.team.project.chatbot.service.ChatbotService;
 
 @Controller
 public class HomeController {
 	@Autowired
-	private ChatbotService service;
+	private ChatbotService chatbotService;
+	@Autowired
+	private CategoryService categoryService;
 	
 	@RequestMapping("/")
 	public ModelAndView home(ModelAndView mView) {
-		service.getQnaList(mView);
+		chatbotService.getQnaList(mView);
+		categoryService.getCategory(mView);
 		mView.setViewName("home");
-		
 		return mView;
 	}
 }

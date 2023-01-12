@@ -30,7 +30,7 @@ public class UsersController {
 	@RequestMapping("/users/checkid")
 	@ResponseBody
 	public Map<String, Object> checkid(@RequestParam String inputId){
-		//UsersService 가 리턴해주는 Map 을 리턴해서 json 문자열을 응답한다. 
+		//UsersService 가 리턴해주는 Map 을 리턴해서 json 문자열을 응답한다.
 		return service.isExistId(inputId);
 	}
 	

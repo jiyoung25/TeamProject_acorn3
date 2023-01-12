@@ -46,9 +46,7 @@
 			  </button>
 			</div>
 		</div>
-    </div>
     </nav>   
-
 
         <!--사이드바-->
           <div class="offcanvas offcanvas-end " tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
@@ -71,36 +69,32 @@
                 </div>
              
               	<ul class="navbar-nav justify-content-end flex-grow-1 pe-3 ml-3">
-                <li class="nav-item">
-                  <a class="nav-link " href="#">나의 예약</a>
-                </li>
+                  <li class="nav-item">
+                    <a class="nav-link " href="#">나의 예약</a>
+                  </li>
+                  <hr class="my-2">
 
-                <hr class="my-2">
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">나의 후기</a>
+                  </li>
 
-                <li class="nav-item">
-                  <a class="nav-link" href="#">나의 후기</a>
-                </li>
+                  <hr class="my-2">
 
-                <hr class="my-2">
+                  <li class="nav-item">
+                      <a class="nav-link" href="#">나의 Q&A</a>
+                  </li>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="#">나의 Q&A</a>
-                </li>
+                  <hr class="my-2">
 
-                <hr class="my-2">
-
-                <li class="nav-item">
-                    <a class="nav-link" href="#">프로필 수정</a>
-                </li>
-				</ul>
+                  <li class="nav-item">
+                      <a class="nav-link" href="#">프로필 수정</a>
+                  </li>
+				      </ul>
             </div>
           </div>
         </div>
       </nav>
 
-
-
-	
 
 	<!--carousel-->		
 	<div id="carouselExampleCaptions" class="carousel slide bg-light" data-bs-ride="carousel">
@@ -182,20 +176,48 @@
 					<svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
 					<h2 class="fw-normal">강의실</h2>
 					<p><a class="btn btn-secondary" href="#">보러가기</a></p>
-				</div>
-			</div>
-			
-
+		    </div>
+	
+        <!-- chatbot -->
+        <ul>
+          <c:forEach var="tmp" items="${category }">
+            <li><a href="${pageContext.request.contextPath}/space/list?cate_num=${tmp.cate_num }">${tmp.cate_name }</a></li>
+            <script>
+              console.log("${tmp.cate_num}");
+            </script>
+          </c:forEach>
+        </ul>
+        <div id="divBox" class="animate__animated animate__fadeIn">
+          <span v-on:click="onChat" v-if="!isChatBotOn">
+            <img id="chatIcon" src="${pageContext.request.contextPath}/image/speak.png"/>
+          </span>
+          <div v-if="isChatBotOn">
+            <div id="chatbot" class="animate__animated animate__fadeInUp">
+              <div id="chatbot_head">
+                <button v-on:click="onChat" type="button" class="btn-close" aria-label="Close"></button>
+              </div>
+              <div id="chatbot_body" class="wrap">
+                <div id="chatbot_main"></div>
+                <div id="chatbot_question">
+                  <c:forEach var="tmp" items="${qnaList }" >
+                    <button type="button" class="btn btn-light" value="${tmp.num }"
+                      onClick="onChatbot(event)">
+                      ${tmp.question }
+                    </button>
+                  </c:forEach>
+                </div>
+              </div>
+            </div>
+          </div>
 	  <!--footer-->
 	  <div class="container">
-		<footer class="py-3 my-4">
-		  <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-			<li class="nav-item"><a href="#" class="nav-link px-2 text-muted">top</a></li>
-		  </ul>
-		  <p class="text-center text-muted">© 2023 Company, Inc</p>
-		</footer>
+      <footer class="py-3 my-4">
+        <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+        <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">top</a></li>
+        </ul>
+        <p class="text-center text-muted">© 2023 Company, Inc</p>
+      </footer>
 	  </div>
-	
 
 </body>
 </html>
