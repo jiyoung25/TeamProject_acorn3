@@ -7,20 +7,20 @@ public class SellerDto {
 	private String space_name;
 	private String oneliner;
 	private String intro;
-	private String mainImagePath;
+	private String imagePath;
 	private String addr;
 	private MultipartFile image;	//이미지 파일 업로드 처리를 위한 필드
 	
 	public SellerDto() {}
 
-	public SellerDto(int space_num, String space_name, String oneliner, String intro, String mainImagePath,
-			String addr, MultipartFile image) {
+	public SellerDto(int space_num, String space_name, String oneliner, String intro, String imagePath, String addr,
+			MultipartFile image) {
 		super();
 		this.space_num = space_num;
 		this.space_name = space_name;
 		this.oneliner = oneliner;
 		this.intro = intro;
-		this.mainImagePath = mainImagePath;
+		this.imagePath = imagePath;
 		this.addr = addr;
 		this.image = image;
 	}
@@ -57,12 +57,12 @@ public class SellerDto {
 		this.intro = intro;
 	}
 
-	public String getMainImagePath() {
-		return mainImagePath;
+	public String getImagePath() {
+		return imagePath;
 	}
 
-	public void setMainImagePath(String mainImagePath) {
-		this.mainImagePath = mainImagePath;
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
 	}
 
 	public String getAddr() {
@@ -80,5 +80,7 @@ public class SellerDto {
 	public void setImage(MultipartFile image) {
 		this.image = image;
 	}
+
+
 	
 }

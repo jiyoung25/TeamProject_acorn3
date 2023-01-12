@@ -2,25 +2,25 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="seller">
 	<select id="getList" resultType="sellerDto">
-		SELECT space_num, space_name, mainImagePath
+		SELECT space_num, space_name, imagePath
 		FROM seller_space
 		ORDER BY space_num ASC
 	</select>
 	<select id="getData" resultType="sellerDto" parameterType="int">
-		SELECT space_name, oneliner, intro, mainImagePath, addr
+		SELECT space_name, oneliner, intro, imagePath, addr
 		FROM seller_space
 		WHERE space_num=#{space_num}
 	</select>
 	<insert id="insert" parameterType="sellerDto">
 		INSERT INTO seller_space
-		(space_num, space_name, users_num, oneliner, intro, mainImagePath, addr, cate_name)
+		(space_num, space_name, users_num, oneliner, intro, imagePath, addr, cate_name)
 		VALUES(seller_space_seq.NEXTVAL, #{space_name}, #{users_num},
-			#{oneliner}, #{intro}, #{mainImagePath}, #{addr}, #{cate_name})
+			#{oneliner}, #{intro}, #{imagePath}, #{addr}, #{cate_name})
 	</insert>
 	<update id="update" parameterType="sellerDto">
 	 	UPDATE seller_space
 	 	SET space_name=#{space_name}, oneliner=#{oneliner}, intro=#{intro},
-	 		mainImagePath=#{mainImagePath}, addr=#{addr}, cate_name=#{cate_name}
+	 		imagePath=#{imagePath}, addr=#{addr}, cate_name=#{cate_name}
 	 	WHERE space_num=#{space_num}
 	</update>
 	<delete id="delete" parameterType="int">

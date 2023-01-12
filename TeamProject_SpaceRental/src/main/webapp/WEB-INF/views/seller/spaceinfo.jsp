@@ -11,7 +11,7 @@
 <body>
 	<div class="container">
 		<h1>공간 정보를 입력해 주세요.</h1>
-		<form action="insert" method="post">
+		<form action="${pageContext.request.contextPath}/seller/insert" method="post" id="insertForm">
 			<div>
 				<label for="space_name">공간명</label><br />
             	<input type="text" name="space_name" id="space_name"/>
@@ -39,9 +39,9 @@
 			<div>
 				<label for="addr">주소</label><br />
 				<input type="text" name="addr" id="addr" />
-			</div>
-			<button type="submit">저장</button>
+			</div>			
 		</form>
+		<button id="submitBtn">저장</button>
 	</div>
 	<script src="${pageContext.request.contextPath}/js/gura_util.js"></script>
 	<script>
@@ -64,6 +64,10 @@
 				//위의 form 의 input hidden 요소에 value 로 넣어서 db 에 저장
 				document.querySelector("#imagePath").value = data.imagePath;
 			});
+		});
+
+		document.querySelector("#submitBtn").addEventListener("click", function(){
+			document.querySelector("#insertForm").submit();
 		});
 		
 	</script>	

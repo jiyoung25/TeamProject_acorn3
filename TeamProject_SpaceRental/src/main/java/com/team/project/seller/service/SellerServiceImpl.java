@@ -34,17 +34,17 @@ public class SellerServiceImpl implements SellerService{
 	}
 
 	@Override
-	public void saveSpace(SellerDto dto) {
+	public void insert(SellerDto dto) {
 		sellerDao.insert(dto);
 	}
 
 	@Override
-	public void deleteSpace(int space_num, HttpServletRequest request) {
+	public void delete(int space_num, HttpServletRequest request) {
 		sellerDao.delete(space_num);
 	}
 
 	@Override
-	public void updateSpace(SellerDto dto) {
+	public void update(SellerDto dto) {
 		sellerDao.update(dto);
 	}
 	
