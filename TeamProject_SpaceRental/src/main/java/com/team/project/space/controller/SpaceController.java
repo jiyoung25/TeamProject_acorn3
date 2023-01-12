@@ -5,17 +5,22 @@ import java.util.Calendar;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.team.project.dib.dto.DibDto;
+import com.team.project.dib.service.DibService;
 import com.team.project.space.service.SpaceService;
 
 @Controller
 public class SpaceController {
 	@Autowired
 	private SpaceService service;
+	@Autowired
+	private DibService dibService;
 	
 	@GetMapping("/space/list")
 	public String spaceList(HttpServletRequest request, int cate_num) {
@@ -26,10 +31,22 @@ public class SpaceController {
 	}
 	
 	@GetMapping("/space/detail")
-	public String detail(HttpServletRequest request, int cate_num) {
+	public String detail(HttpServletRequest request, int cate_num, int space_num, DibDto dto,HttpSession session) {
 		service.getDay(request);
 		request.setAttribute("cate_num", cate_num);
+		service.getSpaceData(request, space_num);
+		
+		if(session.getAttribute("id")!=null) {
+			dto.setUsers_id((String)session.getAttribute("id"));
+			dto.setSpace_num(space_num);
+			dibService.dibGetDetailData(dto, request);
+		}
         
 		return("space/detail");
+	}
+	
+	@GetMapping("/space/detail1")
+	public String detail1() {
+		return("space/detail1");
 	}
 }

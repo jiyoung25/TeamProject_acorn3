@@ -40,8 +40,13 @@
 		JOIN space_category ON seller_space.cate_name=space_category.cate_name
 		WHERE space_category.cate_num = #{cate_num}
 	</select>
-		<select id="getAllCount" resultType="int">
+	<select id="getAllCount" resultType="int">
 		SELECT NVL(MAX(ROWNUM), 0)
 		FROM seller_space
+	</select>
+	<select id="getData" parameterType="int" resultType="spaceDto">
+		SELECT space_num, users_num, space_name, mainImagePath, addr, seller_space.cate_name cate_name
+		FROM seller_space
+		WHERE space_num=#{space_num}
 	</select>
 </mapper>
