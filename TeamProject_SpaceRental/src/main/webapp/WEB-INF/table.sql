@@ -22,7 +22,8 @@ CREATE TABLE dibson_list(
     dibson_num NUMBER PRIMARY KEY, -- 찜 번호
     users_num NUMBER NOT NULL, -- 찜한 회원 (구매자) 번호
     users_id VARCHAR2(100) NOT NULL, -- 찜한 회원(구매자) 아이디
-    space_num NUMBER NOT NULL -- 찜한 공간 번호
+    space_num NUMBER NOT NULL, -- 찜한 공간 번호
+    dib_regdate DATE
 );
 
 CREATE TABLE review(
@@ -98,3 +99,4 @@ CREATE TABLE qna_comment(
     qna_comment VARCHAR2(200) NOT NULL,
     qna_regdate VARCHAR2(100) NOT NULL -- qna 답변 등록일
 );
+

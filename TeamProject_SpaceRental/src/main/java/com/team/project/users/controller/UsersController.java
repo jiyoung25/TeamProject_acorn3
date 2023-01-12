@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.team.project.users.service.UsersService;
+import com.team.project.dib.service.DibService;
 import com.team.project.users.dto.UsersDto;
 
 @Controller
@@ -25,6 +26,8 @@ public class UsersController {
 	
 	@Autowired
 	private UsersService service;
+	@Autowired
+	private DibService dibService;
 	
 	//아이디 중복 확인을 해서 json 문자열을 리턴해주는 메소드 
 	@RequestMapping("/users/checkid")
@@ -87,5 +90,10 @@ public class UsersController {
 	public String profile1() {
 		
 		return "users/profile1";
+	}
+	@RequestMapping("/users/dib_list")
+	public String dib_list(HttpServletRequest request,HttpSession session) {
+		dibService.dibGetData(request, session);
+		return "users/dib_list";
 	}
 }
