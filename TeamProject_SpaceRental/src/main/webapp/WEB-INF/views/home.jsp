@@ -28,27 +28,15 @@
 </head>
 
 <body>
-
-    <!--네비바-->
-    <nav class="navbar bg-body-tertiary">
-        <div class="container-fluid">
-          <div class="ml-5" >
-          <a class="navbar-brand" href="#"><p class="fs-3 fw-semibold  " >Space Rental</p></a>
-        </div>
-		<div class="row">
-			<div class="col">
-				<a class="navbar-brand" href="${pageContext.request.contextPath}/users/loginform"><p class="fs-6 text-secondary " >Login</p></a>
-			</div>
-			<div class="col">
-				<a class="navbar-brand" href="${pageContext.request.contextPath}/users/signupform"><p class="fs-6 text-secondary " >Signup</p></a>
-			</div>
-			<div class="col">
-			  <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
-				<span class="navbar-toggler-icon"></span>
-			  </button>
-			</div>
-		</div>
-    </nav>   
+	<!-- 네비바 include -->
+	<c:choose>
+		<c:when test="${not empty sessionScope.id }">
+			<jsp:include page="/WEB-INF/include/navbar2.jsp"/>
+		</c:when>
+		<c:otherwise>
+			<jsp:include page="/WEB-INF/include/navbar.jsp"/>
+		</c:otherwise>
+	</c:choose>  
 
         <!--사이드바-->
           <div class="offcanvas offcanvas-end " tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
@@ -150,19 +138,19 @@
 			<div class="col-lg-4">
 			  <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
 			  <h2 class="fw-normal">파티룸</h2>
-			  <p><a class="btn btn-secondary" href="#">보러가기</a></p>
+			  <p><a class="btn btn-secondary" href="${pageContext.request.contextPath}/space/list?cate_num=1">보러가기</a></p>
 			</div>
 			<!--연습실-->
 			<div class="col-lg-4">
 			  <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
 			  <h2 class="fw-normal">연습실</h2>
-			  <p><a class="btn btn-secondary" href="#">보러가기</a></p>
+			  <p><a class="btn btn-secondary" href="${pageContext.request.contextPath}/space/list?cate_num=2">보러가기</a></p>
 			</div>
 			<!--공유주방 -->
 			<div class="col-lg-4">
 			  <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
 			  <h2 class="fw-normal">공유주방</h2>
-			  <p><a class="btn btn-secondary" href="#">보러가기</a></p>
+			  <p><a class="btn btn-secondary" href="${pageContext.request.contextPath}/space/list?cate_num=3">보러가기</a></p>
 			</div>
 		    
 
@@ -171,13 +159,13 @@
 				<div class="col-lg-4">
 					<svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
 					<h2 class="fw-normal">스터디룸</h2>
-					<p><a class="btn btn-secondary" href="#">보러가기</a></p>
+					<p><a class="btn btn-secondary" href="${pageContext.request.contextPath}/space/list?cate_num=4">보러가기</a></p>
 				</div>
 				<!--강의실-->
 				<div class="col-lg-4">
 					<svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
 					<h2 class="fw-normal">강의실</h2>
-					<p><a class="btn btn-secondary" href="#">보러가기</a></p>
+					<p><a class="btn btn-secondary" href="${pageContext.request.contextPath}/space/list?cate_num=5">보러가기</a></p>
 		    </div>
 	
 			<!-- 챗봇 -->
@@ -204,6 +192,7 @@
 				</div>
 			</div>
 		</div>
+		
 		<!--footer-->
 		<div class="container">
 	    	<footer class="py-3 my-4">
@@ -213,6 +202,7 @@
         		<p class="text-center text-muted">© 2023 Company, Inc</p>
       		</footer>
 	  	</div>
+	  	
 		<script>
         let divBox = new Vue({
             el: "#divBox",
