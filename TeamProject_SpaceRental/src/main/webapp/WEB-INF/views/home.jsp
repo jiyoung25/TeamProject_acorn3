@@ -7,7 +7,7 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Document</title>
+	<title>Space Rental</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="icon" type="image/x-icon" href="assets/ficon.ico" />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
@@ -20,11 +20,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,400;1,400&amp;display=swap" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
-  
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
+  	<script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/chatbot.css">
+	<script src="${pageContext.request.contextPath}/js/chatbot.js"></script>
 </head>
 
-	
 <body>
 
     <!--네비바-->
@@ -178,46 +180,51 @@
 					<p><a class="btn btn-secondary" href="#">보러가기</a></p>
 		    </div>
 	
-        <!-- chatbot -->
-        <ul>
-          <c:forEach var="tmp" items="${category }">
-            <li><a href="${pageContext.request.contextPath}/space/list?cate_num=${tmp.cate_num }">${tmp.cate_name }</a></li>
-            <script>
-              console.log("${tmp.cate_num}");
-            </script>
-          </c:forEach>
-        </ul>
-        <div id="divBox" class="animate__animated animate__fadeIn">
-          <span v-on:click="onChat" v-if="!isChatBotOn">
-            <img id="chatIcon" src="${pageContext.request.contextPath}/image/speak.png"/>
-          </span>
-          <div v-if="isChatBotOn">
-            <div id="chatbot" class="animate__animated animate__fadeInUp">
-              <div id="chatbot_head">
-                <button v-on:click="onChat" type="button" class="btn-close" aria-label="Close"></button>
-              </div>
-              <div id="chatbot_body" class="wrap">
-                <div id="chatbot_main"></div>
-                <div id="chatbot_question">
-                  <c:forEach var="tmp" items="${qnaList }" >
-                    <button type="button" class="btn btn-light" value="${tmp.num }"
-                      onClick="onChatbot(event)">
-                      ${tmp.question }
-                    </button>
-                  </c:forEach>
-                </div>
-              </div>
-            </div>
-          </div>
-	  <!--footer-->
-	  <div class="container">
-      <footer class="py-3 my-4">
-        <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-        <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">top</a></li>
-        </ul>
-        <p class="text-center text-muted">© 2023 Company, Inc</p>
-      </footer>
-	  </div>
-
+			<!-- 챗봇 -->
+			<div id="divBox" class="animate__animated animate__fadeIn">
+				<span v-on:click="onChat" v-if="!isChatBotOn">
+					<img id="chatIcon" src="${pageContext.request.contextPath}/image/speak.png"/>
+				</span>
+			<div v-if="isChatBotOn">
+				<div id="chatbot" class="animate__animated animate__fadeInUp">
+					<div id="chatbot_head">
+						<button v-on:click="onChat" type="button" class="btn-close" aria-label="Close"></button>
+					</div>
+					<div id="chatbot_body" class="wrap">
+						<div id="chatbot_main"></div>
+						<div id="chatbot_question">
+							<c:forEach var="tmp" items="${qnaList }" >
+								<button type="button" class="btn btn-light" value="${tmp.num }"
+									onClick="onChatbot(event)">
+									${tmp.question }
+								</button>
+							</c:forEach>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--footer-->
+		<div class="container">
+	    	<footer class="py-3 my-4">
+        		<ul class="nav justify-content-center border-bottom pb-3 mb-3">
+        				<li class="nav-item"><a href="#" class="nav-link px-2 text-muted">top</a></li>
+        			</ul>
+        		<p class="text-center text-muted">© 2023 Company, Inc</p>
+      		</footer>
+	  	</div>
+		<script>
+        let divBox = new Vue({
+            el: "#divBox",
+            data: {
+                isChatBotOn: false
+            },
+            methods: {
+                onChat: function () {
+                    this.isChatBotOn = !this.isChatBotOn;
+                }
+            }
+        });
+    </script>
 </body>
 </html>
