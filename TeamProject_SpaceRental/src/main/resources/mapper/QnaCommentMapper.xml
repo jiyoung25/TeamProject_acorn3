@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="qnaComment">
+	<!-- 
+		댓글에 프로필 이미지도 같이 출력하기 위해 users 테이블과 join 을 한다. 
+		댓글도 paging 처리가 필요함으로 select 할때 startRowNum 과 endRowNum 이 필요하다.
+	-->
+	<select id="getList" parameterType="qnaCommentDto" resultType="qnaCommentDto">
+      SELECT *
+      FROM
+         (SELECT result1.*, ROWNUM AS rnum
+         FROM
+            (SELECT num, writer, content, target_id, ref_group,
+               comment_group, deleted, board_cafe_comment.regdate, profile
+            FROM qna
+            INNER JOIN space_users
+            ON qna_comment.writer=space_users.id
+            WHERE ref_group=#{ref_group}
+            ORDER BY comment_group ASC, num ASC) result1)
+      WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}   
+   </select>
+   
+   <!-- 댓글은 실제로 삭제하지않고 deleted 칼럼에 저장된 값을 no 에서 yes 로 수정하는 작업만 한다. -->
+   <update id="delete" parameterType="int">
+      UPDATE qna_comment
+      SET deleted='yes'
+      WHERE num=#{num}
+   </update>
+   
+   <!-- 댓글을 저장할때 댓글의 글번호도 미리 CafeCommentDto 객체에 담아 와야 한다. -->
+   <insert id="insert" parameterType="qnaCommentDto">
+      INSERT INTO qna_comment
+      (num, writer, content, target_id, ref_group, comment_group, regdate)
+      VALUES(#{num}, #{writer}, #{content}, #{target_id}, #{ref_group},
+         #{comment_group}, SYSDATE)
+   </insert>
+   
+   <!-- 저장 예정인 댓글의 글번호를 미리 얻어내기 -->
+   <select id="getSequence" resultType="int">
+      SELECT qnacomment_seq.NEXTVAL
+      FROM DUAL
+   </select>
+   
+   <update id="update" parameterType="qnaCommentDto">
+      UPDATE qna_comment
+      SET content=#{content}
+      WHERE num=#{num}
+   </update>
+   
+   <select id="getData" parameterType="int" resultType="qnaCommentDto">
+      SELECT num,writer,content,ref_group,comment_group,deleted,regdate
+      FROM qna_comment
+      WHERE num=#{num}
+   </select>
+   
+   <select id="getCount" parameterType="int" resultType="int">
+      SELECT NVL(MAX(ROWNUM), 0)
+      FROM qna_comment
+      WHERE ref_group=#{ref_group}
+   </select>   
+   
+</mapper>
+
+
+
+
+
+
+
+

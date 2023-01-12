@@ -16,8 +16,7 @@ public class UsersDto {
 	//디폴트 생성자
 	public UsersDto() {}
 
-	public UsersDto(String id, String pwd, String email, String profile, String regdate, String newPwd,
-			int code) {
+	public UsersDto(String id, String pwd, String email, String profile, String regdate, String newPwd, int code) {
 		super();
 		this.id = id;
 		this.pwd = pwd;
@@ -83,4 +82,5 @@ public class UsersDto {
 	public void setCode(int code) {
 		this.code = code;
 	}
+
 }
