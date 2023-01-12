@@ -31,6 +31,6 @@ public class DibServiceImpl implements DibService {
 
 	@Override
 	public void dibGetDetailData(DibDto dto, HttpServletRequest request) {
-		request.setAttribute("dibDto", dao.getDetailData(dto));
+		request.setAttribute("dibson_num", dao.getDetailData(dto));
 	}
 }

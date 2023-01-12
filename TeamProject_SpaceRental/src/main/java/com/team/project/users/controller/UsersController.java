@@ -82,4 +82,9 @@ public class UsersController {
 		
 		return "redirect:/";
 	}
+	
+	@RequestMapping("/users/dib_list")
+	public String dib_list() {
+		return "users/dib_list";
+	}
 }
