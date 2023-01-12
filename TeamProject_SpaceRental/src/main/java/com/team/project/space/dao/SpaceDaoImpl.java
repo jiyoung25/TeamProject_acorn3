@@ -38,4 +38,9 @@ public class SpaceDaoImpl implements SpaceDao {
 	public int getAllCount() {
 		return session.selectOne("space.getAllCount");
 	}
+
+	@Override
+	public SpaceDto getData(int space_num) {
+		return session.selectOne("space.getData", space_num);
+	}
 }

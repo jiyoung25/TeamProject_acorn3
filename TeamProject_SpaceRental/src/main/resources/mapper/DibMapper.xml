@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dib">
+	<insert id="insert" parameterType="dibDto">
+		INSERT INTO dibson_list
+		(dibson_num, users_num, users_id, space_num, dib_regdate)
+		VALUES(dibson_list_seq.NEXTVAL, #{users_num}, #{users_id}, #{space_num}, SYSDATE)
+	</insert>
+	<delete id="delete" parameterType="int">
+		DELETE FROM dibson_list
+		WHERE dibson_num= #{dibson_num }
+	</delete>
+	<select id="getData" parameterType="dibDto" resultType="dibDto">
+		SELECT result2.*
+		FROM
+			(SELECT dibson_num, space_name, users_id, space_num, mainImagePath, addr, space_category.cate_num, space_category.cate_name, rownum as rnum
+			FROM
+				(SELECT dibson_num, space_name, users_id, seller_space.space_num space_num, dib_regdate, mainImagePath, addr, cate_name 
+				FROM dibson_list
+				INNER JOIN seller_space ON dibson_list.space_num=seller_space.space_num
+				WHERE users_id=#{users_id}) result1
+			INNER JOIN space_category ON result1.cate_name=space_category.cate_name) result2
+		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
+	</select>
+	<select id="getDetailData" parameterType="dibDto" resultType="dibDto">
+		SELECT dibson_num
+		FROM dibson_list
+		WHERE space_num=#{space_num} AND users_id=#{users_id}
+	</select>
+	<select id="getCount" resultType="int">
+		SELECT NVL(MAX(ROWNUM), 0)
+		FROM dibson_list
+	</select>
+</mapper>
