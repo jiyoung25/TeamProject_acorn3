@@ -23,7 +23,7 @@ public class SellerServiceImpl implements SellerService{
 	}
 
 	@Override
-	public void getInfo(HttpServletRequest request) {
+	public void getData(HttpServletRequest request) {
 		int num=Integer.parseInt(request.getParameter("space_num"));
 		SellerDto dto=sellerDao.getData(num);
 		request.setAttribute("dto", dto);
@@ -37,6 +37,11 @@ public class SellerServiceImpl implements SellerService{
 	@Override
 	public void deleteSpace(int space_num, HttpServletRequest request) {
 		sellerDao.delete(space_num);
+	}
+
+	@Override
+	public void updateSpace(SellerDto dto) {
+		sellerDao.update(dto);
 	}
 
 }

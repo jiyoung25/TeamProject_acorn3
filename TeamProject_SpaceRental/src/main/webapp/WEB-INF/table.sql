@@ -79,6 +79,8 @@ CREATE TABLE seller_space(
     cate_name VARCHAR2(100) NOT NULL --카테고리 이름
 );
 
+CREATE SEQUENCE seller_space_seq
+
 CREATE TABLE review_comment(
     review_num NUMBER NOT NULL, --리뷰 번호
     users_num NUMBER NOT NULL, --리뷰 등록한 사람 번호
