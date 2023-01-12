@@ -17,17 +17,16 @@
   	<script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.min.js"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 	
+
+    <!--로그인이 되어있는 상태-->
     <nav class="navbar bg-body-tertiary">
         <div class="container-fluid">
           <div class="ml-5" >
-          <a class="navbar-brand" href="#"><p class="fs-3 fw-semibold  " >Space Rental</p></a>
+          <a class="navbar-brand" href="${pageContext.request.contextPath}/space"><p class="fs-3 fw-semibold  " >Space Rental</p></a>
         </div>
 		<div class="row">
 			<div class="col">
-				<a class="navbar-brand" href="${pageContext.request.contextPath}/users/loginform"><p class="fs-6 text-secondary " >Login</p></a>
-			</div>
-			<div class="col">
-				<a class="navbar-brand" href="${pageContext.request.contextPath}/users/signupform"><p class="fs-6 text-secondary " >Signup</p></a>
+				<a class="navbar-brand" href="#"><p class="fs-6 text-secondary " ><strong>${sessionScope.id }</strong>님 반갑습니다.</p></a>
 			</div>
 			<div class="col">
 			  <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
@@ -36,3 +35,53 @@
 			</div>
 		</div>
     </nav>  
+
+
+     <!--사이드바-->
+     <div class="offcanvas offcanvas-end " tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+        <div class="offcanvas-header ">
+          <h5 class="offcanvas-title mx-auto" id="offcanvasNavbarLabel">My Page</h5>
+          <button type="button" class="btn-close " data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div class="container">
+                <div class="text-center m-5">
+                    <!-- 사용자 사진-->
+                    <img class="img-fluid rounded-circle mb-1" src="https://source.unsplash.com/jSUsJWvnnEA/500x500" alt="..." style="max-width: 150px; max-height: 150px">
+                    <!-- 시용자 이름-->
+                    <div class="caption text-muted mb-4">
+                        <p class="fw-bold">에이콘</p>
+                    </div>
+                    <!-- 사용자 프로필 관리하기버튼-->
+                    <button type="button" class="btn btn-secondary" onclick="location.href='${pageContext.request.contextPath}/users/profile' ">프로필 관리</button>
+                </div>
+            </div>
+         
+              <ul class="navbar-nav justify-content-end flex-grow-1 pe-3 ml-3 text-center fw-bold">
+              <li class="nav-item">
+                <a class="nav-link " href="#">나의 예약</a>
+              </li>
+              <hr class="my-2">
+
+              <li class="nav-item">
+                <div class="row">
+                <a class="nav-link" href="#">나의 <strong class="text-danger">♥</strong></a>
+                </div>
+              </li>
+
+              <hr class="my-2">
+
+              <li class="nav-item">
+                  <a class="nav-link" href="#">나의 후기</a>
+              </li>
+
+              <hr class="my-2">
+
+              <li class="nav-item">
+                  <a class="nav-link" href="#">나의 Q&A</a>
+              </li>
+                  </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
