@@ -82,4 +82,10 @@ public class UsersController {
 		
 		return "redirect:/";
 	}
+	
+	@RequestMapping("/users/profile1")
+	public String profile1() {
+		
+		return "users/profile1";
+	}
 }
