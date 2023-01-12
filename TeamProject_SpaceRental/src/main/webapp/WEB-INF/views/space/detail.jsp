@@ -75,7 +75,7 @@
 		<div class="tmp"></div>
 		<h3 id="review">이용 후기</h3>
 		<div class="tmp"></div>
-		<h3 id="qna">Q&A <a href="${pageContext.request.contextPath}/qna/qnaInsertform">추가하기</a></h3>
+		<h3 id="qna">Q&A <a href="${pageContext.request.contextPath}/qna/qnaInsertform?cate_num=${cate_num }&space_num=${space_num}">추가하기</a></h3>
 			<div class="container">
 		      <table class="table table-striped">
 		         <thead class="table-dark">

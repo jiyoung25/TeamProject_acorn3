@@ -33,13 +33,17 @@ public class QnaController {
 	}
 	
 	@RequestMapping("/qna/qnaInsertform")
-	public String qnaInsertform() {
+	public String qnaInsertform(HttpServletRequest request, int cate_num, int space_num) {
+		request.setAttribute("cate_num", cate_num);
+		request.setAttribute("space_num", space_num);
 		
 		return "qna/qnaInsertform";
 	}
 	
 	@RequestMapping("/qna/qnaInsert")
-	public String insert(QnaDto dto, HttpSession session) {
+	public String insert(HttpServletRequest request, QnaDto dto, HttpSession session, int cate_num, int space_num) {
+		request.setAttribute("cate_num", cate_num);
+		request.setAttribute("space_num", space_num);
 		//글 작성자는 세션에서 얻어낸다.
 		String writer=(String)session.getAttribute("id");
 		//dto 는 글의 제목과 내용만 있으므로 글작성자는 직접 넣어준다.

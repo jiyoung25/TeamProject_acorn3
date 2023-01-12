@@ -16,7 +16,7 @@
 </head>
 <body>
 	<div class="container">
-		<form action="${pageContext.request.contextPath}/qna/qnaInsert" method="post">
+		<form action="${pageContext.request.contextPath}/qna/qnaInsert?cate_num=${cate_num}&space_num=${space_num}" method="post">
 			<div>
 				<label for="title">제목</label>
 				<input type="text" name="title" id="title"/>

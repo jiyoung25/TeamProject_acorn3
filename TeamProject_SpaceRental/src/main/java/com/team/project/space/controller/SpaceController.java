@@ -22,17 +22,19 @@ public class SpaceController {
 	private QnaService service2;
 	
 	@GetMapping("/space/list")
-	public String spaceList(HttpServletRequest request, int cate_num) {
+	public String spaceList(HttpServletRequest request, int cate_num, int space_num) {
 		service.getSpaceList(request, cate_num);
 		request.setAttribute("cate_num", cate_num);
+		request.setAttribute("space_num", space_num);
 		
 		return "space/list";
 	}
 	
 	@GetMapping("/space/detail")
-	public String detail(HttpServletRequest request, int cate_num) {
+	public String detail(HttpServletRequest request, int cate_num, int space_num) {
 		service.getDay(request);
 		request.setAttribute("cate_num", cate_num);
+		request.setAttribute("space_num", space_num);
 		service2.getList(request);
 		
 		return("space/detail");

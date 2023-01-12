@@ -38,14 +38,14 @@ CREATE TABLE review(
 );
 
 CREATE TABLE qna(
-    qna_num NUMBER PRIMARY KEY, -- qna번호
-    users_num NUMBER NOT NULL, -- qna 작성자(구매자) 번호
-    space_num NUMBER NOT NULL, -- 공간 글 번호
-    qna_title VARCHAR2(100) NOT NULL, -- qna 제목
-    qna_content VARCHAR2(100) NOT NULL, -- qna 내용
-    qna_writer VARCHAR2(100) NOT NULL, -- qna 작성자 아이디
-    qna_regdate NOT NULL, -- 리뷰 작성일
-    viewcount NUMBER -- 조회수
+   num NUMBER PRIMARY KEY,
+   users_num NUMBER,
+   space_num NUMBER,
+   writer VARCHAR2(100),
+   title VARCHAR2(100),
+   content VARCHAR2(1000),
+   viewcount NUMBER,
+   regdate DATE
 );
 
 CREATE TABLE chatbot(
