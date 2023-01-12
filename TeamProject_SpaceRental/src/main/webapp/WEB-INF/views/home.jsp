@@ -2,46 +2,100 @@
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
-<link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-<link rel="preconnect" href="https://fonts.gstatic.com" />
-<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
-<link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,600;1,600&amp;display=swap" rel="stylesheet" />
-<link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,300;0,500;0,600;0,700;1,300;1,500;1,600;1,700&amp;display=swap" rel="stylesheet" />
-<link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,400;1,400&amp;display=swap" rel="stylesheet" />
-<script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.min.js"></script>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
-<script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/chatbot.css">
-<script src="${pageContext.request.contextPath}/js/chatbot.js"></script>
-<title>home</title>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="icon" type="image/x-icon" href="assets/ficon.ico" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,600;1,600&amp;display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,300;0,500;0,600;0,700;1,300;1,500;1,600;1,700&amp;display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,400;1,400&amp;display=swap" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
+  
 </head>
+
+	
 <body>
 
-	<!--Navbar-->
-	<nav class="navbar navbar-expand-lg navbar-light fixed-top shadow-sm" id="mainNav">
-		<div class="container px-5">
-			<a class="navbar-brand fw-bold" href="#page-top">Universe</a>
-				<ul class="navbar-nav ms-auto me-4 my-3 my-lg-0">
-					<li class="nav-item"><a class="nav-link me-lg-3" href="${pageContext.request.contextPath}/users/loginform">LOGIN</a></li>
-					<li class="nav-item"><a class="nav-link me-lg-3" href="${pageContext.request.contextPath}/users/signupform">SIGNUP</a></li>
-				</ul>
-				<button class="btn btn-primary rounded-pill px-3 mb-2 mb-lg-0" data-bs-toggle="modal" data-bs-target="#feedbackModal">
-					<span class="d-flex align-items-center">
-						<span class="small">MY PAGE</span>
-					</span>
-				</button>
+    <!--네비바-->
+    <nav class="navbar bg-body-tertiary">
+        <div class="container-fluid">
+          <div class="ml-5" >
+          <a class="navbar-brand" href="#"><p class="fs-3 fw-semibold  " >Space Rental</p></a>
+        </div>
+		<div class="row">
+			<div class="col">
+				<a class="navbar-brand" href="${pageContext.request.contextPath}/users/loginform"><p class="fs-6 text-secondary " >Login</p></a>
+			</div>
+			<div class="col">
+				<a class="navbar-brand" href="${pageContext.request.contextPath}/users/signupform"><p class="fs-6 text-secondary " >Signup</p></a>
+			</div>
+			<div class="col">
+			  <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+				<span class="navbar-toggler-icon"></span>
+			  </button>
 			</div>
 		</div>
-	</nav>
+    </nav>   
+
+        <!--사이드바-->
+          <div class="offcanvas offcanvas-end " tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+            <div class="offcanvas-header ">
+              <h5 class="offcanvas-title mx-auto" id="offcanvasNavbarLabel">My Page</h5>
+              <button type="button" class="btn-close " data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <div class="container">
+                    <div class="text-center m-5">
+                        <!-- Profile picture image-->
+                        <img class="img-fluid rounded-circle mb-1" src="https://source.unsplash.com/jSUsJWvnnEA/500x500" alt="..." style="max-width: 150px; max-height: 150px">
+                        <!-- Profile picture help block-->
+                        <div class="caption text-muted mb-4">
+                            <p class="fw-bold">에이콘</p>
+                        </div>
+                        <!-- Profile picture upload button-->
+                        <button type="button" class="btn btn-secondary" disabled>프로필 관리</button>
+                    </div>
+                </div>
+             
+              	<ul class="navbar-nav justify-content-end flex-grow-1 pe-3 ml-3">
+                  <li class="nav-item">
+                    <a class="nav-link " href="#">나의 예약</a>
+                  </li>
+                  <hr class="my-2">
+
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">나의 후기</a>
+                  </li>
+
+                  <hr class="my-2">
+
+                  <li class="nav-item">
+                      <a class="nav-link" href="#">나의 Q&A</a>
+                  </li>
+
+                  <hr class="my-2">
+
+                  <li class="nav-item">
+                      <a class="nav-link" href="#">프로필 수정</a>
+                  </li>
+				      </ul>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+
 	<!--carousel-->		
 	<div id="carouselExampleCaptions" class="carousel slide bg-light" data-bs-ride="carousel">
 		<div class="carousel-indicators">
@@ -82,127 +136,88 @@
 		</button>
 	</div>
 
-	<!--Product category-->	
+	<!--카테고리 영역 시작-->
 	<div class="text-center m-5">
-		<h2 class="section-heading text-uppercase">Services</h2>
-		<h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+		<h2 class="section-heading text-uppercase">Service list</h2>
+		<h3 class="section-subheading text-muted">다양한 공간을 만나보세요</h3>
 	</div>
-	
 
-	<!--category list 1~3-->
-	<div class="cotainer row m-5" >
-		<div class="row text-center">
-			<!--1-->
-			<div class="col m-5">
-				<span class="fa-stack fa-4x">
-					<svg class="svg-inline--fa fa-circle fa-stack-2x text-primary" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256z"></path></svg><!-- <i class="fas fa-circle fa-stack-2x text-primary"></i> Font Awesome fontawesome.com -->
-					<svg class="svg-inline--fa fa-cart-shopping fa-stack-1x fa-inverse" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="cart-shopping" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M96 0C107.5 0 117.4 8.19 119.6 19.51L121.1 32H541.8C562.1 32 578.3 52.25 572.6 72.66L518.6 264.7C514.7 278.5 502.1 288 487.8 288H170.7L179.9 336H488C501.3 336 512 346.7 512 360C512 373.3 501.3 384 488 384H159.1C148.5 384 138.6 375.8 136.4 364.5L76.14 48H24C10.75 48 0 37.25 0 24C0 10.75 10.75 0 24 0H96zM128 464C128 437.5 149.5 416 176 416C202.5 416 224 437.5 224 464C224 490.5 202.5 512 176 512C149.5 512 128 490.5 128 464zM512 464C512 490.5 490.5 512 464 512C437.5 512 416 490.5 416 464C416 437.5 437.5 416 464 416C490.5 416 512 437.5 512 464z"></path></svg><!-- <i class="fas fa-shopping-cart fa-stack-1x fa-inverse"></i> Font Awesome fontawesome.com -->
-				</span>
-				<h4 class="my-3">E-Commerce</h4>
+	<!--카테고리-->
+		<div class="row">
+			<!--파티룸-->
+			<div class="col-lg-4">
+			  <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
+			  <h2 class="fw-normal">파티룸</h2>
+			  <p><a class="btn btn-secondary" href="#">보러가기</a></p>
 			</div>
-			<!--2-->
-			<div class="col m-5">
-				<span class="fa-stack fa-4x">
-					<svg class="svg-inline--fa fa-circle fa-stack-2x text-primary" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256z"></path></svg><!-- <i class="fas fa-circle fa-stack-2x text-primary"></i> Font Awesome fontawesome.com -->
-					<svg class="svg-inline--fa fa-laptop fa-stack-1x fa-inverse" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="laptop" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" data-fa-i2svg=""><path fill="currentColor" d="M128 96h384v256h64v-272c0-26.38-21.62-48-48-48h-416c-26.38 0-48 21.62-48 48V352h64V96zM624 383.1h-608c-8.75 0-16 7.25-16 16v16c0 35.25 28.75 64 64 64h512c35.25 0 64-28.75 64-64v-16C640 391.2 632.8 383.1 624 383.1z"></path></svg><!-- <i class="fas fa-laptop fa-stack-1x fa-inverse"></i> Font Awesome fontawesome.com -->
-				</span>
-				<h4 class="my-3 ">Responsive Design</h4>
+			<!--연습실-->
+			<div class="col-lg-4">
+			  <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
+			  <h2 class="fw-normal">연습실</h2>
+			  <p><a class="btn btn-secondary" href="#">보러가기</a></p>
 			</div>
-			<!--3-->
-			<div class="col m-5">
-				<span class="fa-stack fa-4x">
-					<svg class="svg-inline--fa fa-circle fa-stack-2x text-primary" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256z"></path></svg><!-- <i class="fas fa-circle fa-stack-2x text-primary"></i> Font Awesome fontawesome.com -->
-					<svg class="svg-inline--fa fa-lock fa-stack-1x fa-inverse" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="lock" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M80 192V144C80 64.47 144.5 0 224 0C303.5 0 368 64.47 368 144V192H384C419.3 192 448 220.7 448 256V448C448 483.3 419.3 512 384 512H64C28.65 512 0 483.3 0 448V256C0 220.7 28.65 192 64 192H80zM144 192H304V144C304 99.82 268.2 64 224 64C179.8 64 144 99.82 144 144V192z"></path></svg><!-- <i class="fas fa-lock fa-stack-1x fa-inverse"></i> Font Awesome fontawesome.com -->
-				</span>
-				<h4 class="my-3">Web Security</h4>
+			<!--공유주방 -->
+			<div class="col-lg-4">
+			  <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
+			  <h2 class="fw-normal">공유주방</h2>
+			  <p><a class="btn btn-secondary" href="#">보러가기</a></p>
 			</div>
-		</div>
-	<div>
-	
-	<!-- category list 4~5 -->
-	<div class="container text-center">
-		<div class="row text-center">
-			<!--4-->
-			<div class="col">
-				<span class="fa-stack fa-4x">
-					<svg class="svg-inline--fa fa-circle fa-stack-2x text-primary" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256z"></path></svg><!-- <i class="fas fa-circle fa-stack-2x text-primary"></i> Font Awesome fontawesome.com -->
-					<svg class="svg-inline--fa fa-lock fa-stack-1x fa-inverse" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="lock" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M80 192V144C80 64.47 144.5 0 224 0C303.5 0 368 64.47 368 144V192H384C419.3 192 448 220.7 448 256V448C448 483.3 419.3 512 384 512H64C28.65 512 0 483.3 0 448V256C0 220.7 28.65 192 64 192H80zM144 192H304V144C304 99.82 268.2 64 224 64C179.8 64 144 99.82 144 144V192z"></path></svg><!-- <i class="fas fa-lock fa-stack-1x fa-inverse"></i> Font Awesome fontawesome.com -->
-				</span>
-				<h4 class="my-3">Web Security</h4>
-			</div>
-			<!--5-->
-			<div class="col">
-			<span class="fa-stack fa-4x">
-				<svg class="svg-inline--fa fa-circle fa-stack-2x text-primary" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256z"></path></svg><!-- <i class="fas fa-circle fa-stack-2x text-primary"></i> Font Awesome fontawesome.com -->
-				<svg class="svg-inline--fa fa-lock fa-stack-1x fa-inverse" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="lock" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M80 192V144C80 64.47 144.5 0 224 0C303.5 0 368 64.47 368 144V192H384C419.3 192 448 220.7 448 256V448C448 483.3 419.3 512 384 512H64C28.65 512 0 483.3 0 448V256C0 220.7 28.65 192 64 192H80zM144 192H304V144C304 99.82 268.2 64 224 64C179.8 64 144 99.82 144 144V192z"></path></svg><!-- <i class="fas fa-lock fa-stack-1x fa-inverse"></i> Font Awesome fontawesome.com -->
-			</span>
-			<h4 class="my-3">Web Security</h4>	
-			</div>
-		</div>
-	
-		<!-- chatbot -->
-		<ul>
-			<c:forEach var="tmp" items="${category }">
-				<li><a href="${pageContext.request.contextPath}/space/list?cate_num=${tmp.cate_num }">${tmp.cate_name }</a></li>
-				<script>
-					console.log("${tmp.cate_num}");
-				</script>
-			</c:forEach>
-		</ul>
-		<div id="divBox" class="animate__animated animate__fadeIn">
-			<span v-on:click="onChat" v-if="!isChatBotOn">
-				<img id="chatIcon" src="${pageContext.request.contextPath}/image/speak.png"/>
-			</span>
-			<div v-if="isChatBotOn">
-				<div id="chatbot" class="animate__animated animate__fadeInUp">
-					<div id="chatbot_head">
-						<button v-on:click="onChat" type="button" class="btn-close" aria-label="Close"></button>
-					</div>
-					<div id="chatbot_body" class="wrap">
-						<div id="chatbot_main"></div>
-						<div id="chatbot_question">
-							<c:forEach var="tmp" items="${qnaList }" >
-								<button type="button" class="btn btn-light" value="${tmp.num }"
-									onClick="onChatbot(event)">
-									${tmp.question }
-								</button>
-							</c:forEach>
-						</div>
-					</div>
+		    
+
+			<div class="row">
+				<!--스터디룸-->
+				<div class="col-lg-4">
+					<svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
+					<h2 class="fw-normal">스터디룸</h2>
+					<p><a class="btn btn-secondary" href="#">보러가기</a></p>
 				</div>
-			</div>
-		</div>
+				<!--강의실-->
+				<div class="col-lg-4">
+					<svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
+					<h2 class="fw-normal">강의실</h2>
+					<p><a class="btn btn-secondary" href="#">보러가기</a></p>
+		    </div>
 	
-	
-	<script>
-		function logoutConfirm(){
-			let isLogout = confirm("로그아웃 하시겠습니까?");
-			if(isLogout===true){
-				location.href="${pageContext.request.contextPath}/users/logout";
-			}
-		}
-	</script>
-	<script>
-        let divBox = new Vue({
-            el: "#divBox",
-            data: {
-                isChatBotOn: false
-            },
-            methods: {
-                onChat: function () {
-                    this.isChatBotOn = !this.isChatBotOn;
-                }
-            }
-        });
-        
-        
-        <%-- 
-        
-			로그아웃하기는 사이드바 하단에 추가예정 
-			<li><a href="javascript:" onclick="logoutConfirm()">로그아웃 하기</a></li>
-		
-		--%>
-    </script>
-    
+        <!-- chatbot -->
+        <ul>
+          <c:forEach var="tmp" items="${category }">
+            <li><a href="${pageContext.request.contextPath}/space/list?cate_num=${tmp.cate_num }">${tmp.cate_name }</a></li>
+            <script>
+              console.log("${tmp.cate_num}");
+            </script>
+          </c:forEach>
+        </ul>
+        <div id="divBox" class="animate__animated animate__fadeIn">
+          <span v-on:click="onChat" v-if="!isChatBotOn">
+            <img id="chatIcon" src="${pageContext.request.contextPath}/image/speak.png"/>
+          </span>
+          <div v-if="isChatBotOn">
+            <div id="chatbot" class="animate__animated animate__fadeInUp">
+              <div id="chatbot_head">
+                <button v-on:click="onChat" type="button" class="btn-close" aria-label="Close"></button>
+              </div>
+              <div id="chatbot_body" class="wrap">
+                <div id="chatbot_main"></div>
+                <div id="chatbot_question">
+                  <c:forEach var="tmp" items="${qnaList }" >
+                    <button type="button" class="btn btn-light" value="${tmp.num }"
+                      onClick="onChatbot(event)">
+                      ${tmp.question }
+                    </button>
+                  </c:forEach>
+                </div>
+              </div>
+            </div>
+          </div>
+	  <!--footer-->
+	  <div class="container">
+      <footer class="py-3 my-4">
+        <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+        <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">top</a></li>
+        </ul>
+        <p class="text-center text-muted">© 2023 Company, Inc</p>
+      </footer>
+	  </div>
+
 </body>
 </html>
