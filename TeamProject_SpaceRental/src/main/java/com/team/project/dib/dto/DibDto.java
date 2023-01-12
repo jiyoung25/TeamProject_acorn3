@@ -8,6 +8,14 @@ public class DibDto {
     private int users_num;
     private String users_id;
     private int space_num;
+    
+    //찜리스트를 뽑기 위한 dto
+    private String space_name;
+    private String mainImagePath;
+    private String addr;
+    private int cate_num;
+    private String cate_name;
+    
     private int startRowNum;
     private int endRowNum;
     
@@ -15,12 +23,18 @@ public class DibDto {
     	
     }
 
-	public DibDto(int dibson_num, int users_num, String users_id, int space_num, int startRowNum, int endRowNum) {
+	public DibDto(int dibson_num, int users_num, String users_id, int space_num, String space_name,
+			String mainImagePath, String addr, int cate_num, String cate_name, int startRowNum, int endRowNum) {
 		super();
 		this.dibson_num = dibson_num;
 		this.users_num = users_num;
 		this.users_id = users_id;
 		this.space_num = space_num;
+		this.space_name = space_name;
+		this.mainImagePath = mainImagePath;
+		this.addr = addr;
+		this.cate_num = cate_num;
+		this.cate_name = cate_name;
 		this.startRowNum = startRowNum;
 		this.endRowNum = endRowNum;
 	}
@@ -71,5 +85,45 @@ public class DibDto {
 
 	public void setEndRowNum(int endRowNum) {
 		this.endRowNum = endRowNum;
+	}
+
+	public String getSpace_name() {
+		return space_name;
+	}
+
+	public void setSpace_name(String space_name) {
+		this.space_name = space_name;
+	}
+
+	public String getMainImagePath() {
+		return mainImagePath;
+	}
+
+	public void setMainImagePath(String mainImagePath) {
+		this.mainImagePath = mainImagePath;
+	}
+
+	public String getAddr() {
+		return addr;
+	}
+
+	public void setAddr(String addr) {
+		this.addr = addr;
+	}
+
+	public int getCate_num() {
+		return cate_num;
+	}
+
+	public void setCate_num(int cate_num) {
+		this.cate_num = cate_num;
+	}
+
+	public String getCate_name() {
+		return cate_name;
+	}
+
+	public void setCate_name(String cate_name) {
+		this.cate_name = cate_name;
 	}
 }

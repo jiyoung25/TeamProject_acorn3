@@ -1,5 +1,7 @@
 package com.team.project.dib.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -22,13 +24,18 @@ public class DibDaoImpl implements DibDao {
 	}
 
 	@Override
-	public DibDto getData(DibDto dto) {
-		return session.selectOne("dib.getData", dto);
+	public List<DibDto> getData(DibDto dto) {
+		return session.selectList("dib.getData", dto);
 	}
 
 	@Override
 	public DibDto getDetailData(DibDto dto) {
 		return session.selectOne("dib.getDetailData", dto);
+	}
+
+	@Override
+	public int getCount() {
+		return session.selectOne("dib.getCount");
 	}
 
 }
