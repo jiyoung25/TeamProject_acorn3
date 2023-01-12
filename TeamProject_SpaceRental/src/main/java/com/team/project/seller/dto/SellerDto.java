@@ -1,5 +1,7 @@
 package com.team.project.seller.dto;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class SellerDto {
 	private int space_num;
 	private String space_name;
@@ -7,11 +9,12 @@ public class SellerDto {
 	private String intro;
 	private String mainImagePath;
 	private String addr;
+	private MultipartFile image;	//이미지 파일 업로드 처리를 위한 필드
 	
 	public SellerDto() {}
 
 	public SellerDto(int space_num, String space_name, String oneliner, String intro, String mainImagePath,
-			String addr) {
+			String addr, MultipartFile image) {
 		super();
 		this.space_num = space_num;
 		this.space_name = space_name;
@@ -19,6 +22,7 @@ public class SellerDto {
 		this.intro = intro;
 		this.mainImagePath = mainImagePath;
 		this.addr = addr;
+		this.image = image;
 	}
 
 	public int getSpace_num() {
@@ -67,6 +71,14 @@ public class SellerDto {
 
 	public void setAddr(String addr) {
 		this.addr = addr;
+	}
+
+	public MultipartFile getImage() {
+		return image;
+	}
+
+	public void setImage(MultipartFile image) {
+		this.image = image;
 	}
 	
 }

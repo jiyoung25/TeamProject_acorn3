@@ -25,13 +25,47 @@
 				<textarea name="intro" id="intro" cols="30" rows="10"></textarea>
 			</div>
 			<div>
-				<!-- 이미지 등록 공간 어떤방식으로 해야할지 찾아보고 추가예정 -->
+		  		<form action="${pageContext.request.contextPath}/seller/ajax_upload" method="post" id="ajaxForm" enctype="multipart/form-data">
+		     		<div>
+		        		<label for="image">이미지</label>
+		        		<input type="file" name="image" id="image" 
+		           			accept=".jpg, .jpeg, .png, .JPG, .JPEG"/>
+		     		</div>
+		  		</form>
+		  		<div class="img-wrapper">
+		     		<img />
+		  		</div>				
 			</div>
 			<div>
-				<!-- 주소 등록 공간 어떤 방식으로 해야할지 찾아보고 추가예정 -->
+				<label for="addr">주소</label><br />
+				<input type="text" name="addr" id="addr" />
 			</div>
 			<button type="submit">저장</button>
 		</form>
 	</div>
+	<script src="${pageContext.request.contextPath}/js/gura_util.js"></script>
+	<script>
+		//이미지를 선택했을 때, 실행할 함수 등록
+		document.querySelector("#image").addEventListener("change", function(){
+			//id 가 ajaxForm 인 form 을 ajax 전송 시킨다.
+			const form = document.querySelector("#ajaxForm");
+			//util 함수를 이용해서 ajax 전송
+			ajaxFormPromise(form)
+			.then(function(response){
+				return response.json();
+			})
+			.then(function(data){
+				//data : {imagePath:"/upload/xxx.jpg"} 형식의 obj
+				console.log(data);
+				//이미지 경로에 context Path 추가하기
+				const path = "${pageContext.request.contextPath}" + data.imagePath;
+				//img 태그에 경로 추가
+				document.querySelector(".img-wrapper img").setAttribute("src", path);
+				//위의 form 의 input hidden 요소에 value 로 넣어서 db 에 저장
+				document.querySelector("#imagePath").value = data.imagePath;
+			});
+		});
+		
+	</script>	
 </body>
 </html>
