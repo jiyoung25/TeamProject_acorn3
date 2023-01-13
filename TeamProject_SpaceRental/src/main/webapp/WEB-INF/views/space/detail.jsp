@@ -72,12 +72,12 @@
 			<button type="submit" id="dibSubmitBtn" >제출</button>
 		</form>
 		<!-- 예약 폼 -->
-		<form id="selectTime" action="shop/reservation">
+		<form id="selectTime" action="space/reservation">
 			<div id="reservationForm">
 				<%--최소: 내일부터, 최대: 2달 --%>
-				<input type="date" name="date" min="${minday }" max="${maxday }" />
+				<input type="date" name="date" min="${minday }" max="${maxday }" v-model="day" v-on:input="dayBtnClicked" />
 				<br />
-				<p>선택하신 날짜의 시간당 요금은 0원 입니다.</p>
+				<p>선택하신 날짜의 시간당 요금은 1000원 입니다.</p>
 				<div id="timeBox">
 					<c:forEach var="i" begin="0" end="24">
 						<button type="button" class="timeBtn btn btn-info" value="${i }"
@@ -88,6 +88,7 @@
 					<h3>선택 정보</h3>
 					<p>입실 시간:{{checkInTime}}</p>
 					<p>퇴실 시간:{{checkOutTime}}</p>
+					<p><input type="text" /></p>
 					<p>비용:{{totalMoney}}</p>
 					<br />
 					<button type="button" v-on:click="resetBtnClicked">다시 선택하기</button>
@@ -257,7 +258,8 @@
 				time2:0,
 				checkInTime:0,
 				checkOutTime:0,
-				totalMoney:0
+				totalMoney:0,
+				day:""
 			},
 			methods:{
 				timeBtnClicked:function(e){
@@ -287,6 +289,9 @@
 					this.checkInTime=0;
 					this.checkOutTime=0;
 					this.totalMoney=0;
+				},
+				dayBtnClicked:function(){
+					console.log(this.day);
 				}
 			}
 		})

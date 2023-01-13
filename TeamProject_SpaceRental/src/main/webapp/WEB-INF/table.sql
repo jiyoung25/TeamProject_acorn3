@@ -10,13 +10,16 @@ CREATE TABLE space_users(
 
 CREATE SEQUENCE space_users_seq
 
-CREATE TABLE reserv_list(
+CREATE TABLE reservationform(
     reserv_num NUMBER PRIMARY KEY, -- 예약 번호
-    users_num NUMBER NOT NULL, -- 예약자(구매자) 번호
     users_id VARCHAR2(100) NOT NULL, -- 예약자(구매자) 아이디
     space_num NUMBER NOT NULL, -- 공간 글 번호
-    reserv_date VARHAR2(100) NOT NULL -- 예약 날짜와 시간
+    reserv_date VARCHAR2(100) NOT NULL, -- 예약 날짜와 시간 --DATE타입 아닌 것 주의하기
+	reserv_time VARCHAR2(50) NOT NULL,
+    reserv_comment VARCHAR2(500), --예약시 판매자에게 남길 말 (요청사항)
+    reserv_count NUMBER NOT NULL --예약하는 사람 수
 );
+CREATE SEQUENCE reservationform_seq
 
 CREATE TABLE dibson_list(
     dibson_num NUMBER PRIMARY KEY, -- 찜 번호
@@ -99,4 +102,3 @@ CREATE TABLE qna_comment(
     qna_comment VARCHAR2(200) NOT NULL,
     qna_regdate VARCHAR2(100) NOT NULL -- qna 답변 등록일
 );
-

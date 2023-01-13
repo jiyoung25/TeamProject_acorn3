@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="reserv">
+	<insert id="insert" parameterType="reservDto">
+		INSERT INTO reservationform
+		(reserv_num, users_id, space_num, reserv_date, reserv_time, reserv_comment, reserv_count)
+		VALUES(reservation_seq.NEXTVAL, #{users_id}, #{space_num}, #{reserv_date}, #{reserv_time}, #{reserv_comment}, #{reserv_count})
+	</insert>
+</mapper>
