@@ -49,15 +49,15 @@
 	   	<div class="row">
 			<c:forEach var="tmp" items="${list }">
 				<div class="col-4 col-md-3 col-lg-2">
-	         		<div class="card mb-3">
-	            		<a href="${pageContext.request.contextPath}/seller/detail?num=${tmp.space_num}">
+	         		<div class="card mb-3">	            		
 		               		<div class="img-wrapper">
-		                  		<img class="card-img-top" src="${pageContext.request.contextPath }${tmp.mainImagePath}" />
+		                  		<img class="card-img-top" src="${pageContext.request.contextPath }${tmp.imagePath}" />
 		               		</div>
 	            		</a>
 	            		<div class="card-body">
 	            			<p class="card-text"><strong>${tmp.space_name}</strong></p>
 	               			<p><small>${tmp.space_num}</small></p>
+	               			<a href="${pageContext.request.contextPath}/seller/spaceupdate" class="card-link">수정하기</a>
 	            		</div>
 	         		</div>
 	      		</div>

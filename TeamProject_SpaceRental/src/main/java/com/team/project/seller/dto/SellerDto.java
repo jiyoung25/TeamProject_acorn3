@@ -1,10 +1,13 @@
 package com.team.project.seller.dto;
 
+import org.apache.ibatis.type.Alias;
 import org.springframework.web.multipart.MultipartFile;
 
+@Alias("sellerDto")
 public class SellerDto {
 	private int space_num;
 	private String space_name;
+	private int users_num;
 	private String oneliner;
 	private String intro;
 	private String imagePath;
@@ -14,10 +17,11 @@ public class SellerDto {
 	public SellerDto() {}
 
 	public SellerDto(int space_num, String space_name, String oneliner, String intro, String imagePath, String addr,
-			MultipartFile image) {
+			MultipartFile image, int users_num) {
 		super();
 		this.space_num = space_num;
 		this.space_name = space_name;
+		this.users_num = users_num;
 		this.oneliner = oneliner;
 		this.intro = intro;
 		this.imagePath = imagePath;
@@ -79,6 +83,14 @@ public class SellerDto {
 
 	public void setImage(MultipartFile image) {
 		this.image = image;
+	}
+
+	public int getUsers_num() {
+		return users_num;
+	}
+
+	public void setUsers_num(int users_num) {
+		this.users_num = users_num;
 	}
 
 

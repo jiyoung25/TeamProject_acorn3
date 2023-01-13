@@ -24,23 +24,21 @@
 				<label for="intro">공간 소개</label><br />
 				<textarea name="intro" id="intro" cols="30" rows="10"></textarea>
 			</div>
-			<div>
-		  		<form action="${pageContext.request.contextPath}/seller/ajax_upload" method="post" id="ajaxForm" enctype="multipart/form-data">
-		     		<div>
-		        		<label for="image">이미지</label>
-		        		<input type="file" name="image" id="image" 
-		           			accept=".jpg, .jpeg, .png, .JPG, .JPEG"/>
-		     		</div>
-		  		</form>
-		  		<div class="img-wrapper">
-		     		<img />
-		  		</div>				
-			</div>
-			<div>
-				<label for="addr">주소</label><br />
-				<input type="text" name="addr" id="addr" />
-			</div>			
 		</form>
+		<form action="${pageContext.request.contextPath}/seller/ajax_upload" method="post" id="ajaxForm"enctype="multipart/form-data">
+		    <div>
+		    	<label for="image">이미지</label>
+		    	<input type="file" name="image" id="image" 
+		    		accept=".jpg, .jpeg, .png, .JPG, .JPEG"/>
+		    </div>
+		</form>
+  		<div class="img-wrapper">
+     		<img />
+  		</div>
+		<div>
+			<label for="addr">주소</label><br />
+			<input type="text" name="addr" id="addr" />
+		</div>
 		<button id="submitBtn">저장</button>
 	</div>
 	<script src="${pageContext.request.contextPath}/js/gura_util.js"></script>
@@ -64,12 +62,11 @@
 				//위의 form 의 input hidden 요소에 value 로 넣어서 db 에 저장
 				document.querySelector("#imagePath").value = data.imagePath;
 			});
-		});
+		});		
 
 		document.querySelector("#submitBtn").addEventListener("click", function(){
 			document.querySelector("#insertForm").submit();
 		});
-		
 	</script>	
 </body>
 </html>
