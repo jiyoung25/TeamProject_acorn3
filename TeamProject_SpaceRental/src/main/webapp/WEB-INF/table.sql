@@ -8,6 +8,8 @@ CREATE TABLE space_users(
    regdate DATE -- 가입일
 );
 
+CREATE SEQUENCE space_users_seq
+
 CREATE TABLE reserv_list(
     reserv_num NUMBER PRIMARY KEY, -- 예약 번호
     users_num NUMBER NOT NULL, -- 예약자(구매자) 번호
@@ -20,7 +22,8 @@ CREATE TABLE dibson_list(
     dibson_num NUMBER PRIMARY KEY, -- 찜 번호
     users_num NUMBER NOT NULL, -- 찜한 회원 (구매자) 번호
     users_id VARCHAR2(100) NOT NULL, -- 찜한 회원(구매자) 아이디
-    space_num NUMBER NOT NULL -- 찜한 공간 번호
+    space_num NUMBER NOT NULL, -- 찜한 공간 번호
+    dib_regdate DATE
 );
 
 CREATE TABLE review(
@@ -36,14 +39,14 @@ CREATE TABLE review(
 );
 
 CREATE TABLE qna(
-    qna_num NUMBER PRIMARY KEY, -- qna번호
-    users_num NUMBER NOT NULL, -- qna 작성자(구매자) 번호
-    space_num NUMBER NOT NULL, -- 공간 글 번호
-    qna_title VARCHAR2(100) NOT NULL, -- qna 제목
-    qna_content VARCHAR2(100) NOT NULL, -- qna 내용
-    qna_writer VARCHAR2(100) NOT NULL, -- qna 작성자 아이디
-    qna_regdate NOT NULL, -- 리뷰 작성일
-    viewcount NUMBER -- 조회수
+   num NUMBER PRIMARY KEY,
+   users_num NUMBER,
+   space_num NUMBER,
+   writer VARCHAR2(100),
+   title VARCHAR2(100),
+   content VARCHAR2(1000),
+   viewcount NUMBER,
+   regdate DATE
 );
 
 CREATE TABLE chatbot(
@@ -74,10 +77,12 @@ CREATE TABLE seller_space(
     users_num NUMBER, --판매자 번호
     oneliner VARCHAR2(60) NOT NULL, --한줄소개
     intro VARCHAR2(1000) NOT NULL, --소개
-    mainImagePath VARCHAR2(100) NOT NULL, --대표이미지 경로
+    imagePath VARCHAR2(100) NOT NULL, --대표이미지 경로
     addr VARCHAR2(50), --주소
     cate_name VARCHAR2(100) NOT NULL --카테고리 이름
 );
+
+CREATE SEQUENCE seller_space_seq
 
 CREATE TABLE review_comment(
     review_num NUMBER NOT NULL, --리뷰 번호
@@ -94,3 +99,4 @@ CREATE TABLE qna_comment(
     qna_comment VARCHAR2(200) NOT NULL,
     qna_regdate VARCHAR2(100) NOT NULL -- qna 답변 등록일
 );
+

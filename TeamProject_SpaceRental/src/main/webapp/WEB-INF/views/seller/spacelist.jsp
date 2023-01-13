@@ -45,12 +45,12 @@
 <body>
 	<div class="container">
 	<h1>내 공간정보 관리</h1>
-		<a href="${pageContext.request.contextPath}/host/upload">새 공간 등록하기</a><br/>
+		<a href="${pageContext.request.contextPath}/seller/spaceinfo">새 공간 등록하기</a><br/>
 	   	<div class="row">
 			<c:forEach var="tmp" items="${list }">
 				<div class="col-4 col-md-3 col-lg-2">
 	         		<div class="card mb-3">
-	            		<a href="${pageContext.request.contextPath}/host/detail?num=${tmp.space_num}">
+	            		<a href="${pageContext.request.contextPath}/seller/detail?num=${tmp.space_num}">
 		               		<div class="img-wrapper">
 		                  		<img class="card-img-top" src="${pageContext.request.contextPath }${tmp.mainImagePath}" />
 		               		</div>

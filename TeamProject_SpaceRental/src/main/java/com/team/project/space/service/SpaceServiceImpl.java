@@ -160,4 +160,9 @@ public class SpaceServiceImpl implements SpaceService {
 				e.printStackTrace();
 			}
 	}
+
+	@Override
+	public void getSpaceData(HttpServletRequest request, int space_num) {
+		request.setAttribute("spaceDto", dao.getData(space_num));
+	}
 }
