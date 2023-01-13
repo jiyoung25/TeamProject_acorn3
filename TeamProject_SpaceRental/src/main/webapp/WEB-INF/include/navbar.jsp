@@ -25,30 +25,29 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 	
 
+
     <!--로그인 되지 않은 상태 -->
     <!--네비바-->
     <nav class="navbar bg-body-tertiary">
-        <div class="container-fluid">
-          <div class="ml-5" >
-          <a class="navbar-brand" href="#"><p class="fs-3 fw-semibold  " >Space Rental</p></a>
+      <div class="container-fluid">
+        <div class="ml-5" >
+          <a class="navbar-brand" href="${pageContext.request.contextPath}/space"><p class="fs-3 fw-semibold  " >Space Rental</p></a>
         </div>
-		<div class="row">
-			<div class="col">
-				<a class="navbar-brand" href="${pageContext.request.contextPath}/users/loginform"><p class="fs-6 text-secondary " >Login</p></a>
-			</div>
-			<div class="col">
-				<a class="navbar-brand" href="${pageContext.request.contextPath}/users/signupform"><p class="fs-6 text-secondary " >Signup</p></a>
-			</div>
-			<div class="col">
-			  <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
-				<span class="navbar-toggler-icon"></span>
-			  </button>
-			</div>
-		</div>
-     
+		    <div class="row">
+			    <div class="col">
+				    <a class="navbar-brand" href="#"><p class="fs-6 text-secondary " ><strong>${sessionScope.id }</strong>님 반갑습니다.</p></a>
+			    </div>
+			    <div class="col">
+			      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+				      <span class="navbar-toggler-icon"></span>
+			      </button>
+          </div>
+        </div>
+		  </div>
 
     <!--사이드바-->
     <div class="offcanvas offcanvas-end " tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+
         <div class="offcanvas-header ">
           <h5 class="offcanvas-title mx-auto" id="offcanvasNavbarLabel">My Page</h5>
           <button type="button" class="btn-close " data-bs-dismiss="offcanvas" aria-label="Close"></button>

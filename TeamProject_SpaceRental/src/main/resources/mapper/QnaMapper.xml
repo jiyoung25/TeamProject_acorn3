@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="qna">
+
+	<sql id="searchCondition">
+		<choose>
+			<when test="title != null and content != null">
+				WHERE title LIKE '%'||#{title}||'%' OR content LIKE '%'||#{content}||'%'
+			</when>
+			<when test="title != null">
+            	WHERE title LIKE '%'||#{title}||'%'
+			</when>
+			<when test="writer != null">
+            	WHERE writer LIKE '%'||#{writer}||'%'
+			</when>
+		</choose>
+	</sql>
+	
+	<select id="getList" parameterType="qnaDto" resultType="qnaDto">
+      SELECT *
+      FROM
+         (SELECT result1.*, ROWNUM AS rnum
+         FROM
+            (SELECT num,writer,title,content,viewCount,regdate
+            FROM qna
+            <include refid="searchCondition"/>
+            ORDER BY num DESC) result1)
+      <![CDATA[ 
+      WHERE rnum >= #{startRowNum} AND rnum <= #{endRowNum}
+      ]]>
+	</select>
+   
+	<select id="getCount" parameterType="qnaDto" resultType="int">
+		SELECT NVL(MAX(ROWNUM), 0)
+		FROM qna
+		<include refid="searchCondition"/>
+	</select>
+
+	<insert id="insert">
+		INSERT INTO qna
+		(num, writer, title, content, viewCount, regdate)
+		VALUES (board_cafe_seq.NEXTVAL, #{writer}, #{title}, #{content}, #{viewCount}, SYSDATE)
+	</insert>
+	
+	<select id="getData" parameterType="int" resultType="qnaDto">
+		SELECT result1.*
+		FROM
+			(SELECT num,writer,title,content,viewCount,TO_CHAR(regdate, 'YY.MM.DD HH24:MI') AS regdate,
+				LAG(num, 1, 0) OVER (ORDER BY num DESC) prevNum,
+	   			LEAD(num, 1, 0) OVER (ORDER BY num DESC) nextNum
+			FROM qna) result1
+		WHERE num=#{num}}
+	</select>
+	
+	<select id="getData2" parameterType="qnaDto" resultType="qnaDto">
+		SELECT result1.*
+		FROM
+			(SELECT num,writer,title,content,viewCount,TO_CHAR(regdate, 'YY.MM.DD HH24:MI') AS regdate,
+				LAG(num, 1, 0) OVER (ORDER BY num DESC) prevNum,
+	   			LEAD(num, 1, 0) OVER (ORDER BY num DESC) nextNum
+			FROM qna
+			<include refid="searchCondition"></include>
+			)result1
+		WHERE num=#{num}
+	</select>
+	
+	<update id="addViewCount" parameterType="int">
+		UPDATE qna
+		SET viewCount = viewCount+1
+		WHERE num=#{num}
+	</update>
+	
+	<delete id="delete">
+		DELETE qna
+		WHERE num=#{num}
+	</delete>
+	
+	<!-- #은 ?로 바뀌고 '${xxx}'는 전처리 -->
+	<update id="update" parameterType="qnaDto">
+		UPDATE qna
+		SET title=#{title}, content='${content}'
+		WHERE num=#{num}
+	</update>
+	
+</mapper>
+
+
+
+
+
+
+
+
