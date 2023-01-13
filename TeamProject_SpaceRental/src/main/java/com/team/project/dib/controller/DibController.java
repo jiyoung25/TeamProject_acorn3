@@ -13,8 +13,8 @@ public class DibController {
 	private DibService service;
 	
 	@RequestMapping("/space/dib_insert")
-	public String insert(DibDto dto) {
-		service.dibInsert(dto);
+	public String insert(DibDto dto, int space_num, int users_num, String users_id) {
+		System.out.println("users_id"+users_id);
 		
 		return "space/dib_insert";
 	}

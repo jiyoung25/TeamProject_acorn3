@@ -6,25 +6,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>SpaceInfo</title>
+<title>공간수정폼</title>
 </head>
 <body>
 	<div class="container">
 		<h1>공간 정보를 입력해 주세요.</h1>
-		<form action="${pageContext.request.contextPath}/seller/insert" method="post" id="insertForm">
+		<form action="update" method="post" id="updateForm">
 			<div>
 				<label for="space_name">공간명</label><br />
-            	<input type="text" name="space_name" id="space_name"/>
+            	<input type="text" name="space_name" id="space_name" value=${dto.space_name }/>
 			</div>
 			<div>
 				<label for="oneliner">공간 한 줄 소개</label><br />
-				<input type="text" name="oneliner" id="oneliner" />
+				<input type="text" name="oneliner" id="oneliner" value=${dto.oneliner }/>
 			</div>
 			<div>
 				<label for="intro">공간 소개</label><br />
-				<textarea name="intro" id="intro" cols="30" rows="10"></textarea>
+				<textarea name="intro" id="intro" cols="30" rows="10">${dto.intro }</textarea>
 			</div>
-
 		</form>
 		<form action="${pageContext.request.contextPath}/seller/ajax_upload" method="post" id="ajaxForm"enctype="multipart/form-data">
 		    <div>
@@ -34,13 +33,12 @@
 		    </div>
 		</form>
   		<div class="img-wrapper">
-     		<img />
+     		<img src="${dto.imagePath }"/>
   		</div>
 		<div>
 			<label for="addr">주소</label><br />
 			<input type="text" name="addr" id="addr" />
 		</div>
-
 		<button id="submitBtn">저장</button>
 	</div>
 	<script src="${pageContext.request.contextPath}/js/gura_util.js"></script>
@@ -66,11 +64,9 @@
 			});
 		});		
 
-
 		document.querySelector("#submitBtn").addEventListener("click", function(){
-			document.querySelector("#insertForm").submit();
+			document.querySelector("#updateForm").submit();
 		});
 	</script>
-
 </body>
 </html>
