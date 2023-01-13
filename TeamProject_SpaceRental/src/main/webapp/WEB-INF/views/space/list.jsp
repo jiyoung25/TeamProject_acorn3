@@ -18,21 +18,54 @@
 <body>
 	<div class="container">
 		<h3>공간 리스트</h3>
-		<div>
-			<c:forEach var="tmp" items="${list }">
-				<div class="space_list">
-					<a href="${pageContext.request.contextPath}/space/detail?cate_num=${cate_num }&space_num=${tmp.space_num}">
-						<div> <%-- 이미지 없어서 임시로 넣음 --%>
-							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-card-image" viewBox="0 0 16 16">
-							  	<path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
-							  	<path d="M1.5 2A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13zm13 1a.5.5 0 0 1 .5.5v6l-3.775-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12v.54A.505.505 0 0 1 1 12.5v-9a.5.5 0 0 1 .5-.5h13z"/>
-							</svg>
-						</div>
-					</a>
-					<div>${tmp.space_name }</div>
-				</div>
-			</c:forEach>
+		<section>
+        	<div class="container px-5">
+            	<div class="row gx-5 align-items-center">
+                	<div class="col-lg-6">
+                    	<div class="p-5"><img class="img-fluid rounded-circle" src="https://cdn-icons-png.flaticon.com/512/4599/4599564.png" alt="..."></div>
+                	</div>
+                	<div class="col-lg-6">
+                    	<div class="p-5">
+		                   	<h2 class="display-4">스터디룸</h2>
+		                	<p>내용</p>
+                    	</div>
+                	</div>
+            	</div>
+        	</div>
+    	</section>
+    	<section class="cta">
+        	<div class="cta-content">
+            	<div class="container px-5">
+                	<h2 class="text-white display-1 lh-1 mb-4">
+                    	Stop waiting.
+                    	<br>
+                   		Start building.
+                	</h2>
+               		 <a class="btn btn-outline-light py-3 px-4 rounded-pill" href="https://startbootstrap.com/theme/new-age" target="_blank">Download for free</a>
+            	</div>
+        	</div>
+    	</section>
+    	<div class="row gx-5 mb-5 m-5">
+    		<c:forEach var="tmp" items="${list }">
+        		<div class="col-lg-3 mb-5 ">
+            		<a class="card lift h-100" href="${pageContext.request.contextPath}/space/detail?cate_num=${cate_num}&space_num=${tmp.space_num}" >
+            			<%--아래는 임시 이미지 --%>
+                		<img class="card-img-top" src="https://source.unsplash.com/2d4lAQAlbDA/800x500" alt="..." />
+                		<div class="card-body row">
+                			<div class="col-8">
+	                    		<h4 class="card-title mb-2">${tmp.space_name }</h4>
+	                    		<p class="card-text">${tmp.addr }</p>
+                    		</div>
+                		</div>
+                		<div class="card-footer bg-transparent border-top d-flex align-items-center justify-content-between">
+		                    <div class="small text-primary">See more</div>
+		                    <div class="small text-primary"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></div>
+		                </div>
+		            </a>
+		    	</div>
+		   	</c:forEach>
 		</div>
+		
 		<nav>
 			<ul class="pagination">
 				<%--
@@ -76,6 +109,7 @@
 			</p>
 		</c:if>
 		-->
+		
 	</div>
 </body>
 </html>
