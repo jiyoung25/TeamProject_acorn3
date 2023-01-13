@@ -23,7 +23,7 @@ public class SpaceServiceImpl implements SpaceService {
 	//나중에 space Service가 생기면 그쪽으로 옮길 예정
 	public void getSpaceList(HttpServletRequest request, int cate_num) {
 		//한 페이지에 몇개씩 표시할 것인지
-		final int PAGE_ROW_COUNT=10;
+		final int PAGE_ROW_COUNT=8;
 		//하단 페이지를 몇개씩 표시할 것인지
 		final int PAGE_DISPLAY_COUNT=5;
 				
@@ -159,5 +159,10 @@ public class SpaceServiceImpl implements SpaceService {
 			} catch(Exception e) {
 				e.printStackTrace();
 			}
+	}
+
+	@Override
+	public void getSpaceData(HttpServletRequest request, int space_num) {
+		request.setAttribute("spaceDto", dao.getData(space_num));
 	}
 }

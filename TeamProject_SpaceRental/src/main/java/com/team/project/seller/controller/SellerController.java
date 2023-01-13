@@ -30,6 +30,7 @@ public class SellerController {
 	}
 	
 	@RequestMapping("/seller/insert")
+
 	public String insert(SellerDto dto, HttpServletRequest request) {
 		service.insert(dto, request);
 		return "seller/insert";
@@ -41,12 +42,14 @@ public class SellerController {
 	}
 	
 	
+	
 	@RequestMapping("/seller/delete")
 	public String delete(int space_num, HttpServletRequest request) {
 		service.delete(space_num, request);
 		return "redirect:/seller/spacelist"; //다시 한번 물어보는 것으로 수정예정
 	}
 	
+
 	//사진 업로드 - ajax
 	//json 으로 return 할 것
 	@RequestMapping(value = "/seller/ajax_upload")

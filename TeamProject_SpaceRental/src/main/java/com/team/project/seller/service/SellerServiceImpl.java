@@ -34,6 +34,7 @@ public class SellerServiceImpl implements SellerService{
 	}
 
 	@Override
+
 	public void insert(SellerDto dto, HttpServletRequest request) {
 		dto.setUsers_num((Integer)request.getSession().getAttribute("users_num"));
 		sellerDao.insert(dto);
@@ -45,6 +46,7 @@ public class SellerServiceImpl implements SellerService{
 	}
 
 	@Override
+
 	public void update(SellerDto dto, HttpServletRequest request) {
 		dto.setSpace_num((Integer)request.getSession().getAttribute("space_num"));
 		sellerDao.update(dto);
@@ -88,6 +90,7 @@ public class SellerServiceImpl implements SellerService{
 		
 		return map;
 	}
+
 	//이미지 추가 - 이미지 업로드 & db 저장
 	public void saveImage(SellerDto dto, HttpServletRequest request) {
 		//업로드된 파일의 정보를 가지고 있는 MultipartFile 객체의 참조값을 얻어오기
