@@ -77,7 +77,7 @@ CREATE TABLE seller_space(
     users_num NUMBER, --판매자 번호
     oneliner VARCHAR2(60) NOT NULL, --한줄소개
     intro VARCHAR2(1000) NOT NULL, --소개
-    imagePath VARCHAR2(100) NOT NULL, --대표이미지 경로
+    mainImagePath VARCHAR2(100) NOT NULL, --대표이미지 경로
     addr VARCHAR2(50), --주소
     cate_name VARCHAR2(100) NOT NULL --카테고리 이름
 );
@@ -93,10 +93,13 @@ CREATE TABLE review_comment(
 );
 
 CREATE TABLE qna_comment(
-    qna_num NUMBER NOT NULL,
-    users_num NUMBER NOT NULL,
-    space_num NUMBER NOT NULL,
-    qna_comment VARCHAR2(200) NOT NULL,
-    qna_regdate VARCHAR2(100) NOT NULL -- qna 답변 등록일
+	num NUMBER PRIMARY KEY, --댓글의 글번호
+	writer VARCHAR2(100), --댓글 작성자의 아이디
+	content VARCHAR2(500), --댓글 내용
+	target_id VARCHAR2(100), --댓글의 대상자 아이디
+	ref_group NUMBER,
+	comment_group NUMBER,
+	deleted CHAR(3) DEFAULT 'no',
+	regdate DATE
 );
-
+CREATE SEQUENCE qnacomment_seq;

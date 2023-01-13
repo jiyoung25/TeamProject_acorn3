@@ -33,7 +33,7 @@ public class SpaceController {
 	public String detail(HttpServletRequest request, int cate_num, int space_num, DibDto dto,HttpSession session) {
 		service.getDay(request);
 		request.setAttribute("cate_num", cate_num);
-    request.setAttribute("space_num", space_num);
+		request.setAttribute("space_num", space_num);
     
 		service.getSpaceData(request, space_num);
 		
