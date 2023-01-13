@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,7 +28,7 @@
 </head>
 
 <body>
-	<!-- 네비바 include -->
+	<!-- ë¤ë¹ë° include -->
 	<c:choose>
 		<c:when test="${not empty sessionScope.id }">
 			<jsp:include page="/WEB-INF/include/navbar2.jsp"/>
@@ -78,49 +81,49 @@
 		</button>
 	</div>
 
-	<!--카테고리 영역 시작-->
+	<!--ì¹´íê³ ë¦¬ ìì­ ìì-->
 	<div class="text-center m-5">
 		<h2 class="section-heading text-uppercase">Service list</h2>
-		<h3 class="section-subheading text-muted">다양한 공간을 만나보세요</h3>
+		<h3 class="section-subheading text-muted">ë¤ìí ê³µê°ì ë§ëë³´ì¸ì</h3>
 	</div>
 
-	<!--카테고리-->
+	<!--ì¹´íê³ ë¦¬-->
 		<div class="row">
-			<!--파티룸-->
+			<!--íí°ë£¸-->
 			<div class="col-lg-4">
 			  <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
-			  <h2 class="fw-normal">파티룸</h2>
-			  <p><a class="btn btn-secondary" href="${pageContext.request.contextPath}/space/list?cate_num=1">보러가기</a></p>
+			  <h2 class="fw-normal">íí°ë£¸</h2>
+			  <p><a class="btn btn-secondary" href="${pageContext.request.contextPath}/space/list?cate_num=1">ë³´ë¬ê°ê¸°</a></p>
 			</div>
-			<!--연습실-->
+			<!--ì°ìµì¤-->
 			<div class="col-lg-4">
 			  <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
-			  <h2 class="fw-normal">연습실</h2>
-			  <p><a class="btn btn-secondary" href="${pageContext.request.contextPath}/space/list?cate_num=2">보러가기</a></p>
+			  <h2 class="fw-normal">ì°ìµì¤</h2>
+			  <p><a class="btn btn-secondary" href="${pageContext.request.contextPath}/space/list?cate_num=2">ë³´ë¬ê°ê¸°</a></p>
 			</div>
-			<!--공유주방 -->
+			<!--ê³µì ì£¼ë°© -->
 			<div class="col-lg-4">
 			  <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
-			  <h2 class="fw-normal">공유주방</h2>
-			  <p><a class="btn btn-secondary" href="${pageContext.request.contextPath}/space/list?cate_num=3">보러가기</a></p>
+			  <h2 class="fw-normal">ê³µì ì£¼ë°©</h2>
+			  <p><a class="btn btn-secondary" href="${pageContext.request.contextPath}/space/list?cate_num=3">ë³´ë¬ê°ê¸°</a></p>
 			</div>
 		    
 
 			<div class="row">
-				<!--스터디룸-->
+				<!--ì¤í°ëë£¸-->
 				<div class="col-lg-4">
 					<svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
-					<h2 class="fw-normal">스터디룸</h2>
-					<p><a class="btn btn-secondary" href="${pageContext.request.contextPath}/space/category">보러가기</a></p>
+					<h2 class="fw-normal">ì¤í°ëë£¸</h2>
+					<p><a class="btn btn-secondary" href="${pageContext.request.contextPath}/space/category">ë³´ë¬ê°ê¸°</a></p>
 				</div>
-				<!--강의실-->
+				<!--ê°ìì¤-->
 				<div class="col-lg-4">
 					<svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
-					<h2 class="fw-normal">강의실</h2>
-					<p><a class="btn btn-secondary" href="${pageContext.request.contextPath}/space/list?cate_num=5">보러가기</a></p>
+					<h2 class="fw-normal">ê°ìì¤</h2>
+					<p><a class="btn btn-secondary" href="${pageContext.request.contextPath}/space/list?cate_num=5">ë³´ë¬ê°ê¸°</a></p>
 		    </div>
 	
-			<!-- 챗봇 -->
+			<!-- ì±ë´ -->
 			<div id="divBox" class="animate__animated animate__fadeIn">
 				<span v-on:click="onChat" v-if="!isChatBotOn">
 					<img id="chatIcon" src="${pageContext.request.contextPath}/image/speak.png"/>
@@ -151,7 +154,7 @@
         		<ul class="nav justify-content-center border-bottom pb-3 mb-3">
         				<li class="nav-item"><a href="#" class="nav-link px-2 text-muted">top</a></li>
         			</ul>
-        		<p class="text-center text-muted">© 2023 Company, Inc</p>
+        		<p class="text-center text-muted">Â© 2023 Company, Inc</p>
       		</footer>
 	  	</div>
 	  	
