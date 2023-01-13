@@ -6,6 +6,11 @@
 		FROM seller_space
 		ORDER BY space_num ASC
 	</select>
+	<select id="getUsersNum" resultType="int" parameterType="String">
+		SELECT users_num
+		FROM space_users
+		WHERE id=#{id}
+	</select>
 	<select id="getData" resultType="sellerDto" parameterType="int">
 		SELECT space_name, oneliner, intro, imagePath, addr
 		FROM seller_space

@@ -24,7 +24,7 @@
 				<label for="intro">공간 소개</label><br />
 				<textarea name="intro" id="intro" cols="30" rows="10"></textarea>
 			</div>
-
+			<input type="hidden" id="imagePath" />
 		</form>
 		<form action="${pageContext.request.contextPath}/seller/ajax_upload" method="post" id="ajaxForm"enctype="multipart/form-data">
 		    <div>
