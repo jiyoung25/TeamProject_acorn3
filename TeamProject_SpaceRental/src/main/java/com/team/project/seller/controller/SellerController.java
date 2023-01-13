@@ -34,6 +34,11 @@ public class SellerController {
 		service.insert(dto, request);
 		return "seller/insert";
 	}
+	@RequestMapping("/seller/update")
+	public String update(SellerDto dto, HttpServletRequest request) {
+		service.update(dto, request);
+		return "seller/update";
+	}
 	
 	
 	@RequestMapping("/seller/delete")

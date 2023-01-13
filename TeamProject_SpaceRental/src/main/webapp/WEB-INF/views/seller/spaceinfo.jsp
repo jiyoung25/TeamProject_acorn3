@@ -67,6 +67,6 @@
 		document.querySelector("#submitBtn").addEventListener("click", function(){
 			document.querySelector("#insertForm").submit();
 		});
-	</script>	
+	</script>
 </body>
 </html>

@@ -6,11 +6,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>insert</title>
+<title>update</title>
 </head>
 <body>
 	<script>
-		alert("공간이 추가 되었습니다.");
+		alert("공간이 수정 되었습니다.");
 		location.href="${pageContext.request.contextPath}/seller/spacelist";
 	</script>
 </body>
