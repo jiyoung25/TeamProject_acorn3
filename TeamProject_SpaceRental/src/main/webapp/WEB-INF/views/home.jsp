@@ -1,6 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,52 +35,7 @@
 		</c:otherwise>
 	</c:choose>  
 
-        <!--사이드바-->
-          <div class="offcanvas offcanvas-end " tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-            <div class="offcanvas-header ">
-              <h5 class="offcanvas-title mx-auto" id="offcanvasNavbarLabel">My Page</h5>
-              <button type="button" class="btn-close " data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body">
-                <div class="container">
-                    <div class="text-center m-5">
-                        <!-- Profile picture image-->
-                        <img class="img-fluid rounded-circle mb-1" src="https://source.unsplash.com/jSUsJWvnnEA/500x500" alt="..." style="max-width: 150px; max-height: 150px">
-                        <!-- Profile picture help block-->
-                        <div class="caption text-muted mb-4">
-                            <p class="fw-bold">에이콘</p>
-                        </div>
-                        <!-- Profile picture upload button-->
-                        <button type="button" class="btn btn-secondary" disabled>프로필 관리</button>
-                    </div>
-                </div>
-             
-              	<ul class="navbar-nav justify-content-end flex-grow-1 pe-3 ml-3">
-                  <li class="nav-item">
-                    <a class="nav-link " href="#">나의 예약</a>
-                  </li>
-                  <hr class="my-2">
-
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">나의 후기</a>
-                  </li>
-
-                  <hr class="my-2">
-
-                  <li class="nav-item">
-                      <a class="nav-link" href="#">나의 Q&A</a>
-                  </li>
-
-                  <hr class="my-2">
-
-                  <li class="nav-item">
-                      <a class="nav-link" href="#">프로필 수정</a>
-                  </li>
-				      </ul>
-            </div>
-          </div>
-        </div>
-      </nav>
+        
 
 
 	<!--carousel-->		
@@ -159,7 +111,7 @@
 				<div class="col-lg-4">
 					<svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
 					<h2 class="fw-normal">스터디룸</h2>
-					<p><a class="btn btn-secondary" href="${pageContext.request.contextPath}/space/list?cate_num=4">보러가기</a></p>
+					<p><a class="btn btn-secondary" href="${pageContext.request.contextPath}/space/category">보러가기</a></p>
 				</div>
 				<!--강의실-->
 				<div class="col-lg-4">
