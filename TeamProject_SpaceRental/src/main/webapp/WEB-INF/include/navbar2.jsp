@@ -1,6 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+	pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Space Rental</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="icon" type="image/x-icon" href="assets/ficon.ico" />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
@@ -17,6 +24,8 @@
   	<script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.min.js"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 	
+    <!--로그인이 되어있는 상태-->
+    <!-- 네비바 -->
     <nav class="navbar bg-body-tertiary">
         <div class="container-fluid">
           <div class="ml-5" >
@@ -33,50 +42,56 @@
 			</div>
 		</div>
     </nav>  
-    
+
      <!--사이드바-->
-          <div class="offcanvas offcanvas-end " tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-            <div class="offcanvas-header ">
-              <h5 class="offcanvas-title mx-auto" id="offcanvasNavbarLabel">My Page</h5>
-              <button type="button" class="btn-close " data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body">
-                <div class="container">
-                    <div class="text-center m-5">
-                        <!-- Profile picture image-->
-                        <img class="img-fluid rounded-circle mb-1" src="https://source.unsplash.com/jSUsJWvnnEA/500x500" alt="..." style="max-width: 150px; max-height: 150px">
-                        <!-- Profile picture help block-->
-                        <div class="caption text-muted mb-4">
-                            <p class="fw-bold">에이콘</p>
-                        </div>
-                        <!-- Profile picture upload button-->
-                        <button type="button" class="btn btn-secondary" disabled>프로필 관리</button>
-                    </div>
-                </div>
-             
-              	<ul class="navbar-nav justify-content-end flex-grow-1 pe-3 ml-3">
-                  <li class="nav-item">
-                    <a class="nav-link " href="#">나의 예약</a>
-                  </li>
-                  <hr class="my-2">
-
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">나의 후기</a>
-                  </li>
-
-                  <hr class="my-2">
-
-                  <li class="nav-item">
-                      <a class="nav-link" href="#">나의 Q&A</a>
-                  </li>
-
-                  <hr class="my-2">
-
-                  <li class="nav-item">
-                      <a class="nav-link" href="#">프로필 수정</a>
-                  </li>
-				      </ul>
-            </div>
-          </div>
+     <div class="offcanvas offcanvas-end " tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+        <div class="offcanvas-header ">
+          <h5 class="offcanvas-title mx-auto" id="offcanvasNavbarLabel">My Page</h5>
+          <button type="button" class="btn-close " data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
-      </nav>
+        <div class="offcanvas-body">
+            <div class="container">
+                <div class="text-center m-5">
+                    <!-- 사용자 사진-->
+                    <img class="img-fluid rounded-circle mb-1" src="https://source.unsplash.com/jSUsJWvnnEA/500x500" alt="..." style="max-width: 150px; max-height: 150px">
+                    <!-- 시용자 이름-->
+                    <div class="caption text-muted mb-4">
+                        <p class="fw-bold">에이콘</p>
+                    </div>
+                    <!-- 사용자 프로필 관리하기버튼-->
+                    <button type="button" class="btn btn-secondary" onclick="location.href='${pageContext.request.contextPath}/users/profile1' ">프로필 관리</button>
+                </div>
+            </div>
+         		
+         	  
+              <ul class="navbar-nav justify-content-end flex-grow-1 pe-3 ml-3 text-center fw-bold">
+	              <!-- 사용자 예약 -->	
+	              <li class="nav-item">
+	                <a class="nav-link " href="#">나의 예약</a>
+	              </li>
+	              
+	              <hr class="my-2">
+				  <!-- 사용자 찜목록 -->	
+	              <li class="nav-item">
+	                <div class="row">
+	                <a class="nav-link" href="#">나의 <strong class="text-danger">♥</strong></a>
+	                </div>
+	              </li>
+	
+	              <hr class="my-2">
+			  	  <!-- 사용자 후기 -->
+	              <li class="nav-item">
+	                  <a class="nav-link" href="#">나의 후기</a>
+	              </li>
+	
+	              <hr class="my-2">
+				  <!-- 사용자 qna 목록 -->
+	              <li class="nav-item">
+	                  <a class="nav-link" href="#">나의 Q&A</a>
+	              </li>
+               </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+
