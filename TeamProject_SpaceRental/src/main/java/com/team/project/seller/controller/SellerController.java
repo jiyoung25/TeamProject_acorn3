@@ -30,10 +30,17 @@ public class SellerController {
 	}
 	
 	@RequestMapping("/seller/insert")
-	public String insert(SellerDto dto, HttpSession session) {
-		service.insert(dto);
+
+	public String insert(SellerDto dto, HttpServletRequest request) {
+		service.insert(dto, request);
 		return "seller/insert";
 	}
+	@RequestMapping("/seller/update")
+	public String update(SellerDto dto, HttpServletRequest request) {
+		service.update(dto, request);
+		return "seller/update";
+	}
+	
 	
 	
 	@RequestMapping("/seller/delete")
@@ -42,7 +49,8 @@ public class SellerController {
 		return "redirect:/seller/spacelist"; //다시 한번 물어보는 것으로 수정예정
 	}
 	
-	//gallery 사진 업로드 - ajax
+
+	//사진 업로드 - ajax
 	//json 으로 return 할 것
 	@RequestMapping(value = "/seller/ajax_upload")
 	@ResponseBody
