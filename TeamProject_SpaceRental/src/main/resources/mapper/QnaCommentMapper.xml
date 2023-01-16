@@ -11,8 +11,8 @@
          (SELECT result1.*, ROWNUM AS rnum
          FROM
             (SELECT num, writer, content, target_id, ref_group,
-               comment_group, deleted, board_cafe_comment.regdate, profile
-            FROM qna
+               comment_group, deleted, qna_comment.regdate, profile
+            FROM qna_comment
             INNER JOIN space_users
             ON qna_comment.writer=space_users.id
             WHERE ref_group=#{ref_group}

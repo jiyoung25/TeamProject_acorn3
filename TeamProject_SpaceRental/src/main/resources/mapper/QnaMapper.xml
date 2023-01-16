@@ -49,7 +49,7 @@
 				LAG(num, 1, 0) OVER (ORDER BY num DESC) prevNum,
 	   			LEAD(num, 1, 0) OVER (ORDER BY num DESC) nextNum
 			FROM qna) result1
-		WHERE num=#{num}}
+		WHERE num=#{num}
 	</select>
 	
 	<select id="getData2" parameterType="qnaDto" resultType="qnaDto">
