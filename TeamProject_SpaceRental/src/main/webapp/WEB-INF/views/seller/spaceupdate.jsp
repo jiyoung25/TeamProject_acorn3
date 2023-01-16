@@ -18,7 +18,7 @@
 			</div>
 			<div>
 				카테고리
-				<select name="cate_name" value=${dto.cate_name }>
+				<select name="cate_name" >
 					<option name="cate_name" value="파티룸">파티룸</option>
 					<option name="cate_name" value="연습실">연습실</option>
 					<option name="cate_name" value="스터디룸">스터디룸</option>
