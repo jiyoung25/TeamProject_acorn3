@@ -1,4 +1,5 @@
 
+
 CREATE TABLE space_users(
    code NUMBER NOT NULL, -- 회원 코드 관리자/판매자/구매자
    users_num NUMBER NOT NULL, -- 회원 번호
