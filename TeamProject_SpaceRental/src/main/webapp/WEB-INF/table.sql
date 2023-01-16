@@ -15,9 +15,11 @@ CREATE TABLE reservationform(
     users_id VARCHAR2(100) NOT NULL, -- 예약자(구매자) 아이디
     space_num NUMBER NOT NULL, -- 공간 글 번호
     reserv_date VARCHAR2(100) NOT NULL, -- 예약 날짜와 시간 --DATE타입 아닌 것 주의하기
-	reserv_time VARCHAR2(50) NOT NULL,
+    reserv_time VARCHAR2(50) NOT NULL,
     reserv_comment VARCHAR2(500), --예약시 판매자에게 남길 말 (요청사항)
-    reserv_count NUMBER NOT NULL --예약하는 사람 수
+    reserv_count NUMBER NOT NULL, --예약하는 사람 수
+    totalMoney NUMBER NOT NULL, -- 총 액수
+    reserv_reg DATE NOT NULL -- 예약 신청일
 );
 CREATE SEQUENCE reservationform_seq
 

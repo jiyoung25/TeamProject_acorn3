@@ -3,7 +3,26 @@
 <mapper namespace="reserv">
 	<insert id="insert" parameterType="reservDto">
 		INSERT INTO reservationform
-		(reserv_num, users_id, space_num, reserv_date, reserv_time, reserv_comment, reserv_count)
-		VALUES(reservation_seq.NEXTVAL, #{users_id}, #{space_num}, #{reserv_date}, #{reserv_time}, #{reserv_comment}, #{reserv_count})
+		(reserv_num, users_id, space_num, reserv_date, reserv_time, reserv_comment, reserv_count, totalMoney, reserv_reg)
+		VALUES(reservationform_seq.NEXTVAL, #{users_id}, #{space_num}, #{reserv_date}, #{reserv_time}, #{reserv_comment}, #{reserv_count}, #{totalMoney}, SYSDATE)
 	</insert>
+	<!-- users_id는 예약자의 id,  -->
+	<select id="getReservToSeller" resultType="reservDto" parameterType="reservDto" >
+		SELECT result2.*
+		FROM
+			(SELECT reservationform.reserv_num, result1.cate_num, reservationform.users_id, reservationform.space_num, result1.space_name, reservationform.reserv_date, reservationform.reserv_time, reservationform.reserv_comment, reservationform.reserv_count, reservationform.totalMoney, reservationform.reserv_reg, rownum rnum
+			FROM (
+				SELECT seller_space.*, cate_num
+				FROM seller_space
+				INNER JOIN space_category ON seller_space.cate_name=space_category.cate_name)result1
+			INNER JOIN reservationform ON result1.space_num=reservationform.space_num
+			WHERE users_num=(SELECT users_num FROM seller_space WHERE users_id=#{users_id}))result2
+		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
+	</select>
+	<select id="getCount" resultType="int" parameterType="String">
+		SELECT NVL(MAX(ROWNUM), 0)
+		FROM reservationform
+		INNER JOIN seller_space ON reservationform.space_num=seller_space.space_num
+		WHERE seller_space.users_num = (SELECT users_num FROM seller_space WHERE users_id=#{users_id})
+	</select>
 </mapper>

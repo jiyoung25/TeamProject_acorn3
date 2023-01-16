@@ -72,10 +72,10 @@
 			<button type="submit" id="dibSubmitBtn" >제출</button>
 		</form>
 		<!-- 예약 폼 -->
-		<form id="selectTime" action="space/reservation">
+		<form id="selectTime" action="${pageContext.request.contextPath}/space/reservation" method="POST">
 			<div id="reservationForm">
 				<%--최소: 내일부터, 최대: 2달 --%>
-				<input type="date" name="date" min="${minday }" max="${maxday }" v-model="day" v-on:input="dayBtnClicked" />
+				<input type="date" name="reserv_date" min="${minday }" max="${maxday }" v-model="day" v-on:input="dayBtnClicked" />
 				<br />
 				<p>선택하신 날짜의 시간당 요금은 1000원 입니다.</p>
 				<div id="timeBox">
@@ -86,13 +86,26 @@
 					<p id="noneVisible">{{count}}{{time1}}{{time2}}</p>
 					<br />
 					<h3>선택 정보</h3>
+					<select name="reserv_count" id="reserv_count" v-on:click="reservCountSelected">
+						<option value="0">--</option>
+						<option value="1">1명</option>
+						<option value="2">2명</option>
+						<option value="3">3명</option>
+						<option value="4">4명</option>
+					</select>
+					{{reserv_count}}
 					<p>입실 시간:{{checkInTime}}</p>
 					<p>퇴실 시간:{{checkOutTime}}</p>
-					<p><input type="text" /></p>
+					<p>남길 말<input type="text" name="reserv_comment" /></p>
 					<p>비용:{{totalMoney}}</p>
 					<br />
+					<input type="hidden" name="reserv_time" v-bind:value="timeData" />
+					<input type="hidden" name="space_num" value="${spaceDto.space_num }" />
+					<input type="hidden" name="users_id" value="${id }" />
+					<input type="hidden" name="totalMoney" v-bind:value="totalMoney" />
 					<button type="button" v-on:click="resetBtnClicked">다시 선택하기</button>
 				</div>
+				<button type="submit">제출</button>
 			</div>
 		</form>
 		
@@ -252,14 +265,16 @@
 			let selectTime = new Vue({
 			el:"#selectTime",
 			data:{
-				money:30000,
+				money:1000,
 				count:0,
 				time1:0,
 				time2:0,
 				checkInTime:0,
 				checkOutTime:0,
 				totalMoney:0,
-				day:""
+				day:"",
+				timeData:"",
+				reserv_count:0
 			},
 			methods:{
 				timeBtnClicked:function(e){
@@ -279,7 +294,8 @@
 							this.checkInTime = this.time1;
 							this.checkOutTime = this.time2;
 						}
-						this.totalMoney = Math.abs(this.time1-this.time2)*this.money;
+						this.totalMoney = Math.abs(this.checkOutTime-this.checkInTime)*this.money*this.reserv_count;
+						this.timeData= this.checkInTime + '-' +this.checkOutTime
 					}
 				},
 				resetBtnClicked:function(){
@@ -292,7 +308,12 @@
 				},
 				dayBtnClicked:function(){
 					console.log(this.day);
+				},
+				reservCountSelected:function(e){
+					this.reserv_count= e.target.value;
+					this.totalMoney = Math.abs(this.checkOutTime-this.checkInTime)*this.money*this.reserv_count;
 				}
+				
 			}
 		})
 	</script>
