@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.team.project.seller.dto.SellerDto;
 import com.team.project.seller.service.SellerService;
@@ -21,9 +22,10 @@ public class SellerController {
 	private SellerService service;
 	
 	@RequestMapping("/seller/spacelist")
-	public String list(HttpServletRequest request) {
-		service.getList(request);
-		return "seller/spacelist";
+	public ModelAndView list(ModelAndView mView) {
+		service.getList(mView);
+		mView.setViewName("seller/spacelist");
+		return mView;
 	}
 	
 	@RequestMapping("/seller/spaceinfo")
@@ -40,10 +42,20 @@ public class SellerController {
 		
 		return "seller/insert";
 	}
+	
+	@RequestMapping("/seller/spaceupdate")
+	public String spaceUpdate(HttpServletRequest request) {
+		service.getData(request);
+		return "seller/spaceupdate";
+	}
+	
 	@RequestMapping("/seller/update")
-	public String update(SellerDto dto, HttpServletRequest request) {
+	public String update(SellerDto dto, HttpServletRequest request, HttpSession session) {
+		service.getUsersNum(request, session);
+		dto.setUsers_num((Integer)request.getAttribute("users_num"));
 		service.update(dto, request);
-		return "seller/update";
+		
+		return "seller/update";		
 	}
 	
 	
