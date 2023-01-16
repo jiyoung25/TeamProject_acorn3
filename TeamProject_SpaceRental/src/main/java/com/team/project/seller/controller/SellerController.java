@@ -49,11 +49,12 @@ public class SellerController {
 		return "seller/spaceupdate";
 	}
 	
+	
 	@RequestMapping("/seller/update")
 	public String update(SellerDto dto, HttpServletRequest request, HttpSession session) {
-		service.getUsersNum(request, session);
-		dto.setUsers_num((Integer)request.getAttribute("users_num"));
 		service.update(dto, request);
+		System.out.println(dto.getmainImagePath());
+		System.out.println(dto.getSpace_name());
 		
 		return "seller/update";		
 	}

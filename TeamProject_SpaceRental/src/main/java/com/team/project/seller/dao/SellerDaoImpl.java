@@ -27,6 +27,7 @@ public class SellerDaoImpl implements SellerDao{
 	@Override
 	public void update(SellerDto dto) {
 		session.update("seller.update", dto);
+		System.out.println(dto.getSpace_num());
 	}
 
 	@Override

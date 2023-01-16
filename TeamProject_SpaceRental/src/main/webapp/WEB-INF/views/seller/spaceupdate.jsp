@@ -35,6 +35,7 @@
 				<label for="addr">주소</label><br />
 				<input type="text" name="addr" id="addr" value=${dto.addr } />
 			</div>
+		    <input type="hidden" name="space_num" value="${dto.space_num }"/>
 		</form>
 		<form action="${pageContext.request.contextPath}/seller/ajax_upload" method="post" id="ajaxForm"enctype="multipart/form-data">
 		    <div>
@@ -44,7 +45,7 @@
 		    </div>
 		</form>
   		<div class="img-wrapper">
-     		<img src="/space/${dto.mainImagePath }" />
+     		<img src="/space/${dto.mainImagePath }" value="${dto.mainImagePath }" />
   		</div>
 
 		<button id="submitBtn">저장</button>
