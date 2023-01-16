@@ -10,7 +10,7 @@
 </head>
 <body>
 	<div class="container">
-		<p>
+		<p class="alert alert-success">
 			<c:choose>
 				<c:when test="${code eq 1 }">
 					관리자님 가입되었습니다.

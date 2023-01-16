@@ -69,7 +69,7 @@ cate_name VARCHAR2(100) NOT NULL,
 cate_num NUMBER PRIMARY KEY
 );
 
-CREATE SEQUENCE space_category_seq
+CR SEQUENCE space_category_seqEATE
 
 CREATE TABLE seller_space(
     space_num NUMBER PRIMARY KEY, --번호
