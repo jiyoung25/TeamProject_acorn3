@@ -11,15 +11,16 @@ public class SellerDto {
 	private int users_num;
 	private String oneliner;
 	private String intro;
-	private String imagePath;
+	private String mainImagePath;
 	private String addr;
 	private MultipartFile image;	//이미지 파일 업로드 처리를 위한 필드
+	private String cate_name;
 	
 	public SellerDto() {}
 
-	public SellerDto(int space_num, String space_name, String oneliner, String intro, String imagePath, String addr,
+	public SellerDto(int space_num, String space_name, String oneliner, String intro, String mainImagePath, String addr,
 
-			MultipartFile image, int users_num) {
+			MultipartFile image, int users_num, String cate_name) {
 
 		super();
 		this.space_num = space_num;
@@ -27,9 +28,10 @@ public class SellerDto {
 		this.users_num = users_num;
 		this.oneliner = oneliner;
 		this.intro = intro;
-		this.imagePath = imagePath;
+		this.mainImagePath = mainImagePath;
 		this.addr = addr;
 		this.image = image;
+		this.cate_name = cate_name;
 	}
 
 	public int getSpace_num() {
@@ -64,12 +66,12 @@ public class SellerDto {
 		this.intro = intro;
 	}
 
-	public String getImagePath() {
-		return imagePath;
+	public String getmainImagePath() {
+		return mainImagePath;
 	}
 
-	public void setImagePath(String imagePath) {
-		this.imagePath = imagePath;
+	public void setmainImagePath(String mainImagePath) {
+		this.mainImagePath = mainImagePath;
 	}
 
 	public String getAddr() {
@@ -97,5 +99,11 @@ public class SellerDto {
 		this.users_num = users_num;
 	}
 
-	
+	public String getCate_name() {
+		return cate_name;
+	}
+
+	public void setCate_name(String cate_name) {
+		this.cate_name = cate_name;
+	}
 }

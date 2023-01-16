@@ -8,7 +8,10 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.team.project.seller.dto.SellerDto;
 import com.team.project.seller.service.SellerService;
@@ -19,9 +22,10 @@ public class SellerController {
 	private SellerService service;
 	
 	@RequestMapping("/seller/spacelist")
-	public String list(HttpServletRequest request) {
-		service.getList(request);
-		return "seller/spacelist";
+	public ModelAndView list(ModelAndView mView) {
+		service.getList(mView);
+		mView.setViewName("seller/spacelist");
+		return mView;
 	}
 	
 	@RequestMapping("/seller/spaceinfo")
@@ -31,14 +35,28 @@ public class SellerController {
 	
 	@RequestMapping("/seller/insert")
 
-	public String insert(SellerDto dto, HttpServletRequest request) {
+	public String insert(SellerDto dto, HttpServletRequest request, HttpSession session) {
+		service.getUsersNum(request, session);
+		dto.setUsers_num((Integer)request.getAttribute("users_num"));
 		service.insert(dto, request);
+		
 		return "seller/insert";
 	}
+	
+	@RequestMapping("/seller/spaceupdate")
+	public String spaceUpdate(HttpServletRequest request) {
+		service.getData(request);
+		return "seller/spaceupdate";
+	}
+	
+	
 	@RequestMapping("/seller/update")
-	public String update(SellerDto dto, HttpServletRequest request) {
+	public String update(SellerDto dto, HttpServletRequest request, HttpSession session) {
 		service.update(dto, request);
-		return "seller/update";
+		System.out.println(dto.getmainImagePath());
+		System.out.println(dto.getSpace_name());
+		
+		return "seller/update";		
 	}
 	
 	
@@ -60,5 +78,14 @@ public class SellerController {
 		//request : imagePath 만드는데 사용, session 영역의 id 가져오는데 사용
 		//return : { "imagePath" : "/upload/123456img_name.png" } 형식의 JSON 응답
 		return service.uploadAjaxImage(dto, request);
+	}
+	
+	//ajax 프로필 사진 업로드 요청처리
+	@RequestMapping(value = "/users/image_upload", method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> imageUpload(HttpServletRequest request, MultipartFile image){
+		
+		//서비스를 이용해서 이미지를 upload 폴더에 저장하고 리턴되는 Map 을 리턴해서 json 문자열 응답하기
+		return service.saveImage(request, image);
 	}
 }
