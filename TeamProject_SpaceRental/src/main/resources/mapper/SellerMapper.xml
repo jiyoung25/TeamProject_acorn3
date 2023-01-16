@@ -12,7 +12,7 @@
 		WHERE id=#{id}
 	</select>
 	<select id="getData" resultType="sellerDto" parameterType="int">
-		SELECT space_name, oneliner, intro, mainImagePath, addr
+		SELECT space_name, oneliner, intro, mainImagePath, addr, cate_name
 		FROM seller_space
 		WHERE space_num=#{space_num}
 	</select>

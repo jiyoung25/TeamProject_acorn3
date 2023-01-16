@@ -51,13 +51,22 @@
 				<div class="col-4 col-md-3 col-lg-2">
 	         		<div class="card mb-3">	            		
 		               		<div class="img-wrapper">
-		                  		<img class="card-img-top" src="${pageContext.request.contextPath }${tmp.imagePath}" />
+		                  		<img class="card-img-top" src="${pageContext.request.contextPath }${tmp.mainImagePath}" />
 		               		</div>
 	            		</a>
 	            		<div class="card-body">
 	            			<p class="card-text"><strong>${tmp.space_name}</strong></p>
-	               			<p><small>${tmp.space_num}</small></p>
-	               			<a href="${pageContext.request.contextPath}/seller/spaceupdate" class="card-link">수정하기</a>
+	               			<p><small>공간번호: ${tmp.space_num}</small></p>							
+							<a href="spaceupdate?space_num=${tmp.space_num}">수정</a>
+							<a href="javascript:" onclick="deleteConfirm()">삭제</a>
+							<script>
+								function deleteConfirm(){
+									const isDelete=confirm("이 글을 삭제 하겠습니까?");
+									if(isDelete){
+										location.href="delete?space_num=${tmp.space_num}";
+									}
+								}
+							</script>							
 	            		</div>
 	         		</div>
 	      		</div>

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.team.project.seller.dao.SellerDao;
 import com.team.project.seller.dto.SellerDto;
@@ -22,9 +23,9 @@ public class SellerServiceImpl implements SellerService{
 	private SellerDao sellerDao;	
 
 	@Override
-	public void getList(HttpServletRequest request) {
-		SellerDto dto = new SellerDto();
-		List<SellerDto> list=sellerDao.getList(dto);
+	public void getList(ModelAndView mView) {		
+		List<SellerDto> list=sellerDao.getList();
+		mView.addObject("list", list);
 	}
 
 	@Override
