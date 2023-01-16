@@ -83,11 +83,11 @@ public class SellerServiceImpl implements SellerService{
 			e.printStackTrace();
 		}
 
-		String imagePath = "/resources/upload/" + saveFileName;
+		String mainImagePath = "/resources/upload/" + saveFileName;
 		
-		//ajax upload 를 위한 imagePath return
+		//ajax upload 를 위한 mainImagePath return
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("imagePath", imagePath);
+		map.put("mainImagePath", mainImagePath);
 		
 		return map;
 	}
@@ -119,7 +119,7 @@ public class SellerServiceImpl implements SellerService{
 		
 		// json 문자열을 출력하기 위한 Map 객체 생성하고 정보 담기 
 		Map<String, Object> map=new HashMap<String, Object>();
-		map.put("imagePath", "/resources/upload/"+saveFileName);
+		map.put("mainImagePath", "/resources/upload/"+saveFileName);
 		
 		return map;
 	}

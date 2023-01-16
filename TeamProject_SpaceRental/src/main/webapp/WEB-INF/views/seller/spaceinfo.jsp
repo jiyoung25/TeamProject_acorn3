@@ -34,7 +34,7 @@
 				<label for="intro">공간 소개</label><br />
 				<textarea name="intro" id="intro" cols="30" rows="10"></textarea>
 			</div>
-			<input type="hidden" id="imagePath" name="imagePath" />
+			<input type="hidden" id="mainImagePath" name="mainImagePath" />
 			<div>
 				<label for="addr">주소</label><br />
 				<input type="text" name="addr" id="addr" />
@@ -65,14 +65,14 @@
 				return response.json();
 			})
 			.then(function(data){
-				//data : {imagePath:"/upload/xxx.jpg"} 형식의 obj
+				//data : {mainImagePath:"/upload/xxx.jpg"} 형식의 obj
 				console.log(data);
 				//이미지 경로에 context Path 추가하기
-				const path = "${pageContext.request.contextPath}" + data.imagePath;
+				const path = "${pageContext.request.contextPath}" + data.mainImagePath;
 				//img 태그에 경로 추가
 				document.querySelector(".img-wrapper img").setAttribute("src", path);
 				//위의 form 의 input hidden 요소에 value 로 넣어서 db 에 저장
-				document.querySelector("#imagePath").value = data.imagePath;
+				document.querySelector("#mainImagePath").value = data.mainImagePath;
 			});
 		});		
 
