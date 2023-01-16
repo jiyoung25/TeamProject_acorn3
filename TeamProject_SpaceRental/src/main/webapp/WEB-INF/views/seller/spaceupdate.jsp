@@ -6,24 +6,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>SpaceInfo</title>
+<title>공간수정폼</title>
 </head>
 <body>
 	<div class="container">
 		<h1>공간 정보를 입력해 주세요.</h1>
-		<form action="${pageContext.request.contextPath}/seller/insert" method="post" id="updateForm">
+		<form action="${pageContext.request.contextPath}/seller/update" method="post" id="updateForm">
 			<div>
 				<label for="space_name">공간명</label><br />
             	<input type="text" name="space_name" id="space_name" value=${dto.space_name } />
 			</div>
-			<div>
+			<div style="display:hidden">
 				카테고리
-				<select name="cate_name" >
-					<option name="cate_name" value="파티룸">파티룸</option>
-					<option name="cate_name" value="연습실">연습실</option>
-					<option name="cate_name" value="스터디룸">스터디룸</option>
-					<option name="cate_name" value="강의실">강의실</option>
-					<option name="cate_name" value="공유주방">공유주방</option>	
+				<select name="cate_name">
+					<option value="${dto.cate_name }">${dto.cate_name }</option>	
 				</select>
 			</div>
 			<div>

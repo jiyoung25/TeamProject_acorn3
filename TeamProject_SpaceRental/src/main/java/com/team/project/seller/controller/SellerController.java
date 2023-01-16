@@ -50,9 +50,12 @@ public class SellerController {
 	}
 	
 	@RequestMapping("/seller/update")
-	public String update(SellerDto dto, HttpServletRequest request) {
+	public String update(SellerDto dto, HttpServletRequest request, HttpSession session) {
+		service.getUsersNum(request, session);
+		dto.setUsers_num((Integer)request.getAttribute("users_num"));
 		service.update(dto, request);
-		return "seller/update";
+		
+		return "seller/update";		
 	}
 	
 	

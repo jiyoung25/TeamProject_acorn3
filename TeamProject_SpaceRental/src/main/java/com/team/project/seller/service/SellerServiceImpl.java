@@ -50,7 +50,6 @@ public class SellerServiceImpl implements SellerService{
 	@Override
 
 	public void update(SellerDto dto, HttpServletRequest request) {
-		dto.setSpace_num((Integer)request.getSession().getAttribute("space_num"));
 		sellerDao.update(dto);
 	}
 	
