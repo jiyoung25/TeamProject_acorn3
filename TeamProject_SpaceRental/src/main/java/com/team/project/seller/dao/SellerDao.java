@@ -15,4 +15,5 @@ public interface SellerDao {
 	public void update(SellerDto dto);
 	//공간 삭제
 	public void delete(int space_num);
+	public int getUsersNum(String id);
 }

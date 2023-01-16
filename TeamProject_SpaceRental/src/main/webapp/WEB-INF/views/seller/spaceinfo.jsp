@@ -17,6 +17,16 @@
             	<input type="text" name="space_name" id="space_name"/>
 			</div>
 			<div>
+				카테고리
+				<select name="cate_name">
+					<option name="cate_name" value="파티룸">파티룸</option>
+					<option name="cate_name" value="연습실">연습실</option>
+					<option name="cate_name" value="스터디룸">스터디룸</option>
+					<option name="cate_name" value="강의실">강의실</option>
+					<option name="cate_name" value="공유주방">공유주방</option>	
+				</select>
+			</div>
+			<div>
 				<label for="oneliner">공간 한 줄 소개</label><br />
 				<input type="text" name="oneliner" id="oneliner" />
 			</div>
@@ -24,7 +34,11 @@
 				<label for="intro">공간 소개</label><br />
 				<textarea name="intro" id="intro" cols="30" rows="10"></textarea>
 			</div>
-
+			<input type="hidden" id="imagePath" name="imagePath" />
+			<div>
+				<label for="addr">주소</label><br />
+				<input type="text" name="addr" id="addr" />
+			</div>
 		</form>
 		<form action="${pageContext.request.contextPath}/seller/ajax_upload" method="post" id="ajaxForm"enctype="multipart/form-data">
 		    <div>
@@ -36,10 +50,6 @@
   		<div class="img-wrapper">
      		<img />
   		</div>
-		<div>
-			<label for="addr">주소</label><br />
-			<input type="text" name="addr" id="addr" />
-		</div>
 
 		<button id="submitBtn">저장</button>
 	</div>

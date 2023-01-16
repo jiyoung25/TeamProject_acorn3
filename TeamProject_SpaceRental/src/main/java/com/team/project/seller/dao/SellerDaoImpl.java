@@ -39,4 +39,9 @@ public class SellerDaoImpl implements SellerDao{
 		return session.selectOne("seller.getData", space_num);
 	}
 
+	@Override
+	public int getUsersNum(String id) {
+		return session.selectOne("seller.getUsersNum", id);
+	}
+
 }
