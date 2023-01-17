@@ -23,46 +23,19 @@
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
      <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.min.js"></script>
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
-   
-   <nav>
-     <!--사이드바-->
-     <div class="offcanvas offcanvas-end " tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-        <div class="offcanvas-header ">
-          <h5 class="offcanvas-title mx-auto" id="offcanvasNavbarLabel">My Page</h5>
-          <button type="button" class="btn-close " data-bs-dismiss="offcanvas" aria-label="Close"></button>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Insert title here</title>
+</head>
+<body>
+	<!--footer-->
+      <div class="container">
+          <footer class="py-3 my-4">
+              <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+                    <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">top</a></li>
+                 </ul>
+              <p class="text-center text-muted">© 2023 Ubiquitous, co</p>
+            </footer>
         </div>
-        <div class="offcanvas-body">
-            <div class="container">
-                <div class="text-center m-5">
-                    <!-- 사용자 사진-->
-                    <img class="img-fluid rounded-circle mb-1" src="https://source.unsplash.com/jSUsJWvnnEA/500x500" alt="..." style="max-width: 150px; max-height: 150px">
-                    <!-- 시용자 이름-->
-                    <div class="caption text-muted mb-4">
-                        <p class="fw-bold"><strong>${id }</strong></p>
-                    </div>
-                    <!-- 사용자 프로필 관리하기버튼-->
-                    <button type="button" class="btn btn-secondary" onclick="location.href='${pageContext.request.contextPath}/users/profile1' ">프로필 관리</button>
-                </div>
-            </div>
-               
-              
-              <ul class="navbar-nav justify-content-end flex-grow-1 pe-3 ml-3 text-center fw-bold">
-                 <!-- 판매자 예약list -->   
-                 <li class="nav-item">
-                   <a class="nav-link " href="${pageContext.request.contextPath}/seller/reservationlist">예약 리스트 확인</a>
-                 </li>
-                 <hr class="my-2">
-                <!-- 판매자 qnalist -->
-                 <li class="nav-item">
-                     <a class="nav-link" href="#">사용자 후기 목록</a>
-                 </li>
-   
-                 <hr class="my-2">
-              	<!-- 판매자 review list -->
-                 <li class="nav-item">
-                     <a class="nav-link" href="#">사용자 리뷰 목록</a>
-                 </li>
-               </ul>
-        </div>
-      </div>
-  </nav>
+</body>
+</html>

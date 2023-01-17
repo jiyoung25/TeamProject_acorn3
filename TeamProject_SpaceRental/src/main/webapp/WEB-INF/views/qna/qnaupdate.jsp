@@ -9,6 +9,29 @@
 <title>/views/qna/qnaupdate.jsp</title>
 </head>
 <body>
+	<%-- 네비바 --%>
+	<c:choose>
+		<c:when test="${empty sessionScope.id }">
+        	<jsp:include page="/WEB-INF/include/navbar_sidebar_SessionX.jsp"/>
+      	</c:when>
+      	<c:otherwise>
+	      	<c:choose>
+	      		<c:when test="${dto.code eq 2 }">
+	      	  		<jsp:include page="/WEB-INF/include/navbar_sessionO_seller.jsp"/>
+	         		<jsp:include page="/WEB-INF/include/sidebar_seller.jsp"/>
+	      		</c:when>
+	      		<c:otherwise>
+					<jsp:include page="/WEB-INF/include/navbar_sessionO_users.jsp"/>
+			      	<jsp:include page="/WEB-INF/include/sidebar_user.jsp"/>
+	      		</c:otherwise>
+	      	</c:choose>
+      	</c:otherwise>
+   	</c:choose> 
+
+	<!-- footer include -->
+	  <jsp:include page="/WEB-INF/include/footer.jsp"/>
+	  
+	  
 	<script>
 		alert("${id} 님 글을 수정 했습니다.");
 		location.href = "${pageContext.request.contextPath}/qna/qnadetail?num=${param.num}";

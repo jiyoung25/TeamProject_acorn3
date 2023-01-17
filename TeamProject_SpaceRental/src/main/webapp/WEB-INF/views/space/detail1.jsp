@@ -22,97 +22,47 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
 </head>
+<style>
+
+
+</style>
 
 <body >
 
-    <!--네비바-->
-    <nav class="navbar bg-body-tertiary ">
-        <!--기업이름-->
-        <div class="container-fluid">
-           <div class="ml-5" >
-           <a class="navbar-brand" href="#"><p class="fs-3 fw-semibold" >Space Rental</p></a>
-           </div>
-		<div class="row">
-            <!--로그인하기-->
-			<div class="col">
-				<a class="navbar-brand" href="${pageContext.request.contextPath}/users/loginform"><p class="fs-6 text-secondary " >Login</p></a>
-			</div>
-            <!--회원가입하기-->
-			<div class="col">
-				<a class="navbar-brand" href="${pageContext.request.contextPath}/users/signupform"><p class="fs-6 text-secondary " >Signup</p></a>
-			</div>
-            <!--마이페이지 버튼-->
-			<div class="col">
-			  <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
-				<span class="navbar-toggler-icon"></span>
-			  </button>
-			</div>
-		</div>
-    </nav>
-        
 
-
-        <!--사이드바-->
-          <div class="offcanvas offcanvas-end " tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-            <div class="offcanvas-header ">
-              <h5 class="offcanvas-title mx-auto" id="offcanvasNavbarLabel">My Page</h5>
-              <button type="button" class="btn-close " data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body">
-                <div class="container">
-                    <div class="text-center m-5">
-                        <!-- 사용자 프로필-->
-                        <img class="img-fluid rounded-circle mb-1" src="https://source.unsplash.com/jSUsJWvnnEA/500x500" alt="..." style="max-width: 150px; max-height: 150px">
-                        <!-- 사용자 이름-->
-                        <div class="caption text-muted mb-4">
-                            <p class="fw-bold">에이콘</p>
-                        </div>
-                        <!-- 프로필 관리-->
-                        <button type="button" class="btn btn-secondary" disabled>프로필 관리</button>
-                    </div>
-                </div>
-                
-              <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                <li class="nav-item">
-                  <a class="nav-link " href="#">나의 예약</a>
-                </li>
-
-                <hr class="my-2">
-
-                <li class="nav-item">
-                  <a class="nav-link" href="#">나의 찜</a>
-                </li>
-
-                <hr class="my-2">
-
-                <li class="nav-item">
-                    <a class="nav-link" href="#">나의 Q&A</a>
-                </li>
-
-                <hr class="my-2">
-
-                <li class="nav-item">
-                    <a class="nav-link" href="#">나의 후기</a>
-                </li>
-        
-            </div>
-          </div>
-        </div>
-      </nav>
+	<%-- 네비바 --%>
+	<c:choose>
+		<c:when test="${empty sessionScope.id }">
+        	<jsp:include page="/WEB-INF/include/navbar_sidebar_SessionX.jsp"/>
+      	</c:when>
+      	<c:otherwise>
+	      	<c:choose>
+	      		<c:when test="${dto.code eq 2 }">
+	      	  		<jsp:include page="/WEB-INF/include/navbar_sessionO_seller.jsp"/>
+	         		<jsp:include page="/WEB-INF/include/sidebar_seller.jsp"/>
+	      		</c:when>
+	      		<c:otherwise>
+					<jsp:include page="/WEB-INF/include/navbar_sessionO_users.jsp"/>
+			      	<jsp:include page="/WEB-INF/include/sidebar_user.jsp"/>
+	      		</c:otherwise>
+	      	</c:choose>
+      	</c:otherwise>
+   	</c:choose> 
 
      <!--공간사진 및 예약폼-->
 
      <!--네비바와 상단메뉴 겹치는부분 수정예정-->
+     <div>
      <div class="container"  >
         <div class="row">
             <!--공간사진-->
-            <div class="col align-center">
-                <div class="row">
+            <div class="col col m-5 p-4">
+                <div class="row ">
                 <img src="https://as2.ftcdn.net/v2/jpg/02/40/32/91/1000_F_240329133_inyyLY16TuwXtP0AVrbTvK0XGzEjxanV.jpg" alt="...">
                 </div>
 
                 <!--공간 메뉴탭-->
-                <div class="row">
+                <div class="row m-2 p-2" >
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                         <!--공간소개 탭-->
                         <li class="nav-item" role="presentation">
@@ -152,27 +102,19 @@
 
             <!--예약폼-->
             <div class="col">
-                <div class="col-md-7 col-lg-8">
+                <div class="col m-5 p-4">
 
                     <!--공간이름-->
-                    <p class="fs-1 text-center">이름</p>
+                    <p class=" m-3 fs-1 text-center">공간이름</p>
 
-                    <!--요금안내-->
-                    <div class="row">
-                        <div class="col-4 text-center">
-                        <label for="staticEmail" class="col-form-label">2시간당</label>
-                        </div>
-                        <div class="col-8">
-                            <input class="form-control" type="text" value="요금" aria-label="Disabled input example" disabled readonly>
-                        </div>
-                    </div>
+                    
 
                     <hr class="my-4">
 
 
                         <!--예약자-->
-                        <div class="row">
-                            <div class="col-4 text-center">
+                        <div class="row mb-2">
+                            <div class="col-4  text-center">
                             <label for="inputName" class="col-form-label ">예약자</label>
                             </div>
                             <div class="col-8 ">
@@ -183,7 +125,7 @@
                         
                         
                         <!--인원선택-->
-                        <div class="row">
+                        <div class="row mb-2">
                             <div class="col-4 text-center">인원</div>
                             <div class="col-8">
                                 <select class="form-select" aria-label="Default select example">
@@ -202,85 +144,219 @@
                             </div>
                         </div>
 
+                        <!--요금안내-->
+                        <div class="row">
+                            <div class="col-4 text-center">
+                            <label for="staticEmail" class="col-form-label">2시간당</label>
+                            </div>
+                            <div class="col-8">
+                                <input class="form-control" type="text" value="요금" aria-label="Disabled input example" disabled readonly>
+                            </div>
+                        </div>
+
 
                         <hr class="my-4">
 
-                        <div class="mb-3">
+                        <!--요청사항-->
+                        <div class="m-3">
                             <label for="exampleFormControlTextarea1" class="form-label">요청사항</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="ex)현장결제할게요"></textarea>
                           </div>
 
                     
-                      <hr class="my-4">
+                        <hr class="my-4">
             
-                      <!--예약안내사항-->
-                      <p class="fw-bold ">  2시간 단위로 예약가능합니다</p>
-                      <p class="fw-bold ">  최대 예약정원은 10명입니다</p>
-                      <p class="fw-bold ">  예약변경 및 취소는 판매자에게 문의 바랍니다</p>
-                      <br>
-                      <!--동의 체크박스-->
-                      <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="same-address">
-                        <label class="form-check-label" for="same-address">공지사항 및 약관에 동의합니다.</label>
-                      </div>
-                      <br>
-                      <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="save-info">
-                        <label class="form-check-label" for="save-info">예약정보를 모두 확인했습니다.</label>
-                      </div>
-            
-                      <hr class="my-4">
-            
-                      <button class="w-100 btn btn-primary btn-lg" type="submit">예약</button>
-                    </form>
+                        <!--예약안내사항-->
+                        <div class="m-3">
+                            <p class="fw-bold ">  2시간 단위로 예약가능합니다</p>
+                            <p class="fw-bold ">  최대 예약정원은 10명입니다</p>
+                            <p class="fw-bold ">  예약변경 및 취소는 판매자에게 문의 바랍니다</p>
+                        </div>
+                        <br>
+                        <!--동의 체크박스-->
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="same-address">
+                            <label class="form-check-label" for="same-address">공지사항 및 약관에 동의합니다.</label>
+                        </div>
+                        <br>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="save-info">
+                            <label class="form-check-label" for="save-info">예약정보를 모두 확인했습니다.</label>
+                        </div>
+                
+                        <hr class="my-4">
+                
+                        <button class="w-100 btn btn-primary btn-lg" type="submit">예약</button>
+                        </form>
+
+                        
+
                   </div>
+    
             </div>
-     </div>
+            </div>
+            </div>
+            
+
+            <!--qna-->
+            <div class="container p-3" style="background-color: #e5e5e5;">
+            <div class="row">
+            <div class="col-5 text-left" >
+                <h3 id="qna"><p>QnA</p></h3>
+            </div>
+            <div class="col-7 text-center">               
+                <a href="${pageContext.request.contextPath}/qna/qnaInsertform?cate_num=${cate_num }&space_num=${space_num}"><p class="fs-6 text-right">등록하기</p></a>
+            </div>
+            </div>
+			<div class="container">
+		      <table class="table table-striped">
+		         <thead class="table-dark">
+		            <tr>
+		               <th>글번호</th>
+		               <th>작성자</th>
+		               <th>제목</th>
+		               <th>조회수</th>
+		               <th>작성일</th>
+		            </tr>
+		         </thead>
+		         <tbody>
+			         <c:forEach var="tmp" items="${list }">
+			         	<tr>
+			         		<td>${tmp.num }</td>
+			         		<td>${tmp.writer }</td>
+			         		<td>
+			         			<a href="${pageContext.request.contextPath}/qna/qnadetail?num=${tmp.num }&condition=${condition}&keyword=${encodedK}">${tmp.title }</a>
+			         		</td>
+			         		<td>${tmp.viewCount }</td>
+			         		<td>${tmp.regdate }</td>
+			         	</tr>
+			         </c:forEach>
+		         </tbody>
+		      </table>
+		      <nav >
+		         <ul class="pagination">
+		            <!--
+		               startPageNum 이 1 이 아닌 경우에만 Prev 링크를 제공한다. 
+		               &condition=${condition}&keyword=${encodedK}
+		            -->
+		            <c:if test="${startPageNum ne 1 }">
+		               <li class="page-item">
+		                  <a class="page-link" href="detail?cate_num=${cate_num }&space_num=${space_num}&pageNum=${startPageNum-1 }&condition=${condition}&keyword=${encodedK}">Prev</a>
+		               </li>
+		            </c:if>
+		            <c:forEach var="i" begin="${startPageNum }" end="${endPageNum }">
+		               <li class="page-item ${pageNum eq i ? 'active' : '' }">
+		                  <a class="page-link" href="detail?cate_num=${cate_num }&space_num=${space_num}&pageNum=${i }&condition=${condition}&keyword=${encodedK}">${i }</a>
+		               </li>
+		            </c:forEach>
+		            <!--
+		               마지막 페이지 번호가 전체 페이지의 갯수보다 작으면 Next 링크를 제공한다. 
+		             -->
+		            <c:if test="${endPageNum lt totalPageCount }">
+		               <li class="page-item">
+		                  <a class="page-link" href="detail?cate_num=${cate_num }&space_num=${space_num}&pageNum=${endPageNum+1 }&condition=${condition}&keyword=${encodedK}">Next</a>
+		               </li>
+		            </c:if>
+		         </ul>
+		      </nav>
+            </div>
+        </div>
+            
+     
      
 
 
-    <!--후기 / 수정중 -->
-    <div class="card-body">
-        <h6>Opinion</h6>
-        <hr>
-        <div class="d-flex mb-4">
-            <div class="avatar avatar-lg"><img class="avatar-img" src="assets/img/illustrations/profiles/profile-1.png"></div>
-            <div class="ms-3">
-                <a class="text-dark" href="#!"><h6 class="mb-1">댓글</h6></a>
-                <div class="small text-gray-500">
-                    by
-                    <a class="text-gray-500" href="#!">사용자</a>
+
+            <!--후기 -->
+            <div class="col m-3 p-3 mb-3">
+            <div class="container " style="background-color: #e5e5e5; ">
+
+                <p class="fw-bold text-center ">이용 후기</p>
+
+                
+                <div class="d-flex m-2 p-3 " style="background-color: aliceblue;">
+                    <!--고객 프로필 이미지-->
+                    <div class="avatar avatar-lg">
+                        <img class="img-fluid rounded-circle mb-1" src="assets/img/illustrations/profiles/profile-1.png" style="width: 50px;">
+                    </div>
+                    <!--댓글란-->
+                    <div class="ms-3 ">
+                        <a class="text-dark" href="#!"><h6 class="mb-1">댓글내용1</h6></a>
+                        <!--사용자-->
+                        <div class="small text-gray-500">
+                            <p>${id }</p>
+                        </div>
+                    </div>
                 </div>
+
+                <div class="d-flex m-2 p-3" style="background-color: aliceblue;">
+                    <!--고객 프로필 이미지-->
+                    <div class="avatar avatar-lg">
+                        <img class="img-fluid rounded-circle mb-1" src="assets/img/illustrations/profiles/profile-2.png" style="width: 50px;">
+                    </div>
+                    <!--댓글란-->
+                    <div class="ms-3">
+                        <a class="text-dark" href="#!"><h6 class="mb-1">댓글내용2</h6></a>
+                        <!--사용자-->
+                        <div class="small text-gray-500">
+                            <p>${id }</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-flex m-2 p-3" style="background-color: aliceblue;">
+                    <!--고객 프로필 이미지-->
+                    <div class="avatar avatar-lg"> 
+                        <img class="img-fluid rounded-circle mb-1" src="assets/img/illustrations/profiles/profile-3.png" style="width: 50px;">
+                    </div>
+                    <!--댓글란-->
+                    <div class="ms-3">
+                        <a class="text-dark" href="#!"><h6 class="mb-1">댓글내용3</h6></a>
+                        <!--사용자-->
+                        <div class="small text-gray-500">
+                            <p>${id }</p>
+                        </div>
+                        </div>
+                </div>
+               </div>
+             
+
+
+                <!-- 검색 폼 -->
+                <div class="col m-3 p-3 text-right">
+                <div class="container">
+                <form action="detail?cate_num=${cate_num }&space_num=${space_num}" method="get">
+                    <label for="condition">검색조건</label>
+                    <select name="condition" id="condition">
+                        <option value="title_filename" ${condition eq 'title_content' ? 'selected' : '' }>제목 + 내용</option>
+                        <option value="title" ${condition eq 'title' ? 'selected' : '' }>제목</option>
+                        <option value="writer" ${condition eq 'writer' ? 'selected' : '' }>작성자</option>
+                    </select>
+                    <input type="text" name="keyword" placeholder="검색어..." 
+                        value="${keyword }" />
+                    <button type="submit">검색</button>
+                </form>
+                <c:if test="${not empty condition }">
+                    <p>
+                        <strong>${totalRow }</strong> 개의 자료가 검색 되었습니다.
+                        <a href="detail">리셋</a>
+                    </p>
+                    <p>
+                    <a href="${pageContext.request.contextPath}/space/list?cate_num=${cate_num}" >목록으로</a>
+                    </p>
+                </c:if>
+                
+               </div>
             </div>
         </div>
-        <div class="d-flex mb-4">
-            <div class="avatar avatar-lg"><img class="avatar-img" src="assets/img/illustrations/profiles/profile-2.png"></div>
-            <div class="ms-3">
-                <a class="text-dark" href="#!"><h6 class="mb-1">블라블라</h6></a>
-                <div class="small text-gray-500">
-                    by
-                    <a class="text-gray-500" href="#!">사용자</a>
-                </div>
-            </div>
-        </div>
-        <div class="d-flex mb-4">
-            <div class="avatar avatar-lg"><img class="avatar-img" src="assets/img/illustrations/profiles/profile-3.png"></div>
-            <div class="ms-3">
-                <a class="text-dark" href="#!"><h6 class="mb-1">ㅎㅎㅎ</h6></a>
-                <div class="small text-gray-500">
-                    by
-                    <a class="text-gray-500" href="#!">사용자</a>
-                </div>
-            </div>
-        </div>
+<<<<<<< HEAD
         
-        
-    </div>
-
-
-
-    
-
+        <!-- footer include -->
+	 	<jsp:include page="/WEB-INF/include/footer.jsp"/>	
+=======
+>>>>>>> refs/remotes/origin/daheen
+               
+            
 
          
 </body>

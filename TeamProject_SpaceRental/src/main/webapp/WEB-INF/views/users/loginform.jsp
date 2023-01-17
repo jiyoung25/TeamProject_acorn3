@@ -39,6 +39,25 @@
 </style>  
 </head>
 <body>
+	<%-- 네비바 --%>
+	<c:choose>
+		<c:when test="${empty sessionScope.id }">
+        	<jsp:include page="/WEB-INF/include/navbar_sidebar_SessionX.jsp"/>
+      	</c:when>
+      	<c:otherwise>
+	      	<c:choose>
+	      		<c:when test="${dto.code eq 2 }">
+	      	  		<jsp:include page="/WEB-INF/include/navbar_sessionO_seller.jsp"/>
+	         		<jsp:include page="/WEB-INF/include/sidebar_seller.jsp"/>
+	      		</c:when>
+	      		<c:otherwise>
+					<jsp:include page="/WEB-INF/include/navbar_sessionO_users.jsp"/>
+			      	<jsp:include page="/WEB-INF/include/sidebar_user.jsp"/>
+	      		</c:otherwise>
+	      	</c:choose>
+      	</c:otherwise>
+   	</c:choose>  
+   
 <section class="h-100 gradient-form" style="background-color: #eee;">
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
@@ -51,7 +70,7 @@
                 <div class="text-center">
                   <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/lotus.webp"
                     style="width: 185px;" alt="logo">
-                  <h4 class="mt-1 mb-5 pb-1">Acorn Rental</h4>
+                  <h4 class="mt-1 mb-5 pb-1">Ubiquitous</h4>
                 </div>
                   <p>아이디/비밀번호 입력</p>
                   <div class="mb-4">
@@ -84,7 +103,7 @@
             </div>
             <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
               <div class="text-white px-3 py-4 p-md-5 mx-md-4">
-                <h4 class="mb-4">AcornRental 에 오신것을 환영합니다.</h4>
+                <h4 class="mb-4">Ubiquitous 에 오신것을 환영합니다.</h4>
                 <p class="small mb-0">공간대여서비스입니다.</p>
               </div>
             </div>
@@ -94,6 +113,9 @@
     </div>
   </div>
 </section>
+
+	<!-- footer include -->
+	  <jsp:include page="/WEB-INF/include/footer.jsp"/>
 </body>
 
 </html>

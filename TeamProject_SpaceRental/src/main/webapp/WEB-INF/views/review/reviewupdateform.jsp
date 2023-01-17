@@ -6,54 +6,29 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>/views/qna/qnaupdateform.jsp</title>
+<title>/views/view/reviewupdateform.jsp</title>
 </head>
 <body>
-
-	<%-- 네비바 --%>
-	<c:choose>
-		<c:when test="${empty sessionScope.id }">
-        	<jsp:include page="/WEB-INF/include/navbar_sidebar_SessionX.jsp"/>
-      	</c:when>
-      	<c:otherwise>
-	      	<c:choose>
-	      		<c:when test="${dto.code eq 2 }">
-	      	  		<jsp:include page="/WEB-INF/include/navbar_sessionO_seller.jsp"/>
-	         		<jsp:include page="/WEB-INF/include/sidebar_seller.jsp"/>
-	      		</c:when>
-	      		<c:otherwise>
-					<jsp:include page="/WEB-INF/include/navbar_sessionO_users.jsp"/>
-			      	<jsp:include page="/WEB-INF/include/sidebar_user.jsp"/>
-	      		</c:otherwise>
-	      	</c:choose>
-      	</c:otherwise>
-   	</c:choose>
-   	 
 	<div class="container">
 		<h1>글 수정 폼 입니다.</h1>
-		<form action="qnaupdate" method="post">
-			<input type="hidden" name="num" value="${dto.num }" />
+		<form action="reviewupdate" method="post">
+			<input type="hidden" name="review_num" value="${dto.review_num }" />
 			<div>
-				<label for="writer">작성자</label> <input type="text" id="writer"
-					value="${dto.writer }" disabled />
+				<label for="review_writer">작성자</label> 
+				<input type="text" id="review_writer" value="${dto.review_writer }" disabled />
 			</div>
 			<div>
-				<label for="title">제목</label> <input type="text" name="title"
-					id="title" value="${dto.title }" />
+				<label for="review_title">제목</label> 
+				<input type="text" name="review_title" id="review_title" value="${dto.review_title }" />
 			</div>
 			<div>
-				<label for="content">내용</label>
-				<textarea name="content" id="content">${dto.content }</textarea>
+				<label for="review_content">내용</label>
+				<textarea name="review_content" id="review_content">${dto.review_content }</textarea>
 			</div>
 			<button type="submit" onclick="submitContents(this);">수정확인</button>
 			<button type="reset">취소</button>
 		</form>
 	</div>
-	
-	  <!-- footer include -->
-	  <jsp:include page="/WEB-INF/include/footer.jsp"/>
-	  
-	  
 	<!-- SmartEditor 에서 필요한 javascript 로딩  -->
 	<script
 		src="${pageContext.request.contextPath }/SmartEditor/js/HuskyEZCreator.js"></script>
@@ -65,7 +40,7 @@
 	   
 	   nhn.husky.EZCreator.createInIFrame({
 	      oAppRef: oEditors,
-	      elPlaceHolder: "content",
+	      elPlaceHolder: "review_content",
 	      sSkinURI: "${pageContext.request.contextPath}/SmartEditor/SmartEditor2Skin.html",   
 	      htParams : {
 	         bUseToolbar : true,            // 툴바 사용 여부 (true:사용/ false:사용하지 않음)
@@ -85,16 +60,16 @@
 	   
 	   function pasteHTML() {
 	      var sHTML = "<span style='color:#FF0000;'>이미지도 같은 방식으로 삽입합니다.<\/span>";
-	      oEditors.getById["content"].exec("PASTE_HTML", [sHTML]);
+	      oEditors.getById["review_content"].exec("PASTE_HTML", [sHTML]);
 	   }
 	   
 	   function showHTML() {
-	      var sHTML = oEditors.getById["content"].getIR();
+	      var sHTML = oEditors.getById["review_content"].getIR();
 	      alert(sHTML);
 	   }
 	      
 	   function submitContents(elClickedObj) {
-	      oEditors.getById["content"].exec("UPDATE_CONTENTS_FIELD", []);   // 에디터의 내용이 textarea에 적용됩니다.
+	      oEditors.getById["review_content"].exec("UPDATE_CONTENTS_FIELD", []);   // 에디터의 내용이 textarea에 적용됩니다.
 	      
 	      // 에디터의 내용에 대한 값 검증은 이곳에서 document.getElementById("content").value를 이용해서 처리하면 됩니다.
 	      
@@ -106,7 +81,7 @@
 	   function setDefaultFont() {
 	      var sDefaultFont = '궁서';
 	      var nFontSize = 24;
-	      oEditors.getById["content"].setDefaultFont(sDefaultFont, nFontSize);
+	      oEditors.getById["review_content"].setDefaultFont(sDefaultFont, nFontSize);
 	   }
 	</script>
 </body>

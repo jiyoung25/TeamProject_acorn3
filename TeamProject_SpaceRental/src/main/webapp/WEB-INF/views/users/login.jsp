@@ -10,8 +10,27 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 </head>
 <body>
+	<%-- 네비바 --%>
+	<c:choose>
+		<c:when test="${empty sessionScope.id }">
+        	<jsp:include page="/WEB-INF/include/navbar_sidebar_SessionX.jsp"/>
+      	</c:when>
+      	<c:otherwise>
+	      	<c:choose>
+	      		<c:when test="${dto.code eq 2 }">
+	      	  		<jsp:include page="/WEB-INF/include/navbar_sessionO_seller.jsp"/>
+	         		<jsp:include page="/WEB-INF/include/sidebar_seller.jsp"/>
+	      		</c:when>
+	      		<c:otherwise>
+					<jsp:include page="/WEB-INF/include/navbar_sessionO_users.jsp"/>
+			      	<jsp:include page="/WEB-INF/include/sidebar_user.jsp"/>
+	      		</c:otherwise>
+	      	</c:choose>
+      	</c:otherwise>
+   	</c:choose> 
+   
 	<div class="container">
-		<h1>000 에 오신 것을 환영합니다</h1>
+		<h1>Ubiquitous에 오신 것을 환영합니다</h1>
 		<c:choose>
 			<c:when test="${not empty id }">
 				<p class="alert alert-success">
@@ -27,6 +46,10 @@
 				</p>
 			</c:otherwise>
 		</c:choose>
+		
 	</div>	
+	
+	<!-- footer include -->
+	<jsp:include page="/WEB-INF/include/footer.jsp"/>
 </body>
 </html>
