@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>/views/qna/detail.jsp</title>
+<title>/views/qna/qnadetail.jsp</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 <style>
    .content{
@@ -102,11 +102,11 @@
 	<div class="container">
 		<%-- 만일 이전글(더 옛날글)의 글번호가 0 이 아니라면 (이전글이 존재한다면) --%>
 		<c:if test="${dto.prevNum ne 0 }">
-			<a href="detail?num=${dto.prevNum }&condition=${condition}&keyword=${encodedK}">이전글</a>
+			<a href="qnadetail?num=${dto.prevNum }&condition=${condition}&keyword=${encodedK}">이전글</a>
 		</c:if>
 		<%-- 만일 다음글(더 최신글)의 글번호가 0 이 아니라면 (다음글이 존재한다면) --%>
 		<c:if test="${dto.nextNum ne 0 }">
-			<a href="detail?num=${dto.nextNum }&condition=${condition}&keyword=${encodedK}">다음글</a>
+			<a href="qnadetail?num=${dto.nextNum }&condition=${condition}&keyword=${encodedK}">다음글</a>
 		</c:if>
 		<%-- 만일 검색 키워드가 있다면 --%>
 		<c:if test="${not empty keyword }">
@@ -145,7 +145,7 @@
 			</tr>
 		</table>
 		<c:if test="${sessionScope.id eq dto.writer }">
-			<a href="updateform?num=${dto.num }">수정</a>
+			<a href="qnaupdateform?num=${dto.num }">수정</a>
 			<a href="javascript:" onclick="deleteConfirm()">삭제</a>
 			<script>
 				function deleteConfirm() {
@@ -273,7 +273,7 @@
             e.preventDefault();
             //로그인 폼으로 이동 시킨다.
             location.href=
-               "${pageContext.request.contextPath}/users/loginform?url=${pageContext.request.contextPath}/cafe/detail?num=${dto.num}";
+               "${pageContext.request.contextPath}/users/loginform?url=${pageContext.request.contextPath}/qna/qnadetail?num=${dto.num}";
          }
       });
    
@@ -292,7 +292,7 @@
    let currentPage=1;
    //마지막 페이지는 totalPageCount 이다.  
    <%-- 댓글의 갯수가 0일때 오류를 방지하기 위해 --%>
-   let lastPage=${totalPageCount eq 0 ? 1 : totalPageCouunt};
+   let lastPage=1;
    
    //추가로 댓글을 요청하고 그 작업이 끝났는지 여부를 관리할 변수 
    let isLoading=false; //현재 로딩중인지 여부 
@@ -400,7 +400,7 @@
                const isMove=confirm("로그인이 필요 합니다. 로그인 페이지로 이동 하시겠습니까?");
                if(isMove){
                   location.href=
-                     "${pageContext.request.contextPath}/users/loginform?url=${pageContext.request.contextPath}/cafe/detail?num=${dto.num}";
+                     "${pageContext.request.contextPath}/users/loginform?url=${pageContext.request.contextPath}/qna/qnadetail?num=${dto.num}";
                }
                return;
             }

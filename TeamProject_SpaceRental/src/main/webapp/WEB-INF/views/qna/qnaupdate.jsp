@@ -6,12 +6,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>insert</title>
+<title>/views/qna/qnaupdate.jsp</title>
 </head>
 <body>
 	<script>
-		alert("공간이 추가 되었습니다.");
-		location.href="${pageContext.request.contextPath}/seller/spacelist";
+		alert("${id} 님 글을 수정 했습니다.");
+		location.href = "${pageContext.request.contextPath}/qna/qnadetail?num=${param.num}";
 	</script>
 </body>
 </html>

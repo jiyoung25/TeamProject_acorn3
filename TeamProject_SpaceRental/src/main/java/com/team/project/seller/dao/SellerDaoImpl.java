@@ -15,8 +15,8 @@ public class SellerDaoImpl implements SellerDao{
 	private SqlSession session;
 
 	@Override
-	public List<SellerDto> getList(SellerDto dto) {
-		return session.selectList("seller.getList", dto);
+	public List<SellerDto> getList() {
+		return session.selectList("seller.getList");
 	}
 
 	@Override
@@ -27,6 +27,7 @@ public class SellerDaoImpl implements SellerDao{
 	@Override
 	public void update(SellerDto dto) {
 		session.update("seller.update", dto);
+		System.out.println(dto.getSpace_num());
 	}
 
 	@Override
@@ -37,6 +38,11 @@ public class SellerDaoImpl implements SellerDao{
 	@Override
 	public SellerDto getData(int space_num) {
 		return session.selectOne("seller.getData", space_num);
+	}
+
+	@Override
+	public int getUsersNum(String id) {
+		return session.selectOne("seller.getUsersNum", id);
 	}
 
 }

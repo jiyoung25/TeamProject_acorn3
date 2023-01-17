@@ -7,8 +7,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>개인 정보</title>
-	   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Space Rental</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="icon" type="image/x-icon" href="assets/ficon.ico" />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
@@ -20,19 +20,26 @@
     <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,400;1,400&amp;display=swap" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
-	  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
   	<script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.min.js"></script>
-
     <style>
         body {
             background-color: #b461c5;
         }
+
+        .wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 70vh;
+        }
+
     </style>
     <!--프로필 사진 수정영역-->
 
-    <div>
-        <div class="row position-absolute top-50 start-50 translate-middle" style="margin: 0 auto;">
-            <div class="col " style=" background-color: #c1b5dd">
+    <div class="wrapper">
+        <div class="row p-5" style="width : 80% ; margin: 0 auto;">
+            <div class="col-3 p-5 m-5 " style=" background-color: #c1b5dd">
                 <div class="card-title mx-auto p-5">
                     <p class="fs-1 text-center fw-bold" style="color:#ffffff; ">My profile</p>
                 </div>
@@ -58,130 +65,158 @@
     
 
         <!--프로필 정보 영역-->
-        <div class="col " style="background-color: rgb(255, 255, 255);">
-            <form class="needs-validation" novalidate="">
+        
+        <div class="wrapper col p-5 m-5" style="background-color: rgb(255, 255, 255);">
                 <div class="row g-3">
-                    <div class="col-sm-6">
-                        <label for="firstName" class="form-label">이름</label>
-                        <input type="text" class="form-control" id="firstName" placeholder="" value="" required="">
-                    </div>
-                    <div class="col-12">
-                        <label for="address2" class="form-label">id</span></label>
+                    
+                    <!--아이디 및 가입일 (수정불가항목)-->
+                    <div class="row">
+                    <div class="col m-2">
+                        <label for="address2" class="form-label">아이디</span></label>
                         <input class="form-control" type="text" value="${id }" aria-label="readonly input example" readonly>
-                        <p class="fst-italic" style="font-size: small; ">id는 변경할 수 없습니다</p>
+                        <p class="fst-italic" style="font-size: small; ">아이디 및 가입일은 변경할 수 없습니다</p>
+                    </div>    
+                    <div class="col m-2">
+                            <label for="address2" class="form-label">가입일</span></label>
+                            <input class="form-control" type="text" value="${dto.regdate }" aria-label="readonly input example"
+                                readonly>
+                        </div>
                     </div>
+                
 
-
-                    <div class="mb-3">
+                    <!--이메일(수정가능항목)-->
+                    <div class="mb-3 m-2">
                         <label for="exampleFormControlInput1" class="form-label">Email</label>
                         <input type="email" class="form-control" id="exampleFormControlInput1"
                             placeholder="name@example.com">
                     </div>
 
-                    <div class="col-12">
-                        <label for="address2" class="form-label">sign up date</span></label>
-                        <input class="form-control" type="text" value="${dto.regdate }" aria-label="readonly input example"
-                            readonly>
-                    </div>
+                    
+                    
 
-                    <div class="col-12">
+                    <!--비밀번호-->
+                    <div class="col-12 m-2">
                         <div class="row">
                             <label for="address2" class="form-label">password</span></label>
                             <div class="col">
-
                                 <input class="form-control" type="text" value="보안상 표시하지 않습니다"
                                     aria-label="readonly input example" readonly>
                             </div>
+                            
                             <div class="col">
-                               
-                                <!-- 비밀번호 변경 모달 -->
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                    변경
-                                </button>
-                                
-                                <!-- Modal -->
-                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Message</h1>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                        비밀번호를 변경하시겠습니까 ?
-                                        </div>
-                                        <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary">continue</button>
-                                        </div>
-                                    </div>
-                                    </div>
-                                </div>
-                            </div>    
-                            </div>
-                            </div>
-
-
-
-                            <!--수정하기 모달 추가하기-->
-
-
-                            <!-- 탈퇴모달 -->
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                data-bs-target="#staticBackdrop">
-                                회원탈퇴
+                             <!-- 비밀번호 변경 모달 -->
+                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                변경
                             </button>
-
+                            
                             <!-- Modal -->
-                            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
-                                tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Message</h1>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Message</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                    비밀번호를 변경하시겠습니까 ?
+                                    </div>
+                                    <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                
+                                    <button type="button" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/users/pwd_updateform' ">continue</button>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>    
+                        
+                        <hr class="my-5">
+                        
+                        <!--수정 및 탈퇴하기 버튼 ( 수정되었습니다 알림창 뜨게함 )-->
+                        <div class="row  " >
+                            <div id="liveAlertPlaceholder"></div>
+                            <button type="button" class=" btn btn-outline-success " id="liveAlertBtn">정보수정</button>
+                        </div>
+                        
+                        
+                        <div class="row">
+                        <!--탈퇴하기 버튼-->
+                            <button type="button" class="btn btn-outline-dark my-2 " data-bs-toggle="modal"
+                            data-bs-target="#staticBackdrop">
+                            회원탈퇴
+                            </button>
+                        </div>
+                        </div>
+                        </div>
 
-                                            탈퇴하면 되돌릴 수 없습니다.
-                                            <br>
-                                            정말 탈퇴하시겠습니까 ?
+                        <!-- Modal -->
+                        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+                            tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Message</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
 
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary"
-                                                data-bs-dismiss="modal">no</button>
-                                            <button type="button" class="btn btn-primary">Continue</button>
-                                        </div>
+                                        탈퇴하면 되돌릴 수 없습니다.
+                                        <br>
+                                        정말 탈퇴하시겠습니까 ?
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">no</button>
+                                        <button type="button" class="btn btn-primary">Continue</button>
                                     </div>
                                 </div>
                             </div>
-           				 </form>
-        			</div>
+                        </div>
+                        </div>
+                        </div>
 
-    <script>
+                       
+                       </div> 
+                    </div>
 
-        const myModal = document.getElementById('myModal')
-        const myInput = document.getElementById('myInput')
+        <script>
 
-        myModal.addEventListener('shown.bs.modal', () => {
-        myInput.focus()
-        })
+            <!--수정반영알림창-->
+            const alertPlaceholder = document.getElementById('liveAlertPlaceholder')
 
-    </script>    
+            const alert = (message, type) => {
+            const wrapper = document.createElement('div')
+            wrapper.innerHTML = [
+                `<div class="alert alert-${type} alert-dismissible" role="alert">`,
+                `   <div>${message}</div>`,
+                '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
+                '</div>'
+            ].join('')
 
+            alertPlaceholder.append(wrapper)
+            }
 
-    <script type="text/javascript">
-        $('#btn-add').click(function (e) {
-            e.preventDefault();
-            $('#file').click();
-        });
+            const alertTrigger = document.getElementById('liveAlertBtn')
+            if (alertTrigger) {
+            alertTrigger.addEventListener('click', () => {
+                alert('성공적으로 반영되었습니다', 'success')
+            })
+            }
 
-        function uploadFile(e) {
-            console.log("File Name : ", e.value);
-        }
+        </script>
+        <script type="text/javascript">
+            $('#btn-add').click(function (e) {
+                e.preventDefault();
+                $('#file').click();
+            });
 
-    </script>
-    </body>
+            function uploadFile(e) {
+                console.log("File Name : ", e.value);
+            }
+
+        </script>
+    
 </html>

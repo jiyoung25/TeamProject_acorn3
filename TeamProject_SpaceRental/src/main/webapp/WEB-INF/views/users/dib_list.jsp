@@ -6,6 +6,18 @@
 <head>
 <meta charset="EUC-KR">
 <title>나의 찜 목록</title>
+<!-- MDB -->
+<link
+  href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.css" rel="stylesheet"/>
+<!-- MDB -->
+<script
+  type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.js"></script>
+<style>
+div{
+	background-color: #info
+ }
+</style>
 </head>
 <body>
 	<div class="container">
