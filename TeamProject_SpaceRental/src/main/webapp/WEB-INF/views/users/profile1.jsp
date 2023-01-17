@@ -46,7 +46,7 @@
                 <!-- 사용자 프로필사진-->
                 <div class=" text-center">
                     <img id="profileImage" class="img-fluid rounded-circle mb-1"
-                        src="https://images.unsplash.com/photo-1565209704209-6a3a0119bcbb?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=500&ixid=MXwxfDB8MXxhbGx8fHx8fHx8fA&ixlib=rb-1.2.1&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=500"
+                        src="https://source.unsplash.com/jSUsJWvnnEA/500x500"
                         alt="..." style="max-width: 150px; max-height: 150px">
                 </div>
                 <!--사용자 이름-->
@@ -58,7 +58,7 @@
                     <input type="file" id="file" onchange="uploadFile(this)" style="display:none" />
                     <button type="button" onclick="onclick=document.all.file.click()" class="btn"
                         style="color:white; background-color: blueviolet;">upload new picture</button>
-                </div>
+                </div>				
                 <br>
             </div>
         
@@ -88,7 +88,7 @@
                     <div class="mb-3 m-2">
                         <label for="exampleFormControlInput1" class="form-label">Email</label>
                         <input type="email" class="form-control" id="exampleFormControlInput1"
-                            placeholder="name@example.com">
+                            placeholder="${dto.email }">
                     </div>
 
                     
@@ -134,7 +134,7 @@
                         <hr class="my-5">
                         
                         <!--수정 및 탈퇴하기 버튼 ( 수정되었습니다 알림창 뜨게함 )-->
-                        <div class="row  " >
+                        <div class="row" >
                             <div id="liveAlertPlaceholder"></div>
                             <button type="button" class=" btn btn-outline-success " id="liveAlertBtn">정보수정</button>
                         </div>
