@@ -7,26 +7,33 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>예약리스트 보기(판매자)</title>
+<!-- MDB -->
+<link
+  href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.css" rel="stylesheet"/>
+<!-- MDB -->
+<script
+  type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.js"></script>
 </head>
 <body>
 	<div class="container">
 		<div id="reservList">
-			<table>
-				<thead>
-					<tr>
-						<th>예약 번호</th>
-						<th>방 이름</th>
-						<th>예약자 명</th>
-						<th>예약자 수</th>
-						<th>예약 날짜</th>
-						<th>예약 시간</th>
-						<th>예약 등록일</th>
-						<th>총 비용</th>
-						<th>예약 수락</th>
-						<th>예약 거절</th>
+			<table class="table">
+			  <thead>
+					<tr class="table-info">
+						<th scope="row">예약 번호</th>
+						<th scope="row">방 이름</th>
+						<th scope="row">예약자 명</th>
+						<th scope="row">예약자 수</th>
+						<th scope="row">예약 날짜</th>
+						<th scope="row">예약 시간</th>
+						<th scope="row">예약 등록일</th>
+						<th scope="row">총 비용</th>
+						<th scope="row">예약 수락</th>
+						<th scope="row">예약 거절</th>
 					</tr>
-				</thead>
-				<c:forEach var="tmp" items="${list }">
+			  </thead>
+			  <c:forEach var="tmp" items="${list }">
 					<form action="${pageContext.request.contextPath}/seller/reservCheck" id="reservCheckForm">
 						<tbody>
 							<tr>
@@ -80,5 +87,18 @@
 		document.querySelector(".checkBtn").
 	</script>
 
+   <!-- 네비바 include -->
+   <c:choose>
+      <c:when test="${not empty sessionScope.id }">
+         <jsp:include page="/WEB-INF/include/navbar2.jsp"/>
+      </c:when>
+      <c:otherwise>
+         <jsp:include page="/WEB-INF/include/navbar.jsp"/>
+      </c:otherwise>
+   </c:choose>  
+   
+   
+		<!-- footer include -->
+	  <jsp:include page="/WEB-INF/include/footer.jsp"/>
 </body>
 </html>

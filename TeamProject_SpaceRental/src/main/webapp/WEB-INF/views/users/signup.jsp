@@ -9,6 +9,16 @@
 <title>/views/users/signup</title>
 </head>
 <body>
+<!-- 네비바 include -->
+   <c:choose>
+      <c:when test="${not empty sessionScope.id }">
+         <jsp:include page="/WEB-INF/include/navbar2.jsp"/>
+      </c:when>
+      <c:otherwise>
+         <jsp:include page="/WEB-INF/include/navbar.jsp"/>
+      </c:otherwise>
+   </c:choose>  
+   
 	<div class="container">
 		<p class="alert alert-success">
 			<c:choose>
@@ -25,5 +35,8 @@
 			<a href="${pageContext.request.contextPath}/users/loginform">로그인 하러가기</a>
 		</p>
 	</div>
+	
+	  <!-- footer include -->
+	  <jsp:include page="/WEB-INF/include/footer.jsp"/>
 </body>
 </html>

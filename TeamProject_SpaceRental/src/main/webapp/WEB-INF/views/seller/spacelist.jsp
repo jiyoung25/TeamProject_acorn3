@@ -43,6 +43,17 @@
 </style>
 </head>
 <body>
+
+	<!-- 네비바 include -->
+	   <c:choose>
+	      <c:when test="${not empty sessionScope.id }">
+	         <jsp:include page="/WEB-INF/include/navbar2.jsp"/>
+	      </c:when>
+	      <c:otherwise>
+	         <jsp:include page="/WEB-INF/include/navbar.jsp"/>
+	      </c:otherwise>
+	  </c:choose>  
+	  
 	<div class="container">
 	<h1>내 공간정보 관리</h1>
 		<a href="${pageContext.request.contextPath}/seller/spaceinfo">새 공간 등록하기</a><br/>
@@ -73,14 +84,10 @@
 			</c:forEach>
 	   	</div>
 	   	
+	   <!-- footer include -->
+	  <jsp:include page="/WEB-INF/include/footer.jsp"/>
 	   	
-	   	
-	   	
-	   	
-	   	
-	   	
-	   	
-	   	
+
 	   	
 	   	
 	</div>

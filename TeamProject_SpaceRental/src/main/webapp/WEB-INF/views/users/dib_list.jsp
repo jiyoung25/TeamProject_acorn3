@@ -13,15 +13,19 @@
 <script
   type="text/javascript"
   src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.js"></script>
-<style>
-div{
-	background-color: #info
- }
-</style>
 </head>
 <body>
+	<!-- 네비바 include -->
+   <c:choose>
+      <c:when test="${not empty sessionScope.id }">
+         <jsp:include page="/WEB-INF/include/navbar2.jsp"/>
+      </c:when>
+      <c:otherwise>
+         <jsp:include page="/WEB-INF/include/navbar.jsp"/>
+      </c:otherwise>
+   </c:choose>  
 	<div class="container">
-		<h1>나의 찜 목록</h1>
+		<h1>찜한 목록</h1>
 		<ul>
 			<c:forEach var="tmp" items="${list }">
 				<li>
@@ -29,6 +33,87 @@ div{
 				</li>
 			</c:forEach>
 		</ul>
+		<table class="table align-middle mb-0 bg-white">
+		  <thead class="bg-light">
+		    <tr>
+		      <th>업체명</th>
+		      <th>위치</th>
+		      <th>전화번호</th>
+		      <th>예약하기</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    <tr>
+		      <td>
+		        <div class="d-flex align-items-center">
+		          <img
+		              src="https://mdbootstrap.com/img/new/avatars/8.jpg"
+		              alt=""
+		              style="width: 45px; height: 45px"
+		              class="rounded-circle"
+		              />
+		          <div class="ms-3">
+		            <p class="fw-bold mb-1">00노래방</p>
+		          </div>
+		        </div>
+		      </td>
+		      <td>
+		        <p class="fw-normal mb-1">행당동 xxx-xxx x층</p>
+		      </td>
+		      <td>
+		        <span class="badge badge-success rounded-pill d-inline">1234-5678</span>
+		      </td>
+		      <td><a href="">예약하기</a></td>
+		    </tr>
+		    
+		    <tr>
+		      <td>
+		        <div class="d-flex align-items-center">
+		          <img
+		              src="https://mdbootstrap.com/img/new/avatars/8.jpg"
+		              alt=""
+		              style="width: 45px; height: 45px"
+		              class="rounded-circle"
+		              />
+		          <div class="ms-3">
+		            <p class="fw-bold mb-1">00파티룸</p>
+		          </div>
+		        </div>
+		      </td>
+		      <td>
+		        <p class="fw-normal mb-1">사당동 xxx-xxx x층</p>
+		      </td>
+		      <td>
+		        <span class="badge badge-success rounded-pill d-inline">4444-4444</span>
+		      </td>
+		      <td><a href="">예약하기</a></td>
+		    </tr>
+		    
+		    <tr>
+		      <td>
+		        <div class="d-flex align-items-center">
+		          <img
+		              src="https://mdbootstrap.com/img/new/avatars/8.jpg"
+		              alt=""
+		              style="width: 45px; height: 45px"
+		              class="rounded-circle"
+		              />
+		          <div class="ms-3">
+		            <p class="fw-bold mb-1">00스터디카페</p>
+		          </div>
+		        </div>
+		      </td>
+		      <td>
+		        <p class="fw-normal mb-1">신당동 xxx-xxx x층</p>
+		      </td>
+		      <td>
+		        <span class="badge badge-success rounded-pill d-inline">7777-7777</span>
+		      </td>
+		      <td><a href="">예약하기</a></td>
+		    </tr>
+		    
+		  </tbody>
+		</table>
 		<!-- 검색 폼 
 		<form action="list" method="get">
 			<label for="condition">검색조건</label>	
@@ -72,5 +157,8 @@ div{
 				</c:if>				
 			</ul>
 		</nav>
+		
+		     <!-- footer include -->
+	 		 <jsp:include page="/WEB-INF/include/footer.jsp"/>	
 </body>
 </html>

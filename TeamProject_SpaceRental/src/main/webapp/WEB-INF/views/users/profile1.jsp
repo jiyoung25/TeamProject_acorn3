@@ -26,6 +26,8 @@
         body {
             background-color: #b461c5;
         }
+<<<<<<< HEAD
+=======
 
         .wrapper {
             display: flex;
@@ -36,7 +38,34 @@
 
     </style>
     <!--프로필 사진 수정영역-->
+>>>>>>> refs/remotes/origin/daheen
 
+<<<<<<< HEAD
+        .wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 70vh;
+        }
+
+    </style>
+    </head>
+    <body>
+    
+    <!-- 네비바 include -->
+   <c:choose>
+      <c:when test="${not empty sessionScope.id }">
+         <jsp:include page="/WEB-INF/include/navbar2.jsp"/>
+      </c:when>
+      <c:otherwise>
+         <jsp:include page="/WEB-INF/include/navbar.jsp"/>
+      </c:otherwise>
+   </c:choose>  
+   
+   
+    <!--프로필 사진 수정영역-->
+=======
+>>>>>>> refs/remotes/origin/daheen
     <div class="wrapper">
         <div class="row p-5" style="width : 80% ; margin: 0 auto;">
             <div class="col-3 p-5 m-5 " style=" background-color: #c1b5dd">
@@ -181,6 +210,15 @@
                        
                        </div> 
                     </div>
+<<<<<<< HEAD
+                    
+      <!-- footer include -->
+	  <jsp:include page="/WEB-INF/include/footer.jsp"/>
+                    
+                    
+		                 
+=======
+>>>>>>> refs/remotes/origin/daheen
 
         <script>
 
@@ -218,5 +256,9 @@
             }
 
         </script>
+<<<<<<< HEAD
+</body>       	
+=======
     
+>>>>>>> refs/remotes/origin/daheen
 </html>
