@@ -15,11 +15,14 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.team.project.seller.dto.SellerDto;
 import com.team.project.seller.service.SellerService;
+import com.team.project.users.service.UsersService;
 
 @Controller
 public class SellerController {
 	@Autowired
 	private SellerService service;
+	@Autowired
+	private UsersService usersService;
 	
 	@RequestMapping("/seller/spacelist")
 	public ModelAndView list(ModelAndView mView) {
@@ -29,7 +32,8 @@ public class SellerController {
 	}
 	
 	@RequestMapping("/seller/spaceinfo")
-	public String spaceinfo() {
+	public String spaceinfo(HttpSession session,ModelAndView mView) {
+		usersService.getInfo(session, mView);
 		return "seller/spaceinfo";
 	}
 	

@@ -105,6 +105,7 @@ public class UsersServiceImpl implements UsersService{
 		UsersDto dto = dao.getData(id);
 		//ModelAndView 객체에 담아준다.
 		mView.addObject("dto", dto);
+		mView.addObject("userCode", dto.getCode());
 	}
 	
 	@Override

@@ -9,18 +9,27 @@
 <title>SpaceInfo</title>
 </head>
 <body>
-	<!-- 네비바 include -->
-	   <c:choose>
-	      <c:when test="${not empty sessionScope.id }">
-	         <jsp:include page="/WEB-INF/include/navbar2.jsp"/>
-	      </c:when>
-	      <c:otherwise>
-	         <jsp:include page="/WEB-INF/include/navbar.jsp"/>
-	      </c:otherwise>
-	   </c:choose> 
+	<%-- 네비바 --%>
+	<c:choose>
+		<c:when test="${empty sessionScope.id }">
+        	<jsp:include page="/WEB-INF/include/navbar_sidebar_SessionX.jsp"/>
+      	</c:when>
+      	<c:otherwise>
+	      	<c:choose>
+	      		<c:when test="${dto.code eq 2 }">
+	      	  		<jsp:include page="/WEB-INF/include/navbar_sessionO_seller.jsp"/>
+	         		<jsp:include page="/WEB-INF/include/sidebar_seller.jsp"/>
+	      		</c:when>
+	      		<c:otherwise>
+					<jsp:include page="/WEB-INF/include/navbar_sessionO_users.jsp"/>
+			      	<jsp:include page="/WEB-INF/include/sidebar_user.jsp"/>
+	      		</c:otherwise>
+	      	</c:choose>
+      	</c:otherwise>
+   	</c:choose> 
 	   
 	<div class="container">
-		<h1>공간 정보를 입력해 주세요.</h1>
+		<h1>공간을 등록해주세요.</h1>
 		<form action="${pageContext.request.contextPath}/seller/insert" method="post" id="insertForm">
 			<div>
 				<label for="space_name">공간명</label><br />
@@ -41,7 +50,7 @@
 				<input type="text" name="oneliner" id="oneliner" />
 			</div>
 			<div>
-				<label for="intro">공간 소개</label><br />
+				<label for="intro">공간 상세 소개</label><br />
 				<textarea name="intro" id="intro" cols="30" rows="10"></textarea>
 			</div>
 			<input type="hidden" id="mainImagePath" name="mainImagePath" />
@@ -61,13 +70,19 @@
      		<img />
   		</div>
 
-		<button id="submitBtn">저장</button>
+		<button id="submitBtn" class="btn btn-primary">저장</button>
 	</div>
 	
 	<!-- footer include -->
 	<jsp:include page="/WEB-INF/include/footer.jsp"/>	  
 	  
 	<script src="${pageContext.request.contextPath}/js/gura_util.js"></script>
+	<script>
+		if(${userCode}!=2){
+			alert("판매자 공간입니다.");
+			location.href="${pageContext.request.contextPath}/";
+		}
+	</script>
 	<script>
 		//이미지를 선택했을 때, 실행할 함수 등록
 		document.querySelector("#image").addEventListener("change", function(){
