@@ -340,6 +340,12 @@
                </div>
             </div>
         </div>
+<<<<<<< HEAD
+        
+        <!-- footer include -->
+	 	<jsp:include page="/WEB-INF/include/footer.jsp"/>	
+=======
+>>>>>>> refs/remotes/origin/daheen
                
             
 

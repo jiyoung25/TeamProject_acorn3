@@ -20,6 +20,15 @@ div{
 </style>
 </head>
 <body>
+	<!-- 네비바 include -->
+   <c:choose>
+      <c:when test="${not empty sessionScope.id }">
+         <jsp:include page="/WEB-INF/include/navbar2.jsp"/>
+      </c:when>
+      <c:otherwise>
+         <jsp:include page="/WEB-INF/include/navbar.jsp"/>
+      </c:otherwise>
+   </c:choose>  
 	<div class="container">
 		<h1>나의 찜 목록</h1>
 		<ul>
@@ -72,5 +81,8 @@ div{
 				</c:if>				
 			</ul>
 		</nav>
+		
+		     <!-- footer include -->
+	 		 <jsp:include page="/WEB-INF/include/footer.jsp"/>	
 </body>
 </html>

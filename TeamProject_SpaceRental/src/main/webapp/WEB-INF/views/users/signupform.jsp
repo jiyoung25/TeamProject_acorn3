@@ -16,6 +16,16 @@
   src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.js"></script>
 </head>
 <body>
+<!-- 네비바 include -->
+   <c:choose>
+      <c:when test="${not empty sessionScope.id }">
+         <jsp:include page="/WEB-INF/include/navbar2.jsp"/>
+      </c:when>
+      <c:otherwise>
+         <jsp:include page="/WEB-INF/include/navbar.jsp"/>
+      </c:otherwise>
+   </c:choose>  
+   
 	<section class="vh-100" style="background-color: #eee;">
 	  <div class="container h-100">
 	    <div class="row d-flex justify-content-center align-items-center h-100">
@@ -93,6 +103,9 @@
 	    </div>
 	  </div>
 	</section>
+	
+	<!-- footer include -->
+	  <jsp:include page="/WEB-INF/include/footer.jsp"/>
 	
 	<script>
 	//유효성 여부를 저장할 변수를 만들고 초기값 대입 

@@ -9,6 +9,23 @@
 <title>update</title>
 </head>
 <body>
+	<!-- 네비바 include -->
+   <c:choose>
+      <c:when test="${not empty sessionScope.id }">
+         <jsp:include page="/WEB-INF/include/navbar2.jsp"/>
+      </c:when>
+      <c:otherwise>
+         <jsp:include page="/WEB-INF/include/navbar.jsp"/>
+      </c:otherwise>
+   </c:choose>  
+   
+   
+   
+
+	<!-- footer include -->
+	<jsp:include page="/WEB-INF/include/footer.jsp"/>
+	  
+	  
 	<script>
 		alert("공간이 수정 되었습니다.");
 		location.href="${pageContext.request.contextPath}/seller/spacelist";

@@ -8,6 +8,16 @@
 <title>/views/users/pwd_updateform.jsp</title>
 </head>
 <body>
+<!-- 네비바 include -->
+   <c:choose>
+      <c:when test="${not empty sessionScope.id }">
+         <jsp:include page="/WEB-INF/include/navbar2.jsp"/>
+      </c:when>
+      <c:otherwise>
+         <jsp:include page="/WEB-INF/include/navbar.jsp"/>
+      </c:otherwise>
+   </c:choose>  
+   
 <div class="container">
 	<h1>비밀 번호 수정 폼</h1>
 	<form action="${pageContext.request.contextPath}/users/pwd_update" method="post" id="myForm">
@@ -27,6 +37,9 @@
 		<button type="reset">리셋</button>
 	</form>
 </div>
+
+      <!-- footer include -->
+	  <jsp:include page="/WEB-INF/include/footer.jsp"/>
 <script>
 	//폼에 submit 이벤트가 일어났을때 실행할 함수를 등록하고 
 	document.querySelector("#myForm").addEventListener("submit", function(e){
