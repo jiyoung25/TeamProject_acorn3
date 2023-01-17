@@ -25,27 +25,78 @@
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/chatbot.css">
    <script src="${pageContext.request.contextPath}/js/chatbot.js"></script>
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
 </head>
 
 <body>
-	<!-- 네비바 include -->
-	<c:choose>
-		<c:when test="${empty sessionScope.id }">
-        	<jsp:include page="/WEB-INF/include/navbar_sidebar_SessionX.jsp"/>
-      	</c:when>
-      	<c:otherwise>
-	      	<c:choose>
-	      		<c:when test="${dto.code eq 2 }">
-	      	  		<jsp:include page="/WEB-INF/include/navbar_sessionO_seller.jsp"/>
-	         		<jsp:include page="/WEB-INF/include/sidebar_seller.jsp"/>
-	      		</c:when>
-	      		<c:otherwise>
-					<jsp:include page="/WEB-INF/include/navbar_sessionO_users.jsp"/>
-			      	<jsp:include page="/WEB-INF/include/sidebar_user.jsp"/>
-	      		</c:otherwise>
-	      	</c:choose>
-      	</c:otherwise>
+   <!-- 네비바 include -->
+   <c:choose>
+      <c:when test="${not empty sessionScope.id }">
+         <jsp:include page="/WEB-INF/include/navbar2.jsp"/>
+      </c:when>
+      <c:otherwise>
+         <jsp:include page="/WEB-INF/include/navbar.jsp"/>
+      </c:otherwise>
    </c:choose>  
+
+
+
+      <!--카테고리 영역 시작-->
+      <div class="m-5 p-5 text-center ">
+         <div class="row">
+         <div class="col text-right">
+            <img src="https://cdn-icons-png.flaticon.com/512/9131/9131526.png" style="width: 50px;" alt="">
+         </div>
+         <div class="col-3">
+            <h2 class="section-heading text-uppercase" style="font-family: 'Black Han Sans', sans-serif;">Service list</h2>
+            <h3 class="section-subheading text-muted">다양한 공간을 만나보세요</h3>
+         </div>
+            
+         <div class="col text-left">
+            <img src="https://cdn-icons-png.flaticon.com/512/9131/9131526.png" style="width: 50px;" alt="">
+         </div>
+      </div>
+      </div>
+
+      <!--카테고리-->
+      <div class="row m-5 p-5">
+         <!--파티룸-->
+         <div class="col-lg-4 text-center" >
+           <img src="https://cdn-icons-png.flaticon.com/512/2279/2279642.png" style=" width: 200px; " alt="">
+           <h2 class="fw-normal" style="font-family: 'Black Han Sans', sans-serif;">파티룸</h2>
+           <p><a class="btn btn-secondary" href="${pageContext.request.contextPath}/space/list?cate_num=1">보러가기</a></p>
+         </div>
+         <!--연습실-->
+         <div class="col-lg-4 text-center">
+            <img src="https://cdn-icons-png.flaticon.com/512/4488/4488230.png" style=" width: 200px; " alt="">
+           <h2 class="fw-normal" style="font-family: 'Black Han Sans', sans-serif;">연습실</h2>
+           <p><a class="btn btn-secondary" href="${pageContext.request.contextPath}/space/list?cate_num=2">보러가기</a></p>
+         </div>
+         <!--공유주방 -->
+         <div class="col-lg-4 text-center">
+            <img src="https://cdn-icons-png.flaticon.com/512/3575/3575648.png" style=" width: 200px; " alt="">
+           <h2 class="fw-normal" style="font-family: 'Black Han Sans', sans-serif;">공유주방</h2>
+           <p><a class="btn btn-secondary" href="${pageContext.request.contextPath}/space/list?cate_num=3">보러가기</a></p>
+         </div>
+          
+
+         <div class="row text-center m-5 p-5 " style="width:90%; margin: 0 auto;">
+            <!--스터디룸-->
+            <div class="col-lg-6 text-center">
+               <img src="https://cdn-icons-png.flaticon.com/512/4536/4536658.png" style=" width: 200px; " alt="">
+               <h2 class="fw-normal" style="font-family: 'Black Han Sans', sans-serif;">스터디룸</h2>
+               <p><a class="btn btn-secondary" href="${pageContext.request.contextPath}/space/category">보러가기</a></p>
+            </div>
+            <!--강의실-->
+            <div class="col-lg-6 text-center">
+               <img src="https://cdn-icons-png.flaticon.com/512/4557/4557212.png" style=" width: 200px; " alt="">
+               <h2 class="fw-normal" style="font-family: 'Black Han Sans', sans-serif;">강의실</h2>
+               <p><a class="btn btn-secondary" href="${pageContext.request.contextPath}/space/list?cate_num=5">보러가기</a></p>
+          </div>
+          </div>
+          <!---카테고리 끝-->
 
    <!--carousel-->      
    <div id="carouselExampleCaptions" class="carousel slide bg-light" data-bs-ride="carousel">
@@ -58,22 +109,22 @@
       <div class="carousel-item active">
          <img src="https://images.unsplash.com/photo-1573164574511-73c773193279?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80" class="d-block w-100" alt="...">
          <div class="carousel-caption d-none d-md-block">
-         <h5>First slide label</h5>
-         <p>Some representative placeholder content for the first slide.</p>
+         <h5>Good memories</h5>
+         
          </div>
       </div>
       <div class="carousel-item">
          <img src="https://images.unsplash.com/photo-1537365587684-f490102e1225?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80" class="d-block w-100" alt="...">
          <div class="carousel-caption d-none d-md-block">
-         <h5>Second slide label</h5>
-         <p>Some representative placeholder content for the second slide.</p>
+         <h5>Good service</h5>
+         
          </div>
       </div>
       <div class="carousel-item">
          <img src="https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" class="d-block w-100" alt="...">
          <div class="carousel-caption d-none d-md-block">
-         <h5>Third slide label</h5>
-         <p>Some representative placeholder content for the third slide.</p>
+         <h5>Good people</h5>
+         
          </div>
       </div>
       </div>
@@ -87,47 +138,9 @@
       </button>
    </div>
 
-   <!--카테고리 영역 시작-->
-   <div class="text-center m-5">
-      <h2 class="section-heading text-uppercase">Service list</h2>
-      <h3 class="section-subheading text-muted">다양한 공간을 만나보세요</h3>
-   </div>
 
-   <!--카테고리-->
-      <div class="row">
-         <!--파티룸-->
-         <div class="col-lg-4">
-           <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
-           <h2 class="fw-normal">파티룸</h2>
-           <p><a class="btn btn-secondary" href="${pageContext.request.contextPath}/space/list?cate_num=1">보러가기</a></p>
-         </div>
-         <!--연습실-->
-         <div class="col-lg-4">
-           <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
-           <h2 class="fw-normal">연습실</h2>
-           <p><a class="btn btn-secondary" href="${pageContext.request.contextPath}/space/list?cate_num=2">보러가기</a></p>
-         </div>
-         <!--공유주방 -->
-         <div class="col-lg-4">
-           <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
-           <h2 class="fw-normal">공유주방</h2>
-           <p><a class="btn btn-secondary" href="${pageContext.request.contextPath}/space/list?cate_num=3">보러가기</a></p>
-         </div>
-          
 
-         <div class="row">
-            <!--스터디룸-->
-            <div class="col-lg-4">
-               <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
-               <h2 class="fw-normal">스터디룸</h2>
-               <p><a class="btn btn-secondary" href="${pageContext.request.contextPath}/space/category">보러가기</a></p>
-            </div>
-            <!--강의실-->
-            <div class="col-lg-4">
-               <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
-               <h2 class="fw-normal">강의실</h2>
-               <p><a class="btn btn-secondary" href="${pageContext.request.contextPath}/space/list?cate_num=5">보러가기</a></p>
-          </div>
+
    
          <!-- 챗봇 -->
          <div id="divBox" class="animate__animated animate__fadeIn">
@@ -154,12 +167,15 @@
          </div>
       </div>
       
-      
-      <!-- footer include -->
-	  <jsp:include page="/WEB-INF/include/footer.jsp"/>
-  	  
-      
-      
+      <!--footer-->
+      <div class="container">
+          <footer class="py-3 my-4">
+              <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+                    <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">top</a></li>
+                 </ul>
+              <p class="text-center text-muted">© 2023 Company, Inc</p>
+            </footer>
+        </div>
         
       <script>
         let divBox = new Vue({

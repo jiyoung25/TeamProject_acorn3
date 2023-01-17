@@ -71,17 +71,17 @@
                       
                     <!--공간메뉴탭 내용-->
                       <div class="tab-content" id="myTabContent">
-                        <!--공간소개 내용-->
+                        <!--한줄소개 내용-->
                         <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
-                            판매자가 등록한 공간소개글
+                            ${dto.oneliner }
                         </div>
-                        <!--편의시설 내용-->
+                        <!--상세소개 내용-->
                         <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
-                            판매자가 등록한 편의시설 정보 (주차가능, 반려동물입실가능, 대형모니터, cctv, wifi 등)
+                            ${dto.intro }
                         </div>
                         <!--위치 내용 / 지도 api 사용여부는 고민중-->
                         <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">
-                            판매자가 등록한 공간 주소
+                            ${dto.addr }
                         </div>
                       </div>
 
@@ -190,68 +190,68 @@
             
 
             <!--qna-->
-            <div class="container p-3" style="background-color: #e5e5e5;">
+            <div class="margin:0 auto;">
+            
+            <div class="container " style="background-color: #e5e5e5; ">
             <div class="row">
-            <div class="col-5 text-left" >
-                <h3 id="qna"><p>QnA</p></h3>
+                    <h3 id="qna"><p class="fs-3 text-center">QnA</p></h3>             
+                    <a href="${pageContext.request.contextPath}/qna/qnaInsertform?cate_num=${cate_num }&space_num=${space_num}"  style="text-decoration: none; color:gray"><p class="fs-6 text-right"   >등록하기</p></a>
             </div>
-            <div class="col-7 text-center">               
-                <a href="${pageContext.request.contextPath}/qna/qnaInsertform?cate_num=${cate_num }&space_num=${space_num}"><p class="fs-6 text-right">등록하기</p></a>
-            </div>
-            </div>
-			<div class="container">
-		      <table class="table table-striped">
-		         <thead class="table-dark">
-		            <tr>
-		               <th>글번호</th>
-		               <th>작성자</th>
-		               <th>제목</th>
-		               <th>조회수</th>
-		               <th>작성일</th>
-		            </tr>
-		         </thead>
-		         <tbody>
-			         <c:forEach var="tmp" items="${list }">
-			         	<tr>
-			         		<td>${tmp.num }</td>
-			         		<td>${tmp.writer }</td>
-			         		<td>
-			         			<a href="${pageContext.request.contextPath}/qna/qnadetail?num=${tmp.num }&condition=${condition}&keyword=${encodedK}">${tmp.title }</a>
-			         		</td>
-			         		<td>${tmp.viewCount }</td>
-			         		<td>${tmp.regdate }</td>
-			         	</tr>
-			         </c:forEach>
-		         </tbody>
-		      </table>
-		      <nav >
-		         <ul class="pagination">
-		            <!--
-		               startPageNum 이 1 이 아닌 경우에만 Prev 링크를 제공한다. 
-		               &condition=${condition}&keyword=${encodedK}
-		            -->
-		            <c:if test="${startPageNum ne 1 }">
-		               <li class="page-item">
-		                  <a class="page-link" href="detail?cate_num=${cate_num }&space_num=${space_num}&pageNum=${startPageNum-1 }&condition=${condition}&keyword=${encodedK}">Prev</a>
-		               </li>
-		            </c:if>
-		            <c:forEach var="i" begin="${startPageNum }" end="${endPageNum }">
-		               <li class="page-item ${pageNum eq i ? 'active' : '' }">
-		                  <a class="page-link" href="detail?cate_num=${cate_num }&space_num=${space_num}&pageNum=${i }&condition=${condition}&keyword=${encodedK}">${i }</a>
-		               </li>
-		            </c:forEach>
-		            <!--
-		               마지막 페이지 번호가 전체 페이지의 갯수보다 작으면 Next 링크를 제공한다. 
-		             -->
-		            <c:if test="${endPageNum lt totalPageCount }">
-		               <li class="page-item">
-		                  <a class="page-link" href="detail?cate_num=${cate_num }&space_num=${space_num}&pageNum=${endPageNum+1 }&condition=${condition}&keyword=${encodedK}">Next</a>
-		               </li>
-		            </c:if>
-		         </ul>
-		      </nav>
-            </div>
-        </div>
+                
+                <div class="container">
+                    <table class="table table-striped">
+                       <thead class="table-dark">
+                          <tr>
+                             <th>글번호</th>
+                             <th>작성자</th>
+                             <th>제목</th>
+                             <th>조회수</th>
+                             <th>작성일</th>
+                          </tr>
+                       </thead>
+                       <tbody>
+                           <c:forEach var="tmp" items="${list }">
+                               <tr>
+                                   <td>${tmp.num }</td>
+                                   <td>${tmp.writer }</td>
+                                   <td>
+                                       <a href="${pageContext.request.contextPath}/qna/qnadetail?num=${tmp.num }&condition=${condition}&keyword=${encodedK}"  style="text-decoration: none;">${tmp.title }</a>
+                                   </td>
+                                   <td>${tmp.viewCount }</td>
+                                   <td>${tmp.regdate }</td>
+                               </tr>
+                           </c:forEach>
+                       </tbody>
+                    </table>
+                    <nav >
+                    </div>
+                        <ul class="pagination p-md-5" style="margin: 0 auto;">
+                           <!--
+                              startPageNum 이 1 이 아닌 경우에만 Prev 링크를 제공한다. 
+                              &condition=${condition}&keyword=${encodedK}
+                           -->
+                           <c:if test="${startPageNum ne 1 }">
+                              <li class="page-item">
+                                 <a class="page-link" href="detail?cate_num=${cate_num }&space_num=${space_num}&pageNum=${startPageNum-1 }&condition=${condition}&keyword=${encodedK}">Prev</a>
+                              </li>
+                           </c:if>
+                           <c:forEach var="i" begin="${startPageNum }" end="${endPageNum }">
+                              <li class="page-item ${pageNum eq i ? 'active' : '' }">
+                                 <a class="page-link" href="detail?cate_num=${cate_num }&space_num=${space_num}&pageNum=${i }&condition=${condition}&keyword=${encodedK}">${i }</a>
+                              </li>
+                           </c:forEach>
+                           <!--
+                              마지막 페이지 번호가 전체 페이지의 갯수보다 작으면 Next 링크를 제공한다. 
+                            -->
+                           <c:if test="${endPageNum lt totalPageCount }">
+                              <li class="page-item">
+                                 <a class="page-link" href="detail?cate_num=${cate_num }&space_num=${space_num}&pageNum=${endPageNum+1 }&condition=${condition}&keyword=${encodedK}">Next</a>
+                              </li>
+                           </c:if>
+                        </ul>
+                     </nav>
+                    </div>
+       
             
      
      
@@ -259,10 +259,10 @@
 
 
             <!--후기 -->
-            <div class="col m-3 p-3 mb-3">
+            <div class="col m-3 p-3 ">
             <div class="container " style="background-color: #e5e5e5; ">
 
-                <p class="fw-bold text-center ">이용 후기</p>
+                <p class="fs-3 fw-bold text-center ">이용 후기</p>
 
                 
                 <div class="d-flex m-2 p-3 " style="background-color: aliceblue;">
@@ -328,25 +328,27 @@
                     <button type="submit">검색</button>
                 </form>
                 <c:if test="${not empty condition }">
+                    <div class="row">
                     <p>
                         <strong>${totalRow }</strong> 개의 자료가 검색 되었습니다.
-                        <a href="detail">리셋</a>
                     </p>
-                    <p>
-                    <a href="${pageContext.request.contextPath}/space/list?cate_num=${cate_num}" >목록으로</a>
+                    <p>    
+                        <a href="detail" style="text-decoration: none; color: gray;" >리셋</a>
+                        <a href="${pageContext.request.contextPath}/space/list?cate_num=${cate_num}"  style="text-decoration: none; color: gray;">목록으로</a>
                     </p>
+                    
+                    </div>
                 </c:if>
                 
                </div>
             </div>
         </div>
-<<<<<<< HEAD
+        </div>
+
         
         <!-- footer include -->
 	 	<jsp:include page="/WEB-INF/include/footer.jsp"/>	
-=======
->>>>>>> refs/remotes/origin/daheen
-               
+
             
 
          
