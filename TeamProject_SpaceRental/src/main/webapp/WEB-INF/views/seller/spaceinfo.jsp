@@ -78,12 +78,6 @@
 	  
 	<script src="${pageContext.request.contextPath}/js/gura_util.js"></script>
 	<script>
-		if(${userCode}!=2){
-			alert("판매자 공간입니다.");
-			location.href="${pageContext.request.contextPath}/";
-		}
-	</script>
-	<script>
 		//이미지를 선택했을 때, 실행할 함수 등록
 		document.querySelector("#image").addEventListener("change", function(){
 			//id 가 ajaxForm 인 form 을 ajax 전송 시킨다.

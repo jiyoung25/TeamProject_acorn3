@@ -129,9 +129,9 @@
 		
 		<!-- 내용 -->
 		<h3 id="mainImagePath">공간 이미지</h3>
-			<div class="tmp">
-				<img src="${pageContext.request.contextPath}/${spaceDto.mainImagePath }"/>
-			</div>
+		<div>
+			<img src="${pageContext.request.contextPath}/${spaceDto.mainImagePath }"/>
+		</div>
 		<h3 id="space_name">공간 제목</h3>
 		<div class="tmp">
 			<p>${spaceDto.space_name }</p>
