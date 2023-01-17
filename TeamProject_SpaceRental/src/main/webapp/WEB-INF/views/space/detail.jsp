@@ -29,8 +29,8 @@
 	}
 	
 	.tmp{
-		height:500px;
-		background-color:yellow;
+		height:50px;
+		background-color:#F7F8E0;
 	}
 	#dibSubmitBtn{
 		display : none;
@@ -49,6 +49,24 @@
 <title>공간 상세 페이지</title>
 </head>
 <body>
+	<%-- 네비바 --%>
+	<c:choose>
+		<c:when test="${empty sessionScope.id }">
+        	<jsp:include page="/WEB-INF/include/navbar_sidebar_SessionX.jsp"/>
+      	</c:when>
+      	<c:otherwise>
+	      	<c:choose>
+	      		<c:when test="${dto.code eq 2 }">
+	      	  		<jsp:include page="/WEB-INF/include/navbar_sessionO_seller.jsp"/>
+	         		<jsp:include page="/WEB-INF/include/sidebar_seller.jsp"/>
+	      		</c:when>
+	      		<c:otherwise>
+					<jsp:include page="/WEB-INF/include/navbar_sessionO_users.jsp"/>
+			      	<jsp:include page="/WEB-INF/include/sidebar_user.jsp"/>
+	      		</c:otherwise>
+	      	</c:choose>
+      	</c:otherwise>
+   	</c:choose> 
 	<div class="container">
 		<h1>공간 상세 페이지</h1>
 		<!-- 목록 -->
@@ -110,12 +128,26 @@
 		</form>
 		
 		<!-- 내용 -->
+		<h3 id="mainImagePath">공간 이미지</h3>
+			<div class="tmp">
+				<img src="${pageContext.request.contextPath}/${spaceDto.mainImagePath }"/>
+			</div>
+		<h3 id="space_name">공간 제목</h3>
+		<div class="tmp">
+			<p>${spaceDto.space_name }</p>
+		</div>
 		<h3 id="oneliner">한 줄 소개</h3>
-		<div class="tmp"></div>
+		<div class="tmp">
+			<p>${spaceDto.oneliner }</p>
+		</div>
 		<h3 id="intro">상세 소개</h3>
-		<div class="tmp"></div>
+		<div class="tmp">
+			<p>${spaceDto.intro }</p>
+		</div>
 		<h3 id="addr">주소</h3>
-		<div class="tmp"></div>
+		<div class="tmp">
+			<p>${spaceDto.addr }</p>
+		</div>
 		<h3 id="review">Review <a href="${pageContext.request.contextPath}/review/reviewInsertform?cate_num=${cate_num }&space_num=${space_num}">추가하기</a></h3>
 		<div class="container">
 			<table class="table table-striped">

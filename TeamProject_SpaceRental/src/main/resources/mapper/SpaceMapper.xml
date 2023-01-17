@@ -45,7 +45,7 @@
 		FROM seller_space
 	</select>
 	<select id="getData" parameterType="int" resultType="spaceDto">
-		SELECT space_num, users_num, space_name, mainImagePath, addr, seller_space.cate_name cate_name, oneliner
+		SELECT space_num, users_num, space_name, mainImagePath, addr, seller_space.cate_name cate_name, oneliner, intro
 		FROM seller_space
 		WHERE space_num=#{space_num}
 	</select>
