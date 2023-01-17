@@ -61,7 +61,7 @@
                 <div class="text-center">
                   <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/lotus.webp"
                     style="width: 185px;" alt="logo">
-                  <h4 class="mt-1 mb-5 pb-1">Acorn Rental</h4>
+                  <h4 class="mt-1 mb-5 pb-1">Ubiquitous</h4>
                 </div>
                   <p>아이디/비밀번호 입력</p>
                   <div class="mb-4">
@@ -94,7 +94,7 @@
             </div>
             <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
               <div class="text-white px-3 py-4 p-md-5 mx-md-4">
-                <h4 class="mb-4">AcornRental 에 오신것을 환영합니다.</h4>
+                <h4 class="mb-4">Ubiquitous 에 오신것을 환영합니다.</h4>
                 <p class="small mb-0">공간대여서비스입니다.</p>
               </div>
             </div>

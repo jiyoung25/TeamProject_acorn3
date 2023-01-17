@@ -39,7 +39,7 @@
                     <img class="img-fluid rounded-circle mb-1" src="https://source.unsplash.com/jSUsJWvnnEA/500x500" alt="..." style="max-width: 150px; max-height: 150px">
                     <!-- 시용자 이름-->
                     <div class="caption text-muted mb-4">
-                        <p class="fw-bold">에이콘</p>
+                        <p class="fw-bold"><strong>${id }</strong></p>
                     </div>
                     <!-- 사용자 프로필 관리하기버튼-->
                     <button type="button" class="btn btn-secondary" onclick="location.href='${pageContext.request.contextPath}/users/profile' ">프로필 관리</button>

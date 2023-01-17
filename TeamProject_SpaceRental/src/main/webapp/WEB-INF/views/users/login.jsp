@@ -21,7 +21,7 @@
    </c:choose>  
    
 	<div class="container">
-		<h1>000 에 오신 것을 환영합니다</h1>
+		<h1>Ubiquitous에 오신 것을 환영합니다</h1>
 		<c:choose>
 			<c:when test="${not empty id }">
 				<p class="alert alert-success">

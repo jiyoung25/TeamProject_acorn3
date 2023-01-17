@@ -116,8 +116,58 @@
 		<div class="tmp"></div>
 		<h3 id="addr">주소</h3>
 		<div class="tmp"></div>
-		<h3 id="review">이용 후기</h3>
-		<div class="tmp"></div>
+		<h3 id="review">Review <a href="${pageContext.request.contextPath}/review/reviewInsertform?cate_num=${cate_num }&space_num=${space_num}">추가하기</a></h3>
+		<div class="container">
+			<table class="table table-striped">
+				<thead class="table-dark">
+					<tr>
+						<th>글번호</th>
+						<th>작성자</th>
+						<th>제목</th>
+						<th>조회수</th>
+						<th>작성일</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach var="tmp" items="${reviewlist }">
+						<tr>
+							<td>${tmp.review_num }</td>
+							<td>${tmp.review_writer }</td>
+							<td>
+								<a href="${pageContext.request.contextPath}/review/reviewdetail?review_num=${tmp.review_num }">${tmp.review_title }</a>
+							</td>
+							<td>${tmp.viewcount }</td>
+							<td>${tmp.review_regdate }</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+			<nav>
+				<ul class="pagination">
+					<%--
+	               startPageNum 이 1 이 아닌 경우에만 Prev 링크를 제공한다. 
+	            	--%>
+					<c:if test="${startPageNum ne 1 }">
+		               <li class="page-item">
+		                  <a class="page-link" href="detail?cate_num=${cate_num }&space_num=${space_num}&pageNum=${startPageNum-1 }">Prev</a>
+		               </li>
+		            </c:if>
+		            <c:forEach var="i" begin="${startPageNum }" end="${endPageNum }">
+		               <li class="page-item ${pageNum eq i ? 'active' : '' }">
+		                  <a class="page-link" href="detail?cate_num=${cate_num }&space_num=${space_num}&pageNum=${i }">${i }</a>
+		               </li>
+		            </c:forEach>
+		            <%--
+		               마지막 페이지 번호가 전체 페이지의 갯수보다 작으면 Next 링크를 제공한다. 
+		             --%>
+		            <c:if test="${endPageNum lt totalPageCount }">
+		               <li class="page-item">
+		                  <a class="page-link" href="detail?cate_num=${cate_num }&space_num=${space_num}&pageNum=${endPageNum+1 }">Next</a>
+		               </li>
+		            </c:if>
+				</ul>
+			</nav>
+		</div>
 		<h3 id="qna">Q&A <a href="${pageContext.request.contextPath}/qna/qnaInsertform?cate_num=${cate_num }&space_num=${space_num}">추가하기</a></h3>
 			<div class="container">
 		      <table class="table table-striped">
