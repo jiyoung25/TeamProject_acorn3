@@ -15,9 +15,9 @@ public class UsersDaoImpl implements UsersDao{
 	//해당 아이디가 존재하는지 여부를 리턴하는 메소드
 	@Override
 	public boolean isExist(String inputId) {
-		//id 를 이용해서 select 해보면 null 혹은 null 이 아니다.
-		String id = session.selectOne("users.getData", inputId);
-		if(id==null) {
+		//dto 를 이용해서 select 해보면 null 혹은 null 이 아니다.
+		UsersDto dto = session.selectOne("users.getData", inputId);
+		if(dto==null) {
 			return false;
 		}else {
 			return true;

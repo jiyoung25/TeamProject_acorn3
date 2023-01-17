@@ -11,19 +11,31 @@
 <body>
 	<div class="container">
 		<h1>공간 정보를 입력해 주세요.</h1>
-		<form action="update" method="post" id="updateForm">
+		<form action="${pageContext.request.contextPath}/seller/update" method="post" id="updateForm">
 			<div>
 				<label for="space_name">공간명</label><br />
-            	<input type="text" name="space_name" id="space_name" value=${dto.space_name }/>
+            	<input type="text" name="space_name" id="space_name" value=${dto.space_name } />
+			</div>
+			<div style="display:hidden">
+				카테고리
+				<select name="cate_name">
+					<option value="${dto.cate_name }">${dto.cate_name }</option>	
+				</select>
 			</div>
 			<div>
 				<label for="oneliner">공간 한 줄 소개</label><br />
-				<input type="text" name="oneliner" id="oneliner" value=${dto.oneliner }/>
+				<input type="text" name="oneliner" id="oneliner" value=${dto.oneliner } />
 			</div>
 			<div>
 				<label for="intro">공간 소개</label><br />
-				<textarea name="intro" id="intro" cols="30" rows="10">${dto.intro }</textarea>
+				<textarea name="intro" id="intro" cols="30" rows="10" >${dto.intro } </textarea>
 			</div>
+			<input type="hidden" id="mainImagePath" name="mainImagePath" />
+			<div>
+				<label for="addr">주소</label><br />
+				<input type="text" name="addr" id="addr" value=${dto.addr } />
+			</div>
+		    <input type="hidden" name="space_num" value="${dto.space_num }"/>
 		</form>
 		<form action="${pageContext.request.contextPath}/seller/ajax_upload" method="post" id="ajaxForm"enctype="multipart/form-data">
 		    <div>
@@ -33,12 +45,9 @@
 		    </div>
 		</form>
   		<div class="img-wrapper">
-     		<img src="${dto.imagePath }"/>
+     		<img src="/space/${dto.mainImagePath }" value="${dto.mainImagePath }" />
   		</div>
-		<div>
-			<label for="addr">주소</label><br />
-			<input type="text" name="addr" id="addr" />
-		</div>
+
 		<button id="submitBtn">저장</button>
 	</div>
 	<script src="${pageContext.request.contextPath}/js/gura_util.js"></script>
@@ -53,20 +62,22 @@
 				return response.json();
 			})
 			.then(function(data){
-				//data : {imagePath:"/upload/xxx.jpg"} 형식의 obj
+				//data : {mainImagePath:"/upload/xxx.jpg"} 형식의 obj
 				console.log(data);
 				//이미지 경로에 context Path 추가하기
-				const path = "${pageContext.request.contextPath}" + data.imagePath;
+				const path = "${pageContext.request.contextPath}" + data.mainImagePath;
 				//img 태그에 경로 추가
 				document.querySelector(".img-wrapper img").setAttribute("src", path);
 				//위의 form 의 input hidden 요소에 value 로 넣어서 db 에 저장
-				document.querySelector("#imagePath").value = data.imagePath;
+				document.querySelector("#mainImagePath").value = data.mainImagePath;
 			});
 		});		
+
 
 		document.querySelector("#submitBtn").addEventListener("click", function(){
 			document.querySelector("#updateForm").submit();
 		});
 	</script>
+
 </body>
 </html>
