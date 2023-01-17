@@ -41,7 +41,7 @@
                         <p class="fw-bold"><strong>${id }</strong></p>
                     </div>
                     <!-- 사용자 프로필 관리하기버튼-->
-                    <button type="button" class="btn btn-secondary" onclick="location.href='${pageContext.request.contextPath}/users/profile' ">프로필 관리</button>
+                    <button type="button" class="btn btn-secondary" onclick="location.href='${pageContext.request.contextPath}/users/profile1' ">프로필 관리</button>
                 </div>
             </div>
                
