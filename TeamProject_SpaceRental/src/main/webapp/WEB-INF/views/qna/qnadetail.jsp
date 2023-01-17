@@ -99,6 +99,18 @@
 </style>
 </head>
 <body>
+
+	<!-- 네비바 include -->
+	   <c:choose>
+	      <c:when test="${not empty sessionScope.id }">
+	         <jsp:include page="/WEB-INF/include/navbar2.jsp"/>
+	      </c:when>
+	      <c:otherwise>
+	         <jsp:include page="/WEB-INF/include/navbar.jsp"/>
+	      </c:otherwise>
+	   </c:choose> 
+	   
+	   
 	<div class="container">
 		<%-- 만일 이전글(더 옛날글)의 글번호가 0 이 아니라면 (이전글이 존재한다면) --%>
 		<c:if test="${dto.prevNum ne 0 }">
@@ -259,6 +271,10 @@
 		</div>
 
 	</div>
+	
+	   <!-- footer include -->
+	  <jsp:include page="/WEB-INF/include/footer.jsp"/>
+	  
 	<script src="${pageContext.request.contextPath}/js/gura_util.js"></script>
 	<script>
    

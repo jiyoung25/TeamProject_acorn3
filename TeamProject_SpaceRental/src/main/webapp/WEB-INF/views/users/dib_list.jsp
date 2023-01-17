@@ -15,6 +15,15 @@
   src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.js"></script>
 </head>
 <body>
+	<!-- 네비바 include -->
+   <c:choose>
+      <c:when test="${not empty sessionScope.id }">
+         <jsp:include page="/WEB-INF/include/navbar2.jsp"/>
+      </c:when>
+      <c:otherwise>
+         <jsp:include page="/WEB-INF/include/navbar.jsp"/>
+      </c:otherwise>
+   </c:choose>  
 	<div class="container">
 		<h1>찜한 목록</h1>
 		<ul>
@@ -148,5 +157,8 @@
 				</c:if>				
 			</ul>
 		</nav>
+		
+		     <!-- footer include -->
+	 		 <jsp:include page="/WEB-INF/include/footer.jsp"/>	
 </body>
 </html>

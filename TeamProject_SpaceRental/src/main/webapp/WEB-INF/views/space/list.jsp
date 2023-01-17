@@ -93,6 +93,9 @@
 			</ul>
 		</nav>
 		
+		<!-- footer include -->
+	 	<jsp:include page="/WEB-INF/include/footer.jsp"/>	
+		
 		<!-- 검색 폼 
 		<form action="list" method="get">
 			<label for="condition">검색조건</label>	

@@ -9,6 +9,16 @@
 <title>/views/qna/qnaupdateform.jsp</title>
 </head>
 <body>
+<<<<<<< HEAD
+		<!-- 네비바 include -->
+	   <c:choose>
+	      <c:when test="${not empty sessionScope.id }">
+	         <jsp:include page="/WEB-INF/include/navbar2.jsp"/>
+	      </c:when>
+	      <c:otherwise>
+	         <jsp:include page="/WEB-INF/include/navbar.jsp"/>
+	      </c:otherwise>
+	   </c:choose> 
 	<div class="container">
 		<h1>글 수정 폼 입니다.</h1>
 		<form action="qnaupdate" method="post">
@@ -29,6 +39,32 @@
 			<button type="reset">취소</button>
 		</form>
 	</div>
+	
+	  <!-- footer include -->
+	  <jsp:include page="/WEB-INF/include/footer.jsp"/>
+	  
+=======
+	<div class="container">
+		<h1>글 수정 폼 입니다.</h1>
+		<form action="qnaupdate" method="post">
+			<input type="hidden" name="num" value="${dto.num }" />
+			<div>
+				<label for="writer">작성자</label> <input type="text" id="writer"
+					value="${dto.writer }" disabled />
+			</div>
+			<div>
+				<label for="title">제목</label> <input type="text" name="title"
+					id="title" value="${dto.title }" />
+			</div>
+			<div>
+				<label for="content">내용</label>
+				<textarea name="content" id="content">${dto.content }</textarea>
+			</div>
+			<button type="submit" onclick="submitContents(this);">수정확인</button>
+			<button type="reset">취소</button>
+		</form>
+	</div>
+>>>>>>> refs/remotes/origin/daheen
 	<!-- SmartEditor 에서 필요한 javascript 로딩  -->
 	<script
 		src="${pageContext.request.contextPath }/SmartEditor/js/HuskyEZCreator.js"></script>
