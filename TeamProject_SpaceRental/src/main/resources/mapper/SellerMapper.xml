@@ -24,12 +24,12 @@
 	</insert>
 	<update id="update" parameterType="sellerDto">
 	 	UPDATE seller_space
-	 	SET space_name=#{space_name}, oneliner=#{oneliner}, intro=#{intro},
-	 		mainImagePath=#{mainImagePath}, addr=#{addr}, cate_name=#{cate_name}
-	 	WHERE space_num=#{space_num}
+	 	SET space_name = #{space_name}, oneliner=#{oneliner}, intro=#{intro},
+	 		mainImagePath = #{mainImagePath}, addr=#{addr}, cate_name=#{cate_name}
+	 	WHERE space_num = #{space_num}
 	</update>
 	<delete id="delete" parameterType="int">
 		DELETE FROM seller_space
-		WHERE space_num=#{space_num}
+		WHERE space_num = #{space_num}
 	</delete>
 </mapper>

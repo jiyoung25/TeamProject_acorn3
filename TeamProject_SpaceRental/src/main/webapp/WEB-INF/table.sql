@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 CREATE TABLE space_users(
    code NUMBER NOT NULL, -- 회원 코드 관리자/판매자/구매자
    users_num NUMBER NOT NULL, -- 회원 번호
@@ -95,17 +93,16 @@ CREATE TABLE review_comment(
 );
 
 CREATE TABLE qna_comment(
-	num NUMBER PRIMARY KEY, --댓글의 글번호
-	writer VARCHAR2(100), --댓글 작성자의 아이디
-	content VARCHAR2(500), --댓글 내용
-	target_id VARCHAR2(100), --댓글의 대상자 아이디
-	ref_group NUMBER,
-	comment_group NUMBER,
-	deleted CHAR(3) DEFAULT 'no',
-	regdate DATE
+    num NUMBER PRIMARY KEY, --댓글의 글번호
+    writer VARCHAR2(100), --댓글 작성자의 아이디
+    content VARCHAR2(500), --댓글 내용
+    target_id VARCHAR2(100), --댓글의 대상자 아이디
+    ref_group NUMBER,
+    comment_group NUMBER,
+    deleted CHAR(3) DEFAULT 'no',
+    regdate DATE
 );
 CREATE SEQUENCE qnacomment_seq;
-=======
 
 
 CREATE TABLE space_users(
@@ -154,7 +151,7 @@ CREATE TABLE qna(
     qna_title VARCHAR2(100) NOT NULL, -- qna 제목
     qna_content VARCHAR2(100) NOT NULL, -- qna 내용
     qna_writer VARCHAR2(100) NOT NULL, -- qna 작성자 아이디
-    qna_regdate NOT NULL, -- 리뷰 작성일
+    qna_regdate DATE NOT NULL, -- 리뷰 작성일
     viewcount NUMBER -- 조회수
 );
 
@@ -208,8 +205,7 @@ CREATE TABLE qna_comment(
     qna_comment VARCHAR2(200) NOT NULL,
     qna_regdate VARCHAR2(100) NOT NULL -- qna 답변 등록일
 );
->>>>>>> refs/remotes/origin/master
-=======
+
 CREATE TABLE space_users(
    code NUMBER NOT NULL, -- 회원 코드 관리자/판매자/구매자
    users_num NUMBER NOT NULL, -- 회원 번호

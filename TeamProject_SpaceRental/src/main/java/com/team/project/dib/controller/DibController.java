@@ -14,7 +14,7 @@ public class DibController {
 	
 	@RequestMapping("/space/dib_insert")
 	public String insert(DibDto dto, int space_num, int users_num, String users_id) {
-		System.out.println("users_id"+users_id);
+		service.dibInsert(dto);
 		
 		return "space/dib_insert";
 	}

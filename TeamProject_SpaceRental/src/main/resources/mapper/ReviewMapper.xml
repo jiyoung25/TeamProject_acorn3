@@ -17,19 +17,19 @@
 	</sql>
 	
 	<select id="getList" parameterType="reviewDto" resultType="reviewDto">
-      SELECT *
-      FROM
-         (SELECT result1.*, ROWNUM AS rnum
-         FROM
-            (SELECT review_num,review_writer,review_title,review_content,viewcount,review_regdate 
-            FROM review
-            <include refid="searchCondition"/>
-            ORDER BY review_num DESC) result1)
-      <![CDATA[ 
-      WHERE rnum >= #{startRowNum} AND rnum <= #{endRowNum}
-      ]]>
+		SELECT *
+		FROM
+			(SELECT result1.*, ROWNUM AS rnum
+			FROM
+				(SELECT review_num,review_writer,review_title,review_content,viewcount,review_regdate 
+				FROM review
+				<include refid="searchCondition"/>
+				ORDER BY review_num DESC) result1)
+		<![CDATA[ 
+		WHERE rnum >= #{startRowNum} AND rnum <= #{endRowNum}
+		]]>
 	</select>
-   
+		
 	<select id="getCount" parameterType="reviewDto" resultType="int">
 		SELECT NVL(MAX(ROWNUM), 0)
 		FROM review
@@ -38,8 +38,8 @@
 
 	<insert id="insert">
 		INSERT INTO review 
-		(review_num, review_writer, review_title, review_content, review_regdate, users_num)
-		VALUES (review_seq.NEXTVAL, #{review_writer}, #{review_title}, #{review_content}, SYSDATE,#{users_num})
+		(review_num, review_writer, review_title, review_content, review_regdate, users_num, space_num)
+		VALUES (review_seq.NEXTVAL, #{review_writer}, #{review_title}, #{review_content}, SYSDATE,#{users_num}, #{space_num})
 	</insert>
 	
 	<select id="getData" parameterType="int" resultType="reviewDto">

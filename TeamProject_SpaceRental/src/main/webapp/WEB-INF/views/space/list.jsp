@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
@@ -13,37 +13,88 @@
 			display: inline-block;
 		}
 	</style>
-<title>느어엉</title>
+<title>공간 리스트</title>
 </head>
 <body>
+	<%-- 네비바 --%>
+	<c:choose>
+		<c:when test="${empty sessionScope.id }">
+        	<jsp:include page="/WEB-INF/include/navbar_sidebar_SessionX.jsp"/>
+      	</c:when>
+      	<c:otherwise>
+	      	<c:choose>
+	      		<c:when test="${dto.code eq 2 }">
+	      	  		<jsp:include page="/WEB-INF/include/navbar_sessionO_seller.jsp"/>
+	         		<jsp:include page="/WEB-INF/include/sidebar_seller.jsp"/>
+	      		</c:when>
+	      		<c:otherwise>
+					<jsp:include page="/WEB-INF/include/navbar_sessionO_users.jsp"/>
+			      	<jsp:include page="/WEB-INF/include/sidebar_user.jsp"/>
+	      		</c:otherwise>
+	      	</c:choose>
+		</c:otherwise>
+	</c:choose>
+
 	<div class="container">
-		<h3>공간 리스트</h3>
+		<%-- 공간명 및 이미지 --%>
 		<section>
-        	<div class="container px-5">
-            	<div class="row gx-5 align-items-center">
-                	<div class="col-lg-6">
-                    	<div class="p-5"><img class="img-fluid rounded-circle" src="https://cdn-icons-png.flaticon.com/512/4599/4599564.png" alt="..."></div>
-                	</div>
-                	<div class="col-lg-6">
-                    	<div class="p-5">
-		                   	<h2 class="display-4">스터디룸</h2>
-		                	<p>내용</p>
-                    	</div>
-                	</div>
-            	</div>
-        	</div>
-    	</section>
-    	<section class="cta">
-        	<div class="cta-content">
-            	<div class="container px-5">
-                	<h2 class="text-white display-1 lh-1 mb-4">
-                    	Stop waiting.
-                    	<br>
-                   		Start building.
-                	</h2>
-               		 <a class="btn btn-outline-light py-3 px-4 rounded-pill" href="https://startbootstrap.com/theme/new-age" target="_blank">Download for free</a>
-            	</div>
-        	</div>
+					<c:choose>
+        				<c:when test="${cate_num eq 1 }">
+							<div class="col-lg-6">
+								<div class="p-5"><img class="img-fluid rounded-circle" src="${pageContext.request.contextPath}/image/partyroom.png" alt="..."></div>
+							</div>
+							<div class="col-lg-6">
+                    			<div class="p-5">
+		                   			<h3 class="display-4">파티룸</h3>
+		                			<p>파티룸 목록입니다.</p>
+                    			</div>
+                    		</div>
+                		</c:when>
+                		<c:when test="${cate_num eq 2 }">
+                			<div class="col-lg-6">
+                    			<div class="p-5"><img class="img-fluid rounded-circle" src="${pageContext.request.contextPath}/image/practiceroom.png" alt="..."></div>
+                			</div>
+                			<div class="col-lg-6">
+                    			<div class="p-5">
+		                   			<h3 class="display-4">연습실</h3>
+		                			<p>연습실 목록입니다.</p>
+                    			</div>
+                    		</div>
+                		</c:when>
+                		<c:when test="${cate_num eq 3 }">
+                			<div class="col-lg-6">
+                    			<div class="p-5"><img class="img-fluid rounded-circle" src="${pageContext.request.contextPath}/image/kitchin.png" alt="..."></div>
+                			</div>
+                			<div class="col-lg-6">
+                    			<div class="p-5">
+		                   			<h3 class="display-4">공유주방</h3>
+		                			<p>공유주방 목록입니다.</p>
+                    			</div>
+                    		</div>
+                		</c:when>
+                		<c:when test="${cate_num eq 4 }">
+                			<div class="col-lg-6">
+                    			<div class="p-5"><img class="img-fluid rounded-circle" src="${pageContext.request.contextPath}/image/studyroom.png" alt="..."></div>
+                			</div>
+                			<div class="col-lg-6">
+                    			<div class="p-5">
+		                   			<h3 class="display-4">스터디룸</h3>
+		                			<p>스터디룸 목록입니다.</p>
+                    			</div>
+                    		</div>
+                		</c:when>
+                		<c:when test="${cate_num eq 5 }">
+                			<div class="col-lg-6">
+                    			<div class="p-5"><img class="img-fluid rounded-circle" src="${pageContext.request.contextPath}/image/learningroom.png" alt="..."></div>
+                			</div>
+                			<div class="col-lg-6">
+                    			<div class="p-5">
+		                   			<h3 class="display-4">강의실</h3>
+		                			<p>강의실 목록입니다.</p>
+                    			</div>
+                    		</div>
+                		</c:when>
+                	</c:choose>
     	</section>
     	<div class="row gx-5 mb-5 m-5">
     		<c:forEach var="tmp" items="${list }">
@@ -51,7 +102,7 @@
             		<a class="card lift h-100" href="${pageContext.request.contextPath}/space/detail?cate_num=${cate_num}&space_num=${tmp.space_num}" >
                 		<img src="${pageContext.request.contextPath}/${tmp.mainImagePath}" />
                 		<div class="card-body row">
-                			<div class="col-8">
+                			<div>
 	                    		<h4 class="card-title mb-2">${tmp.space_name }</h4>
 	                    		<p class="card-text">${tmp.addr }</p>
 	                    		<p class="card-text">${tmp.oneliner }</p>

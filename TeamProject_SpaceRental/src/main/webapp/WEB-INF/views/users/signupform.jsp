@@ -52,7 +52,7 @@
 						<label for="seller">판매자</label>
 						<input type="radio" name="code" value="2" id="seller" />
 						<label for="member">회원</label>
-						<input type="radio" name="code" value="3" id="member" />
+						<input type="radio" name="code" value="3" id="member" checked />
 					</div>
 	
 	                  <div class="d-flex flex-row align-items-center mb-4">

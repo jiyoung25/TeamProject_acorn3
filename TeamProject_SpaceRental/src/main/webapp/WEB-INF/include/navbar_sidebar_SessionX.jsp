@@ -30,7 +30,7 @@
 <nav class="navbar bg-body-tertiary">
 	<div class="container-fluid">
 		<div class="ml-5" >
-			<a class="navbar-brand" href="/"><p class="fs-3 fw-semibold" >Ubiquitous</p></a>
+			<a class="navbar-brand" href="${pageContext.request.contextPath}/"><p class="fs-3 fw-semibold" >Ubiquitous</p></a>
         </div>
 	    <div class="row">
 	         <div class="col">

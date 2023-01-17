@@ -15,7 +15,7 @@
 		FROM
 			(SELECT result1.*, ROWNUM AS rnum
 			FROM
-				(SELECT space_num, users_num, space_name, mainImagePath, addr, seller_space.cate_name cate_name
+				(SELECT space_num, users_num, space_name, mainImagePath, addr, seller_space.cate_name cate_name, oneliner
 				FROM seller_space
 				INNER JOIN space_category ON seller_space.cate_name=space_category.cate_name) result1)
 		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
@@ -26,7 +26,7 @@
 		FROM
 			(SELECT result1.*, ROWNUM AS rnum
 			FROM
-				(SELECT space_num, users_num, space_name, mainImagePath, addr, seller_space.cate_name cate_name
+				(SELECT space_num, users_num, space_name, mainImagePath, addr, seller_space.cate_name cate_name, oneliner
 				FROM seller_space
 				INNER JOIN space_category ON seller_space.cate_name=space_category.cate_name
 						WHERE space_category.cate_num = #{cate_num}
@@ -45,7 +45,7 @@
 		FROM seller_space
 	</select>
 	<select id="getData" parameterType="int" resultType="spaceDto">
-		SELECT space_num, users_num, space_name, mainImagePath, addr, seller_space.cate_name cate_name
+		SELECT space_num, users_num, space_name, mainImagePath, addr, seller_space.cate_name cate_name, oneliner
 		FROM seller_space
 		WHERE space_num=#{space_num}
 	</select>

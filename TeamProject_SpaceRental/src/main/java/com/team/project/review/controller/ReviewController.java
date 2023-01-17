@@ -65,6 +65,7 @@ public class ReviewController {
 		String writer=(String)session.getAttribute("id");
 		//dto 는 글의 제목과 내용만 있으므로 글작성자는 직접 넣어준다.
 	    dto.setReview_writer(writer);
+	    dto.setSpace_num(space_num);
 	    usersService.getInfo2(session, dto);
 		service.saveContent(dto);
 		return "review/reviewInsert";
