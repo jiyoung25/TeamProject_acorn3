@@ -27,7 +27,7 @@
 					</tr>
 				</thead>
 				<c:forEach var="tmp" items="${list }">
-					<form action="${pageContext.request.contextPath}/seller/reservCheck">
+					<form action="${pageContext.request.contextPath}/seller/reservCheck" id="reservCheckForm">
 						<tbody>
 							<tr>
 								<td>${tmp.reserv_num }</td>
@@ -38,19 +38,10 @@
 								<td>${tmp.reserv_time }</td>
 								<td>${tmp.reserv_reg }</td>
 								<td>${tmp.totalMoney }</td>
-								<td><button type="button" class="checkBtn" name="reservCheck" value="true">Ok</button></td>
-								<td><button type="button" class="checkBtn" name="reservCheck" value="false">Reject</button></td>
+								<td><button type="button" class="checkBtn" value="true">Ok</button></td>
+								<td><button type="button" class="checkBtn" value="false">Reject</button></td>
 							</tr>
 						</tbody>
-						<input type="hidden" value=${tmp.reserv_num } name="reserv_num" />
-						<input type="hidden" value=${tmp.space_name } name="space_name" />
-						<input type="hidden" value=${tmp.users_id } name="users_id" />
-						<input type="hidden" value=${tmp.reserv_count } name="reserv_count" />
-						<input type="hidden" value=${tmp.reserv_date } name="reserv_date" />
-						<input type="hidden" value=${tmp.reserv_time } name="reserv_time" />
-						<input type="hidden" value=${tmp.reserv_reg } name="reserv_reg" />
-						<input type="hidden" value=${tmp.totalMoney } name="totalMoney" />
-						
 					</form>		
 				</c:forEach>
 			</table>
@@ -84,5 +75,10 @@
 			</ul>
 		</nav>
 	</div>
+	
+	<script>
+		document.querySelector(".checkBtn").
+	</script>
+
 </body>
 </html>
