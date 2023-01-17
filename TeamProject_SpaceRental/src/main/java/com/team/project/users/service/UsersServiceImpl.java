@@ -34,7 +34,7 @@ public class UsersServiceImpl implements UsersService{
 	public Map<String, Object> isExistId(String inputId) {
 		//Map 객체를 생성해서 
 		Map<String, Object> map=new HashMap<String, Object>();
-		//isExist 라는 키값으로 아이디가 존재하는지 여부를 담고 
+		//isExist 라는 키값으로 아이디가 존재하는지 여부를 담고
 		map.put("isExist", dao.isExist(inputId));
 		//Map 객체를 리턴해 준다. 
 		return map;
