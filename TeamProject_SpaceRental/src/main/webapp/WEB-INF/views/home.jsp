@@ -31,15 +31,24 @@
 </head>
 
 <body>
-   <!-- 네비바 include -->
-   <c:choose>
-      <c:when test="${not empty sessionScope.id }">
-         <jsp:include page="/WEB-INF/include/navbar2.jsp"/>
-      </c:when>
-      <c:otherwise>
-         <jsp:include page="/WEB-INF/include/navbar.jsp"/>
-      </c:otherwise>
-   </c:choose>  
+	<%-- 네비바 --%>
+	<c:choose>
+		<c:when test="${empty sessionScope.id }">
+        	<jsp:include page="/WEB-INF/include/navbar_sidebar_SessionX.jsp"/>
+      	</c:when>
+      	<c:otherwise>
+	      	<c:choose>
+	      		<c:when test="${dto.code eq 2 }">
+	      	  		<jsp:include page="/WEB-INF/include/navbar_sessionO_seller.jsp"/>
+	         		<jsp:include page="/WEB-INF/include/sidebar_seller.jsp"/>
+	      		</c:when>
+	      		<c:otherwise>
+					<jsp:include page="/WEB-INF/include/navbar_sessionO_users.jsp"/>
+			      	<jsp:include page="/WEB-INF/include/sidebar_user.jsp"/>
+	      		</c:otherwise>
+	      	</c:choose>
+      	</c:otherwise>
+   	</c:choose> 
 
 
 
@@ -87,7 +96,7 @@
             <div class="col-lg-6 text-center">
                <img src="https://cdn-icons-png.flaticon.com/512/4536/4536658.png" style=" width: 200px; " alt="">
                <h2 class="fw-normal" style="font-family: 'Black Han Sans', sans-serif;">스터디룸</h2>
-               <p><a class="btn btn-secondary" href="${pageContext.request.contextPath}/space/category">보러가기</a></p>
+               <p><a class="btn btn-secondary" href="${pageContext.request.contextPath}/space/list?cate_num=4">보러가기</a></p>
             </div>
             <!--강의실-->
             <div class="col-lg-6 text-center">

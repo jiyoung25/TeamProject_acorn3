@@ -49,12 +49,12 @@
     		<c:forEach var="tmp" items="${list }">
         		<div class="col-lg-3 mb-5 ">
             		<a class="card lift h-100" href="${pageContext.request.contextPath}/space/detail?cate_num=${cate_num}&space_num=${tmp.space_num}" >
-            			<%--아래는 임시 이미지 --%>
-                		<img class="card-img-top" src="https://source.unsplash.com/2d4lAQAlbDA/800x500" alt="..." />
+                		<img src="${pageContext.request.contextPath}/${tmp.mainImagePath}" />
                 		<div class="card-body row">
                 			<div class="col-8">
 	                    		<h4 class="card-title mb-2">${tmp.space_name }</h4>
 	                    		<p class="card-text">${tmp.addr }</p>
+	                    		<p class="card-text">${tmp.oneliner }</p>
                     		</div>
                 		</div>
                 		<div class="card-footer bg-transparent border-top d-flex align-items-center justify-content-between">
