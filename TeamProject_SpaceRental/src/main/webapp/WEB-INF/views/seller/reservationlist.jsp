@@ -35,6 +35,7 @@
       	</c:otherwise>
    </c:choose>
 	<div class="container">
+		<h3>예약목록</h3>
 		<div id="reservList">
 			<table class="table">
 			  <thead>

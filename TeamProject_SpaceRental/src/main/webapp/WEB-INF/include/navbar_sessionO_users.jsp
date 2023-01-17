@@ -35,6 +35,7 @@
       		<div class="row">
          		<div class="col">
             		<a class="navbar-brand" href="#"><p class="fs-6 text-secondary " ><strong>${sessionScope.id }</strong>님 반갑습니다.</p></a>
+ 					<a class="navbar-brand" href="${pageContext.request.contextPath}/users/logout"><p class="fs-6 text-secondary " >로그아웃</p></a>      		
          		</div>
          		<div class="col">
            			<button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
