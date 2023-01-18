@@ -15,6 +15,7 @@ public class SellerDto {
 	private String addr;
 	private MultipartFile image;	//이미지 파일 업로드 처리를 위한 필드
 	private String cate_name;
+	private int code;
 	
 	public SellerDto() {}
 

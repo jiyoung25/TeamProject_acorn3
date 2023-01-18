@@ -48,8 +48,11 @@ public class SellerController {
 	}
 	
 	@RequestMapping("/seller/spaceupdate")
-	public String spaceUpdate(HttpServletRequest request) {
+	public String spaceUpdate(HttpServletRequest request, HttpSession session, ModelAndView mView) {
 		service.getData(request);
+		if(session.getAttribute("id")!=null) {
+			usersService.getInfo(session, mView);
+		}
 		return "seller/spaceupdate";
 	}
 	

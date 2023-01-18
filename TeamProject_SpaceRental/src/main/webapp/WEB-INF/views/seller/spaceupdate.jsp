@@ -9,24 +9,6 @@
 <title>공간수정폼</title>
 </head>
 <body>
-	<%-- 네비바 --%>
-	<c:choose>
-		<c:when test="${empty sessionScope.id }">
-        	<jsp:include page="/WEB-INF/include/navbar_sidebar_SessionX.jsp"/>
-      	</c:when>
-      	<c:otherwise>
-	      	<c:choose>
-	      		<c:when test="${dto.code eq 2 }">
-	      	  		<jsp:include page="/WEB-INF/include/navbar_sessionO_seller.jsp"/>
-	         		<jsp:include page="/WEB-INF/include/sidebar_seller.jsp"/>
-	      		</c:when>
-	      		<c:otherwise>
-					<jsp:include page="/WEB-INF/include/navbar_sessionO_users.jsp"/>
-			      	<jsp:include page="/WEB-INF/include/sidebar_user.jsp"/>
-	      		</c:otherwise>
-	      	</c:choose>
-      	</c:otherwise>
-   	</c:choose> 
    
 	<div class="container">
 		<h1>공간 정보를 입력해 주세요.</h1>
@@ -64,7 +46,7 @@
 		    </div>
 		</form>
   		<div class="img-wrapper">
-     		<img src="/space/${dto.mainImagePath }" value="${dto.mainImagePath }" />
+     		<img src="${pageContext.request.contextPath}/${dto.mainImagePath }" value="${dto.mainImagePath }" />
   		</div>
 
 		<button id="submitBtn">저장</button>
