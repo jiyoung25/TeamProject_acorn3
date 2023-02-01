@@ -46,17 +46,19 @@
       	</c:when>
       	<c:otherwise>
 	      	<c:choose>
-	      		<c:when test="${dto.code eq 2 }">
+	      		<c:when test="${usersCode eq 2 }">
 	      	  		<jsp:include page="/WEB-INF/include/navbar_sessionO_seller.jsp"/>
 	         		<jsp:include page="/WEB-INF/include/sidebar_seller.jsp"/>
 	      		</c:when>
-	      		<c:otherwise>
+	      		<c:when test ="${usersCode eq 3 }">
 					<jsp:include page="/WEB-INF/include/navbar_sessionO_users.jsp"/>
 			      	<jsp:include page="/WEB-INF/include/sidebar_user.jsp"/>
-	      		</c:otherwise>
+	      		</c:when>
+	      		<c:when test = "${usersCode eq 1 }">
+	      		</c:when>
 	      	</c:choose>
       	</c:otherwise>
-   	</c:choose>  
+   	</c:choose>
    
 <section class="h-100 gradient-form" style="background-color: #eee;">
   <div class="container py-5 h-100">
@@ -75,6 +77,15 @@
                   <p>아이디/비밀번호 입력</p>
                   <div class="mb-4">
                   <form action="${pageContext.request.contextPath}/users/login" method="post">
+					<%-- url정보 담기(loginfilter) --%>
+					<c:choose>
+						<c:when test="${ empty param.url }">
+							<input type="hidden" name="url" value="${pageContext.request.contextPath}/"/>
+						</c:when>
+						<c:otherwise>
+							<input type="hidden" name="url" value="${param.url }"/>
+						</c:otherwise>
+					</c:choose>
                     <input type="text" name="id" id="form2Example11" class="form-control" value="${cookie.savedId.value }"
                       placeholder="" autofocus />
                     <label class="form-label" for="form2Example11">아이디</label>

@@ -19,7 +19,7 @@
 	}
 </style>
 </head>
-<body>
+<body>	
 	<%-- 네비바 --%>
 	<c:choose>
 		<c:when test="${empty sessionScope.id }">
@@ -27,17 +27,19 @@
       	</c:when>
       	<c:otherwise>
 	      	<c:choose>
-	      		<c:when test="${dto.code eq 2 }">
+	      		<c:when test="${usersCode eq 2 }">
 	      	  		<jsp:include page="/WEB-INF/include/navbar_sessionO_seller.jsp"/>
 	         		<jsp:include page="/WEB-INF/include/sidebar_seller.jsp"/>
 	      		</c:when>
-	      		<c:otherwise>
+	      		<c:when test ="${usersCode eq 3 }">
 					<jsp:include page="/WEB-INF/include/navbar_sessionO_users.jsp"/>
 			      	<jsp:include page="/WEB-INF/include/sidebar_user.jsp"/>
-	      		</c:otherwise>
+	      		</c:when>
+	      		<c:when test = "${usersCode eq 1 }">
+	      		</c:when>
 	      	</c:choose>
       	</c:otherwise>
-   	</c:choose>  
+   	</c:choose>
    
 	<div class="container">
 		<h3>회원 정보 수정 폼 입니다.</h3>
