@@ -17,9 +17,14 @@ public class WebConfig implements WebMvcConfigurer{
 	//인터셉터 동작하도록 등록하기
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
+		/*
 		registry.addInterceptor(loginInterceptor)
-		.addPathPatterns("/users/*")
-		.excludePathPatterns("/users/signupform", "/users/signup", "/users/loginform", "/users/login", "/users/checkid");
+		.addPathPatterns("/users/*","/space/*", "/seller/*","/review/*","/qna/*")
+		.excludePathPatterns("/users/signupform", "/users/signup", "/users/loginform", "/users/login", "/users/checkid",
+				"/space/category", "/space/list", "/space/detail",
+				"/review/reviewdetail","/review/reviewlist",
+				"/qna/qnadetail","/qna/qnalist","/qna/ajax_comment_list");
+				*/
 	}
 }
 

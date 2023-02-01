@@ -35,14 +35,14 @@
 			<c:when test="${not empty id }">
 				<p class="alert alert-success">
 					<strong>${id }</strong>님 로그인 되었습니다.
-					<a href="${pageContext.request.contextPath}/">확인</a>
+					<a href="${url}">확인</a>
 				</p>
 			</c:when>
 			<c:otherwise>
 				<h3>로그인 실패</h3>
 				<p class="alert alert-danger">
 					로그인 정보를 다시 확인해주세요.
-					<a href="${pageContext.request.contextPath}/users/loginform">로그인 다시 시도하기</a>
+					<a href="${pageContext.request.contextPath}/users/loginform?url=${encodedUrl}">로그인 다시 시도하기</a>
 				</p>
 			</c:otherwise>
 		</c:choose>

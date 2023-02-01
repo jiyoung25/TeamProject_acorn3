@@ -75,6 +75,15 @@
                   <p>아이디/비밀번호 입력</p>
                   <div class="mb-4">
                   <form action="${pageContext.request.contextPath}/users/login" method="post">
+					<%-- url정보 담기(loginfilter) --%>
+					<c:choose>
+						<c:when test="${ empty param.url }">
+							<input type="hidden" name="url" value="${pageContext.request.contextPath}/"/>
+						</c:when>
+						<c:otherwise>
+							<input type="hidden" name="url" value="${param.url }"/>
+						</c:otherwise>
+					</c:choose>
                     <input type="text" name="id" id="form2Example11" class="form-control" value="${cookie.savedId.value }"
                       placeholder="" autofocus />
                     <label class="form-label" for="form2Example11">아이디</label>

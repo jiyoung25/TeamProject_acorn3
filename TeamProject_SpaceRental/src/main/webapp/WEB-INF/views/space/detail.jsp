@@ -299,6 +299,10 @@
             },
 			methods:{
 				clickHeartBtn:function(){
+					if("${id}"==""){
+						alert("로그인 해주세요.");
+						return;
+					}
 					this.isDibed = !this.isDibed;
 					console.log(this.isDibed);
 					if(this.isDibed == true){
