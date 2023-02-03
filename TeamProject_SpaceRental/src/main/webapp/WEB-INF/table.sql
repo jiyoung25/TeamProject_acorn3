@@ -316,6 +316,7 @@ CREATE TABLE dibson_list(
     users_num NUMBER NOT NULL, -- 찜한 회원 (구매자) 번호
     users_id VARCHAR2(100) NOT NULL, -- 찜한 회원(구매자) 아이디
     space_num NUMBER NOT NULL, -- 찜한 공간 번호
+    dib_regdate DATE -- 찜 등록일
 );
 
 CREATE TABLE review(
