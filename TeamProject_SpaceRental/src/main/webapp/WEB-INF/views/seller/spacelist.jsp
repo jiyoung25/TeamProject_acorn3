@@ -51,19 +51,17 @@
       	</c:when>
       	<c:otherwise>
 	      	<c:choose>
-	      		<c:when test="${usersCode eq 2 }">
+	      		<c:when test="${dto.code eq 2 }">
 	      	  		<jsp:include page="/WEB-INF/include/navbar_sessionO_seller.jsp"/>
 	         		<jsp:include page="/WEB-INF/include/sidebar_seller.jsp"/>
 	      		</c:when>
-	      		<c:when test ="${usersCode eq 3 }">
+	      		<c:otherwise>
 					<jsp:include page="/WEB-INF/include/navbar_sessionO_users.jsp"/>
 			      	<jsp:include page="/WEB-INF/include/sidebar_user.jsp"/>
-	      		</c:when>
-	      		<c:when test = "${usersCode eq 1 }">
-	      		</c:when>
+	      		</c:otherwise>
 	      	</c:choose>
       	</c:otherwise>
-   	</c:choose> 
+   	</c:choose>  
 	  
 	<div class="container">
 	<h1>내 공간정보 관리</h1>
@@ -75,25 +73,21 @@
 		               		<div class="img-wrapper">
 		                  		<img class="card-img-top" src="${pageContext.request.contextPath }${tmp.mainImagePath}" />
 		               		</div>
-	            		</a>
 	            		<div class="card-body">
 	            			<p class="card-text"><strong>${tmp.space_name}</strong></p>
 	               			<p><small>공간번호: ${tmp.space_num}</small></p>							
 							<a href="spaceupdate?space_num=${tmp.space_num}">수정</a>
-							<a href="javascript:" onclick="deleteConfirm()">삭제</a>
-							<script>
-								function deleteConfirm(){
-									const isDelete=confirm("이 글을 삭제 하겠습니까?");
-									if(isDelete){
-										location.href="delete?space_num=${tmp.space_num}";
-									}
-								}
-							</script>							
+							<a href="delete?space_num=${tmp.space_num }" onClick="deleteLink(); return false;">삭제</a>						
 	            		</div>
 	         		</div>
 	      		</div>
 			</c:forEach>
 	   	</div>
+	   	<script>
+	   		const deleteLink = function(){
+	   			confirm("해당 글을 삭제하시겠습니까?")?this.submit():"";
+	   		}
+	   	</script>
 	   	
 	   <!-- footer include -->
 	  <jsp:include page="/WEB-INF/include/footer.jsp"/>
