@@ -17,23 +17,28 @@
 </head>
 <body>
 	<%-- 네비바 --%>
+	<script>
+		console.log(${usersCode});
+	</script>
 	<c:choose>
 		<c:when test="${empty sessionScope.id }">
         	<jsp:include page="/WEB-INF/include/navbar_sidebar_SessionX.jsp"/>
       	</c:when>
       	<c:otherwise>
 	      	<c:choose>
-	      		<c:when test="${dto.code eq 2 }">
+	      		<c:when test="${usersCode eq 2 }">
 	      	  		<jsp:include page="/WEB-INF/include/navbar_sessionO_seller.jsp"/>
 	         		<jsp:include page="/WEB-INF/include/sidebar_seller.jsp"/>
 	      		</c:when>
-	      		<c:otherwise>
+	      		<c:when test ="${usersCode eq 3 }">
 					<jsp:include page="/WEB-INF/include/navbar_sessionO_users.jsp"/>
 			      	<jsp:include page="/WEB-INF/include/sidebar_user.jsp"/>
-	      		</c:otherwise>
+	      		</c:when>
+	      		<c:when test = "${usersCode eq 1 }">
+	      		</c:when>
 	      	</c:choose>
-		</c:otherwise>
-	</c:choose>
+      	</c:otherwise>
+   	</c:choose>
 
 	<div class="container">
 		<%-- 공간명 및 이미지 --%>
@@ -144,7 +149,7 @@
 				    <c:forEach var="tmp" items="${list }">
 				        <div class="col-lg-3 mb-5 ">
 				            <a class="card lift h-100" href="${pageContext.request.contextPath}/space/detail?cate_num=${cate_num}&space_num=${tmp.space_num}" style="text-decoration: none; color:black" >
-				                <img src="https://cdn-icons-png.flaticon.com/512/2279/2279642.png"  style="width:200px;"/>
+				                <img src="${pageContext.request.contextPath}${tmp.mainImagePath}"  style="height:155px;"/>
 				                <div class="card-body row">
 				                    <div>
 				                        <h4 class="card-title mb-2 text-center">${tmp.space_name }</h4>
@@ -155,10 +160,10 @@
 				                <div class="card-footer bg-transparent border-top d-flex align-items-center justify-content-between">
 				                    <div class="small text-primary">See more</div>
 				                    <div class="small text-primary"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></div>
-				                </div>
-				            </a>
+				            	</div>
+				        	</a>
 				        </div>
-				       </c:forEach>
+					</c:forEach>
 				</div>
 		
 				<nav>

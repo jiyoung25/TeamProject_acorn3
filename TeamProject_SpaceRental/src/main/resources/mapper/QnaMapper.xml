@@ -39,7 +39,7 @@
 	<insert id="insert">
 		INSERT INTO qna
 		(num, writer, title, content, viewCount, regdate)
-		VALUES (board_cafe_seq.NEXTVAL, #{writer}, #{title}, #{content}, #{viewCount}, SYSDATE)
+		VALUES (qna_seq.NEXTVAL, #{writer}, #{title}, #{content}, #{viewCount}, SYSDATE)
 	</insert>
 	
 	<select id="getData" parameterType="int" resultType="qnaDto">
