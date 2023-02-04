@@ -16,6 +16,7 @@ public class DibDto {
     private int cate_num;
     private String cate_name;
     
+    //페이지네이션
     private int startRowNum;
     private int endRowNum;
     

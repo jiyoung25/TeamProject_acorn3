@@ -94,12 +94,12 @@
 				 --%>
 				<c:if test="${startPageNum ne 1 }">
 					<li class="page-item">
-						<a class="page-link" href="list?cate_num=${cate_num }&pageNum=${startPageNum-1 }&condition=${condition}&keyword=${encodedK}">Prev</a>
+						<a class="page-link" href="dib_list?pageNum=${startPageNum-1 }">Prev</a>
 					</li>
 				</c:if>
 				<c:forEach var="i" begin="${startPageNum }" end="${endPageNum }">
 					<li class="page-item ${pageNum eq i ? 'active' : '' }">
-						<a class="page-link" href="list?cate_num=${cate_num }&pageNum=${i }&condition=${condition}&keyword=${encodedK}">${i }</a>
+						<a class="page-link" href="dib_list?pageNum=${i }">${i }</a>
 					</li>
 				</c:forEach>
 				<%--
@@ -107,7 +107,7 @@
 				 --%>
 				<c:if test="${endPageNum lt totalPageCount }">
 					<li class="page-item">
-						<a class="page-link" href="list?cate_num=${cate_num }&pageNum=${endPageNum+1 }&condition=${condition}&keyword=${encodedK}">Next</a>
+						<a class="page-link" href="dib_list?pageNum=${endPageNum+1 }">Next</a>
 					</li>
 				</c:if>				
 			</ul>
