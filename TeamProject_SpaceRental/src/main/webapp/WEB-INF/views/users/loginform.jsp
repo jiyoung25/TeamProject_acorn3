@@ -75,40 +75,40 @@
                   <h4 class="mt-1 mb-5 pb-1">Ubiquitous</h4>
                 </div>
                   <p>아이디/비밀번호 입력</p>
-                  <div class="mb-4">
                   <form action="${pageContext.request.contextPath}/users/login" method="post">
-					<%-- url정보 담기(loginfilter) --%>
-					<c:choose>
-						<c:when test="${ empty param.url }">
-							<input type="hidden" name="url" value="${pageContext.request.contextPath}/"/>
-						</c:when>
-						<c:otherwise>
-							<input type="hidden" name="url" value="${param.url }"/>
-						</c:otherwise>
-					</c:choose>
-                    <input type="text" name="id" id="form2Example11" class="form-control" value="${cookie.savedId.value }"
-                      placeholder="" autofocus />
-                    <label class="form-label" for="form2Example11">아이디</label>
-                  </div>
-
-                  <div class="mb-4">
-                    <input type="password" id="form2Example22" name="inputPwd" class="form-control" />
-                    <label class="form-label" for="form2Example22">비밀번호</label>
-                  </div>
-
-                  <div class="text-center pt-1 mb-5 pb-1">
-                    <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="submit">Log
-                      in</button>
-                      	<input type="checkbox" name="remember" value="true" ${not empty cookie.savedId? 'checked':''  } />아이디 기억하기
-                    	<br />
-                    	<a class="text-muted" href="#!">비밀번호를 잊으셨나요?</a>
-                  </div>
-
-                  <div class="d-flex align-items-center justify-content-center pb-4">
-                    <p class="mb-0 me-2">아이디가 없으신가요?</p>
-                    <button type="button" class="btn btn-outline-danger"><a href="${pageContext.request.contextPath}/users/signupform">회원가입</a></button>
-                  </div>
-                </form>
+	                  <div class="mb-4">
+						<%-- url정보 담기(loginfilter) --%>
+						<c:choose>
+							<c:when test="${ empty param.url }">
+								<input type="hidden" name="url" value="${pageContext.request.contextPath}/"/>
+							</c:when>
+							<c:otherwise>
+								<input type="hidden" name="url" value="${param.url }"/>
+							</c:otherwise>
+						</c:choose>
+	                    <input type="text" name="id" id="form2Example11" class="form-control" value="${cookie.savedId.value }"
+	                      placeholder="" autofocus />
+	                    <label class="form-label" for="form2Example11">아이디</label>
+	                  </div>
+	
+	                  <div class="mb-4">
+	                    <input type="password" id="form2Example22" name="inputPwd" class="form-control" />
+	                    <label class="form-label" for="form2Example22">비밀번호</label>
+	                  </div>
+	
+	                  <div class="text-center pt-1 mb-5 pb-1">
+	                    <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="submit">Login</button>
+	                    <a href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=bb655f23b9167d7d2615ea3ed3bb6500&redirect_uri=http://localhost:9000/users/kakaoLoginCode">카카오 로그인</a>
+	                      	<input type="checkbox" name="remember" value="true" ${not empty cookie.savedId? 'checked':''  } />아이디 기억하기
+	                    	<br />
+	                    	<a class="text-muted" href="#!">비밀번호를 잊으셨나요?</a>
+	                  </div>
+	
+	                  <div class="d-flex align-items-center justify-content-center pb-4">
+	                    <p class="mb-0 me-2">아이디가 없으신가요?</p>
+	                    <button type="button" class="btn btn-outline-danger" onClick="signup()" id="signupBtn">회원가입</button>
+	                  </div>
+                	</form>
 
               </div>
             </div>
@@ -124,9 +124,13 @@
     </div>
   </div>
 </section>
-
+	<script>
+		const signup = function(){
+			location.href="${pageContext.request.contextPath}/users/signupform";
+		}
+	</script>
 	<!-- footer include -->
-	  <jsp:include page="/WEB-INF/include/footer.jsp"/>
+	<jsp:include page="/WEB-INF/include/footer.jsp"/>
 </body>
 
 </html>

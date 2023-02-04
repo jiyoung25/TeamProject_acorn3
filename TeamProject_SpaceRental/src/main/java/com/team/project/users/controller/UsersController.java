@@ -109,4 +109,11 @@ public class UsersController {
 		mView.setViewName("users/pwd_update");
 		return mView;
 	}
+	
+	//카카오 API에서 전송된 code 받기
+	@GetMapping("/users/kakaoLoginCode")
+	@ResponseBody
+	public Object kakaoLoginCode() {
+		return "";
+	}
 }
