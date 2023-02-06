@@ -11,17 +11,10 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
 <style>
-	#reservationForm {
-		white-space: nowrap;
-		overflow: scroll; border : 1px sodivd black;
-		width: 400px;
-		height: 800px;
-		border: 1px sodivd black;
-	}
 	
-	#reservationForm > #timeBox{
-		overflow: scroll;
-		white-space: nowrap;
+	.reservationForm{
+		display:grid;
+		grid-template-columns: 2fr 1fr;
 	}
 	
 	#noneVisible{
@@ -36,13 +29,13 @@
 		display : none;
 	}
 	.nonClickedHeart{
-		width: 100px;
-		height: 100px;
+		width: 50px;
+		height: 50px;
 		color: gray;
 	}
 	.clickedHeart{
-		width: 100px;
-		height: 100px;
+		width: 50px;
+		height: 50px;
 		color: red;
 	}
 </style>
@@ -69,16 +62,6 @@
 	      	</c:choose>
       	</c:otherwise>
    	</c:choose>
-	<div class="container">
-		<h1>공간 상세 페이지</h1>
-		<!-- 목록 -->
-		<ul>
-			<li><a href="#selectTime">예약 폼</a></li>
-			<li><a href="#oneliner">한줄 소개</a></li>
-			<li><a href="#intro">상세 소개</a></li>
-			<li><a href="#review">이용 후기</a></li>
-			<li><a href="#qna">Q&A</a></li>
-		</ul>
 		<!-- 찜하기 -->
 		<form action="${pageContext.request.contextPath}/space/dib_insert" id="dibForm">
 			<div>
@@ -98,7 +81,7 @@
 				<input type="date" name="reserv_date" min="${minday }" max="${maxday }" v-model="day" v-on:input="dayBtnClicked" />
 				<br />
 				<p>선택하신 날짜의 시간당 요금은 1000원 입니다.</p>
-				<div id="timeBox">
+				
 					<c:forEach var="i" begin="0" end="24">
 						<button type="button" class="timeBtn btn btn-info" value="${i }"
 							v-on:click="timeBtnClicked">${i }:00</button>
@@ -124,7 +107,7 @@
 					<input type="hidden" name="users_id" value="${id }" />
 					<input type="hidden" name="totalMoney" v-bind:value="totalMoney" />
 					<button type="button" v-on:click="resetBtnClicked">다시 선택하기</button>
-				</div>
+				
 				<button type="submit">제출</button>
 			</div>
 		</form>
