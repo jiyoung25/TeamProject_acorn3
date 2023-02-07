@@ -54,7 +54,7 @@
                  <hr class="my-2">
                 <!-- 판매자 qnalist -->
                  <li class="nav-item">
-                     <a class="nav-link" href="#">사용자 후기 목록</a>
+                     <a class="nav-link" href="#">사용자 QnA 목록</a>
                  </li>
    
                  <hr class="my-2">
