@@ -25,8 +25,9 @@ public class SellerController {
 	private UsersService usersService;
 	
 	@RequestMapping("/seller/spacelist")
-	public ModelAndView list(ModelAndView mView) {
-		service.getList(mView);
+	public ModelAndView list(ModelAndView mView, HttpServletRequest request, HttpSession session) {
+		service.getUsersNum(request, session);
+		service.getList(mView, request);
 		mView.setViewName("seller/spacelist");
 		return mView;
 	}
