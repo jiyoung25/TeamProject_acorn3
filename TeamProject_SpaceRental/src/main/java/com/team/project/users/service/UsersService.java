@@ -1,5 +1,6 @@
 package com.team.project.users.service;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -25,4 +26,6 @@ public interface UsersService {
 			MultipartFile mFile);
 	public void updateUser(UsersDto dto, HttpSession session);
 	public void deleteUser(HttpSession session, ModelAndView mView);
+	public String getAccessToken(String authorize_code) throws Throwable;
+	public HashMap<String, Object> getUserInfo(String access_Token);
 }

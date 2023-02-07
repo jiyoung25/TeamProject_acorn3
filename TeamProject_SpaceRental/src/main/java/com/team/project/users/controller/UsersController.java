@@ -1,6 +1,7 @@
 package com.team.project.users.controller;
 
 import java.net.URLEncoder;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -111,9 +112,17 @@ public class UsersController {
 	}
 	
 	//카카오 API에서 전송된 code 받기
-	@GetMapping("/users/kakaoLoginCode")
-	@ResponseBody
-	public Object kakaoLoginCode() {
-		return "";
-	}
+	@RequestMapping(value="/users/kakaoLoginCode", method=RequestMethod.GET)
+	public String kakaoLogin(@RequestParam(value = "code", required = false) String code) throws Throwable {
+		System.out.println("#########" + code);
+		String access_Token = service.getAccessToken(code);
+        
+		// 위에서 만든 코드 아래에 코드 추가
+		HashMap<String, Object> userInfo = service.getUserInfo(access_Token);
+		System.out.println("###access_Token#### : " + access_Token);
+		System.out.println("###nickname#### : " + userInfo.get("nickname"));
+		System.out.println("###email#### : " + userInfo.get("email"));
+        
+		return "users/kakaoLoginCode";
+    	}
 }

@@ -98,7 +98,7 @@
 	
 	                  <div class="text-center pt-1 mb-5 pb-1">
 	                    <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="submit">Login</button>
-	                    <a href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=bb655f23b9167d7d2615ea3ed3bb6500&redirect_uri=http://localhost:9000/users/kakaoLoginCode">카카오 로그인</a>
+	                    <a href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=bb655f23b9167d7d2615ea3ed3bb6500&redirect_uri=http://localhost:9000/ubiquitous/users/kakaoLoginCode">카카오 로그인</a>
 	                      	<input type="checkbox" name="remember" value="true" ${not empty cookie.savedId? 'checked':''  } />아이디 기억하기
 	                    	<br />
 	                    	<a class="text-muted" href="#!">비밀번호를 잊으셨나요?</a>
