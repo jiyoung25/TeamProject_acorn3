@@ -15,8 +15,8 @@ public class SellerDaoImpl implements SellerDao{
 	private SqlSession session;
 
 	@Override
-	public List<SellerDto> getList() {
-		return session.selectList("seller.getList");
+	public List<SellerDto> getList(int users_num) {
+		return session.selectList("seller.getList", users_num);
 	}
 
 	@Override
