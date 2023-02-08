@@ -304,11 +304,13 @@ public class UsersServiceImpl implements UsersService{
 			//kakaoExist가 "false"이면 추가 회원가입 정보 입력 창이 뜬다.
 			
 			String kakaoExist = "";
+			int usersCode = 0;
 			if(checkKakaoId == null) {
 				kakaoExist = "false";
 			} else {
 				kakaoExist = "true";
 				request.getSession().setAttribute("id", kakaoId);
+				request.getSession().setAttribute("usersCode", checkKakaoId.getCode());
 			};
 			
 			//pwd값 생성하기
