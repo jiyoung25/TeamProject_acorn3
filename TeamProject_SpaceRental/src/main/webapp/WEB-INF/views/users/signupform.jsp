@@ -49,8 +49,6 @@
 	                <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">회원가입</p>
 	                <form action="${pageContext.request.contextPath}/users/signup" class="mx-1 mx-md-4" method="post" id="myForm">
 	                <div>
-						<label for="admin">관리자</label>
-						<input type="radio" name="code" value="1" id="admin" />
 						<label for="seller">판매자</label>
 						<input type="radio" name="code" value="2" id="seller" />
 						<label for="member">회원</label>

@@ -36,6 +36,9 @@
 		border-bottom-right-radius: .3rem;
 	}
 }
+#kakaoLoginBtn:hover {
+	cursor:pointer;
+}
 </style>  
 </head>
 <body>
@@ -98,10 +101,13 @@
 	
 	                  <div class="text-center pt-1 mb-5 pb-1">
 	                    <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="submit">Login</button>
-	                    <a href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=bb655f23b9167d7d2615ea3ed3bb6500&redirect_uri=http://localhost:9000/ubiquitous/users/kakaoLoginCode">카카오 로그인</a>
-	                      	<input type="checkbox" name="remember" value="true" ${not empty cookie.savedId? 'checked':''  } />아이디 기억하기
-	                    	<br />
-	                    	<a class="text-muted" href="#!">비밀번호를 잊으셨나요?</a>
+	                    <div>
+	                    	<img id="kakaoLoginBtn" src="${pageContext.request.contextPath}/image/kakao_login_medium_wide.png" 
+	                    		onClick = "location.href='https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=2d35e9bcdd28d0e1fb622729f22bab0e&redirect_uri=http://localhost:9000/ubiquitous/users/kakaoLoginCode'" />
+	                    </div>
+	                    <input type="checkbox" name="remember" value="true" ${not empty cookie.savedId? 'checked':''  } />아이디 기억하기
+	                    <br />
+	                    <a class="text-muted" href="#!">비밀번호를 잊으셨나요?</a>
 	                  </div>
 	
 	                  <div class="d-flex align-items-center justify-content-center pb-4">
@@ -109,7 +115,6 @@
 	                    <button type="button" class="btn btn-outline-danger" onClick="signup()" id="signupBtn">회원가입</button>
 	                  </div>
                 	</form>
-
               </div>
             </div>
             <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
