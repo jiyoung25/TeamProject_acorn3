@@ -44,4 +44,12 @@
 		WHERE id=#{id}
 	</delete>	
 	
+	<insert id="kakaoInsert" parameterType="java.util.HashMap">
+		INSERT INTO kakao_table(k_id, k_email)
+		values(#{id}, #{email})
+	</insert>
+	
+	<select id="findKakaoInfo" parameterType="java.util.HashMap" resultType="kakaoDto">
+		SELECT * FROM kakao_table where k_id=#{nickname} and k_email=#{email}
+	</select>
 </mapper>

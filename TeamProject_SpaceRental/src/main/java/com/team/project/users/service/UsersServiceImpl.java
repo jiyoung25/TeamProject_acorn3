@@ -1,7 +1,14 @@
 package com.team.project.users.service;
 
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,6 +25,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.team.project.review.dto.ReviewDto;
 import com.team.project.users.dao.UsersDao;
 import com.team.project.users.dto.UsersDto;
@@ -212,6 +222,109 @@ public class UsersServiceImpl implements UsersService{
 		mView.addObject("id", id);
 	}
 
+	@Override
+	public String getAccessToken(String authorize_code) throws Throwable {
+		String access_Token = "";
+		String refresh_Token = "";
+		String reqURL = "https://kauth.kakao.com/oauth/token";
+		try {
+			URL url = new URL(reqURL);
+			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+			conn.setRequestMethod("POST");
+			conn.setDoOutput(true);
+			BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
+			StringBuilder sb = new StringBuilder();
+			sb.append("grant_type=authorization_code");
+			sb.append("&client_id=2d35e9bcdd28d0e1fb622729f22bab0e"); //본인이 발급받은 key
+			sb.append("&redirect_uri=http://localhost:9000/ubiquitous/users/kakaoLoginCode"); // 본인이 설정한 주소
+			sb.append("&code=" + authorize_code);
+			bw.write(sb.toString());
+			bw.flush();
+			int responseCode = conn.getResponseCode();
+			System.out.println("responseCode : " + responseCode);
+			BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+			String line = "";
+			String result = "";
+			while ((line = br.readLine()) != null) {
+				result += line;
+			}
+			System.out.println("response body : " + result);
+			JsonParser parser = new JsonParser();
+			JsonElement element = parser.parse(result);
+			access_Token = element.getAsJsonObject().get("access_token").getAsString();
+			refresh_Token = element.getAsJsonObject().get("refresh_token").getAsString();
+			System.out.println("access_token : " + access_Token);
+			System.out.println("refresh_token : " + refresh_Token);
+			br.close();
+			bw.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return access_Token;
+	}
+	
+	public ModelAndView getUserInfo(String access_Token, HttpServletRequest request, ModelAndView mView) {
+		
+		String reqURL = "https://kapi.kakao.com/v2/user/me";
+		try {
+			URL url = new URL(reqURL);
+			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+			conn.setRequestMethod("GET");
+
+			// 요청에 필요한 Header에 포함될 내용
+			conn.setRequestProperty("Authorization", "Bearer " + access_Token);
+
+			int responseCode = conn.getResponseCode();
+			System.out.println("responseCode : " + responseCode);
+
+			BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+
+			String line = "";
+			String result = "";
+
+			while ((line = br.readLine()) != null) {
+				result += line;
+			}
+			System.out.println("response body : " + result);
+
+			JsonParser parser = new JsonParser();
+			JsonElement element = parser.parse(result);
+			String kakaoId = "kakao_"+element.getAsJsonObject().get("id");
+			//JsonObject properties = element.getAsJsonObject().get("properties").getAsJsonObject();
+			JsonObject kakao_account = element.getAsJsonObject().get("kakao_account").getAsJsonObject();
+			//String nickname = properties.getAsJsonObject().get("nickname").getAsString();
+			String email = "";
+			email = kakao_account.getAsJsonObject().get("email") == null? 
+					"" : kakao_account.getAsJsonObject().get("email").getAsString();
+		
+			UsersDto checkKakaoId = (UsersDto) dao.getData(kakaoId);
+			
+			//만약, 카카오계정으로 회원가입한 아이디가 존재하면 kakaoExist = "true", 아이디가 없으면 kakaoExist = "false"가 된다.
+			//kakaoExist가 "true"이면 로그인 세션을 주고, 로그인이 되었다는 팝업이 뜨고, home으로 리다이렉트 시킨다.
+			//kakaoExist가 "false"이면 추가 회원가입 정보 입력 창이 뜬다.
+			
+			String kakaoExist = "";
+			if(checkKakaoId == null) {
+				kakaoExist = "false";
+			} else {
+				kakaoExist = "true";
+				request.getSession().setAttribute("id", kakaoId);
+			};
+			
+			//pwd값 생성하기
+			String kakaoPwd= "kakao"+System.currentTimeMillis()/1000;
+			
+			System.out.println(kakaoExist);
+			mView.addObject("kakaoId", kakaoId);
+			mView.addObject("email", email);
+			mView.addObject("kakaoExist", kakaoExist);
+			mView.addObject("kakaoPwd", kakaoPwd);
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return mView;
+	}
 }
 
 
