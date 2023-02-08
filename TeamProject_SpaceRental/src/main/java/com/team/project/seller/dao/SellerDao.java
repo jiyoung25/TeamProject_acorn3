@@ -6,7 +6,7 @@ import com.team.project.seller.dto.SellerDto;
 
 public interface SellerDao {
 	//공간 목록
-	public List<SellerDto> getList();
+	public List<SellerDto> getList(int users_num);
 	//공간 추가
 	public void insert(SellerDto dto);
 	//공간 정보 얻어오기

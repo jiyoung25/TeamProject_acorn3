@@ -23,8 +23,10 @@ public class SellerServiceImpl implements SellerService{
 	private SellerDao sellerDao;	
 
 	@Override
-	public void getList(ModelAndView mView) {		
-		List<SellerDto> list=sellerDao.getList();
+	public void getList(ModelAndView mView, HttpServletRequest request) {
+		String id = (String)request.getSession().getAttribute("id");		
+		int num=sellerDao.getUsersNum(id);
+		List<SellerDto> list=sellerDao.getList(num);
 		mView.addObject("list", list);
 	}
 
@@ -128,6 +130,6 @@ public class SellerServiceImpl implements SellerService{
 	public void getUsersNum(HttpServletRequest request, HttpSession session) {
 		String id = (String)session.getAttribute("id");
 		request.setAttribute("users_num", sellerDao.getUsersNum(id));
-	}	
+	}
 
 }

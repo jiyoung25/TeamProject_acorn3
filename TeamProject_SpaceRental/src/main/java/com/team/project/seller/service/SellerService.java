@@ -11,7 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.team.project.seller.dto.SellerDto;
 
 public interface SellerService {
-	public void getList(ModelAndView mView);
+	public void getList(ModelAndView mView, HttpServletRequest request);
     public void getData(HttpServletRequest request);
 
     public void insert(SellerDto dto, HttpServletRequest request);
