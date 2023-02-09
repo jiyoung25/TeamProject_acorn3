@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.team.project.review.dto.ReviewDto;
 import com.team.project.review.service.ReviewService;
@@ -49,6 +50,14 @@ public class ReviewController {
 		return "review/reviewlist";
 	}
 	
+	@RequestMapping("/users/reviewList")
+	public ModelAndView reviewList(ModelAndView mView, HttpServletRequest request, HttpSession session) {
+		service.getUsersNum(request, session);
+		service.getList2(mView, request);
+		mView.setViewName("users/reviewList");
+		return mView;
+	}
+	
 	@RequestMapping("/review/reviewInsertform")
 	public String reviewInsertform(HttpServletRequest request, int cate_num, int space_num) {
 		request.setAttribute("cate_num", cate_num);
@@ -70,5 +79,4 @@ public class ReviewController {
 		service.saveContent(dto);
 		return "review/reviewInsert";
 	}
-	
 }

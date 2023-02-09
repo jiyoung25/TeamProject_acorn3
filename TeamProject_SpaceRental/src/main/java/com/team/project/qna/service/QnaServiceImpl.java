@@ -81,7 +81,6 @@ public class QnaServiceImpl implements QnaService{
 		List<QnaDto> list = qnaDao.getList(dto);
 		//전체글의 갯수
 		int qnatotalRow=qnaDao.getCount(dto);
-		System.out.println(qnatotalRow);
 		
 		//하단 시작 페이지 번호 
 		int qnaStartPageNum = 1 + ((qnaPageNum-1)/PAGE_DISPLAY_COUNT)*PAGE_DISPLAY_COUNT;
