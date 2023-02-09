@@ -151,14 +151,14 @@
 		</c:if>
 
 	</div>
-	
-	<script>
+	<script src="${pageContext.request.contextPath}/js/gura_util.js"></script>
+	<!-- <script>
    
 	   //클라이언트가 로그인 했는지 여부
 	   let isLogin=${ not empty id };
 	   
 	   document.querySelector(".insert-form")
-	      .addEventListener("submit", function(e){
+	      .addEventListener("submit", funtion(e){
 	         //만일 로그인 하지 않았으면 
 	         if(!isLogin){
 	            //폼 전송을 막고 
@@ -168,7 +168,6 @@
 	               "${pageContext.request.contextPath}/users/loginform?url=${pageContext.request.contextPath}/review/reviewdetail?review_num=${dto.review_num}";
 	         }
 	    });
-	   
-	</script>
+	</script> -->
 </body>
 </html>

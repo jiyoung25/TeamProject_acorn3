@@ -64,7 +64,7 @@
 		WHERE review_num=#{review_num}
 	</select>
 	
-	<update id="addViewCount" parameterType="int">
+	<update id="addReviewCount" parameterType="int">
 		UPDATE review
 		SET viewcount = viewcount+1
 		WHERE review_num=#{review_num}

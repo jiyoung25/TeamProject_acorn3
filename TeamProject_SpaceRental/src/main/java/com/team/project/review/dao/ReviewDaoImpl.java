@@ -41,8 +41,8 @@ public class ReviewDaoImpl implements ReviewDao{
 	}
 
 	@Override
-	public void addViewCount(int num) {
-		session.update("review.addViewCount", num);
+	public void addReviewCount(int review_num) {
+		session.update("review.addReviewCount", review_num);
 	}
 
 	@Override

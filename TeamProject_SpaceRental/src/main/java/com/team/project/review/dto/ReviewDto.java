@@ -132,6 +132,5 @@ public class ReviewDto {
 	public void setNextNum(int nextNum) {
 		this.nextNum = nextNum;
 	}
-
 	
 }

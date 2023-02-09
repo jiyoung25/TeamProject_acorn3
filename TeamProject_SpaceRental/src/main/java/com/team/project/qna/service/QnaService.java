@@ -6,7 +6,7 @@ import com.team.project.qna.dto.QnaCommentDto;
 import com.team.project.qna.dto.QnaDto;
 
 public interface QnaService {
-	public void getList(HttpServletRequest request);
+	public void getQnaList(HttpServletRequest request);
 	public void getDetail(HttpServletRequest request);
 	public void saveContent(QnaDto dto);
 	public void updateContent(QnaDto dto);

@@ -73,7 +73,7 @@ public class ReviewServiceImpl implements ReviewService{
 		//자세히 보여줄 글번호를 읽어온다. 
 		int num=Integer.parseInt(request.getParameter("review_num"));
 		//조회수 올리기
-		reviewDao.addViewCount(num);
+		reviewDao.addReviewCount(num);
 		//ReviewDto 객체를 생성해서 
 		ReviewDto dto=new ReviewDto();
 		//자세히 보여줄 글번호를 넣어준다. 
