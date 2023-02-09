@@ -21,14 +21,17 @@ import org.springframework.web.servlet.ModelAndView;
 import com.team.project.qna.dto.QnaCommentDto;
 import com.team.project.qna.dto.QnaDto;
 import com.team.project.qna.service.QnaService;
+import com.team.project.users.service.UsersService;
 
 @Controller
 public class QnaController {
 	
 	@Autowired
 	private QnaService service;
+	@Autowired
+	private UsersService usersService;
 	
-	@RequestMapping("qna/qnaupdateform")
+	@RequestMapping("/qna/qnaupdateform")
 	public String updateForm(HttpServletRequest request) {
 		service.getData(request);
 		return "qna/qnaupdateform";
@@ -54,7 +57,7 @@ public class QnaController {
 	
 	@RequestMapping("/qna/qnalist")
 	public String qnalist(HttpServletRequest request) {
-		service.getList(request);
+		service.getQnaList(request);
 		return "qna/qnalist";
 	}
 	
@@ -74,6 +77,8 @@ public class QnaController {
 		String writer=(String)session.getAttribute("id");
 		//dto 는 글의 제목과 내용만 있으므로 글작성자는 직접 넣어준다.
 		dto.setWriter(writer);
+		dto.setSpace_num(space_num);
+		usersService.getQnaUsersnum(session, dto);
 		service.saveContent(dto);
 		return "qna/qnaInsert";
 	}

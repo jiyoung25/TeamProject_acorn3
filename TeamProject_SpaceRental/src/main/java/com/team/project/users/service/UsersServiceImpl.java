@@ -28,6 +28,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.team.project.qna.dto.QnaDto;
 import com.team.project.review.dto.ReviewDto;
 import com.team.project.users.dao.UsersDao;
 import com.team.project.users.dto.UsersDto;
@@ -120,7 +121,16 @@ public class UsersServiceImpl implements UsersService{
 	}
 	
 	@Override
-	public void getInfo2(HttpSession session, ReviewDto dto) {
+	public void getReviewUsersnum(HttpSession session, ReviewDto dto) {
+		//로그인된 아이디를 읽어온다.
+		String id = (String) session.getAttribute("id");
+		//DB 에서 회원 정보를 얻어와서
+		UsersDto usersdto = dao.getData(id);
+		
+		dto.setUsers_num(usersdto.getUsers_num());
+	}
+	@Override
+	public void getQnaUsersnum(HttpSession session, QnaDto dto) {
 		//로그인된 아이디를 읽어온다.
 		String id = (String) session.getAttribute("id");
 		//DB 에서 회원 정보를 얻어와서
