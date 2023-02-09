@@ -7,6 +7,9 @@ import com.team.project.review.dto.ReviewDto;
 public interface ReviewDao {
 	//글목록
 	public List<ReviewDto> getList(ReviewDto dto);
+	public List<ReviewDto> getList2(int users_num);
+	
+	public int getUsersNum(String id);
 	//글의 갯수
 	public int getCount(ReviewDto dto);
 	//글 추가

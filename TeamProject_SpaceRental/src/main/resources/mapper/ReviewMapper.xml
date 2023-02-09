@@ -1,20 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="review">
-
-	<sql id="searchCondition">
-		<choose>
-			<when test="review_title != null and review_content != null">
-				WHERE review_title LIKE '%'||#{review_title}||'%' OR review_content LIKE '%'||#{review_content}||'%'
-			</when>
-			<when test="review_title != null">
-            	WHERE review_title LIKE '%'||#{review_title}||'%'
-			</when>
-			<when test="review_writer != null">
-            	WHERE review_writer LIKE '%'||#{review_writer}||'%'
-			</when>
-		</choose>
-	</sql>
 	
 	<select id="getList" parameterType="reviewDto" resultType="reviewDto">
 		SELECT *
@@ -23,17 +9,27 @@
 			FROM
 				(SELECT review_num,review_writer,review_title,review_content,viewcount,review_regdate 
 				FROM review
-				<include refid="searchCondition"/>
 				ORDER BY review_num DESC) result1)
 		<![CDATA[ 
 		WHERE rnum >= #{startRowNum} AND rnum <= #{endRowNum}
 		]]>
 	</select>
-		
+	
+	<select id="getList2" parameterType="int" resultType="reviewDto">
+		SELECT review_num,review_writer,review_title,review_content,viewcount,TO_CHAR(review_regdate, 'YY.MM.DD HH24:MI') AS review_regdate
+		FROM review
+		WHERE users_num=#{users_num}
+		ORDER BY space_num ASC
+	</select>
+	<select id="getUsersNum" resultType="int" parameterType="String">
+		SELECT users_num
+		FROM space_users
+		WHERE id=#{id}
+	</select>
+	
 	<select id="getCount" parameterType="reviewDto" resultType="int">
 		SELECT NVL(MAX(ROWNUM), 0)
 		FROM review
-		<include refid="searchCondition"/>
 	</select>
 
 	<insert id="insert">

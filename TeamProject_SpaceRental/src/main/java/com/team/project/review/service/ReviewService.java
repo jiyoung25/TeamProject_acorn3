@@ -1,14 +1,18 @@
 package com.team.project.review.service;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.web.servlet.ModelAndView;
 
 import com.team.project.review.dto.ReviewDto;
-import com.team.project.users.dto.UsersDto;
 
 
 
 public interface ReviewService {
 	public void getList(HttpServletRequest request);
+	public void getList2(ModelAndView mView, HttpServletRequest request);
+	public void getUsersNum(HttpServletRequest request, HttpSession session);
 	public void getDetail(HttpServletRequest request);
 	public void saveContent(ReviewDto dto);
 	public void updateContent(ReviewDto dto);
