@@ -22,7 +22,7 @@ public class ReservServiceImpl implements ReservService {
 	}
 
 	@Override
-	public List<ReservDto> reservationlist(HttpServletRequest request, HttpSession session) {
+	public List<ReservDto> reservationlist(HttpServletRequest request, HttpSession session, ReservDto dto) {
 		
 		//한 페이지에 몇개씩 표시할 것인지
 		final int PAGE_ROW_COUNT=10;
@@ -45,7 +45,6 @@ public class ReservServiceImpl implements ReservService {
 		int endRowNum=pageNum*PAGE_ROW_COUNT;
 				
 		//ReservDto 객체에 startRowNum 과 endRowNum 을 담는다.
-		ReservDto dto=new ReservDto();
 		dto.setStartRowNum(startRowNum);
 		dto.setEndRowNum(endRowNum);
 		dto.setUsers_id((String)session.getAttribute("id"));
@@ -56,8 +55,7 @@ public class ReservServiceImpl implements ReservService {
 		List<ReservDto> list = null;
 		int totalRow=0;
 		list = dao.getReservToSeller(dto);
-		totalRow = dao.getCount((String)session.getAttribute("id"));
-		System.out.println(list);
+		totalRow = dao.getSellerCount(dto);
 						
 		//하단 시작 페이지 번호 
 		int startPageNum = 1 + ((pageNum-1)/PAGE_DISPLAY_COUNT)*PAGE_DISPLAY_COUNT;
@@ -78,19 +76,12 @@ public class ReservServiceImpl implements ReservService {
 		request.setAttribute("totalPageCount", totalPageCount);
 		request.setAttribute("list", list);
 		request.setAttribute("totalRow", totalRow);
+		request.setAttribute("pathQuery", request.getQueryString());
 		
 		return dao.getReservToSeller(dto);
 	}
-
-	@Override
-	public List<ReservDto> reservationOkList(ReservDto dto) {
-		return null;
-	}
-
-	@Override
-	public List<ReservDto> reservationFailList(ReservDto dto) {
-		return null;
-	}
 	
-	
+	public void checkReserv(ReservDto dto) {
+		dao.checkReserv(dto);
+	}
 }

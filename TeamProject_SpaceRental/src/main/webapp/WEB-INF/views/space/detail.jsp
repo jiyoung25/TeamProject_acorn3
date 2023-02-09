@@ -85,14 +85,16 @@
 			<button type="submit" id="dibSubmitBtn" >제출</button>
 		</form>
 		<!-- 예약 폼 -->
-		<form id="selectTime" action="${pageContext.request.contextPath}/space/reservation" method="POST">
+		<form id="selectTime" action="${pageContext.request.contextPath}/space/reservation" method="POST" v-on:submit="submitBtnClicked">
 			<div class="reservationForm">
 				<div>
 						<img src="${pageContext.request.contextPath}/${spaceDto.mainImagePath }"/>
 				</div>
 				<div>
+					<h3> Reservation Form </h3>
 					<%--최소: 내일부터, 최대: 2달 --%>
-					<input type="date" name="reserv_date" min="${minday }" max="${maxday }" v-model="day" v-on:input="dayBtnClicked" />
+					<label for="reserv_date">날짜 선택</label>
+					<input type="date" id="reserv_date" name="reserv_date" min="${minday }" max="${maxday }" v-model="day" v-on:input="dayBtnClicked" />
 					<br />
 					<p>선택하신 날짜의 시간당 요금은 1000원 입니다.</p>
 					
@@ -103,17 +105,18 @@
 						<p id="noneVisible">{{count}}{{time1}}{{time2}}</p>
 						<br />
 						<h3>선택 정보</h3>
-						<select name="reserv_count" id="reserv_count" v-on:click="reservCountSelected">
+						<label for="reserv_count">인원 선택</label>
+						<select name="reserv_count" id="reserv_count" v-bind:value="reserv_count_value" v-on:click="reservCountSelected">
 							<option value="0">--</option>
 							<option value="1">1명</option>
 							<option value="2">2명</option>
 							<option value="3">3명</option>
 							<option value="4">4명</option>
 						</select>
-						{{reserv_count}}
 						<p>입실 시간:{{checkInTime}}</p>
 						<p>퇴실 시간:{{checkOutTime}}</p>
-						<p>남길 말<input type="text" name="reserv_comment" /></p>
+						<label for="reserv_comment">남길 말</label>
+						<input type="text" name="reserv_comment" id="reserv_comment" />
 						<p>비용:{{totalMoney}}</p>
 						<br />
 						<input type="hidden" name="reserv_time" v-bind:value="timeData" />
@@ -121,11 +124,11 @@
 						<input type="hidden" name="users_id" value="${id }" />
 						<input type="hidden" name="totalMoney" v-bind:value="totalMoney" />
 						<button type="button" v-on:click="resetBtnClicked">다시 선택하기</button>
-					
 					<button type="submit">예약하기</button>
 				</div>
-		</form>
 			</div>
+		</form>
+			
 			
 		<h3 id="space_name">공간 제목</h3>
 		<div class="tmp">
@@ -355,7 +358,8 @@
 				totalMoney:0,
 				day:"",
 				timeData:"",
-				reserv_count:0
+				reserv_count:0,
+				reserv_count_value:0
 			},
 			methods:{
 				timeBtnClicked:function(e){
@@ -386,13 +390,23 @@
 					this.checkInTime=0;
 					this.checkOutTime=0;
 					this.totalMoney=0;
+					this.reserv_count=0;
+					this.reserv_count_value=0;
+					this.day="";
 				},
 				dayBtnClicked:function(){
 					console.log(this.day);
 				},
 				reservCountSelected:function(e){
-					this.reserv_count= e.target.value;
+					this.reserv_count = e.target.value;
+					this.reserv_count_value = e.target.value;
 					this.totalMoney = Math.abs(this.checkOutTime-this.checkInTime)*this.money*this.reserv_count;
+				},
+				submitBtnClicked:function(e){
+					if(this.totalMoney == 0 || this.day==""){
+						e.preventDefault();
+						alert("예약 양식을 다시 확인해주세요.");
+					}
 				}
 				
 			}
