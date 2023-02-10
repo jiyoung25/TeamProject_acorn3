@@ -13,21 +13,27 @@ public class ReservDto {
 	private String reserv_comment; //예약시 판매자에게 남길 말 (요청사항)
 	private int reserv_count; //예약하는 사람 수
 	private String reserv_reg;
+	private String checkReserv;
+	private String isPaid;
 	private int totalMoney;
+	
 	
 	private int startRowNum;
 	private int endRowNum;
+	private int reservCateNum;
 	
 	private int cate_num;
 	private String space_name;
+	private String mainImagePath;
 	
 	public ReservDto() {
 		
 	}
-
+	
 	public ReservDto(int reserv_num, String users_id, int space_num, int seller_num, String reserv_date,
-			String reserv_time, String reserv_comment, int reserv_count, String reserv_reg, int totalMoney,
-			int startRowNum, int endRowNum, int cate_num, String space_name) {
+			String reserv_time, String reserv_comment, int reserv_count, String reserv_reg, String checkReserv,
+			String isPaid, int totalMoney, int startRowNum, int endRowNum, int reservCateNum, int cate_num,
+			String space_name, String mainImagePath) {
 		super();
 		this.reserv_num = reserv_num;
 		this.users_id = users_id;
@@ -38,13 +44,17 @@ public class ReservDto {
 		this.reserv_comment = reserv_comment;
 		this.reserv_count = reserv_count;
 		this.reserv_reg = reserv_reg;
+		this.checkReserv = checkReserv;
+		this.isPaid = isPaid;
 		this.totalMoney = totalMoney;
 		this.startRowNum = startRowNum;
 		this.endRowNum = endRowNum;
+		this.reservCateNum = reservCateNum;
 		this.cate_num = cate_num;
 		this.space_name = space_name;
+		this.mainImagePath = mainImagePath;
 	}
-	
+
 	public int getReserv_num() {
 		return reserv_num;
 	}
@@ -155,5 +165,45 @@ public class ReservDto {
 
 	public void setReserv_reg(String reserv_reg) {
 		this.reserv_reg = reserv_reg;
+	}
+
+	public String getCheckReserv() {
+		return checkReserv;
+	}
+
+	public void setCheckReserv(String checkReserv) {
+		this.checkReserv = checkReserv;
+	}
+
+	public String getIsPaid() {
+		return isPaid;
+	}
+
+	public void setIsPaid(String isPaid) {
+		this.isPaid = isPaid;
+	}
+
+	public int getReserv_cate_num() {
+		return reservCateNum;
+	}
+
+	public void setReserv_cate_num(int reserv_cate_num) {
+		this.reservCateNum = reserv_cate_num;
+	}
+
+	public int getReservCateNum() {
+		return reservCateNum;
+	}
+
+	public void setReservCateNum(int reservCateNum) {
+		this.reservCateNum = reservCateNum;
+	}
+
+	public String getMainImagePath() {
+		return mainImagePath;
+	}
+
+	public void setMainImagePath(String mainImagePath) {
+		this.mainImagePath = mainImagePath;
 	}
 }

@@ -49,7 +49,7 @@
               <ul class="navbar-nav justify-content-end flex-grow-1 pe-3 ml-3 text-center fw-bold">
                  <!-- 판매자 예약list -->   
                  <li class="nav-item">
-                   <a class="nav-link " href="${pageContext.request.contextPath}/seller/reservationlist">예약 리스트 확인</a>
+                   <a class="nav-link " href="${pageContext.request.contextPath}/seller/reservation/reservationlist">예약 리스트 확인</a>
                  </li>
                  <hr class="my-2">
                 <!-- 판매자 qnalist -->

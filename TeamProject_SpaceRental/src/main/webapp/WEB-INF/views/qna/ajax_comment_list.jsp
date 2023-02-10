@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<<<<<<< HEAD
-
 	<%-- 네비바 --%>
 	<c:choose>
 		<c:when test="${empty sessionScope.id }">
@@ -84,7 +82,6 @@
 
 	   <!-- footer include -->
 	  <jsp:include page="/WEB-INF/include/footer.jsp"/>
-=======
 <c:forEach var="tmp" items="${commentList }">
    <c:choose>
       <c:when test="${tmp.deleted eq 'yes' }">
@@ -144,4 +141,3 @@
       </c:otherwise>
    </c:choose>
 </c:forEach> 
->>>>>>> refs/remotes/origin/daheen

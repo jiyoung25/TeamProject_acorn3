@@ -9,7 +9,9 @@ import com.team.project.reserv.dto.ReservDto;
 
 public interface ReservService {
 	public void insert(ReservDto dto, HttpSession session);
-	public List<ReservDto> reservationlist(HttpServletRequest request, HttpSession session);
-	public List<ReservDto> reservationOkList(ReservDto dto);
-	public List<ReservDto> reservationFailList(ReservDto dto);
+	public List<ReservDto> reservationlistToSeller(HttpServletRequest request, HttpSession session, ReservDto dto);
+	public void checkReserv(ReservDto dto);
+	public List<ReservDto> reservationlistToUser(HttpServletRequest request, HttpSession session, ReservDto dto);
+	public void updatePaid(ReservDto dto);
+	public List<ReservDto> getReservTime(String reserv_date);
 }

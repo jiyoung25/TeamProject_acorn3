@@ -1,28 +1,92 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="reserv">
+	<!-- 
+		경우1: 예약 요청 들어옴
+		경우2: 예약 요청 거절
+		경우3: 예약 요청 수락 & 돈 아직 안냄
+		경우4: 예약 요청 수락 & 돈 냄
+	 -->
+	<sql id="searchCondition">
+		<choose>
+			<when test="checkReserv == null and isPaid == null">
+				reservationform.checkReserv IS NULL AND
+			</when>
+			<when test="checkReserv.equals('false')">
+				reservationform.checkReserv = 'false' AND
+			</when>
+			<when test="checkReserv.equals('true') and isPaid == null">
+				reservationform.checkReserv = 'true' AND reservationform.isPaid IS NULL AND
+			</when>
+			<when test="checkReserv.equals('true') and isPaid.equals('true')">
+				reservationform.checkReserv = 'true' AND reservationform.isPaid ='true' AND
+			</when>
+		</choose>
+	</sql>
+	<sql id="payCondition">
+		<choose>
+			<when test="isPaid.equals('false')">
+				, checkReserv='false'
+			</when>
+		</choose>
+	</sql>
+	
+	
 	<insert id="insert" parameterType="reservDto">
 		INSERT INTO reservationform
 		(reserv_num, users_id, space_num, reserv_date, reserv_time, reserv_comment, reserv_count, totalMoney, reserv_reg)
 		VALUES(reservationform_seq.NEXTVAL, #{users_id}, #{space_num}, #{reserv_date}, #{reserv_time}, #{reserv_comment}, #{reserv_count}, #{totalMoney}, SYSDATE)
 	</insert>
-	<!-- users_id는 예약자의 id,  -->
+	<!-- seller가 얻어가는 reservlist목록 -->
 	<select id="getReservToSeller" resultType="reservDto" parameterType="reservDto" >
 		SELECT result2.*
 		FROM
-			(SELECT reservationform.reserv_num, result1.cate_num, reservationform.users_id, reservationform.space_num, result1.space_name, reservationform.reserv_date, reservationform.reserv_time, reservationform.reserv_comment, reservationform.reserv_count, reservationform.totalMoney, reservationform.reserv_reg, rownum rnum
+			(SELECT reservationform.checkReserv, reservationform.isPaid, reservationform.reserv_num, result1.cate_num, reservationform.users_id, reservationform.space_num, result1.space_name, reservationform.reserv_date, reservationform.reserv_time, reservationform.reserv_comment, reservationform.reserv_count, reservationform.totalMoney, reservationform.reserv_reg, rownum rnum
 			FROM (
 				SELECT seller_space.*, cate_num
 				FROM seller_space
 				INNER JOIN space_category ON seller_space.cate_name=space_category.cate_name)result1
 			INNER JOIN reservationform ON result1.space_num=reservationform.space_num
-			WHERE users_num=(SELECT MAX(users_num) FROM seller_space WHERE users_num = (select users_num FROM space_users WHERE id=#{users_id})))result2
+			WHERE <include refid="searchCondition"/> users_num=(SELECT MAX(users_num) FROM seller_space WHERE users_num = (select users_num FROM space_users WHERE id=#{users_id})))result2
 		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
 	</select>
-	<select id="getCount" resultType="int" parameterType="String">
+	<select id="getSellerCount" resultType="int" parameterType="reservDto">
 		SELECT NVL(MAX(ROWNUM), 0)
 		FROM reservationform
 		INNER JOIN seller_space ON reservationform.space_num=seller_space.space_num
-		WHERE seller_space.users_num = (SELECT MAX(users_num) FROM seller_space WHERE users_num = (select users_num FROM space_users WHERE id = #{users_id}))
+		WHERE <include refid="searchCondition"/> seller_space.users_num = (SELECT MAX(users_num) FROM seller_space WHERE users_num = (select users_num FROM space_users WHERE id = #{users_id}))
+	</select>
+	<update id="checkReserv" parameterType="reservDto">
+		UPDATE reservationform
+		SET checkReserv = #{checkReserv}
+		WHERE reserv_num = #{reserv_num}
+	</update>
+	
+	<!-- user가 얻어가는 reservlist목록 -->
+	<select id="getReservToUser" resultType="reservDto" parameterType="reservDto" >
+		SELECT * 
+		FROM (SELECT result1.*, rownum as rnum
+				FROM (SELECT reservationform.*, A.space_name, A.mainImagePath, A.cate_num
+						FROM (SELECT seller_space.*, space_category.cate_num 
+								FROM seller_space 
+								INNER JOIN space_category ON seller_space.cate_name=space_category.cate_name) A
+						INNER JOIN reservationform ON reservationform.space_num = A.space_num
+						WHERE <include refid="searchCondition"/> users_id = #{users_id})result1) 
+		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
+	</select>
+	<select id="getUserReservCount" resultType="int" parameterType="reservDto">
+		SELECT NVL(MAX(ROWNUM), 0)
+		FROM reservationform
+		WHERE <include refid="searchCondition"/> users_id = #{users_id}
+	</select>
+	<update id="updatePaid" parameterType="reservDto">
+		UPDATE reservationform
+		SET isPaid = #{isPaid}<include refid="payCondition"/>
+		WHERE reserv_num = #{reserv_num}
+	</update>
+	<select id="getTime" parameterType="String" resultType="reservDto">
+		SELECT reserv_time, reserv_num
+		FROM reservationform
+		WHERE reserv_date = #{reserv_date}
 	</select>
 </mapper>

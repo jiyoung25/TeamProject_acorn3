@@ -10,6 +10,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <style>
 	
 	.reservationForm{
@@ -85,35 +86,41 @@
 			<button type="submit" id="dibSubmitBtn" >제출</button>
 		</form>
 		<!-- 예약 폼 -->
-		<form id="selectTime" action="${pageContext.request.contextPath}/space/reservation" method="POST">
+		<form id="selectTime" action="${pageContext.request.contextPath}/space/reservation" method="POST" v-on:submit="submitBtnClicked">
 			<div class="reservationForm">
 				<div>
 						<img src="${pageContext.request.contextPath}/${spaceDto.mainImagePath }"/>
 				</div>
 				<div>
+					<h3> Reservation Form </h3>
 					<%--최소: 내일부터, 최대: 2달 --%>
-					<input type="date" name="reserv_date" min="${minday }" max="${maxday }" v-model="day" v-on:input="dayBtnClicked" />
+					<label for="reserv_date">날짜 선택</label>
+					<input type="date" id="reserv_date" name="reserv_date" min="${minday }" max="${maxday }" v-model="day" v-on:input="dayBtnClicked"/>
 					<br />
 					<p>선택하신 날짜의 시간당 요금은 1000원 입니다.</p>
 					
 						<c:forEach var="i" begin="0" end="24">
-							<button type="button" class="timeBtn btn btn-info" value="${i }"
+							<button type="button" class="timeBtn btn btn-info" value="${i }" id="timeBtn${i }"
 								v-on:click="timeBtnClicked">${i }:00</button>
 						</c:forEach>
+						<ul v-for="item in timeList">
+							<li>{{item.reserv_time}}</li>
+						</ul>
 						<p id="noneVisible">{{count}}{{time1}}{{time2}}</p>
 						<br />
 						<h3>선택 정보</h3>
-						<select name="reserv_count" id="reserv_count" v-on:click="reservCountSelected">
+						<label for="reserv_count">인원 선택</label>
+						<select name="reserv_count" id="reserv_count" v-bind:value="reserv_count_value" v-on:click="reservCountSelected">
 							<option value="0">--</option>
 							<option value="1">1명</option>
 							<option value="2">2명</option>
 							<option value="3">3명</option>
 							<option value="4">4명</option>
 						</select>
-						{{reserv_count}}
 						<p>입실 시간:{{checkInTime}}</p>
 						<p>퇴실 시간:{{checkOutTime}}</p>
-						<p>남길 말<input type="text" name="reserv_comment" /></p>
+						<label for="reserv_comment">남길 말</label>
+						<input type="text" name="reserv_comment" id="reserv_comment" />
 						<p>비용:{{totalMoney}}</p>
 						<br />
 						<input type="hidden" name="reserv_time" v-bind:value="timeData" />
@@ -121,11 +128,11 @@
 						<input type="hidden" name="users_id" value="${id }" />
 						<input type="hidden" name="totalMoney" v-bind:value="totalMoney" />
 						<button type="button" v-on:click="resetBtnClicked">다시 선택하기</button>
-					
 					<button type="submit">예약하기</button>
 				</div>
-		</form>
 			</div>
+		</form>
+			
 			
 		<h3 id="space_name">공간 제목</h3>
 		<div class="tmp">
@@ -345,6 +352,7 @@
 		})
 	</script>
 	<script>
+		
 			let selectTime = new Vue({
 			el:"#selectTime",
 			data:{
@@ -357,16 +365,20 @@
 				totalMoney:0,
 				day:"",
 				timeData:"",
-				reserv_count:0
+				reserv_count:0,
+				reserv_count_value:0,
+				timeList:{}
 			},
 			methods:{
 				timeBtnClicked:function(e){
 					this.count++;
 					if(this.count == 1){
 						this.time1 = e.target.value;
+						this.time1 *= 1
 					}
 					if(this.count == 2){
 						this.time2 = e.target.value;
+						this.time2 *= 1
 						if(this.time1==this.time2){
 							this.count==0;
 							alert("시간을 다시 선택해주세요.");
@@ -377,6 +389,7 @@
 							this.checkInTime = this.time1;
 							this.checkOutTime = this.time2;
 						}
+						
 						this.totalMoney = Math.abs(this.checkOutTime-this.checkInTime)*this.money*this.reserv_count;
 						this.timeData= this.checkInTime + '-' +this.checkOutTime
 					}
@@ -388,13 +401,63 @@
 					this.checkInTime=0;
 					this.checkOutTime=0;
 					this.totalMoney=0;
+					this.reserv_count=0;
+					this.reserv_count_value=0;
 				},
-				dayBtnClicked:function(){
+				dayBtnClicked:async function(){
 					console.log(this.day);
+					//정보를 리셋한다. (다른 날짜를 갔다 오면 현재 입력한 예약한 시간이 미리 선택되어있을 수도 있음.)
+					this.resetBtnClicked();
+					for(let i=0; i<=24; i++){
+						let timeBtn = "#timeBtn"+i;
+						document.querySelector(timeBtn).classList.remove("disabled");
+						document.querySelector(timeBtn).classList.remove("duplicate");
+					}
+					
+					//비동기 처리한 결과를 바로 vue의 data에 적용해서 쓰기 위해, fetch가 아닌 async/await를 사용한다.
+					const response = await axios.get('${pageContext.request.contextPath}/space/reservation/getTime?reserv_date='+this.day);
+					//받아온 결과를 vue의 state로 관리한다.
+					this.timeList = response.data;
+					
+					//리스트를 돈다.
+					let startToEndTime = [];
+					for(let i=0; i<this.timeList.length; i++){
+						//시작 시간과 끝 시간을 구한다.
+						startToEndTime = this.timeList[i].reserv_time.split("-");
+						let start = startToEndTime[0]*1;
+						console.log(start);
+						let end = startToEndTime[1]*1;
+						console.log(end);
+						let cnt = start;
+						//시작시간과 끝 시간은 2번 겹치면 disabled 처리한다. (ex. A는 12-15시 예약, B는 15-18시 예약 고려함)
+						for(let j=start; j<=end; j++){
+							if( (start != 0 && cnt == start) || (end != 24 && cnt == end) ){
+								let timeBtn = "#timeBtn"+j;
+								if(document.querySelector(timeBtn).classList.contains("duplicate")){
+									document.querySelector(timeBtn).classList.add("disabled");
+								} else{
+									document.querySelector(timeBtn).classList.add("duplicate");
+								}
+								cnt++;
+							} else {
+								let timeBtn = "#timeBtn"+j;
+								document.querySelector(timeBtn).classList.add("disabled");
+								cnt++;
+							}
+						}
+					}
+					
 				},
 				reservCountSelected:function(e){
-					this.reserv_count= e.target.value;
+					this.reserv_count = e.target.value;
+					this.reserv_count_value = e.target.value;
 					this.totalMoney = Math.abs(this.checkOutTime-this.checkInTime)*this.money*this.reserv_count;
+				},
+				submitBtnClicked:function(e){
+					if(this.totalMoney == 0 || this.day==""){
+						e.preventDefault();
+						alert("예약 양식을 다시 확인해주세요.");
+					}
 				}
 				
 			}

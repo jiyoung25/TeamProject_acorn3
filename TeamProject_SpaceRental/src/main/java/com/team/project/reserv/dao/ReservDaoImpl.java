@@ -25,8 +25,32 @@ public class ReservDaoImpl implements ReservDao {
 	}
 
 	@Override
-	public int getCount(String users_id) {
-		return session.selectOne("reserv.getCount", users_id);
+	public int getSellerCount(ReservDto dto) {
+		return session.selectOne("reserv.getSellerCount", dto);
+	}
+	
+	public void checkReserv(ReservDto dto) {
+		session.update("reserv.checkReserv", dto);
+	}
+
+	@Override
+	public List<ReservDto> getReservToUser(ReservDto dto) {
+		return session.selectList("reserv.getReservToUser", dto);
+	}
+
+	@Override
+	public int getUserReservCount(ReservDto dto) {
+		return session.selectOne("reserv.getUserReservCount", dto);
+	}
+
+	@Override
+	public void updatePaid(ReservDto dto) {
+		session.update("reserv.updatePaid", dto);
+	}
+
+	@Override
+	public List<ReservDto> getTime(String reserv_date) {
+		return session.selectList("reserv.getTime", reserv_date);
 	}
 	
 	
