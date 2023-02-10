@@ -4,12 +4,12 @@
 	<!-- 
 		경우1: 예약 요청 들어옴
 		경우2: 예약 요청 거절
-		경우3: 예약 요청 수락 & 돈 안냄
+		경우3: 예약 요청 수락 & 돈 아직 안냄
 		경우4: 예약 요청 수락 & 돈 냄
 	 -->
 	<sql id="searchCondition">
 		<choose>
-			<when test="checkReserv == null">
+			<when test="checkReserv == null and isPaid == null">
 				reservationform.checkReserv IS NULL AND
 			</when>
 			<when test="checkReserv.equals('false')">
@@ -18,8 +18,15 @@
 			<when test="checkReserv.equals('true') and isPaid == null">
 				reservationform.checkReserv = 'true' AND reservationform.isPaid IS NULL AND
 			</when>
-			<when test="checkReserv.equals('true') and isPaid != null">
-				reservationform.checkReserv = 'true' AND reservationform.isPaid IS NOT NULL AND
+			<when test="checkReserv.equals('true') and isPaid.equals('true')">
+				reservationform.checkReserv = 'true' AND reservationform.isPaid ='true' AND
+			</when>
+		</choose>
+	</sql>
+	<sql id="payCondition">
+		<choose>
+			<when test="isPaid.equals('false')">
+				, checkReserv='false'
 			</when>
 		</choose>
 	</sql>
@@ -57,6 +64,29 @@
 	
 	<!-- user가 얻어가는 reservlist목록 -->
 	<select id="getReservToUser" resultType="reservDto" parameterType="reservDto" >
-		SELECT
+		SELECT * 
+		FROM (SELECT result1.*, rownum as rnum
+				FROM (SELECT reservationform.*, A.space_name, A.mainImagePath, A.cate_num
+						FROM (SELECT seller_space.*, space_category.cate_num 
+								FROM seller_space 
+								INNER JOIN space_category ON seller_space.cate_name=space_category.cate_name) A
+						INNER JOIN reservationform ON reservationform.space_num = A.space_num
+						WHERE <include refid="searchCondition"/> users_id = #{users_id})result1) 
+		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
+	</select>
+	<select id="getUserReservCount" resultType="int" parameterType="reservDto">
+		SELECT NVL(MAX(ROWNUM), 0)
+		FROM reservationform
+		WHERE <include refid="searchCondition"/> users_id = #{users_id}
+	</select>
+	<update id="updatePaid" parameterType="reservDto">
+		UPDATE reservationform
+		SET isPaid = #{isPaid}<include refid="payCondition"/>
+		WHERE reserv_num = #{reserv_num}
+	</update>
+	<select id="getTime" parameterType="String" resultType="reservDto">
+		SELECT reserv_time, reserv_num
+		FROM reservationform
+		WHERE reserv_date = #{reserv_date}
 	</select>
 </mapper>

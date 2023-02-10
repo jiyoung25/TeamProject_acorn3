@@ -28,17 +28,10 @@ public class ReservController {
 	}
 	
 	@RequestMapping("/seller/reservation/reservationlist")
-	public String reservationlist(HttpServletRequest request, HttpSession session, ReservDto dto) {
-		service.reservationlist(request, session, dto);
+	public String reservationlistToSeller(HttpServletRequest request, HttpSession session, ReservDto dto) {
+		service.reservationlistToSeller(request, session, dto);
 		
 		return "seller/reservation/reservationlist";
-	}
-	
-	@RequestMapping("/seller/reservation/reservationlist2")
-	public String reservationlist2(HttpServletRequest request, HttpSession session, ReservDto dto) {
-		service.reservationlist(request, session, dto);
-		
-		return "seller/reservation/reservationlist2";
 	}
 	
 	@RequestMapping("/seller/reservation/check-reserv")
@@ -50,10 +43,34 @@ public class ReservController {
 		return "seller/reservation/check-reserv";
 	}
 	
-	//ajax로 reservationlist받는 것
-	@RequestMapping("/seller/reservation/getreservationlist")
+	//ajax로 reservationlistToSeller받는 것
+	/*
+	@RequestMapping("/seller/reservation/getreservationlistToSeller")
 	@ResponseBody
-	public List<ReservDto> getreservationlist(HttpServletRequest request, HttpSession session, ReservDto dto) {
-		return service.reservationlist(request, session, dto);
+	public List<ReservDto> getreservationlistToSeller(HttpServletRequest request, HttpSession session, ReservDto dto) {
+		return service.reservationlistToSeller(request, session, dto);
+	}
+	*/
+	
+	@RequestMapping("/users/reservationlist")
+	public String reservationlistToUser(HttpServletRequest request, HttpSession session, ReservDto dto) {
+		service.reservationlistToUser(request, session, dto);
+		
+		return "users/reservationlist";
+	}
+	
+	@RequestMapping("/users/reservation/goPay")
+	@ResponseBody
+	public String goPay(ReservDto dto, String num, String isPaid){
+		dto.setReserv_num(Integer.parseInt(num));
+		dto.setIsPaid(isPaid);
+		service.updatePaid(dto);
+		return "users/reservation/goPay";
+	}
+	
+	@RequestMapping("/space/reservation/getTime")
+	@ResponseBody
+	public List<ReservDto> getReservTime(String reserv_date){
+		return service.getReservTime(reserv_date);
 	}
 }

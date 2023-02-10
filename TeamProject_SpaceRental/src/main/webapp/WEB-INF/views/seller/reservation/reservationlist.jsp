@@ -14,7 +14,6 @@
 <script
   type="text/javascript"
   src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
 </head>
 <body>
 	<%-- 네비바 --%>
@@ -41,23 +40,32 @@
 	<div class="container">
 		<%-- 예약리스트 메뉴 --%>
 		<div id="reservMenu">
-			<button v-on:click="onReservMenu(event)" 
-				onClick="location.href='${pageContext.request.contextPath}/seller/reservation/reservationlist?reservCateNum=1'" 
+			<button onClick="location.href='${pageContext.request.contextPath}/seller/reservation/reservationlist?reservCateNum=1'" 
 				id="request_reserv" value="1" 
 				> 예약 요청 </button>
-			<button v-on:click="onReservMenu(event)" 
-			 	onClick="location.href='${pageContext.request.contextPath}/seller/reservation/reservationlist?checkReserv=true&reservCateNum=2'" 
+			<button onClick="location.href='${pageContext.request.contextPath}/seller/reservation/reservationlist?checkReserv=true&reservCateNum=2'" 
 				id="wait_pay" value="2"> 결제 대기 </button>
-			<button v-on:click="onReservMenu(event)"
-				onClick="location.href='${pageContext.request.contextPath}/seller/reservation/reservationlist?checkReserv=true&isPaid=true&reservCateNum=3'" 
+			<button onClick="location.href='${pageContext.request.contextPath}/seller/reservation/reservationlist?checkReserv=true&isPaid=true&reservCateNum=3'" 
 				id="complete_pay" value="3"> 결제 완료 </button>
-			<button v-on:click="onReservMenu(event)" 
-				onClick="location.href='${pageContext.request.contextPath}/seller/reservation/reservationlist?checkReserv=false&reservCateNum=4'" 
+			<button onClick="location.href='${pageContext.request.contextPath}/seller/reservation/reservationlist?checkReserv=false&reservCateNum=4'" 
 				id="pass_reserv" value="4"> 거절/지난 예약 </button>
 		</div>
 		
    		<%-- 예약 목록 --%>
-		<h3>예약목록</h3>
+		<c:choose>
+			<c:when test="${param.reservCateNum eq 1 }">
+				<h3>예약 요청 목록</h3><p>들어온 예약 요청 목록입니다.</p>
+			</c:when>
+			<c:when test="${param.reservCateNum eq 2 }">
+				<h3>결제 대기 목록</h3><p>결제 대기 중인 예약 목록입니다.</p>
+			</c:when>
+			<c:when test="${param.reservCateNum eq 3 }">
+				<h3>결제 완료 목록</h3><p>결제가 완료된 목록입니다.</p>
+			</c:when>
+			<c:when test="${param.reservCateNum eq 4 }">
+				<h3>거절/지난 예약</h3><p>예약이 취소된 목록입니다.</p>
+			</c:when>
+		</c:choose>
 		<div id="reservList">
 			<table class="table">
 			  <thead>
@@ -71,7 +79,7 @@
 						<th scope="row">예약 등록일</th>
 						<th scope="row">총 비용</th>
 						<c:choose>
-							<c:when test="${param.reservCateNum eq 1 }">
+							<c:when test="${(param.reservCateNum eq 1) or (empty param.reservCateNum)}">
 								<th scope="row">예약 수락</th>
 								<th scope="row">예약 거절</th>
 							</c:when>
@@ -93,7 +101,7 @@
 								<td>${tmp.reserv_reg }</td>
 								<td>${tmp.totalMoney }</td>
 								<c:choose>
-									<c:when test="${param.reservCateNum eq 1 }">
+									<c:when test="${(param.reservCateNum eq 1) or (empty param.reservCateNum)}">
 										<td><button id="okBtn${tmp.reserv_num }" type="button" onClick="checkBtn(this.id)">Ok</button></td>
 										<td><button id="rejectBtn${tmp.reserv_num }" type="button" onClick="checkBtn(this.id)">Reject</button></td>
 									</c:when>
@@ -135,7 +143,7 @@
 			</ul>
 		</nav>
 	</div>
-	<!-- 예약 요청 수락/거절 버튼 -->
+	<!-- 결제 수락/ 예약 거절 버튼 -->
 	<script>
 		const checkBtn = function(clickedId){
 			//수락- true, 거절- false
@@ -151,56 +159,6 @@
             	  location.reload();
               })
 		}
-	</script>
-	
-	<!-- 예약 리스트 목록 나누기 -->
-	<%-- ajax를 사용해 table 만들기 --%>
-	<script>
-		let reservMenu = new Vue({
-			el:"#reservMenu",
-			methods:{
-				onReservMenu : function(event){
-					let menuValue = event.target.value;
-					if(menuValue == 1){
-						fetch("${pageContext.request.contextPath}/seller/reservation/getreservationlist")
-			              .then(function(response){
-			                  console.log(response);
-			                  return response.text();
-			              })
-			              .then(function(data){
-			            	  console.log(data);
-			              })
-					} else if(menuValue == 2){
-						fetch("${pageContext.request.contextPath}/seller/reservation/getreservationlist?checkReserv=true")
-			              .then(function(response){
-			                  console.log(response);
-			                  return response.text();
-			              })
-			              .then(function(data){
-			            	  console.log(data);
-			              })
-					} else if(menuValue == 3){
-						fetch("${pageContext.request.contextPath}/seller/reservation/getreservationlist?checkReserv=true&isPaid=true")
-			              .then(function(response){
-			                  console.log(response);
-			                  return response.text();
-			              })
-			              .then(function(data){
-			            	  console.log(data);
-			              })
-					} else if(menuValue == 4){
-						fetch("${pageContext.request.contextPath}/seller/reservation/getreservationlist?checkReserv=false")
-			              .then(function(response){
-			                  console.log(response);
-			                  return response.text();
-			              })
-			              .then(function(data){
-			            	  console.log(data);
-			              })
-					}
-				}
-			}
-		})
 	</script>
 	<!-- footer include -->
 	<jsp:include page="/WEB-INF/include/footer.jsp"/>

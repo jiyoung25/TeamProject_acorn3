@@ -50,7 +50,7 @@
               <ul class="navbar-nav justify-content-end flex-grow-1 pe-3 ml-3 text-center fw-bold">
                  <!-- 사용자 예약 -->   
                  <li class="nav-item">
-                   <a class="nav-link " href="${pageContext.request.contextPath}/users/reservList">나의 예약</a>
+                   <a class="nav-link " href="${pageContext.request.contextPath}/users/reservationlist">나의 예약</a>
                  </li>
                  
                  <hr class="my-2">

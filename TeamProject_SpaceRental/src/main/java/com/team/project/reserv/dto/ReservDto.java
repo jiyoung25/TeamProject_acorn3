@@ -24,6 +24,7 @@ public class ReservDto {
 	
 	private int cate_num;
 	private String space_name;
+	private String mainImagePath;
 	
 	public ReservDto() {
 		
@@ -32,7 +33,7 @@ public class ReservDto {
 	public ReservDto(int reserv_num, String users_id, int space_num, int seller_num, String reserv_date,
 			String reserv_time, String reserv_comment, int reserv_count, String reserv_reg, String checkReserv,
 			String isPaid, int totalMoney, int startRowNum, int endRowNum, int reservCateNum, int cate_num,
-			String space_name) {
+			String space_name, String mainImagePath) {
 		super();
 		this.reserv_num = reserv_num;
 		this.users_id = users_id;
@@ -51,6 +52,7 @@ public class ReservDto {
 		this.reservCateNum = reservCateNum;
 		this.cate_num = cate_num;
 		this.space_name = space_name;
+		this.mainImagePath = mainImagePath;
 	}
 
 	public int getReserv_num() {
@@ -187,5 +189,21 @@ public class ReservDto {
 
 	public void setReserv_cate_num(int reserv_cate_num) {
 		this.reservCateNum = reserv_cate_num;
+	}
+
+	public int getReservCateNum() {
+		return reservCateNum;
+	}
+
+	public void setReservCateNum(int reservCateNum) {
+		this.reservCateNum = reservCateNum;
+	}
+
+	public String getMainImagePath() {
+		return mainImagePath;
+	}
+
+	public void setMainImagePath(String mainImagePath) {
+		this.mainImagePath = mainImagePath;
 	}
 }

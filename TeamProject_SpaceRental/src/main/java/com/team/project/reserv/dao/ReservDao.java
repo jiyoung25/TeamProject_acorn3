@@ -9,4 +9,8 @@ public interface ReservDao {
 	public List<ReservDto> getReservToSeller(ReservDto dto);
 	public int getSellerCount(ReservDto dto);
 	public void checkReserv(ReservDto dto);
+	public List<ReservDto> getReservToUser(ReservDto dto);
+	public int getUserReservCount(ReservDto dto);
+	public void updatePaid (ReservDto dto);
+	public List<ReservDto> getTime(String reserv_date);
 }
