@@ -12,15 +12,15 @@ public class QnaDto {
 	private String writer;
 	private int viewCount;
 	private String regdate;
-	private int startRowNum;
-	private int endRowNum;
-	private int prevNum; //이전글의 글번호
-	private int nextNum; //다음글의 글번호
+	private int qnaStartRowNum;
+	private int qnaEndRowNum;
+	private int qnaPrevNum; //이전글의 글번호
+	private int qnaNextNum; //다음글의 글번호
 	
 	public QnaDto() {}
 
 	public QnaDto(int num, int users_num, int space_num, String title, String content, String writer, int viewCount,
-			String regdate, int startRowNum, int endRowNum, int prevNum, int nextNum) {
+			String regdate, int qnaStartRowNum, int qnaEndRowNum, int qnaPrevNum, int qnaNextNum) {
 		super();
 		this.num = num;
 		this.users_num = users_num;
@@ -30,10 +30,10 @@ public class QnaDto {
 		this.writer = writer;
 		this.viewCount = viewCount;
 		this.regdate = regdate;
-		this.startRowNum = startRowNum;
-		this.endRowNum = endRowNum;
-		this.prevNum = prevNum;
-		this.nextNum = nextNum;
+		this.qnaStartRowNum = qnaStartRowNum;
+		this.qnaEndRowNum = qnaEndRowNum;
+		this.qnaPrevNum = qnaPrevNum;
+		this.qnaNextNum = qnaNextNum;
 	}
 
 	public int getNum() {
@@ -100,36 +100,35 @@ public class QnaDto {
 		this.regdate = regdate;
 	}
 
-	public int getStartRowNum() {
-		return startRowNum;
+	public int getQnaStartRowNum() {
+		return qnaStartRowNum;
 	}
 
-	public void setStartRowNum(int startRowNum) {
-		this.startRowNum = startRowNum;
+	public void setQnaStartRowNum(int qnaStartRowNum) {
+		this.qnaStartRowNum = qnaStartRowNum;
 	}
 
-	public int getEndRowNum() {
-		return endRowNum;
+	public int getQnaEndRowNum() {
+		return qnaEndRowNum;
 	}
 
-	public void setEndRowNum(int endRowNum) {
-		this.endRowNum = endRowNum;
+	public void setQnaEndRowNum(int qnaEndRowNum) {
+		this.qnaEndRowNum = qnaEndRowNum;
 	}
 
-	public int getPrevNum() {
-		return prevNum;
+	public int getQnaPrevNum() {
+		return qnaPrevNum;
 	}
 
-	public void setPrevNum(int prevNum) {
-		this.prevNum = prevNum;
+	public void setQnaPrevNum(int qnaPrevNum) {
+		this.qnaPrevNum = qnaPrevNum;
 	}
 
-	public int getNextNum() {
-		return nextNum;
+	public int getQnaNextNum() {
+		return qnaNextNum;
 	}
 
-	public void setNextNum(int nextNum) {
-		this.nextNum = nextNum;
+	public void setQnaNextNum(int qnaNextNum) {
+		this.qnaNextNum = qnaNextNum;
 	}
-
 }

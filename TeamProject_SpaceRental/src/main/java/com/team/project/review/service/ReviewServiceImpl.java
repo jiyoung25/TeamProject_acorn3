@@ -3,12 +3,15 @@ package com.team.project.review.service;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.team.project.review.dao.ReviewDao;
 import com.team.project.review.dto.ReviewDto;
+import com.team.project.seller.dto.SellerDto;
 import com.team.project.users.dto.UsersDto;
 
 @Service
@@ -67,13 +70,27 @@ public class ReviewServiceImpl implements ReviewService{
 		request.setAttribute("reviewlist", reviewlist);
 		request.setAttribute("totalRow", totalRow);
 	}
-
+	
+	@Override
+	public void getList2(ModelAndView mView, HttpServletRequest request) {
+		String id = (String)request.getSession().getAttribute("id");		
+		int num=reviewDao.getUsersNum(id);
+		List<ReviewDto> reviewList=reviewDao.getList2(num);
+		mView.addObject("reviewList", reviewList);
+	}
+	
+	@Override
+	public void getUsersNum(HttpServletRequest request, HttpSession session) {
+		String id = (String)session.getAttribute("id");
+		request.setAttribute("users_num", reviewDao.getUsersNum(id));
+	}
+	
 	@Override
 	public void getDetail(HttpServletRequest request) {
 		//자세히 보여줄 글번호를 읽어온다. 
 		int num=Integer.parseInt(request.getParameter("review_num"));
 		//조회수 올리기
-		reviewDao.addViewCount(num);
+		reviewDao.addReviewCount(num);
 		//ReviewDto 객체를 생성해서 
 		ReviewDto dto=new ReviewDto();
 		//자세히 보여줄 글번호를 넣어준다. 
@@ -109,5 +126,4 @@ public class ReviewServiceImpl implements ReviewService{
 		//request 에 담아준다.
 		request.setAttribute("dto", dto);
 	}
-	
 }

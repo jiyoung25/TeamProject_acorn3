@@ -46,8 +46,10 @@ public class SpaceController {
 			dto.setSpace_num(space_num);
 			dibService.dibGetDetailData(dto, request);
 		}
-		qnaService.getList(request);
+		
 		reviewService.getList(request);
+		qnaService.getQnaList(request);
+	
 		
 		return("space/detail");
 	}

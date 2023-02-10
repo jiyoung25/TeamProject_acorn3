@@ -1,5 +1,6 @@
 package com.team.project.users.service;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.team.project.qna.dto.QnaDto;
 import com.team.project.review.dto.ReviewDto;
 import com.team.project.users.dto.UsersDto;
 
@@ -19,10 +21,13 @@ public interface UsersService {
 			HttpServletResponse response);
 	public void logout(HttpSession session);
 	public void getInfo(HttpSession session, ModelAndView mView);
-	public void getInfo2(HttpSession session, ReviewDto dto);
+	public void getReviewUsersnum(HttpSession session, ReviewDto dto);
+	public void getQnaUsersnum(HttpSession session, QnaDto dto);
 	public void updateUserPwd(HttpSession session, UsersDto dto, ModelAndView mView);
 	public Map<String, Object> saveProfileImage(HttpServletRequest request, 
 			MultipartFile mFile);
 	public void updateUser(UsersDto dto, HttpSession session);
 	public void deleteUser(HttpSession session, ModelAndView mView);
+	public String getAccessToken(String authorize_code) throws Throwable;
+	public ModelAndView getUserInfo(String access_Token, HttpServletRequest request, ModelAndView mView);
 }

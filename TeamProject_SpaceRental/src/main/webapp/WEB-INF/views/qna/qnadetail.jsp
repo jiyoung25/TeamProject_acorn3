@@ -103,17 +103,16 @@
 	   
 	<div class="container">
 		<%-- 만일 이전글(더 옛날글)의 글번호가 0 이 아니라면 (이전글이 존재한다면) --%>
-		<c:if test="${dto.prevNum ne 0 }">
-			<a href="qnadetail?num=${dto.prevNum }&condition=${condition}&keyword=${encodedK}">이전글</a>
+		<c:if test="${dto.qnaPrevNum ne 0 }">
+			<a href="qnadetail?num=${dto.qnaPrevNum }&condition=${condition}&keyword=${encodedK}">이전글</a>
 		</c:if>
 		<%-- 만일 다음글(더 최신글)의 글번호가 0 이 아니라면 (다음글이 존재한다면) --%>
-		<c:if test="${dto.nextNum ne 0 }">
-			<a href="qnadetail?num=${dto.nextNum }&condition=${condition}&keyword=${encodedK}">다음글</a>
+		<c:if test="${dto.qnaNextNum ne 0 }">
+			<a href="qnadetail?num=${dto.qnaNextNum }&condition=${condition}&keyword=${encodedK}">다음글</a>
 		</c:if>
 		<%-- 만일 검색 키워드가 있다면 --%>
 		<c:if test="${not empty keyword }">
 			<p>
-				<strong>${condition }</strong>조건
 				<strong>${keyword }</strong> 검색어로 검색된 내용 자세히 보기
 			</p>
 		</c:if>
@@ -262,26 +261,26 @@
 
 	</div>
 	
-	   <!-- footer include -->
-	  <jsp:include page="/WEB-INF/include/footer.jsp"/>
+	<!-- footer include -->
+	<jsp:include page="/WEB-INF/include/footer.jsp"/>
 	  
 	<script src="${pageContext.request.contextPath}/js/gura_util.js"></script>
 	<script>
    
-   //클라이언트가 로그인 했는지 여부
-   let isLogin=${ not empty id };
-   
-   document.querySelector(".insert-form")
-      .addEventListener("submit", function(e){
-         //만일 로그인 하지 않았으면 
-         if(!isLogin){
-            //폼 전송을 막고 
-            e.preventDefault();
-            //로그인 폼으로 이동 시킨다.
-            location.href=
-               "${pageContext.request.contextPath}/users/loginform?url=${pageContext.request.contextPath}/qna/qnadetail?num=${dto.num}";
-         }
-      });
+	   //클라이언트가 로그인 했는지 여부
+	   let isLogin=${ not empty id };
+	   
+	   document.querySelector(".insert-form")
+	   		.addEventListener("submit", function(e){
+	         //만일 로그인 하지 않았으면 
+	         if(!isLogin){
+	            //폼 전송을 막고 
+	            e.preventDefault();
+	            //로그인 폼으로 이동 시킨다.
+	            location.href=
+	               "${pageContext.request.contextPath}/users/loginform?url=${pageContext.request.contextPath}/qna/qnadetail?num=${dto.num}";
+	         }
+	    });
    
    /*
       detail

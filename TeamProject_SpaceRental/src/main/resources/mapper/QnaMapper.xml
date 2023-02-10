@@ -26,7 +26,7 @@
             <include refid="searchCondition"/>
             ORDER BY num DESC) result1)
       <![CDATA[ 
-      WHERE rnum >= #{startRowNum} AND rnum <= #{endRowNum}
+      WHERE rnum >= #{qnaStartRowNum} AND rnum <= #{qnaEndRowNum}
       ]]>
 	</select>
    
@@ -38,16 +38,16 @@
 
 	<insert id="insert">
 		INSERT INTO qna
-		(num, writer, title, content, viewCount, regdate)
-		VALUES (qna_seq.NEXTVAL, #{writer}, #{title}, #{content}, #{viewCount}, SYSDATE)
+		(num, writer, title, content, viewCount, regdate, users_num, space_num)
+		VALUES (qna_seq.NEXTVAL, #{writer}, #{title}, #{content}, #{viewCount}, SYSDATE, #{users_num}, #{space_num})
 	</insert>
 	
 	<select id="getData" parameterType="int" resultType="qnaDto">
 		SELECT result1.*
 		FROM
 			(SELECT num,writer,title,content,viewCount,TO_CHAR(regdate, 'YY.MM.DD HH24:MI') AS regdate,
-				LAG(num, 1, 0) OVER (ORDER BY num DESC) prevNum,
-	   			LEAD(num, 1, 0) OVER (ORDER BY num DESC) nextNum
+				LAG(num, 1, 0) OVER (ORDER BY num DESC) qnaPrevNum,
+	   			LEAD(num, 1, 0) OVER (ORDER BY num DESC) qnaNextNum
 			FROM qna) result1
 		WHERE num=#{num}
 	</select>
@@ -56,8 +56,8 @@
 		SELECT result1.*
 		FROM
 			(SELECT num,writer,title,content,viewCount,TO_CHAR(regdate, 'YY.MM.DD HH24:MI') AS regdate,
-				LAG(num, 1, 0) OVER (ORDER BY num DESC) prevNum,
-	   			LEAD(num, 1, 0) OVER (ORDER BY num DESC) nextNum
+				LAG(num, 1, 0) OVER (ORDER BY num DESC) qnaPrevNum,
+	   			LEAD(num, 1, 0) OVER (ORDER BY num DESC) qnaNextNum
 			FROM qna
 			<include refid="searchCondition"></include>
 			)result1

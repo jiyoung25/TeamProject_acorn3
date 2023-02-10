@@ -42,6 +42,5 @@
 	<delete id="delete" parameterType="String">
 		DELETE FROM space_users
 		WHERE id=#{id}
-	</delete>	
-	
+	</delete>
 </mapper>

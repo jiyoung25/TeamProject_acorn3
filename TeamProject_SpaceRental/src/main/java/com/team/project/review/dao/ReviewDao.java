@@ -7,6 +7,9 @@ import com.team.project.review.dto.ReviewDto;
 public interface ReviewDao {
 	//글목록
 	public List<ReviewDto> getList(ReviewDto dto);
+	public List<ReviewDto> getList2(int users_num);
+	
+	public int getUsersNum(String id);
 	//글의 갯수
 	public int getCount(ReviewDto dto);
 	//글 추가
@@ -16,7 +19,7 @@ public interface ReviewDao {
 	//키워드를 활용한 글 정보 얻어오기 (키워드에 부합하는 글 중에서 이전글, 다음글의 글번호도 얻어올수 있도록)
 	public ReviewDto getData(ReviewDto dto);
 	//조회수 증가 시키기
-	public void addViewCount(int num);
+	public void addReviewCount(int num);
 	//글 삭제
 	public void delete(int num);
 	//글 수정

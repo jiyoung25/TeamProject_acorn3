@@ -18,7 +18,18 @@ public class ReviewDaoImpl implements ReviewDao{
 		
 		return session.selectList("review.getList", dto);
 	}
-
+	
+	@Override
+	public List<ReviewDto> getList2(int users_num) {
+		
+		return session.selectList("review.getList2", users_num);
+	}
+	
+	@Override
+	public int getUsersNum(String id) {
+		return session.selectOne("review.getUsersNum", id);
+	}
+	
 	@Override
 	public int getCount(ReviewDto dto) {
 		
@@ -41,8 +52,8 @@ public class ReviewDaoImpl implements ReviewDao{
 	}
 
 	@Override
-	public void addViewCount(int num) {
-		session.update("review.addViewCount", num);
+	public void addReviewCount(int review_num) {
+		session.update("review.addReviewCount", review_num);
 	}
 
 	@Override
@@ -54,5 +65,4 @@ public class ReviewDaoImpl implements ReviewDao{
 	public void update(ReviewDto dto) {
 		session.update("review.update",dto);
 	}
-	
 }

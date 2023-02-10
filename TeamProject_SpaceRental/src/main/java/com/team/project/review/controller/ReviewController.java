@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.team.project.review.dto.ReviewDto;
 import com.team.project.review.service.ReviewService;
@@ -17,7 +18,7 @@ public class ReviewController {
 	@Autowired
 	private ReviewService service;
 	@Autowired
-	private UsersService usersService; 
+	private UsersService usersService;
 	
 	@RequestMapping("review/reviewupdateform")
 	public String updateForm(HttpServletRequest request) {
@@ -38,19 +39,27 @@ public class ReviewController {
 	}
 	
 	@RequestMapping("/review/reviewdetail")
-	public String qnadetail(HttpServletRequest request) {
+	public String reviewdetail(HttpServletRequest request) {
 		service.getDetail(request);
 		return "review/reviewdetail";
 	}
 	
 	@RequestMapping("/review/reviewlist")
-	public String qnalist(HttpServletRequest request) {
+	public String reviewlist(HttpServletRequest request) {
 		service.getList(request);
 		return "review/reviewlist";
 	}
 	
+	@RequestMapping("/users/reviewList")
+	public ModelAndView reviewList(ModelAndView mView, HttpServletRequest request, HttpSession session) {
+		service.getUsersNum(request, session);
+		service.getList2(mView, request);
+		mView.setViewName("users/reviewList");
+		return mView;
+	}
+	
 	@RequestMapping("/review/reviewInsertform")
-	public String qnaInsertform(HttpServletRequest request, int cate_num, int space_num) {
+	public String reviewInsertform(HttpServletRequest request, int cate_num, int space_num) {
 		request.setAttribute("cate_num", cate_num);
 		request.setAttribute("space_num", space_num);
 		
@@ -66,9 +75,8 @@ public class ReviewController {
 		//dto 는 글의 제목과 내용만 있으므로 글작성자는 직접 넣어준다.
 	    dto.setReview_writer(writer);
 	    dto.setSpace_num(space_num);
-	    usersService.getInfo2(session, dto);
+	    usersService.getReviewUsersnum(session, dto);
 		service.saveContent(dto);
 		return "review/reviewInsert";
 	}
-	
 }
