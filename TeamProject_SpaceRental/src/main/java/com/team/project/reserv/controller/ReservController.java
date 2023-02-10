@@ -44,13 +44,18 @@ public class ReservController {
 	}
 	
 	//ajax로 reservationlistToSeller받는 것
-	/*
 	@RequestMapping("/seller/reservation/getreservationlistToSeller")
 	@ResponseBody
 	public List<ReservDto> getreservationlistToSeller(HttpServletRequest request, HttpSession session, ReservDto dto) {
 		return service.reservationlistToSeller(request, session, dto);
 	}
-	*/
+	
+	//ajax로 reservationlistToUser받는 것
+	@RequestMapping("/users/getreservationlistToUser")
+	@ResponseBody
+	public List<ReservDto> getreservationlistToUser(HttpServletRequest request, HttpSession session, ReservDto dto) {
+		return service.reservationlistToUser(request, session, dto);
+	}
 	
 	@RequestMapping("/users/reservationlist")
 	public String reservationlistToUser(HttpServletRequest request, HttpSession session, ReservDto dto) {
@@ -70,7 +75,7 @@ public class ReservController {
 	
 	@RequestMapping("/space/reservation/getTime")
 	@ResponseBody
-	public List<ReservDto> getReservTime(String reserv_date){
-		return service.getReservTime(reserv_date);
+	public List<ReservDto> getReservTime(ReservDto dto){
+		return service.getReservTime(dto);
 	}
 }

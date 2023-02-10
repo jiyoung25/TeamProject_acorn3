@@ -154,7 +154,7 @@ public class ReservServiceImpl implements ReservService {
 		request.setAttribute("totalRow", totalRow);
 		request.setAttribute("pathQuery", pathQuery);
 				
-		return dao.getReservToSeller(dto);
+		return dao.getReservToUser(dto);
 	}
 
 	@Override
@@ -163,7 +163,7 @@ public class ReservServiceImpl implements ReservService {
 	}
 
 	@Override
-	public List<ReservDto> getReservTime(String reserv_date) {
-		return dao.getTime(reserv_date);
+	public List<ReservDto> getReservTime(ReservDto dto) {
+		return dao.getTime(dto);
 	}
 }

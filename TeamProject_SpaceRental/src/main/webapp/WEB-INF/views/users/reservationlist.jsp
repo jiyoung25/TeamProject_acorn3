@@ -14,6 +14,8 @@
 <script
   type="text/javascript"
   src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <body>
 	<%-- 네비바 --%>
@@ -37,17 +39,17 @@
       	</c:otherwise>
    	</c:choose>
    	
-	<div class="container">
+	<div class="container" id="reservMenu">
 		<%-- 예약리스트 메뉴 --%>
-		<div id="reservMenu">
-			<button onClick="location.href='${pageContext.request.contextPath}/users/reservationlist?reservCateNum=1'" 
+		<div>
+			<button v-on:click="onReservMenu(event)" 
 				id="request_reserv" value="1" 
 				> 예약 요청 </button>
-			<button onClick="location.href='${pageContext.request.contextPath}/users/reservationlist?checkReserv=true&reservCateNum=2'" 
+			<button v-on:click="onReservMenu(event)" 
 				id="wait_pay" value="2"> 결제 대기 </button>
-			<button onClick="location.href='${pageContext.request.contextPath}/users/reservationlist?checkReserv=true&isPaid=true&reservCateNum=3'" 
+			<button v-on:click="onReservMenu(event)" 
 				id="complete_pay" value="3"> 결제 완료 </button>
-			<button onClick="location.href='${pageContext.request.contextPath}/users/reservationlist?checkReserv=false&reservCateNum=4'" 
+			<button v-on:click="onReservMenu(event)" 
 				id="pass_reserv" value="4"> 거절/지난 예약 </button>
 		</div>
 		
@@ -66,6 +68,7 @@
 				<h3>거절/지난 예약</h3><p>예약이 취소된 목록입니다.</p>
 			</c:when>
 		</c:choose>
+		{{reservCateNum}}
 		<div id="reservList">
 			<table class="table">
 			  <thead>
@@ -78,40 +81,26 @@
 						<th scope="row">예약 시간</th>
 						<th scope="row">예약 등록일</th>
 						<th scope="row">총 비용</th>
-						<c:choose>
-							<c:when test="${(param.reservCateNum eq 1) or (empty param.reservCateNum)}">
-								<th scope="row">예약 취소</th>
-							</c:when>
-							<c:when test="${param.reservCateNum eq 2 }">
-								<th scope="row">결제하기</th>
-								<th scope="row">예약 거절</th>
-							</c:when>
-						</c:choose>
+						<th scope="row" v-if="reservCateNum === '1'"> 예약 취소 </th>
+						<th scope="row" v-if="reservCateNum === '2'"> 결제하기 </th>
+						<th scope="row" v-if="reservCateNum === '2'"> 예약 거절</th>
 					</tr>
 			  </thead>
-			  <c:forEach var="tmp" items="${list }">
-						<tbody>
-							<tr>
-								<td>${tmp.reserv_num }</td>
-								<td>${tmp.space_name }</td>
-								<td>${tmp.users_id }</td>
-								<td>${tmp.reserv_count }</td>
-								<td>${tmp.reserv_date }</td>
-								<td>${tmp.reserv_time }</td>
-								<td>${tmp.reserv_reg }</td>
-								<td>${tmp.totalMoney }</td>
-								<c:choose>
-									<c:when test="${(param.reservCateNum eq 1) or (empty param.reservCateNum)}">
-										<td><button id="rejectBtn${tmp.reserv_num }" type="button" onClick="checkBtn(this.id)">Reject</button></td>
-									</c:when>
-									<c:when test="${param.reservCateNum eq 2 }">
-										<td><button id="payBtn${tmp.reserv_num }" type="button" onClick="checkBtn(this.id)">결제하기</button></td>
-										<td><button id="notpayBtn${tmp.reserv_num }" type="button" onClick="checkBtn(this.id)">취소</button></td>
-									</c:when>
-								</c:choose>
-							</tr>
-						</tbody>	
-				</c:forEach>
+				<tbody>
+					<tr v-for="item in resultList">
+						<td>{{item.reserv_num }}</td>
+						<td>{{item.space_name }}</td>
+						<td>{{item.users_id }}</td>
+						<td>{{item.reserv_count }}</td>
+						<td>{{item.reserv_date }}</td>
+						<td>{{item.reserv_time }}</td>
+						<td>{{item.reserv_reg }}</td>
+						<td>{{item.totalMoney }}</td>
+						<td v-if="reservCateNum === '1'"> <button id="rejectBtn" type="button" v-on:click="checkBtn()">예약 취소</button> </td>
+						<td v-if="reservCateNum === '2'"> <button id="payBtn" type="button" v-on:click="checkBtn()">결제하기</button> </td>
+						<td v-if="reservCateNum === '2'"> <button id="notpayBtn" type="button" v-on:click="checkBtn()">취소</button> </td>
+					</tr>
+				</tbody>	
 			</table>
 		</div>
 	
@@ -175,6 +164,41 @@
 	              })
 			}
 		}
+	</script>
+	<!-- vue를 이용한 ajax메뉴 -->
+	<script>
+		const basicRoot = "${pageContext.request.contextPath}/users/getreservationlistToUser";
+		const reservMenu = new Vue({
+			el:"#reservMenu",
+			data:{
+				resultList:{},
+				reservCateNum:1
+			},
+			methods:{
+				onReservMenu: async function(event){
+					this.reservCateNum = event.target.value;
+					let gofor = "";
+					if(this.reservCateNum == 1){
+						gofor = basicRoot;
+					} else if(this.reservCateNum == 2){
+						gofor = basicRoot + "?checkReserv=true";
+					} else if(this.reservCateNum == 3){
+						gofor = basicRoot + "?checkReserv=true&isPaid=true";
+					} else if(this.reservCateNum == 4){
+						gofor = basicRoot + "?checkReserv=false";
+					}
+					console.log(gofor);
+					//비동기 처리한 결과를 바로 vue의 data에 적용해서 쓰기 위해, fetch가 아닌 async/await를 사용한다.
+					const response = await axios.get(gofor);
+					console.log(response.data);
+					//받아온 결과를 vue의 state로 관리한다.
+					this.resultList = response.data;
+				},
+				checkBtn : function(clickedId){
+					console.log(clickedId);
+				}
+			}
+		})
 	</script>
 	<!-- footer include -->
 	<jsp:include page="/WEB-INF/include/footer.jsp"/>
