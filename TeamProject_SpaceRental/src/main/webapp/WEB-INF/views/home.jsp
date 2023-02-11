@@ -28,6 +28,12 @@
    <link rel="preconnect" href="https://fonts.googleapis.com">
    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
    <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
+	<style>
+		.r{
+			justify-content: center;
+			align-items: center;
+		}
+	</style>
 </head>
 
 <body>
@@ -55,7 +61,7 @@
 
 
       <!--카테고리 영역 시작-->
-      <div class="m-5 p-5 text-center ">
+      <div class="m-5 p-5 text-center  ">
          <div class="row">
          <div class="col text-right">
             <img src="https://cdn-icons-png.flaticon.com/512/9131/9131526.png" style="width: 50px;" alt="">
@@ -72,45 +78,42 @@
       </div>
 
       <!--카테고리-->
-      <div class="row m-5 p-5">
+      <div class="row r">
          <!--파티룸-->
-         <div class="col-lg-4 text-center" >
+         <div class="col-lg-2 text-center" >
            <img src="https://cdn-icons-png.flaticon.com/512/2279/2279642.png" style=" width: 200px; " alt="">
            <h2 class="fw-normal" style="font-family: 'Black Han Sans', sans-serif;">파티룸</h2>
            <p><a class="btn btn-secondary" href="${pageContext.request.contextPath}/space/list?cate_num=1">보러가기</a></p>
          </div>
          <!--연습실-->
-         <div class="col-lg-4 text-center">
+         <div class="col-lg-2 text-center">
             <img src="https://cdn-icons-png.flaticon.com/512/4488/4488230.png" style=" width: 200px; " alt="">
            <h2 class="fw-normal" style="font-family: 'Black Han Sans', sans-serif;">연습실</h2>
            <p><a class="btn btn-secondary" href="${pageContext.request.contextPath}/space/list?cate_num=2">보러가기</a></p>
          </div>
          <!--공유주방 -->
-         <div class="col-lg-4 text-center">
+         <div class="col-lg-2 text-center">
             <img src="https://cdn-icons-png.flaticon.com/512/3575/3575648.png" style=" width: 200px; " alt="">
            <h2 class="fw-normal" style="font-family: 'Black Han Sans', sans-serif;">공유주방</h2>
            <p><a class="btn btn-secondary" href="${pageContext.request.contextPath}/space/list?cate_num=3">보러가기</a></p>
          </div>
-          
-
-         <div class="row text-center m-5 p-5 " style="width:90%; margin: 0 auto;">
-            <!--스터디룸-->
-            <div class="col-lg-6 text-center">
-               <img src="https://cdn-icons-png.flaticon.com/512/4536/4536658.png" style=" width: 200px; " alt="">
-               <h2 class="fw-normal" style="font-family: 'Black Han Sans', sans-serif;">스터디룸</h2>
-               <p><a class="btn btn-secondary" href="${pageContext.request.contextPath}/space/list?cate_num=4">보러가기</a></p>
-            </div>
-            <!--강의실-->
-            <div class="col-lg-6 text-center">
-               <img src="https://cdn-icons-png.flaticon.com/512/4557/4557212.png" style=" width: 200px; " alt="">
-               <h2 class="fw-normal" style="font-family: 'Black Han Sans', sans-serif;">강의실</h2>
-               <p><a class="btn btn-secondary" href="${pageContext.request.contextPath}/space/list?cate_num=5">보러가기</a></p>
-          </div>
-          </div>
+         <!--스터디룸-->
+         <div class="col-lg-2 text-center">
+            <img src="https://cdn-icons-png.flaticon.com/512/4536/4536658.png" style=" width: 200px; " alt="">
+            <h2 class="fw-normal" style="font-family: 'Black Han Sans', sans-serif;">스터디룸</h2>
+            <p><a class="btn btn-secondary" href="${pageContext.request.contextPath}/space/list?cate_num=4">보러가기</a></p>
+         </div>
+         <!--강의실-->
+         <div class="col-lg-2 text-center">
+            <img src="https://cdn-icons-png.flaticon.com/512/4557/4557212.png" style=" width: 200px; " alt="">
+            <h2 class="fw-normal" style="font-family: 'Black Han Sans', sans-serif;">강의실</h2>
+            <p><a class="btn btn-secondary" href="${pageContext.request.contextPath}/space/list?cate_num=5">보러가기</a></p>
+       	 </div>
+       </div>
           <!---카테고리 끝-->
 
    <!--carousel-->      
-   <div id="carouselExampleCaptions" class="carousel slide bg-light" data-bs-ride="carousel">
+   <div id="carouselExampleCaptions" class="carousel slide bg-light m-5 text-center" data-bs-ride="carousel">
       <div class="carousel-indicators">
       <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
       <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -148,10 +151,98 @@
       <span class="visually-hidden">Next</span>
       </button>
    </div>
-
-
-
-
+   
+   
+	
+	<!-- card -->
+	<div class="m-5 p-5 text-center  ">
+		<div class="row r">
+			<div class="col-lg-3 text-center">
+				<div class="card" style="width: 18rem;">
+				  <img src="..." class="card-img-top" alt="...">
+				  <div class="card-body">
+				    <h5 class="card-title">Card title</h5>
+				    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+				    <a href="#" class="btn btn-primary">Go somewhere</a>
+				  </div>
+				</div>
+			</div>
+			<div class="col-lg-3 text-center">
+				<div class="card" style="width: 18rem;">
+				  <img src="..." class="card-img-top" alt="...">
+				  <div class="card-body">
+				    <h5 class="card-title">Card title</h5>
+				    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+				    <a href="#" class="btn btn-primary">Go somewhere</a>
+				  </div>
+				</div>
+			</div>
+			<div class="col-lg-3 text-center">
+				<div class="card" style="width: 18rem;">
+				  <img src="..." class="card-img-top" alt="...">
+				  <div class="card-body">
+				    <h5 class="card-title">Card title</h5>
+				    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+				    <a href="#" class="btn btn-primary">Go somewhere</a>
+				  </div>
+				</div>
+			</div>
+			<div class="col-lg-3 text-center">
+				<div class="card" style="width: 18rem;">
+				  <img src="..." class="card-img-top" alt="...">
+				  <div class="card-body">
+				    <h5 class="card-title">Card title</h5>
+				    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+				    <a href="#" class="btn btn-primary">Go somewhere</a>
+				  </div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="m-5 p-5 text-center  ">
+		<div class="row r">
+			<div class="col-lg-3 text-center">
+				<div class="card" style="width: 18rem;">
+				  <img src="..." class="card-img-top" alt="...">
+				  <div class="card-body">
+				    <h5 class="card-title">Card title</h5>
+				    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+				    <a href="#" class="btn btn-primary">Go somewhere</a>
+				  </div>
+				</div>
+			</div>
+			<div class="col-lg-3 text-center">
+				<div class="card" style="width: 18rem;">
+				  <img src="..." class="card-img-top" alt="...">
+				  <div class="card-body">
+				    <h5 class="card-title">Card title</h5>
+				    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+				    <a href="#" class="btn btn-primary">Go somewhere</a>
+				  </div>
+				</div>
+			</div>
+			<div class="col-lg-3 text-center">
+				<div class="card" style="width: 18rem;">
+				  <img src="..." class="card-img-top" alt="...">
+				  <div class="card-body">
+				    <h5 class="card-title">Card title</h5>
+				    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+				    <a href="#" class="btn btn-primary">Go somewhere</a>
+				  </div>
+				</div>
+			</div>
+			<div class="col-lg-3 text-center">
+				<div class="card" style="width: 18rem;">
+				  <img src="..." class="card-img-top" alt="...">
+				  <div class="card-body">
+				    <h5 class="card-title">Card title</h5>
+				    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+				    <a href="#" class="btn btn-primary">Go somewhere</a>
+				  </div>
+				</div>
+			</div>
+		</div>
+	</div>
    
          <!-- 챗봇 -->
          <div id="divBox" class="animate__animated animate__fadeIn">
