@@ -63,6 +63,7 @@ public class SellerController {
 		service.update(dto, request);
 		System.out.println(dto.getmainImagePath());
 		System.out.println(dto.getSpace_name());
+		System.out.println(dto.getAddr());
 		
 		return "seller/update";		
 	}
