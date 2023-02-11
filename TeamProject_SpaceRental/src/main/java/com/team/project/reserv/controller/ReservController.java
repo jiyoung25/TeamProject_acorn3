@@ -59,8 +59,7 @@ public class ReservController {
 	
 	@RequestMapping("/users/reservationlist")
 	public String reservationlistToUser(HttpServletRequest request, HttpSession session, ReservDto dto) {
-		service.reservationlistToUser(request, session, dto);
-		
+
 		return "users/reservationlist";
 	}
 	
