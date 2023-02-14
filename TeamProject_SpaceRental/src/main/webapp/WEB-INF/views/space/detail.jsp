@@ -368,7 +368,7 @@
 				timeList:{}
 			},
 			methods:{
-				timeBtnClicked:function(e){
+				timeBtnClicked: async function(e){
 					this.count++;
 					if(this.count == 1){
 						this.time1 = e.target.value;
@@ -386,6 +386,28 @@
 						} else{
 							this.checkInTime = this.time1;
 							this.checkOutTime = this.time2;
+						}
+						
+						console.log(this.timeList);
+						
+						//this.timeList의 길이
+						let timeListLength = this.timeList.length;
+						
+						if(timeListLength != 0){
+							for(let i=0; i<timeListLength; i++){
+								//이미 예약되어있는 시간의 시작과 끝을 Array type의 변수로 저장하기
+								let alreadyReserved = this.timeList[i].reserv_time.split('-');
+								//이미 예약되어있는 시간을 포함한 예약은 예약 요청을 수락하지 못하도록 하기
+								if(this.checkInTime<=alreadyReserved[0] && alreadyReserved[1]<=this.checkOutTime){
+									alert("이미 예약되어있는 시간입니다.\n시간을 다시 선택해주세요.");
+									//다시 시간을 선택할 수 있도록 count, checkInTime, checkOutTime, time1, time2 리셋해주기
+									this.count=0;
+									this.time1=0;
+									this.time2=0;
+									this.checkInTime=0;
+									this.checkOutTime=0;
+								}
+							}
 						}
 						
 						this.totalMoney = Math.abs(this.checkOutTime-this.checkInTime)*this.money*this.reserv_count;
