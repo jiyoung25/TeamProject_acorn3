@@ -53,8 +53,17 @@ public class ReservController {
 	//ajax로 reservationlistToUser받는 것
 	@RequestMapping("/users/getreservationlistToUser")
 	@ResponseBody
-	public List<ReservDto> getreservationlistToUser(HttpServletRequest request, HttpSession session, ReservDto dto) {
-		return service.reservationlistToUser(request, session, dto);
+	public List<ReservDto> getreservationlistToUser(HttpServletRequest request, HttpSession session, ReservDto dto, String pageNum) {
+		List<ReservDto> list = service.reservationlistToUser(request, session, dto);
+		
+		//parameter로 넘어온 pageNum을 list에 담아 보낸다.
+		if(list.size()!=0 && pageNum == null) {
+			list.get(0).setPageNum(1);
+		} else if(list != null && pageNum != null) {
+			list.get(0).setPageNum(Integer.parseInt(pageNum));
+		}
+		
+		return list;
 	}
 	
 	@RequestMapping("/users/reservationlist")

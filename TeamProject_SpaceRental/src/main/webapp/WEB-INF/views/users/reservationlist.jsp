@@ -54,20 +54,19 @@
 			</div>
 			
 	   		<%-- 예약 목록 --%>
-			<c:choose>
-				<c:when test="${param.reservCateNum eq 1 }">
-					<h3>예약 요청 목록</h3><p>판매자가 회원님의 예약을 확인하고 있습니다.</p>
-				</c:when>
-				<c:when test="${param.reservCateNum eq 2 }">
-					<h3>결제 대기 목록</h3><p>결제해주시면 예약이 확정됩니다.</p>
-				</c:when>
-				<c:when test="${param.reservCateNum eq 3 }">
-					<h3>결제 완료 목록</h3><p>결제가 완료된 목록입니다.</p>
-				</c:when>
-				<c:when test="${param.reservCateNum eq 4 }">
-					<h3>거절/지난 예약</h3><p>예약이 취소된 목록입니다.</p>
-				</c:when>
-			</c:choose>
+	   		
+	   		<div v-if="reservCateNum === 1 ||reservCateNum === '1'">
+	   			<h3>예약 요청 목록</h3><p>판매자가 회원님의 예약을 확인하고 있습니다.</p>
+	   		</div>
+	   		<div v-else-if="reservCateNum === '2'">
+	   			<h3>결제 대기 목록</h3><p>결제해주시면 예약이 확정됩니다.</p>
+	   		</div>
+	   		<div v-else-if="reservCateNum === '3'">
+	   			<h3>결제 완료 목록</h3><p>결제가 완료된 목록입니다.</p>
+	   		</div>
+	   		<div v-else-if="reservCateNum === '4'">
+	   			<h3>거절/지난 예약</h3><p>예약이 취소된 목록입니다.</p>
+	   		</div>
 			{{reservCateNum}} {{gofor}} {{totalRow}}
 			<div id="reservList">
 				<table class="table">
@@ -81,7 +80,7 @@
 							<th scope="row">예약 시간</th>
 							<th scope="row">예약 등록일</th>
 							<th scope="row">총 비용</th>
-							<th scope="row" v-if="reservCateNum === '1'"> 예약 취소 </th>
+							<th scope="row" v-if="reservCateNum === 1 || reservCateNum === '1'"> 예약 취소 </th>
 							<th scope="row" v-if="reservCateNum === '2'"> 결제하기 </th>
 							<th scope="row" v-if="reservCateNum === '2'"> 예약 거절</th>
 						</tr>
@@ -96,7 +95,7 @@
 							<td>{{item.reserv_time }}</td>
 							<td>{{item.reserv_reg }}</td>
 							<td>{{item.totalMoney }}</td>
-							<td v-if="reservCateNum === '1'"> <button type="button" :value="item.reserv_num" v-on:click="onRejectBtn(event)">취소</button> </td>
+							<td v-if="reservCateNum === 1|| reservCateNum === '1'"> <button type="button" :value="item.reserv_num" v-on:click="onRejectBtn(event)">취소</button> </td>
 							<td v-if="reservCateNum === '2'"> <button type="button" :value="item.reserv_num" v-on:click="onPayBtn(event)">결제하기</button> </td>
 							<td v-if="reservCateNum === '2'"> <button type="button" :value="item.reserv_num" v-on:click="onNotPayBtn(event)">취소</button> </td>
 						</tr>
@@ -116,7 +115,7 @@
 			        </li>
 			        <%-- 페이지 번호 --%>
 			        <li class="page-item" v-for="item in pageList">
-			       		<a class="page-link pageBtn" v-on:click="onPagenation(event)" :id="item">{{item}}</a> 	
+			       		<a class="page-link pageBtn" :class="{'active': item == pageNum}" v-on:click="onPagenation(event)" :id="item">{{item}}</a> 	
 			        </li>
 			        <%--
 			           마지막 페이지 번호가 전체 페이지의 갯수보다 작으면 Next 링크를 제공한다. 
@@ -148,35 +147,11 @@
 				totalRow: 1,
 				pageList: [],
 				startPageNum:1,
-				endPageNum:1
+				endPageNum:1,
+				totalPageCount:1
 			},
 			async mounted(){
-				const response = await axios.get(this.gofor);
-				//받아온 결과를 vue의 state로 관리한다.
-				this.resultList = response.data;
-				if(!this.resultList.length!=0){
-					this.totalRow = this.resultList[0].totalRow;
-				} else{
-					this.totalRow = 1;
-				}
-				this.startPageNum = 1;
-				//하단 끝 페이지 번호
-				this.endPageNum=this.startPageNum*1+PAGE_DISPLAY_COUNT-1;
-				//전체 페이지의 갯수
-				let totalPageCount=Math.ceil(this.totalRow/PAGE_ROW_COUNT);
-				//끝 페이지 번호가 전체 페이지 갯수보다 크다면 잘못된 값이다.
-				if(this.endPageNum > totalPageCount){
-					this.endPageNum=totalPageCount; //보정해 준다.
-				}
-
-				this.pageList.splice(0);
-				if(this.startPageNum == this.endPageNum){
-					this.pageList = [1];
-				} else{
-					for(let i=this.startPageNum; i<=this.endPageNum; i++){
-						this.pageList.push(i);
-					}
-				}
+				this.getList();
 			},
 			computed:{
 			},
@@ -186,24 +161,28 @@
 					const response = await axios.get(this.gofor);
 					//받아온 결과를 vue의 state로 관리한다.
 					this.resultList = response.data;
+					
 					if(this.resultList.length!=0){
-						this.totalRow = this.resultList[0].totalRow;//하단 시작 페이지 번호
+						this.totalRow = this.resultList[0].totalRow;
+						this.pageNum = this.resultList[0].pageNum;
 					} else{
 						this.totalRow = 1;
 					}
+					
+					//하단 시작 페이지 번호
 					this.startPageNum = 1 + (Math.floor((this.pageNum*1-1)/PAGE_DISPLAY_COUNT))*PAGE_DISPLAY_COUNT;
 					//하단 끝 페이지 번호
 					this.endPageNum=this.startPageNum*1+PAGE_DISPLAY_COUNT-1;
 					//전체 페이지의 갯수
-					let totalPageCount=Math.ceil(this.totalRow/PAGE_ROW_COUNT);
+					this.totalPageCount=Math.ceil(this.totalRow/PAGE_ROW_COUNT);
 					//끝 페이지 번호가 전체 페이지 갯수보다 크다면 잘못된 값이다.
-					if(this.endPageNum > totalPageCount){
-						this.endPageNum=totalPageCount; //보정해 준다.
+					if(this.endPageNum > this.totalPageCount){
+						this.endPageNum=this.totalPageCount; //보정해 준다.
 					}
 
 					this.pageList.splice(0);
 					if(this.startPageNum == this.endPageNum){
-						this.pageList = [1];
+						this.pageList = [this.startPageNum];
 					} else{
 						for(let i=this.startPageNum; i<=this.endPageNum; i++){
 							this.pageList.push(i);
@@ -246,10 +225,6 @@
 				},
 				onPagenation: async function(event){
 					let id = event.target.id;
-					let pageBtn = document.querySelectorAll(".pageBtn");
-					for(let i=0; i<pageBtn.length; i++){
-						pageBtn[i].classList.remove('active');
-					}
 					
 					//가야할 url에 이미 pageNum이 있다면, 이따 pageNum을 추가할 것이기 때문에 중복된다.
 					//그러므로 pageNum 파라미터를 미리 지워준다.
@@ -260,9 +235,16 @@
 					//id가 prev인지, next인지, 숫자인지에 따라 pageNum이 결정된다.
 					if(id.includes("prev")){
 						this.pageNum = this.startPageNum*1-1;
+						if(this.pageNum*1 <= 0){
+							alert("첫 번째 페이지입니다.");
+							this.pageNum = 1;
+						}
 					} else if(id.includes("next")){
-						console.log(typeof this.pageNum);
 						this.pageNum = this.endPageNum*1+1;
+						if(this.pageNum > this.totalPageCount){
+							alert("마지막 페이지입니다.");
+							this.pageNum = this.totalPageCount;
+						}
 					} else{
 						this.pageNum = id;
 					}
@@ -277,26 +259,6 @@
 					console.log(this.gofor);
 					//pageNum을 파라미터로 넘긴 값으로 list를 받아오고, 버튼 활성화 시키기
 					this.getList();
-					if(id == this.pageNum){
-						event.target.classList.add('active');
-					}
-					
-					//하단 시작 페이지 번호
-					this.startPageNum = 1 + (Math.floor((this.pageNum*1-1)/PAGE_DISPLAY_COUNT))*PAGE_DISPLAY_COUNT;
-					console.log(Math.floor(((this.pageNum*1)-1)/PAGE_DISPLAY_COUNT));
-					//하단 끝 페이지 번호
-					this.endPageNum=this.startPageNum*1+PAGE_DISPLAY_COUNT-1;
-					//전체 페이지의 갯수
-					let totalPageCount=Math.ceil(this.totalRow/PAGE_ROW_COUNT);
-					//끝 페이지 번호가 전체 페이지 갯수보다 크다면 잘못된 값이다.
-					if(this.endPageNum > totalPageCount){
-						this.endPageNum=totalPageCount; //보정해 준다.
-					}
-
-					this.pageList.splice(0);
-					for(let i=this.startPageNum; i<=this.endPageNum; i++){
-						this.pageList.push(i);
-					}
 				}
 			}
 		})
