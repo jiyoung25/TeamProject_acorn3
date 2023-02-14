@@ -17,6 +17,18 @@ public class QnaDaoImpl implements QnaDao{
 	public List<QnaDto> getList(QnaDto dto) {
 		return session.selectList("qna.getList", dto);
 	}
+	
+	@Override
+	public List<QnaDto> getList2(int users_num) {
+		
+		return session.selectList("qna.getList2", users_num);
+	}
+
+	@Override
+	public int getUsersNum(String id) {
+		
+		return session.selectOne("qna.getUsersNum", id);
+	}
 
 	@Override //글의 갯수
 	public int getCount(QnaDto dto) {
@@ -52,5 +64,4 @@ public class QnaDaoImpl implements QnaDao{
 	public void update(QnaDto dto) {
 		session.update("qna.update",dto);
 	}
-
 }

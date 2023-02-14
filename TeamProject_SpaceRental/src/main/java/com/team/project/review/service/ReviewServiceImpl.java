@@ -20,7 +20,7 @@ public class ReviewServiceImpl implements ReviewService{
 	@Autowired private ReviewDao reviewDao;
 
 	@Override
-	public void getList(HttpServletRequest request) {
+	public void getList(HttpServletRequest request, int space_num) {
 		//한 페이지에 몇개씩 표시할 것인지
 		final int PAGE_ROW_COUNT=5;
 		//하단 페이지를 몇개씩 표시할 것인지
@@ -41,7 +41,9 @@ public class ReviewServiceImpl implements ReviewService{
 		//보여줄 페이지의 끝 ROWNUM
 		int endRowNum=pageNum*PAGE_ROW_COUNT;
 		
+		//ReviewDto 객체에 startRowNum, endRowNum 그리고  space_num을 담는다.
 		ReviewDto dto=new ReviewDto();
+		dto.setSpace_num(space_num);
 		dto.setStartRowNum(startRowNum);
 		dto.setEndRowNum(endRowNum);
 		

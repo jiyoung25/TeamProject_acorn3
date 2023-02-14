@@ -34,7 +34,7 @@ public class SpaceController {
 	}
 	
 	@GetMapping("/space/detail")
-	public String detail(HttpServletRequest request, int cate_num, int space_num, DibDto dto,HttpSession session) {
+	public String detail(HttpServletRequest request,int cate_num, int space_num, DibDto dto,HttpSession session) {
 		service.getDay(request);
 		request.setAttribute("cate_num", cate_num);
 		request.setAttribute("space_num", space_num);
@@ -47,9 +47,8 @@ public class SpaceController {
 			dibService.dibGetDetailData(dto, request);
 		}
 		
-		reviewService.getList(request);
-		qnaService.getQnaList(request);
-	
+		reviewService.getList(request, space_num);
+		qnaService.getQnaList(request, space_num);
 		
 		return("space/detail");
 	}

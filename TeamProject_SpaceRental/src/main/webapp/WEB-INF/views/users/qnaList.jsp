@@ -6,8 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>/users/reviewList</title>
-
+<title>/users/qnaList</title>
+</head>
 <body>
 	<div>
 		<table>
@@ -22,17 +22,17 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="tmp" items="${reviewList }">
+				<c:forEach var="tmp" items="${qnaList }">
 					<tr>
-						<td>${tmp.review_num }</td>
-						<td>${tmp.review_writer }</td>
+						<td>${tmp.num }</td>
+						<td>${tmp.writer }</td>
 						<td>
-							<a href="${pageContext.request.contextPath}/review/reviewdetail?review_num=${tmp.review_num }">${tmp.review_title }</a>
+							<a href="${pageContext.request.contextPath}/qna/qnadetail?num=${tmp.num }">${tmp.title }</a>
 						</td>
-						<td>${tmp.viewcount }</td>
-						<td>${tmp.review_regdate }</td>
+						<td>${tmp.viewCount }</td>
+						<td>${tmp.regdate }</td>
 						<td>
-							<a href="reviewDelete?review_num=${tmp.review_num}" onClick="deleteLink(); return false;">삭제</a>
+							<a href="qnaDelete?num=${tmp.num}" onClick="deleteLink(); return false;">삭제</a>
 						</td>
 					</tr>
 				</c:forEach>
