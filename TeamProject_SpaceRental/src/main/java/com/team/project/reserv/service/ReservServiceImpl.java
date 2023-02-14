@@ -108,6 +108,7 @@ public class ReservServiceImpl implements ReservService {
 			//숫자로 바꿔서 보여줄 페이지 번호로 지정한다.
 			pageNum=Integer.parseInt(strPageNum);
 		}
+								
 		//보여줄 페이지의 시작 ROWNUM
 		int startRowNum=1+(pageNum-1)*PAGE_ROW_COUNT;
 		//보여줄 페이지의 끝 ROWNUM
@@ -125,12 +126,35 @@ public class ReservServiceImpl implements ReservService {
 		int totalRow=0;
 		list = dao.getReservToUser(dto);
 		totalRow = dao.getUserReservCount(dto);
-		
-		if(!list.isEmpty()) {
-			list.get(0).setTotalRow(totalRow);
+								
+		//하단 시작 페이지 번호 
+		int startPageNum = 1 + ((pageNum-1)/PAGE_DISPLAY_COUNT)*PAGE_DISPLAY_COUNT;
+		//하단 끝 페이지 번호
+		int endPageNum=startPageNum+PAGE_DISPLAY_COUNT-1;
+								
+
+		//전체 페이지의 갯수
+		int totalPageCount=(int)Math.ceil(totalRow/(double)PAGE_ROW_COUNT);
+		//끝 페이지 번호가 전체 페이지 갯수보다 크다면 잘못된 값이다.
+		if(endPageNum > totalPageCount){
+			endPageNum=totalPageCount; //보정해 준다.
 		}
+		//paging 처리를 위한 path query 구하기 (pageNum이 중복해서 들어가지 않게 하기 위해 pageNum query는 뺀다.)
+		String pathQuery = request.getQueryString();
+		if(pathQuery != null && pathQuery.contains("pageNum")) {
+			int indexOfPageNum = pathQuery.indexOf("pageNum");
+			pathQuery = pathQuery.substring(0, indexOfPageNum-1);
+		}
+		//view page 에서 필요한 값을 request 에 담아준다. 
+		request.setAttribute("pageNum", pageNum);
+		request.setAttribute("startPageNum", startPageNum);
+		request.setAttribute("endPageNum", endPageNum);
+		request.setAttribute("totalPageCount", totalPageCount);
+		request.setAttribute("list", list);
+		request.setAttribute("totalRow", totalRow);
+		request.setAttribute("pathQuery", pathQuery);
 				
-		return list;
+		return dao.getReservToSeller(dto);
 	}
 
 	@Override
@@ -139,7 +163,7 @@ public class ReservServiceImpl implements ReservService {
 	}
 
 	@Override
-	public List<ReservDto> getReservTime(ReservDto dto) {
-		return dao.getTime(dto);
+	public List<ReservDto> getReservTime(String reserv_date) {
+		return dao.getTime(reserv_date);
 	}
 }

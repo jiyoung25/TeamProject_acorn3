@@ -12,5 +12,5 @@ public interface ReservDao {
 	public List<ReservDto> getReservToUser(ReservDto dto);
 	public int getUserReservCount(ReservDto dto);
 	public void updatePaid (ReservDto dto);
-	public List<ReservDto> getTime(ReservDto dto);
+	public List<ReservDto> getTime(String reserv_date);
 }

@@ -13,5 +13,5 @@ public interface ReservService {
 	public void checkReserv(ReservDto dto);
 	public List<ReservDto> reservationlistToUser(HttpServletRequest request, HttpSession session, ReservDto dto);
 	public void updatePaid(ReservDto dto);
-	public List<ReservDto> getReservTime(ReservDto dto);
+	public List<ReservDto> getReservTime(String reserv_date);
 }

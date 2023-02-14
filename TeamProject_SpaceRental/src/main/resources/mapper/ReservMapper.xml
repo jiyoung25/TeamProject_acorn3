@@ -84,9 +84,9 @@
 		SET isPaid = #{isPaid}<include refid="payCondition"/>
 		WHERE reserv_num = #{reserv_num}
 	</update>
-	<select id="getTime" parameterType="reservDto" resultType="reservDto">
+	<select id="getTime" parameterType="String" resultType="reservDto">
 		SELECT reserv_time, reserv_num
 		FROM reservationform
-		WHERE reserv_date = #{reserv_date} AND checkReserv = 'true' AND space_num = #{space_num}
+		WHERE reserv_date = #{reserv_date}
 	</select>
 </mapper>
