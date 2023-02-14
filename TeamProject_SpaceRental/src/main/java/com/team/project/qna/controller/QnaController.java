@@ -49,6 +49,12 @@ public class QnaController {
 		return "redirect:/qna/qnalist";
 	}
 	
+	@RequestMapping("/users/qnaDelete")
+	public String delete2(int num, HttpServletRequest request) {
+		service.deleteContent(num, request);
+		return "redirect:/users/qnaList";
+	}
+	
 	@RequestMapping("/qna/qnadetail")
 	public String qnadetail(HttpServletRequest request) {
 		service.getDetail(request);
@@ -56,9 +62,17 @@ public class QnaController {
 	}
 	
 	@RequestMapping("/qna/qnalist")
-	public String qnalist(HttpServletRequest request) {
-		service.getQnaList(request);
+	public String qnalist(HttpServletRequest request, int space_num) {
+		service.getQnaList(request, space_num);
 		return "qna/qnalist";
+	}
+	
+	@RequestMapping("/users/qnaList")
+	public ModelAndView qnaList(ModelAndView mView, HttpServletRequest request, HttpSession session) {
+		service.getUsersNum(request, session);
+		service.getList2(mView, request);
+		mView.setViewName("users/qnaList");
+		return mView;
 	}
 	
 	@RequestMapping("/qna/qnaInsertform")

@@ -177,103 +177,103 @@
 			<nav>
 				<ul class="pagination">
 					<%--
-	               startPageNum 이 1 이 아닌 경우에만 Prev 링크를 제공한다. 
-	            	--%>
+						startPageNum 이 1 이 아닌 경우에만 Prev 링크를 제공한다. 
+					--%>
 					<c:if test="${startPageNum ne 1 }">
-		               <li class="page-item">
-		                  <a class="page-link" href="detail?cate_num=${cate_num }&space_num=${space_num}&pageNum=${startPageNum-1 }">Prev</a>
-		               </li>
-		            </c:if>
+						<li class="page-item">
+							<a class="page-link" href="detail?cate_num=${cate_num }&space_num=${space_num}&pageNum=${startPageNum-1 }">Prev</a>
+						</li>
+					</c:if>
 		            <c:forEach var="i" begin="${startPageNum }" end="${endPageNum }">
-		               <li class="page-item ${pageNum eq i ? 'active' : '' }">
-		                  <a class="page-link" href="detail?cate_num=${cate_num }&space_num=${space_num}&pageNum=${i }">${i }</a>
-		               </li>
+						<li class="page-item ${pageNum eq i ? 'active' : '' }">
+							<a class="page-link" href="detail?cate_num=${cate_num }&space_num=${space_num}&pageNum=${i }">${i }</a>
+						</li>
 		            </c:forEach>
 		            <%--
-		               마지막 페이지 번호가 전체 페이지의 갯수보다 작으면 Next 링크를 제공한다. 
-		             --%>
+		               	마지막 페이지 번호가 전체 페이지의 갯수보다 작으면 Next 링크를 제공한다. 
+					--%>
 		            <c:if test="${endPageNum lt totalPageCount }">
-		               <li class="page-item">
-		                  <a class="page-link" href="detail?cate_num=${cate_num }&space_num=${space_num}&pageNum=${endPageNum+1 }">Next</a>
-		               </li>
-		            </c:if>
+						<li class="page-item">
+							<a class="page-link" href="detail?cate_num=${cate_num }&space_num=${space_num}&pageNum=${endPageNum+1 }">Next</a>
+						</li>
+					</c:if>
 				</ul>
 			</nav>
 		</div>
+		
 		<h3 id="qna">Q&A <a href="${pageContext.request.contextPath}/qna/qnaInsertform?cate_num=${cate_num }&space_num=${space_num}">추가하기</a></h3>
-			<div class="container">
-		      <table class="table table-striped">
-		         <thead class="table-dark">
-		            <tr>
-		               <th>글번호</th>
-		               <th>작성자</th>
-		               <th>제목</th>
-		               <th>조회수</th>
-		               <th>작성일</th>
-		            </tr>
-		         </thead>
-		         <tbody>
-			         <c:forEach var="tmp" items="${list }">
-			         	<tr>
-			         		<td>${tmp.num }</td>
-			         		<td>${tmp.writer }</td>
-			         		<td>
-			         			<a href="${pageContext.request.contextPath}/qna/qnadetail?num=${tmp.num }&condition=${condition}&keyword=${encodedK}">${tmp.title }</a>
-			         		</td>
-			         		<td>${tmp.viewCount }</td>
-			         		<td>${tmp.regdate }</td>
-			         	</tr>
-			         </c:forEach>
-		         </tbody>
-		      </table>
-		      <nav>
-		         <ul class="pagination">
-		            <%--
+		<div class="container">
+			<table class="table table-striped">
+				<thead class="table-dark">
+					<tr>
+						<th>글번호</th>
+						<th>작성자</th>
+						<th>제목</th>
+						<th>조회수</th>
+						<th>작성일</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach var="tmp" items="${list }">
+						<tr>
+							<td>${tmp.num }</td>
+							<td>${tmp.writer }</td>
+							<td>
+								<a href="${pageContext.request.contextPath}/qna/qnadetail?num=${tmp.num }&condition=${condition}&keyword=${encodedK}">${tmp.title }</a>
+							</td>
+							<td>${tmp.viewCount }</td>
+							<td>${tmp.regdate }</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+			<nav>
+				<ul class="pagination">
+					<%--
 		               qnaStartPageNum 이 1 이 아닌 경우에만 Prev 링크를 제공한다. 
 		               &condition=${condition}&keyword=${encodedK}
 		            --%>
 		            <c:if test="${qnaStartPageNum ne 1 }">
-		               <li class="page-item">
-		                  <a class="page-link" href="detail?cate_num=${cate_num }&space_num=${space_num}&qnaPageNum=${qnaStartPageNum-1 }&condition=${condition}&keyword=${encodedK}">Prev</a>
-		               </li>
+						<li class="page-item">
+							<a class="page-link" href="detail?cate_num=${cate_num }&space_num=${space_num}&qnaPageNum=${qnaStartPageNum-1 }&condition=${condition}&keyword=${encodedK}">Prev</a>
+						</li>
 		            </c:if>
 		            <c:forEach var="i" begin="${qnaStartPageNum }" end="${qnaEndPageNum }">
-		               <li class="page-item ${qnaPageNum eq i ? 'active' : '' }">
-		                  <a class="page-link" href="detail?cate_num=${cate_num }&space_num=${space_num}&qnaPageNum=${i }&condition=${condition}&keyword=${encodedK}">${i }</a>
-		               </li>
+						<li class="page-item ${qnaPageNum eq i ? 'active' : '' }">
+							<a class="page-link" href="detail?cate_num=${cate_num }&space_num=${space_num}&qnaPageNum=${i }&condition=${condition}&keyword=${encodedK}">${i }</a>
+						</li>
 		            </c:forEach>
 		            <%--
 		               마지막 페이지 번호가 전체 페이지의 갯수보다 작으면 Next 링크를 제공한다. 
 		             --%>
 		            <c:if test="${qnaEndPageNum lt qnatotalPageCount }">
-		               <li class="page-item">
-		                  <a class="page-link" href="detail?cate_num=${cate_num }&space_num=${space_num}&qnaPageNum=${qnaEndPageNum+1 }&condition=${condition}&keyword=${encodedK}">Next</a>
-		               </li>
+						<li class="page-item">
+							<a class="page-link" href="detail?cate_num=${cate_num }&space_num=${space_num}&qnaPageNum=${qnaEndPageNum+1 }&condition=${condition}&keyword=${encodedK}">Next</a>
+						</li>
 		            </c:if>
-		         </ul>
-		      </nav>
+				</ul>
+			</nav>
 		      
-		      <!-- 검색 폼 -->
-				<form action="detail" method="get">
-		    		<label for="condition">검색조건</label>
-		    		<select name="condition" id="condition">
-		    			<option value="title_content" ${condition eq 'title_content' ? 'selected' : '' }>제목 + 내용</option>
-		    			<option value="title" ${condition eq 'title' ? 'selected' : '' }>제목</option>
-		    			<option value="writer" ${condition eq 'writer' ? 'selected' : '' }>작성자</option>
-		    		</select>
-		    		<input type="text" name="keyword" placeholder="검색어..." 
-		    			value="${keyword }" />
-		    		<input type="hidden" name="cate_num" value=${cate_num }>
-		    		<input type="hidden" name="space_num" value=${space_num }>
-		    		<button type="submit">검색</button>
-				</form>
-				<c:if test="${not empty condition }">
-					<p>
-						<strong>${qnatotalRow }</strong> 개의 자료가 검색 되었습니다.
-						<a href="${pageContext.request.contextPath}/space/detail?cate_num=${cate_num}&space_num=${space_num}">리셋</a>
-					</p>
-				</c:if>
-		   </div>
+			<!-- 검색 폼 -->
+			<form action="detail" method="get">
+				<label for="condition">검색조건</label>
+					<select name="condition" id="condition">
+						<option value="title_content" ${condition eq 'title_content' ? 'selected' : '' }>제목 + 내용</option>
+						<option value="title" ${condition eq 'title' ? 'selected' : '' }>제목</option>
+						<option value="writer" ${condition eq 'writer' ? 'selected' : '' }>작성자</option>
+					</select>
+				<input type="text" name="keyword" placeholder="검색어..." value="${keyword }" />
+	    		<input type="hidden" name="cate_num" value=${cate_num }>
+	    		<input type="hidden" name="space_num" value=${space_num }>
+	    		<button type="submit">검색</button>
+			</form>
+			<c:if test="${not empty condition }">
+				<p>
+					<strong>${qnatotalRow }</strong> 개의 자료가 검색 되었습니다.
+					<a href="${pageContext.request.contextPath}/space/detail?cate_num=${cate_num}&space_num=${space_num}">리셋</a>
+				</p>
+			</c:if>
+		</div>
 		<a href="${pageContext.request.contextPath}/space/list?cate_num=${cate_num}" >목록으로</a>
 		
 	

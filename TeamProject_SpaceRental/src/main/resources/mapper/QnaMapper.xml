@@ -5,14 +5,17 @@
 	<sql id="searchCondition">
 		<choose>
 			<when test="title != null and content != null">
-				WHERE title LIKE '%'||#{title}||'%' OR content LIKE '%'||#{content}||'%'
+				WHERE title LIKE '%'||#{title}||'%' OR content LIKE '%'||#{content}||'%' AND space_num = #{space_num}
 			</when>
 			<when test="title != null">
-            	WHERE title LIKE '%'||#{title}||'%'
+            	WHERE title LIKE '%'||#{title}||'%' AND space_num = #{space_num}
 			</when>
 			<when test="writer != null">
-            	WHERE writer LIKE '%'||#{writer}||'%'
+            	WHERE writer LIKE '%'||#{writer}||'%' AND space_num = #{space_num}
 			</when>
+			<otherwise>
+				WHERE space_num = #{space_num}
+			</otherwise>
 		</choose>
 	</sql>
 	
@@ -21,7 +24,7 @@
       FROM
          (SELECT result1.*, ROWNUM AS rnum
          FROM
-            (SELECT num,writer,title,content,viewCount,regdate
+            (SELECT num,writer,title,content,viewCount,TO_CHAR(regdate, 'YY.MM.DD HH24:MI') AS regdate
             FROM qna
             <include refid="searchCondition"/>
             ORDER BY num DESC) result1)
@@ -30,12 +33,25 @@
       ]]>
 	</select>
    
+   	<select id="getList2" parameterType="int" resultType="qnaDto">
+		SELECT num,writer,title,content,viewCount,TO_CHAR(regdate, 'YY.MM.DD HH24:MI') AS regdate
+		FROM qna
+		WHERE users_num=#{users_num}
+		ORDER BY num 
+	</select>
+   
+   	<select id="getUsersNum" resultType="int" parameterType="String">
+		SELECT users_num
+		FROM space_users
+		WHERE id=#{id}
+	</select>
+   
 	<select id="getCount" parameterType="qnaDto" resultType="int">
 		SELECT NVL(MAX(ROWNUM), 0)
 		FROM qna
 		<include refid="searchCondition"/>
 	</select>
-
+	
 	<insert id="insert">
 		INSERT INTO qna
 		(num, writer, title, content, viewCount, regdate, users_num, space_num)

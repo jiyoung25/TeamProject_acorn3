@@ -7,8 +7,9 @@
 		FROM
 			(SELECT result1.*, ROWNUM AS rnum
 			FROM
-				(SELECT review_num,review_writer,review_title,review_content,viewcount,review_regdate 
+				(SELECT review_num,review_writer,review_title,review_content,viewcount,TO_CHAR(review_regdate, 'YY.MM.DD HH24:MI') AS review_regdate 
 				FROM review
+				WHERE space_num = #{space_num}
 				ORDER BY review_num DESC) result1)
 		<![CDATA[ 
 		WHERE rnum >= #{startRowNum} AND rnum <= #{endRowNum}
@@ -19,8 +20,9 @@
 		SELECT review_num,review_writer,review_title,review_content,viewcount,TO_CHAR(review_regdate, 'YY.MM.DD HH24:MI') AS review_regdate
 		FROM review
 		WHERE users_num=#{users_num}
-		ORDER BY space_num ASC
+		ORDER BY review_num 
 	</select>
+	
 	<select id="getUsersNum" resultType="int" parameterType="String">
 		SELECT users_num
 		FROM space_users
@@ -30,12 +32,13 @@
 	<select id="getCount" parameterType="reviewDto" resultType="int">
 		SELECT NVL(MAX(ROWNUM), 0)
 		FROM review
+		WHERE space_num = #{space_num}
 	</select>
 
 	<insert id="insert">
 		INSERT INTO review 
-		(review_num, review_writer, review_title, review_content, review_regdate, users_num, space_num)
-		VALUES (review_seq.NEXTVAL, #{review_writer}, #{review_title}, #{review_content}, SYSDATE,#{users_num}, #{space_num})
+		(review_num, review_writer, review_title, review_content, viewcount, review_regdate, users_num, space_num)
+		VALUES (review_seq.NEXTVAL, #{review_writer}, #{review_title}, #{review_content}, #{viewcount}, SYSDATE,#{users_num}, #{space_num})
 	</insert>
 	
 	<select id="getData" parameterType="int" resultType="reviewDto">
@@ -77,7 +80,6 @@
 		SET review_title=#{review_title}, review_content='${review_content}'
 		WHERE review_num=#{review_num}
 	</update>
-	
 </mapper>
 
 

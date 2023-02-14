@@ -38,6 +38,12 @@ public class ReviewController {
 		return "redirect:/review/reviewlist";
 	}
 	
+	@RequestMapping("/users/reviewDelete")
+	public String delete2(int review_num, HttpServletRequest request) {
+		service.deleteContent(review_num, request);
+		return "redirect:/users/reviewList";
+	}
+	
 	@RequestMapping("/review/reviewdetail")
 	public String reviewdetail(HttpServletRequest request) {
 		service.getDetail(request);
@@ -45,8 +51,8 @@ public class ReviewController {
 	}
 	
 	@RequestMapping("/review/reviewlist")
-	public String reviewlist(HttpServletRequest request) {
-		service.getList(request);
+	public String reviewlist(HttpServletRequest request, int space_num) {
+		service.getList(request, space_num);
 		return "review/reviewlist";
 	}
 	

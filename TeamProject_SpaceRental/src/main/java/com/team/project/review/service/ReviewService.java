@@ -10,7 +10,7 @@ import com.team.project.review.dto.ReviewDto;
 
 
 public interface ReviewService {
-	public void getList(HttpServletRequest request);
+	public void getList(HttpServletRequest request, int space_num);
 	public void getList2(ModelAndView mView, HttpServletRequest request);
 	public void getUsersNum(HttpServletRequest request, HttpSession session);
 	public void getDetail(HttpServletRequest request);

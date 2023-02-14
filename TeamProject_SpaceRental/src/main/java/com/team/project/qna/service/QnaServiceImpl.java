@@ -4,15 +4,18 @@ import java.net.URLEncoder;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.team.project.exception.NotDeleteException;
 import com.team.project.qna.dao.QnaCommentDao;
 import com.team.project.qna.dao.QnaDao;
 import com.team.project.qna.dto.QnaCommentDto;
 import com.team.project.qna.dto.QnaDto;
+import com.team.project.review.dto.ReviewDto;
 
 @Service
 public class QnaServiceImpl implements QnaService{
@@ -21,7 +24,7 @@ public class QnaServiceImpl implements QnaService{
 	@Autowired private QnaCommentDao qnaCommentDao;
 	
 	@Override
-	public void getQnaList(HttpServletRequest request) {
+	public void getQnaList(HttpServletRequest request, int space_num) {
 		//한 페이지에 몇개씩 표시할 것인지
 		final int PAGE_ROW_COUNT=5;
 		//하단 페이지를 몇개씩 표시할 것인지
@@ -59,8 +62,9 @@ public class QnaServiceImpl implements QnaService{
 		//특수기호를 인코딩한 키워드를 미리 준비한다. 
 		String encodedK=URLEncoder.encode(keyword);
 			
-		//QnaDto 객체에 startRowNum 과 endRowNum 을 담는다.
+		//QnaDto 객체에 startRowNum, endRowNum 그리고  space_num을 담는다.
 		QnaDto dto=new QnaDto();
+		dto.setSpace_num(space_num);
 		dto.setQnaStartRowNum(qnaStartRowNum);
 		dto.setQnaEndRowNum(qnaEndRowNum);
 
@@ -101,11 +105,26 @@ public class QnaServiceImpl implements QnaService{
 		request.setAttribute("condition", condition);
 		request.setAttribute("keyword", keyword);
 		request.setAttribute("encodedK", encodedK);
-		request.setAttribute("totalPageCount", qnatotalPageCount);
+		request.setAttribute("qnatotalPageCount", qnatotalPageCount);
 		request.setAttribute("list", list);
 		request.setAttribute("qnatotalRow", qnatotalRow);
+		
+	}
+	
+	@Override
+	public void getList2(ModelAndView mView, HttpServletRequest request) {
+		String id = (String)request.getSession().getAttribute("id");		
+		int num=qnaDao.getUsersNum(id);
+		List<QnaDto> qnaList=qnaDao.getList2(num);
+		mView.addObject("qnaList", qnaList);
 	}
 
+	@Override
+	public void getUsersNum(HttpServletRequest request, HttpSession session) {
+		String id = (String)session.getAttribute("id");
+		request.setAttribute("users_num", qnaDao.getUsersNum(id));
+	}
+	
 	@Override
 	public void getDetail(HttpServletRequest request) {
 		
@@ -312,5 +331,4 @@ public class QnaServiceImpl implements QnaService{
 		request.setAttribute("num", num); //원글의 글번호
 		request.setAttribute("pageNum", pageNum); //댓글의 페이지 번호
 	}
-
 }
