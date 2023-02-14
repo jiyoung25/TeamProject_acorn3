@@ -30,7 +30,6 @@ public class ReservController {
 	@RequestMapping("/seller/reservation/reservationlist")
 	public String reservationlistToSeller(HttpServletRequest request, HttpSession session, ReservDto dto) {
 		service.reservationlistToSeller(request, session, dto);
-		
 		return "seller/reservation/reservationlist";
 	}
 	

@@ -10,16 +10,19 @@
 	<sql id="searchCondition">
 		<choose>
 			<when test="checkReserv == null and isPaid == null">
-				reservationform.checkReserv IS NULL AND
+				<![CDATA[reservationform.checkReserv IS NULL AND TO_CHAR(SYSDATE, 'YYYY-MM-dd') < reservationform.reserv_date AND]]>
 			</when>
 			<when test="checkReserv.equals('false')">
-				reservationform.checkReserv = 'false' AND
+				<![CDATA[reservationform.checkReserv = 'false' OR reservationform.reserv_date <= TO_CHAR(SYSDATE, 'YYYY-MM-dd') AND]]>
 			</when>
 			<when test="checkReserv.equals('true') and isPaid == null">
-				reservationform.checkReserv = 'true' AND reservationform.isPaid IS NULL AND
+				<![CDATA[reservationform.checkReserv = 'true' AND reservationform.reserv_date > TO_CHAR(SYSDATE, 'YYYY-MM-dd') AND reservationform.isPaid IS NULL AND]]>
 			</when>
 			<when test="checkReserv.equals('true') and isPaid.equals('true')">
-				reservationform.checkReserv = 'true' AND reservationform.isPaid ='true' AND
+				<![CDATA[reservationform.checkReserv = 'true' AND reservationform.reserv_date > TO_CHAR(SYSDATE, 'YYYY-MM-dd') AND reservationform.isPaid ='true' AND]]>
+			</when>
+			<when test="checkReserv.equals('true') and reserv_date != null">
+				reservationform.checkReserv = 'true' AND <![CDATA[reservationform.reserv_date > TO_CHAR(SYSDATE, 'YYYY-MM-dd')]]> AND reservationform.reserv_date = #{reserv_date} AND
 			</when>
 		</choose>
 	</sql>
@@ -30,7 +33,6 @@
 			</when>
 		</choose>
 	</sql>
-	
 	
 	<insert id="insert" parameterType="reservDto">
 		INSERT INTO reservationform

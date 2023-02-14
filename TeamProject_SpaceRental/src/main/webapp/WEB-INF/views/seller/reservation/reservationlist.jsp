@@ -14,7 +14,6 @@
 <script
   type="text/javascript"
   src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <body>
@@ -55,7 +54,7 @@
 		
    		<%-- 예약 목록 --%>
 		<c:choose>
-			<c:when test="${param.reservCateNum eq 1 }">
+			<c:when test="${(param.reservCateNum eq 1) or ( empty param.reservCateNum) }">
 				<h3>예약 요청 목록</h3><p>들어온 예약 요청 목록입니다.</p>
 			</c:when>
 			<c:when test="${param.reservCateNum eq 2 }">
@@ -70,7 +69,7 @@
 		</c:choose>
 		<div id="reservList">
 			<table class="table">
-			  <thead>
+				<thead>
 					<tr class="table-info">
 						<th scope="row">예약 번호</th>
 						<th scope="row">방 이름</th>
@@ -90,29 +89,29 @@
 							</c:when>
 						</c:choose>
 					</tr>
-			  </thead>
-			  <c:forEach var="tmp" items="${list }">
-						<tbody>
-							<tr v-for="item in resultList">
-								<td>{{item.reserv_num }}</td>
-								<td>{{item.space_name }}</td>
-								<td>{{item.users_id }}</td>
-								<td>{{item.reserv_count }}</td>
-								<td>{{item.reserv_date }}</td>
-								<td>{{item.reserv_time }}</td>
-								<td>{{item.reserv_reg }}</td>
-								<td>{{item.totalMoney }}</td>
-								<c:choose>
-									<c:when test="${(param.reservCateNum eq 1) or (empty param.reservCateNum)}">
-										<td><button id="okBtn${tmp.reserv_num }" type="button" onClick="checkBtn(this.id)">Ok</button></td>
-										<td><button id="rejectBtn${tmp.reserv_num }" type="button" onClick="checkBtn(this.id)">Reject</button></td>
-									</c:when>
-									<c:when test="${param.reservCateNum eq 2 }">
-										<td><button id="rejectBtn${tmp.reserv_num }" type="button" onClick="checkBtn(this.id)">Reject</button></td>
-									</c:when>
-								</c:choose>
-							</tr>
-						</tbody>	
+				</thead>
+			    <c:forEach var="tmp" items="${list }">
+					<tbody>
+						<tr>
+							<td>${tmp.reserv_num }</td>
+							<td>${tmp.space_name }</td>
+							<td>${tmp.users_id }</td>
+							<td>${tmp.reserv_count }</td>
+							<td>${tmp.reserv_date }</td>
+							<td>${tmp.reserv_time }</td>
+							<td>${tmp.reserv_reg }</td>
+							<td>${tmp.totalMoney }</td>
+							<c:choose>
+								<c:when test="${(param.reservCateNum eq 1) or (empty param.reservCateNum)}">
+									<td><button id="okBtn${tmp.reserv_num }" type="button" onClick="checkBtn(this.id, event)" value="${tmp.reserv_date }&&${tmp.space_num }&&${tmp.reserv_time}">Ok</button></td>
+									<td><button id="rejectBtn${tmp.reserv_num }" type="button" onClick="checkBtn(this.id)">Reject</button></td>
+								</c:when>
+								<c:when test="${param.reservCateNum eq 2 }">
+									<td><button id="rejectBtn${tmp.reserv_num }" type="button" onClick="checkBtn(this.id)">Reject</button></td>
+								</c:when>
+							</c:choose>
+						</tr>
+					</tbody>	
 				</c:forEach>
 			</table>
 		</div>
@@ -147,19 +146,65 @@
 	</div>
 	<!-- 결제 수락/ 예약 거절 버튼 -->
 	<script>
-		const checkBtn = function(clickedId){
+		const checkBtn = async function(clickedId, event){
 			//수락- true, 거절- false
 			let isReservOk = clickedId.indexOf("ok") == 0 ? "true" : "false";
 			//예약 번호
 			let reserv_num = clickedId.indexOf("ok") == 0 ? clickedId.substr(5) : clickedId.substr(9);
-			fetch("${pageContext.request.contextPath}/seller/reservation/check-reserv?num="+reserv_num+"&isReservOk="+isReservOk)
-              .then(function(response){
-                  console.log(response);
-                  return response.text();
-              })
-              .then(function(data){
-            	  location.reload();
-              })
+			//마지막에 fetch할 경로를 담을 변수(resultUrl) 미리 선언해두기
+			let resultUrl = "";
+			
+			if(isReservOk == 'false'){
+				resultUrl = '${pageContext.request.contextPath}/seller/reservation/check-reserv?num='+reserv_num+'&isReservOk=false'
+				fetch(resultUrl)
+	              .then(function(response){
+	                  console.log(response);
+	                  return response.text();
+	              })
+	              .then(function(data){
+	            	  location.reload();
+	              })
+	              return;
+			} else {
+				resultUrl = '${pageContext.request.contextPath}/seller/reservation/check-reserv?num='+reserv_num+'&isReservOk=true'
+
+				//[0]: 예약 날짜, [1]: 방 번호, [2]: 예약 시간
+				let btnValues = event.target.value.split('&&');
+				let reserv_date = btnValues[0];
+				let space_num = btnValues[1];
+				let reserv_time = btnValues[2];
+				//희망 예약 시간의 시작과 끝을 array type으로 저장
+				let hopeReservTime = reserv_time.split('-');
+				
+				//이미 예약요청을 수락한 reserv_time을 얻어오기 위한 비동기 작업
+				const response = await axios.get('${pageContext.request.contextPath}/space/reservation/getTime?space_num='+space_num+'&reserv_date='+reserv_date);
+				let resultList = response.data;
+				
+				if(resultList != null){
+					for(let i=0; i<resultList.length; i++){
+						console.log(resultList[i].reserv_time);
+						//이미 예약되어있는 시간의 시작과 끝을 array type으로 선언
+						let alreadyReserved = resultList[i].reserv_time.split('-');
+						//이미 예약되어있는 시간을 포함한 예약은 예약 요청을 수락하지 못하도록 하기
+						if(hopeReservTime[0]<=alreadyReserved[0] && alreadyReserved[1]<=hopeReservTime[1]){
+							let confirmDelete = confirm("이미 예약되어있는 시간입니다.\n이 요청을 거절하시겠습니까?");
+							//Y: 예약을 거절하는 url로, N: 수락도 거절도 안하도록
+							resultUrl = confirmDelete ? '${pageContext.request.contextPath}/seller/reservation/check-reserv?num='+reserv_num+'&isReservOk=false'
+									: ''
+						}
+					}
+				}
+				
+				fetch(resultUrl)
+	              .then(function(response){
+	                  console.log(response);
+	                  return response.text();
+	              })
+	              .then(function(data){
+	            	  location.reload();
+	              })
+	            return;
+			}
 		}
 	</script>
 	<!-- footer include -->
