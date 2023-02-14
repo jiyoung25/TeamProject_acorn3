@@ -14,6 +14,8 @@
 <script
   type="text/javascript"
   src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <body>
 	<%-- 네비바 --%>
@@ -91,15 +93,15 @@
 			  </thead>
 			  <c:forEach var="tmp" items="${list }">
 						<tbody>
-							<tr>
-								<td>${tmp.reserv_num }</td>
-								<td>${tmp.space_name }</td>
-								<td>${tmp.users_id }</td>
-								<td>${tmp.reserv_count }</td>
-								<td>${tmp.reserv_date }</td>
-								<td>${tmp.reserv_time }</td>
-								<td>${tmp.reserv_reg }</td>
-								<td>${tmp.totalMoney }</td>
+							<tr v-for="item in resultList">
+								<td>{{item.reserv_num }}</td>
+								<td>{{item.space_name }}</td>
+								<td>{{item.users_id }}</td>
+								<td>{{item.reserv_count }}</td>
+								<td>{{item.reserv_date }}</td>
+								<td>{{item.reserv_time }}</td>
+								<td>{{item.reserv_reg }}</td>
+								<td>{{item.totalMoney }}</td>
 								<c:choose>
 									<c:when test="${(param.reservCateNum eq 1) or (empty param.reservCateNum)}">
 										<td><button id="okBtn${tmp.reserv_num }" type="button" onClick="checkBtn(this.id)">Ok</button></td>

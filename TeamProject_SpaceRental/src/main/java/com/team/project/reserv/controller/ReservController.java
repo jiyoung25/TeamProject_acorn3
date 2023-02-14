@@ -44,18 +44,31 @@ public class ReservController {
 	}
 	
 	//ajax로 reservationlistToSeller받는 것
-	/*
 	@RequestMapping("/seller/reservation/getreservationlistToSeller")
 	@ResponseBody
 	public List<ReservDto> getreservationlistToSeller(HttpServletRequest request, HttpSession session, ReservDto dto) {
 		return service.reservationlistToSeller(request, session, dto);
 	}
-	*/
+	
+	//ajax로 reservationlistToUser받는 것
+	@RequestMapping("/users/getreservationlistToUser")
+	@ResponseBody
+	public List<ReservDto> getreservationlistToUser(HttpServletRequest request, HttpSession session, ReservDto dto, String pageNum) {
+		List<ReservDto> list = service.reservationlistToUser(request, session, dto);
+		
+		//parameter로 넘어온 pageNum을 list에 담아 보낸다.
+		if(list.size()!=0 && pageNum == null) {
+			list.get(0).setPageNum(1);
+		} else if(list != null && pageNum != null) {
+			list.get(0).setPageNum(Integer.parseInt(pageNum));
+		}
+		
+		return list;
+	}
 	
 	@RequestMapping("/users/reservationlist")
 	public String reservationlistToUser(HttpServletRequest request, HttpSession session, ReservDto dto) {
-		service.reservationlistToUser(request, session, dto);
-		
+
 		return "users/reservationlist";
 	}
 	
@@ -70,7 +83,7 @@ public class ReservController {
 	
 	@RequestMapping("/space/reservation/getTime")
 	@ResponseBody
-	public List<ReservDto> getReservTime(String reserv_date){
-		return service.getReservTime(reserv_date);
+	public List<ReservDto> getReservTime(ReservDto dto){
+		return service.getReservTime(dto);
 	}
 }

@@ -49,8 +49,8 @@ public class ReservDaoImpl implements ReservDao {
 	}
 
 	@Override
-	public List<ReservDto> getTime(String reserv_date) {
-		return session.selectList("reserv.getTime", reserv_date);
+	public List<ReservDto> getTime(ReservDto dto) {
+		return session.selectList("reserv.getTime", dto);
 	}
 	
 	

@@ -103,9 +103,6 @@
 							<button type="button" class="timeBtn btn btn-info" value="${i }" id="timeBtn${i }"
 								v-on:click="timeBtnClicked">${i }:00</button>
 						</c:forEach>
-						<ul v-for="item in timeList">
-							<li>{{item.reserv_time}}</li>
-						</ul>
 						<p id="noneVisible">{{count}}{{time1}}{{time2}}</p>
 						<br />
 						<h3>선택 정보</h3>
@@ -416,7 +413,7 @@
 					}
 					
 					//비동기 처리한 결과를 바로 vue의 data에 적용해서 쓰기 위해, fetch가 아닌 async/await를 사용한다.
-					const response = await axios.get('${pageContext.request.contextPath}/space/reservation/getTime?reserv_date='+this.day);
+					const response = await axios.get('${pageContext.request.contextPath}/space/reservation/getTime?space_num=${space_num}&reserv_date='+this.day);
 					//받아온 결과를 vue의 state로 관리한다.
 					this.timeList = response.data;
 					
