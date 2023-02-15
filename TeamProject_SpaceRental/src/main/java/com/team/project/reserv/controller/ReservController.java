@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.team.project.interceptor.Auth;
+import com.team.project.interceptor.Auth.Role;
 import com.team.project.reserv.dto.ReservDto;
 import com.team.project.reserv.service.ReservService;
 
@@ -21,6 +23,7 @@ public class ReservController {
 	@Autowired
 	private ReservService service;
 	
+	@Auth(role = Role.USER)
 	@RequestMapping("/space/reservation")
 	public String reservation(HttpServletRequest request, ReservDto dto, HttpSession session) {
 		service.insert(dto, session);
@@ -33,6 +36,7 @@ public class ReservController {
 		return "seller/reservation/reservationlist";
 	}
 	
+	@Auth(role = Role.SELLER)
 	@RequestMapping("/seller/reservation/check-reserv")
 	@ResponseBody
 	public String checkReserv(ReservDto dto, String num, String isReservOk){
@@ -71,6 +75,7 @@ public class ReservController {
 		return "users/reservationlist";
 	}
 	
+	@Auth(role = Role.USER)
 	@RequestMapping("/users/reservation/goPay")
 	@ResponseBody
 	public String goPay(ReservDto dto, String num, String isPaid){
