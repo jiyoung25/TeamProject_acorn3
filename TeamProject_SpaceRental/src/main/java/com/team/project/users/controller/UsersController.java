@@ -20,6 +20,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.team.project.users.service.UsersService;
 import com.team.project.dib.service.DibService;
+import com.team.project.interceptor.Auth;
+import com.team.project.interceptor.Auth.Role;
 import com.team.project.users.dto.UsersDto;
 
 @Controller
@@ -91,6 +93,8 @@ public class UsersController {
 		mView.setViewName("users/profile1");
 		return mView;
 	}
+	
+	@Auth(role = Role.USER)
 	@RequestMapping("/users/dib_list")
 	public String dib_list(HttpServletRequest request,HttpSession session) {
 		dibService.dibGetData(request, session);

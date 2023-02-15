@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.team.project.interceptor.Auth;
+import com.team.project.interceptor.Auth.Role;
 import com.team.project.seller.dto.SellerDto;
 import com.team.project.seller.service.SellerService;
 import com.team.project.users.service.UsersService;
@@ -24,6 +26,7 @@ public class SellerController {
 	@Autowired
 	private UsersService usersService;
 	
+	@Auth(role = Role.SELLER)
 	@RequestMapping("/seller/spacelist")
 	public ModelAndView list(ModelAndView mView, HttpServletRequest request, HttpSession session) {
 		service.getUsersNum(request, session);
@@ -32,14 +35,15 @@ public class SellerController {
 		return mView;
 	}
 	
+	@Auth(role = Role.SELLER)
 	@RequestMapping("/seller/spaceinfo")
 	public String spaceinfo(HttpSession session,ModelAndView mView) {
 		usersService.getInfo(session, mView);
 		return "seller/spaceinfo";
 	}
 	
+	@Auth(role = Role.SELLER)
 	@RequestMapping("/seller/insert")
-
 	public String insert(SellerDto dto, HttpServletRequest request, HttpSession session) {
 		service.getUsersNum(request, session);
 		dto.setUsers_num((Integer)request.getAttribute("users_num"));
@@ -48,6 +52,7 @@ public class SellerController {
 		return "seller/insert";
 	}
 	
+	@Auth(role = Role.SELLER)
 	@RequestMapping("/seller/spaceupdate")
 	public String spaceUpdate(HttpServletRequest request, HttpSession session, ModelAndView mView) {
 		service.getData(request);
@@ -57,7 +62,7 @@ public class SellerController {
 		return "seller/spaceupdate";
 	}
 	
-	
+	@Auth(role = Role.SELLER)
 	@RequestMapping("/seller/update")
 	public String update(SellerDto dto, HttpServletRequest request, HttpSession session) {
 		service.update(dto, request);
@@ -67,8 +72,6 @@ public class SellerController {
 		
 		return "seller/update";		
 	}
-	
-	
 	
 	@RequestMapping("/seller/delete")
 	public String delete(int space_num, HttpServletRequest request) {

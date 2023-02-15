@@ -50,7 +50,6 @@ public class ReservServiceImpl implements ReservService {
 		dto.setStartRowNum(startRowNum);
 		dto.setEndRowNum(endRowNum);
 		dto.setUsers_id((String)session.getAttribute("id"));
-		dto.setToday(getToday());
 		
 		//글 목록 얻어오기
 		// cate_num==0은 전체 목록에 대비한 것이다.
@@ -120,7 +119,6 @@ public class ReservServiceImpl implements ReservService {
 		dto.setStartRowNum(startRowNum);
 		dto.setEndRowNum(endRowNum);
 		dto.setUsers_id((String)session.getAttribute("id"));
-		dto.setToday(getToday());
 		
 		//글 목록 얻어오기
 		// cate_num==0은 전체 목록에 대비한 것이다.
@@ -145,23 +143,5 @@ public class ReservServiceImpl implements ReservService {
 	@Override
 	public List<ReservDto> getReservTime(ReservDto dto) {
 		return dao.getTime(dto);
-	}
-	
-	public String getToday() {
-		String today = "";
-		try {
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddhhmmss");
-			// 현재 날짜 구하기
-	        Calendar cal = Calendar.getInstance();
-	        String resultDate = sdf.format(cal.getTime());
-	        String year = resultDate.substring(0, 4);
-	        String month = resultDate.substring(4, 6);
-	        String day = resultDate.substring(6, 8);
-	        today = year+"-"+month+"-"+day;
-	        System.out.println(today);
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-		return today;
 	}
 }
