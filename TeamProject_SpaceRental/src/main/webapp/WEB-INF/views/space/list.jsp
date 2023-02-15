@@ -7,10 +7,22 @@
 <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
 	<style>
 		.space_list{
 			border: 1px solid black;
 			display: inline-block;
+		}
+		.areaToggle{
+			display : none;
+		}
+		.areaStyle{
+			background-color:red;
+		}
+		#cities{
+			float:left;
+			list-style-type:none;
 		}
 	</style>
 <title>공간 리스트</title>
@@ -143,9 +155,23 @@
   				</c:when>
                </c:choose>
                </section>
-    	
-    	
+    			
+    			<%-- 카테고리별 내용 --%>
 				<div class="row gx-5 mb-5 m-5">
+	               <%-- 위치 검색을 위한 toggle & checkbox --%>
+	    			<div id="areaSelectForm">
+	    				<button type="button" v-on:click="onAreaClicked">지역 검색하기</button>
+	    				<div :class= "areaToggle ?'areaToggle' : ''">
+	    					<div class="areaStyle">
+		    					<form v-on:submit="onAreaSearch">
+		    						<ul v-for="item in cities" id="cities">
+		    							<li><input type="checkbox" :value="item" class="areaCheckbox" />{{item}}</li>
+		    						</ul>
+		    						<button>검색</button>
+	    						</form>
+	    					</div>
+	    				</div>
+	    			</div>
 				    <c:forEach var="tmp" items="${list }">
 				        <div class="col-lg-3 mb-5 ">
 				            <a class="card lift h-100" href="${pageContext.request.contextPath}/space/detail?cate_num=${cate_num}&space_num=${tmp.space_num}" style="text-decoration: none; color:black" >
@@ -154,7 +180,7 @@
 				                    <div>
 				                        <h4 class="card-title mb-2 text-center">${tmp.space_name }</h4>
 				                        <p class="card-text">${tmp.addr }</p>
-				                        <p class="card-text">${tmp.oneliner }</p>
+				                    	<p class="card-text">${tmp.oneliner }</p>
 				                    </div>
 				                </div>
 				                <div class="card-footer bg-transparent border-top d-flex align-items-center justify-content-between">
@@ -214,5 +240,36 @@
 		-->
 		
 	</div>
+	
+	<script>
+		let areaSelectForm = new Vue({
+			el:"#areaSelectForm",
+			data:{
+				areaToggle:true,
+				cities:['서울', '경기도', '인천', '강원도', '충청북도', '충청남도', '대전', '전라북도', '전라남도', '광주', '경상북도', '경상남도', '대구', '부산', '울산', '제주도']
+			},
+			methods:{
+				onAreaClicked:function(){
+					this.areaToggle = !this.areaToggle;
+				},
+				onAreaSearch: async function(e){
+					e.preventDefault();
+					let checkedCites = [];
+					const areaCheckboxes = document.querySelectorAll(".areaCheckbox");
+					for(let i=0; i<areaCheckboxes.length; i++){
+						if(areaCheckboxes[i].checked == true){
+							checkedCites.push(areaCheckboxes[i].value);
+						}
+					}
+					
+					if(checkedCites.length!=0){
+						const response = await axios.get('${pageContext.request.contextPath}/space/list?cate_num=${param.cate_num}&search='+checkedCites);
+					}
+					
+				}
+			}
+		})
+	
+	</script>
 </body>
 </html>

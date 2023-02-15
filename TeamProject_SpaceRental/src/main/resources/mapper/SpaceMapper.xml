@@ -4,7 +4,7 @@
 
 	<sql id="searchCondition">
 		<choose>
-			<when test="spaceName != null">
+			<when test="searchArea != null">
 				WHERE space_name LIKE '%'||#{spaceName }||'%'
 			</when>
 		</choose>
