@@ -25,9 +25,6 @@ public class ReservDto {
 	private int totalRow;
 	private int pageNum;
 	
-	//지나간 예약을 구하기 위한 항목 (오늘 날짜를 mapper에 넣어 지나간 예약을 구할 예정)
-	private String today;
-	
 	//jsp페이지의 table구성을 위한 항목
 	private int cate_num;
 	private String space_name;
@@ -40,7 +37,7 @@ public class ReservDto {
 	public ReservDto(int reserv_num, String users_id, int space_num, int seller_num, String reserv_date,
 			String reserv_time, String reserv_comment, int reserv_count, String reserv_reg, String checkReserv,
 			String isPaid, int totalMoney, int startRowNum, int endRowNum, int reservCateNum, int totalRow, int pageNum,
-			String today, int cate_num, String space_name, String mainImagePath) {
+			int cate_num, String space_name, String mainImagePath) {
 		super();
 		this.reserv_num = reserv_num;
 		this.users_id = users_id;
@@ -59,7 +56,6 @@ public class ReservDto {
 		this.reservCateNum = reservCateNum;
 		this.totalRow = totalRow;
 		this.pageNum = pageNum;
-		this.today = today;
 		this.cate_num = cate_num;
 		this.space_name = space_name;
 		this.mainImagePath = mainImagePath;
@@ -231,13 +227,5 @@ public class ReservDto {
 
 	public void setPageNum(int pageNum) {
 		this.pageNum = pageNum;
-	}
-
-	public String getToday() {
-		return today;
-	}
-
-	public void setToday(String today) {
-		this.today = today;
 	}
 }
