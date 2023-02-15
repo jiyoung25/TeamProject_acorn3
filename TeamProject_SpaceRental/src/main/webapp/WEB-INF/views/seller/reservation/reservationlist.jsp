@@ -186,7 +186,27 @@
 						//이미 예약되어있는 시간의 시작과 끝을 array type으로 선언
 						let alreadyReserved = resultList[i].reserv_time.split('-');
 						//이미 예약되어있는 시간을 포함한 예약은 예약 요청을 수락하지 못하도록 하기
-						if(hopeReservTime[0]<=alreadyReserved[0] && alreadyReserved[1]<=hopeReservTime[1]){
+						//경우 1) 희망 시간: 2-6시, 예약되어있는 시간: 3-8시  ==> 희망[0] <= 예약[0] && (희망[1]>=예약[0] && 희망[1] <= 예약[1]
+						//경우 2) 희망 시간: 2-6시, 예약되어있는 시간: 3-5시  ==> 희망[0] <= 예약[0] && 희망[1] >= 예약[0] && 희망[1] >= 예약[1]
+						//경우 3) 희망 시간: 2-6시, 예약되어있는 시간: 1-5시  ==> 희망[0] >= 예약[0] && 희망[0]<=예약[1] && 희망[1] >= 예약[1]
+						//경우 4) 희망 시간: 2-6시, 예약되어있는 시간: 1-8시  ==> (희망[0] >= 예약[0] && 희망[0]<=예약[1]) && 희망[1] <= 예약[1]
+						//희망 시간 = 예약 시간인 경우는 case1, 2, 3, 4 모두에 걸린다.
+						const hrt0 = Number(hopeReservTime[0]);
+						const hrt1 = Number(hopeReservTime[1]);
+						const ar0 = Number(alreadyReserved[0]);
+						const ar1 = Number(alreadyReserved[1]);
+						const reservCase1 = (hrt0<=ar0) && (hrt1>=ar0 && hrt1<=ar1);
+						const reservCase2 = (hrt0<=ar0) && (hrt1>=ar0) && (hrt1>=ar1);
+						const reservCase3 = (hrt0>=ar0) && (hrt0<=ar0) && (hrt1>=ar1);
+						const reservCase4 = (hrt0>=ar0 && hrt1<=ar1) && (hrt1<=ar1);
+						console.log("reservCase1" + reservCase1);
+						console.log("reservCase2" + reservCase2);
+						console.log("reservCase3" + reservCase3);
+						console.log("reservCase4" + reservCase4);
+						console.log(reservCase1 == true || reservCase2 == true || reservCase3 == true || reservCase4 == true);
+						
+						//4가지의 경우 중 1개라도 true이면 예약하지 못한다.
+						if(reservCase1 == true || reservCase2 == true || reservCase3 == true || reservCase4 == true){
 							let confirmDelete = confirm("이미 예약되어있는 시간입니다.\n이 요청을 거절하시겠습니까?");
 							//Y: 예약을 거절하는 url로, N: 수락도 거절도 안하도록
 							resultUrl = confirmDelete ? '${pageContext.request.contextPath}/seller/reservation/check-reserv?num='+reserv_num+'&isReservOk=false'
