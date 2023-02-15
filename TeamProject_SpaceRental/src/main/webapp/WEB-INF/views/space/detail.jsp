@@ -148,6 +148,7 @@
 			<p>${spaceDto.addr }</p>
 		</div>
 		<div id="map" style="width:100%;height:350px;"></div>
+		
 		<h3 id="review">Review <a href="${pageContext.request.contextPath}/review/reviewInsertform?cate_num=${cate_num }&space_num=${space_num}">추가하기</a></h3>
 		<div class="container">
 			<table class="table table-striped">
@@ -158,6 +159,9 @@
 						<th>제목</th>
 						<th>조회수</th>
 						<th>작성일</th>
+						<c:if test="${ usersCode eq 1}">
+							<th>삭제</th>
+						</c:if>
 					</tr>
 				</thead>
 				<tbody>
@@ -170,6 +174,11 @@
 							</td>
 							<td>${tmp.viewcount }</td>
 							<td>${tmp.review_regdate }</td>
+							<c:if test="${ usersCode eq 1}">
+								<td>
+									<a href="${pageContext.request.contextPath}/space/reviewDelete?review_num=${tmp.review_num}&cate_num=${cate_num }&space_num=${space_num}" onClick="deleteLink(); return false;">삭제</a>
+								</td>
+							</c:if>
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -211,6 +220,9 @@
 						<th>제목</th>
 						<th>조회수</th>
 						<th>작성일</th>
+						<c:if test="${ usersCode eq 1}">
+							<th>삭제</th>
+						</c:if>
 					</tr>
 				</thead>
 				<tbody>
@@ -223,6 +235,11 @@
 							</td>
 							<td>${tmp.viewCount }</td>
 							<td>${tmp.regdate }</td>
+							<c:if test="${ usersCode eq 1}">
+								<td>
+									<a href="qnaDelete?num=${tmp.num}&cate_num=${cate_num }&space_num=${space_num}" onClick="deleteLink(); return false;">삭제</a>
+								</td>
+							</c:if>
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -524,6 +541,11 @@
 	        map.setCenter(coords);
 	    } 
 	});    
+	</script>
+	<script>
+   		const deleteLink = function(){
+			confirm("해당 글을 삭제하시겠습니까?")?this.submit():"";
+		}
 	</script>
 </body>
 </html>
