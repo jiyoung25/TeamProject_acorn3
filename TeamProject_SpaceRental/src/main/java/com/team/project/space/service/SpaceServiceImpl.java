@@ -21,7 +21,7 @@ public class SpaceServiceImpl implements SpaceService {
 	
 	@Override
 	//나중에 space Service가 생기면 그쪽으로 옮길 예정
-	public void getSpaceList(HttpServletRequest request, int cate_num) {
+	public void getSpaceList(HttpServletRequest request) {
 		//한 페이지에 몇개씩 표시할 것인지
 		final int PAGE_ROW_COUNT=8;
 		//하단 페이지를 몇개씩 표시할 것인지
@@ -46,49 +46,47 @@ public class SpaceServiceImpl implements SpaceService {
 		SpaceDto dto=new SpaceDto();
 		dto.setStartRowNum(startRowNum);
 		dto.setEndRowNum(endRowNum);
-				
 		
-		/*
-		//[ 검색 키워드에 관련된 처리 ]
-		//-검색 키워드가 파라미터로 넘어올수도 있고 안넘어 올수도 있다.		
-		
-		String keyword=request.getParameter("keyword");
-		String condition=request.getParameter("condition");
-		
-		//만일 키워드가 넘어오지 않는다면 
-		if(keyword==null){
-			//키워드와 검색 조건에 빈 문자열을 넣어준다. 
-			//클라이언트 웹브라우저에 출력할때 "null" 을 출력되지 않게 하기 위해서  
-			keyword="";
-			condition=""; 
-		}
-		
-		//특수기호를 인코딩한 키워드를 미리 준비한다. 
-		String encodedK=URLEncoder.encode(keyword);
-		
-		//만일 검색 키워드가 넘어온다면 
-		if(!keyword.equals("")){
-			//검색 조건이 무엇이냐에 따라 분기 하기
-			if(condition.equals("spaceName")){ //제목 검색인 경우
-				dto.setSpaceName(keyword);
-			}// 다른 검색 조건을 추가 하고 싶다면 아래에 else if() 를 계속 추가 하면 된다.
-		}
-		*/
-		
-		//글 목록 얻어오기
-		// cate_num==0은 전체 목록에 대비한 것이다.
-		// 전체 글의 개수도 함께 구한다.
 		List<SpaceDto> list = null;
 		int totalRow=0;
+				
+		
+		//[ 검색 키워드에 관련된 처리 ]
+		//-검색 키워드가 파라미터로 넘어올수도 있고 안넘어 올수도 있다.	
+		String search=request.getParameter("search");
+		
+		//만일 키워드가 넘어오지 않는다면 
+		if(search==null){
+			//키워드와 검색 조건에 빈 문자열을 넣어준다. 
+			//클라이언트 웹브라우저에 출력할때 "null" 을 출력되지 않게 하기 위해서  
+			search="";
+		}
+		
+		String[] searchArea =null;
+		//키워드가 넘어왔다면
+		if(search!="") {
+			searchArea = search.split(",");
+			for(int i=0; i<searchArea.length; i++) {
+				searchArea[i] = "%" + searchArea[i] + "%";
+			}
+		}
+		dto.setSearchArea(searchArea);
+		
+		//특수기호를 인코딩한 키워드를 미리 준비한다. 
+		String encodedK=URLEncoder.encode(search);
+		
+		//cate_num을 구해온다.
+		int cate_num = Integer.parseInt((String)request.getParameter("cate_num"));
 		dto.setCate_num(cate_num);
+		
+		//전체 카테고리 보기를 위한 준비
 		if(cate_num == 0) {
 			list=dao.getSpaceAllList(dto);
 			totalRow = dao.getAllCount();
 			
 		} else {
 			list = dao.getSpaceList(dto);
-			totalRow = dao.getCount(cate_num);
-			System.out.println(list);
+			totalRow = dao.getCount(dto);
 		}
 				
 		//하단 시작 페이지 번호 
@@ -107,9 +105,7 @@ public class SpaceServiceImpl implements SpaceService {
 		request.setAttribute("pageNum", pageNum);
 		request.setAttribute("startPageNum", startPageNum);
 		request.setAttribute("endPageNum", endPageNum);
-		//request.setAttribute("condition", condition);
-		//request.setAttribute("keyword", keyword);
-		//request.setAttribute("encodedK", encodedK);
+		request.setAttribute("searchArea", searchArea);
 		request.setAttribute("totalPageCount", totalPageCount);
 		request.setAttribute("list", list);
 		request.setAttribute("totalRow", totalRow);

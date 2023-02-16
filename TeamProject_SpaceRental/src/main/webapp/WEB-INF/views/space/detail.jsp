@@ -148,8 +148,8 @@
 			<p>${spaceDto.addr }</p>
 		</div>
 		<div id="map" style="width:100%;height:350px;"></div>
-		
-		<h3 id="review">Review <a href="${pageContext.request.contextPath}/review/reviewInsertform?cate_num=${cate_num }&space_num=${space_num}">추가하기</a></h3>
+		<h3 id="review">Review <a href="${pageContext.request.contextPath}/review/reviewInsertform?cate_num=${param.cate_num }&space_num=${param.space_num}">추가하기</a></h3>
+
 		<div class="container">
 			<table class="table table-striped">
 				<thead class="table-dark">
@@ -190,12 +190,12 @@
 					--%>
 					<c:if test="${startPageNum ne 1 }">
 						<li class="page-item">
-							<a class="page-link" href="detail?cate_num=${cate_num }&space_num=${space_num}&pageNum=${startPageNum-1 }">Prev</a>
+							<a class="page-link" href="detail?cate_num=${param.cate_num }&space_num=${param.space_num}&pageNum=${startPageNum-1 }">Prev</a>
 						</li>
 					</c:if>
 		            <c:forEach var="i" begin="${startPageNum }" end="${endPageNum }">
 						<li class="page-item ${pageNum eq i ? 'active' : '' }">
-							<a class="page-link" href="detail?cate_num=${cate_num }&space_num=${space_num}&pageNum=${i }">${i }</a>
+							<a class="page-link" href="detail?cate_num=${param.cate_num }&space_num=${param.space_num}&pageNum=${i }">${i }</a>
 						</li>
 		            </c:forEach>
 		            <%--
@@ -203,14 +203,14 @@
 					--%>
 		            <c:if test="${endPageNum lt totalPageCount }">
 						<li class="page-item">
-							<a class="page-link" href="detail?cate_num=${cate_num }&space_num=${space_num}&pageNum=${endPageNum+1 }">Next</a>
+							<a class="page-link" href="detail?cate_num=${param.cate_num }&space_num=${param.space_num}&pageNum=${endPageNum+1 }">Next</a>
 						</li>
 					</c:if>
 				</ul>
 			</nav>
 		</div>
 		
-		<h3 id="qna">Q&A <a href="${pageContext.request.contextPath}/qna/qnaInsertform?cate_num=${cate_num }&space_num=${space_num}">추가하기</a></h3>
+		<h3 id="qna">Q&A <a href="${pageContext.request.contextPath}/qna/qnaInsertform?cate_num=${param.cate_num }&space_num=${param.space_num}">추가하기</a></h3>
 		<div class="container">
 			<table class="table table-striped">
 				<thead class="table-dark">
@@ -252,12 +252,12 @@
 		            --%>
 		            <c:if test="${qnaStartPageNum ne 1 }">
 						<li class="page-item">
-							<a class="page-link" href="detail?cate_num=${cate_num }&space_num=${space_num}&qnaPageNum=${qnaStartPageNum-1 }&condition=${condition}&keyword=${encodedK}">Prev</a>
+							<a class="page-link" href="detail?cate_num=${param.cate_num }&space_num=${param.space_num}&qnaPageNum=${qnaStartPageNum-1 }&condition=${condition}&keyword=${encodedK}">Prev</a>
 						</li>
 		            </c:if>
 		            <c:forEach var="i" begin="${qnaStartPageNum }" end="${qnaEndPageNum }">
 						<li class="page-item ${qnaPageNum eq i ? 'active' : '' }">
-							<a class="page-link" href="detail?cate_num=${cate_num }&space_num=${space_num}&qnaPageNum=${i }&condition=${condition}&keyword=${encodedK}">${i }</a>
+							<a class="page-link" href="detail?cate_num=${param.cate_num }&space_num=${param.space_num}&qnaPageNum=${i }&condition=${condition}&keyword=${encodedK}">${i }</a>
 						</li>
 		            </c:forEach>
 		            <%--
@@ -265,7 +265,7 @@
 		             --%>
 		            <c:if test="${qnaEndPageNum lt qnatotalPageCount }">
 						<li class="page-item">
-							<a class="page-link" href="detail?cate_num=${cate_num }&space_num=${space_num}&qnaPageNum=${qnaEndPageNum+1 }&condition=${condition}&keyword=${encodedK}">Next</a>
+							<a class="page-link" href="detail?cate_num=${param.cate_num }&space_num=${param.space_num}&qnaPageNum=${qnaEndPageNum+1 }&condition=${condition}&keyword=${encodedK}">Next</a>
 						</li>
 		            </c:if>
 				</ul>
@@ -280,18 +280,18 @@
 						<option value="writer" ${condition eq 'writer' ? 'selected' : '' }>작성자</option>
 					</select>
 				<input type="text" name="keyword" placeholder="검색어..." value="${keyword }" />
-	    		<input type="hidden" name="cate_num" value=${cate_num }>
-	    		<input type="hidden" name="space_num" value=${space_num }>
+	    		<input type="hidden" name="cate_num" value=${param.cate_num }>
+	    		<input type="hidden" name="space_num" value=${param.space_num }>
 	    		<button type="submit">검색</button>
 			</form>
 			<c:if test="${not empty condition }">
 				<p>
 					<strong>${qnatotalRow }</strong> 개의 자료가 검색 되었습니다.
-					<a href="${pageContext.request.contextPath}/space/detail?cate_num=${cate_num}&space_num=${space_num}">리셋</a>
+					<a href="${pageContext.request.contextPath}/space/detail?cate_num=${param.cate_num}&space_num=${param.space_num}">리셋</a>
 				</p>
 			</c:if>
 		</div>
-		<a href="${pageContext.request.contextPath}/space/list?cate_num=${cate_num}" >목록으로</a>
+		<a href="${pageContext.request.contextPath}/space/list?cate_num=${param.cate_num}" >목록으로</a>
 		
 	
 	</div>
@@ -452,7 +452,7 @@
 					}
 					
 					//비동기 처리한 결과를 바로 vue의 data에 적용해서 쓰기 위해, fetch가 아닌 async/await를 사용한다.
-					const response = await axios.get('${pageContext.request.contextPath}/space/reservation/getTime?space_num=${space_num}&reserv_date='+this.day);
+					const response = await axios.get('${pageContext.request.contextPath}/space/reservation/getTime?space_num=${param.space_num}&reserv_date='+this.day);
 					//받아온 결과를 vue의 state로 관리한다.
 					this.timeList = response.data;
 					

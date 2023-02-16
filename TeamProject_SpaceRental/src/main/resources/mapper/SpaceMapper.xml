@@ -2,14 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="space">
 
-	<sql id="searchCondition">
-		<choose>
-			<when test="spaceName != null">
-				WHERE space_name LIKE '%'||#{spaceName }||'%'
-			</when>
-		</choose>
-	</sql>
-	
 	<select id="getSpaceAllList" resultType="spaceDto" parameterType="spaceDto">
 		SELECT *
 		FROM
@@ -30,15 +22,25 @@
 				FROM seller_space
 				INNER JOIN space_category ON seller_space.cate_name=space_category.cate_name
 						WHERE space_category.cate_num = #{cate_num}
+						<if test="searchArea != null">
+							<foreach collection="searchArea" item="item" open="AND (addr LIKE " close=")" separator="OR addr LIKE ">
+				               	#{item}
+							</foreach>
+						</if>
 				) result1)
 		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
 		ORDER BY rnum ASC
 	</select>
-		<select id="getCount" parameterType="int" resultType="int">
+	<select id="getCount" parameterType="spaceDto" resultType="int">
 		SELECT NVL(MAX(ROWNUM), 0)
 		FROM seller_space
 		JOIN space_category ON seller_space.cate_name=space_category.cate_name
 		WHERE space_category.cate_num = #{cate_num}
+		<if test="searchArea != null">
+			<foreach collection="searchArea" item="item" open="AND (addr LIKE " close=")" separator="OR addr LIKE ">
+               	#{item}
+			</foreach>
+		</if>
 	</select>
 	<select id="getAllCount" resultType="int">
 		SELECT NVL(MAX(ROWNUM), 0)
