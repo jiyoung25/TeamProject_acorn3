@@ -6,21 +6,48 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>/users/qnaList</title>
+<title>Q&A list</title>
+<!-- MDB -->
+<link
+  href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.css" rel="stylesheet"/>
+<!-- MDB -->
+<script
+  type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.js"></script>
 </head>
-<body>
-	<div>
-		<table>
-			<thead>
+	<%-- 네비바 --%>
+	<c:choose>
+		<c:when test="${empty sessionScope.id }">
+        	<jsp:include page="/WEB-INF/include/navbar_sidebar_SessionX.jsp"/>
+      	</c:when>
+      	<c:otherwise>
+	      	<c:choose>
+	      		<c:when test="${usersCode eq 2 }">
+	      	  		<jsp:include page="/WEB-INF/include/navbar_sessionO_seller.jsp"/>
+	         		<jsp:include page="/WEB-INF/include/sidebar_seller.jsp"/>
+	      		</c:when>
+	      		<c:when test ="${usersCode eq 3 }">
+					<jsp:include page="/WEB-INF/include/navbar_sessionO_users.jsp"/>
+			      	<jsp:include page="/WEB-INF/include/sidebar_user.jsp"/>
+	      		</c:when>
+	      		<c:when test = "${usersCode eq 1 }">
+	      		</c:when>
+	      	</c:choose>
+      	</c:otherwise>
+   	</c:choose>
+	<div class="container">
+		<h1>Q&A</h1>
+		<table class="table align-middle mb-0 bg-white">
+			<thead class="bg-light">
 				<tr>
 					<th>글번호</th>
 					<th>작성자</th>
 					<th>제목</th>
 					<th>조회수</th>
-					<th>작성일</th>
-					<th></th>
-				</tr>
-			</thead>
+					<th>날짜</th>
+					<th>삭제</th>
+		    	</tr>
+		  	</thead>
 			<tbody>
 				<c:forEach var="tmp" items="${qnaList }">
 					<tr>
