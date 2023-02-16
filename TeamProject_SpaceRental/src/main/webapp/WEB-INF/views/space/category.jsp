@@ -43,6 +43,7 @@
 			      	<jsp:include page="/WEB-INF/include/sidebar_user.jsp"/>
 	      		</c:when>
 	      		<c:when test = "${usersCode eq 1 }">
+	      			<jsp:include page="/WEB-INF/include/navbar_sessionO_admin.jsp"/>
 	      		</c:when>
 	      	</c:choose>
       	</c:otherwise>
