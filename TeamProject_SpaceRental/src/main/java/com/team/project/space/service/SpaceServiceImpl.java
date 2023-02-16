@@ -62,8 +62,14 @@ public class SpaceServiceImpl implements SpaceService {
 			search="";
 		}
 		
+		String[] searchArea =null;
 		//키워드가 넘어왔다면
-		String[] searchArea = search.split(",");
+		if(search!="") {
+			searchArea = search.split(",");
+			for(int i=0; i<searchArea.length; i++) {
+				searchArea[i] = "%" + searchArea[i] + "%";
+			}
+		}
 		dto.setSearchArea(searchArea);
 		
 		//특수기호를 인코딩한 키워드를 미리 준비한다. 
@@ -80,7 +86,7 @@ public class SpaceServiceImpl implements SpaceService {
 			
 		} else {
 			list = dao.getSpaceList(dto);
-			totalRow = dao.getCount(cate_num);
+			totalRow = dao.getCount(dto);
 		}
 				
 		//하단 시작 페이지 번호 

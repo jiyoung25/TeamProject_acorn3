@@ -30,8 +30,8 @@ public class SpaceDaoImpl implements SpaceDao {
 	}
 
 	@Override
-	public int getCount(int cate_num) {
-		return session.selectOne("space.getCount", cate_num);
+	public int getCount(SpaceDto dto) {
+		return session.selectOne("space.getCount", dto);
 	}
 
 	@Override

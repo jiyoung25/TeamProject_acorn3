@@ -246,7 +246,7 @@
 			el:"#areaSelectForm",
 			data:{
 				areaToggle:true,
-				cities:['서울', '경기도', '인천', '강원도', '충청북도', '충청남도', '대전', '전라북도', '전라남도', '광주', '경상북도', '경상남도', '대구', '부산', '울산', '제주도']
+				cities:['서울', '경기', '인천', '강원', '충북', '충남', '대전', '전북', '전남', '광주', '경북', '경남', '대구', '부산', '울산', '제주']
 			},
 			methods:{
 				onAreaClicked:function(){
@@ -263,7 +263,7 @@
 					}
 					
 					if(checkedCites.length!=0){
-						const response = await axios.get('${pageContext.request.contextPath}/space/list?cate_num=${param.cate_num}&search='+checkedCites);
+						location.href = '${pageContext.request.contextPath}/space/list?cate_num=${param.cate_num}&search='+checkedCites;
 					}
 					
 				}
