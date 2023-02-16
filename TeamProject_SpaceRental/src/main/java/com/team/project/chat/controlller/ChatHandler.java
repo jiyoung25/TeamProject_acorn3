@@ -1,6 +1,8 @@
 package com.team.project.chat.controlller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.socket.CloseStatus;
@@ -13,8 +15,7 @@ import com.google.gson.JsonParser;
 
 @Configuration
 public class ChatHandler extends TextWebSocketHandler {
-	HashMap<String, WebSocketSession> sessionMap = new HashMap<>(); //웹소켓 세션을 담아둘 맵
-	
+	List<HashMap<String, Object>> rls = new ArrayList<>(); //웹소켓 세션을 담아둘 리스트 ---roomListSessions
     @Override //소켓 연결
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
 		//소켓을 연결할 때 실행되는 메소드
@@ -41,6 +42,9 @@ public class ChatHandler extends TextWebSocketHandler {
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
 		//메시지 발송
 		String msg = message.getPayload();
+		JsonObject obj = jsonToObject(msg);
+		
+		String roomNum = (String)obj.get("room_num");
 		for(String key : sessionMap.keySet()) {
 			WebSocketSession wss = sessionMap.get(key);
 			try {

@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <title>예약리스트 보기(판매자)</title>
 <!-- MDB -->
 <link

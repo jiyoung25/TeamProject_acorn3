@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="chattingroom">
+	<select id="getSellerId" resultType="string" parameterType="int">
+		SELECT id
+		FROM space_users
+		WHERE users_num = (SELECT users_num FROM seller_space WHERE space_num=#{space_num})
+	</select>
+	<insert id="insert" parameterType="chattingRoomDto">
+		INSERT INTO chattingroom
+		(room_num, seller_id, user_id, room_name)
+		VALUES(chattingroom_seq.NEXTVAL, #{seller_id}, #{user_id}, #{roomName})
+	</insert>
+	<select id="getRoom" parameterType="chattingRoomDto" resultType="chattingRoomDto">
+		SELECT *
+		FROM chattingroom
+		WHERE user_id=#{user_id} AND seller_id = #{seller_id}
+	</select>
+</mapper>
