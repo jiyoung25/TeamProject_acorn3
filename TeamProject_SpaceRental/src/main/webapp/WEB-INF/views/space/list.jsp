@@ -17,6 +17,9 @@
 		.areaToggle{
 			display : none;
 		}
+		.resetToggle{
+			display : none;
+		}
 		.areaStyle{
 			background-color:red;
 		}
@@ -165,9 +168,10 @@
 	    					<div class="areaStyle">
 		    					<form v-on:submit="onAreaSearch">
 		    						<ul v-for="item in cities" id="cities">
-		    							<li><input type="checkbox" :value="item" class="areaCheckbox" />{{item}}</li>
+		    							<li><input type="checkbox" :value="item" class="areaCheckbox"/>{{item}}</li>
 		    						</ul>
 		    						<button>검색</button>
+		    						<button type="button" v-on:click="OnareaResetBtn" :class = "resetToggle ? 'resetToggle':''">검색 조건 리셋하기</button>
 	    						</form>
 	    					</div>
 	    				</div>
@@ -246,13 +250,19 @@
 			el:"#areaSelectForm",
 			data:{
 				areaToggle:true,
+				resetToggle:true,
 				cities:['서울', '경기', '인천', '강원', '충북', '충남', '대전', '전북', '전남', '광주', '경북', '경남', '대구', '부산', '울산', '제주']
+			},
+			mounted(){
+				if(${not empty param.search}){
+					this.resetToggle=false;
+				}
 			},
 			methods:{
 				onAreaClicked:function(){
 					this.areaToggle = !this.areaToggle;
 				},
-				onAreaSearch: async function(e){
+				onAreaSearch: function(e){
 					e.preventDefault();
 					let checkedCites = [];
 					const areaCheckboxes = document.querySelectorAll(".areaCheckbox");
@@ -266,7 +276,11 @@
 						location.href = '${pageContext.request.contextPath}/space/list?cate_num=${param.cate_num}&search='+checkedCites;
 					}
 					
+				},
+				OnareaResetBtn: function(){
+					location.href = '${pageContext.request.contextPath}/space/list?cate_num=${param.cate_num}';
 				}
+				
 			}
 		})
 	
