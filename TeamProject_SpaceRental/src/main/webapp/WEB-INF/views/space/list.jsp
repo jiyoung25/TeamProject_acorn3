@@ -50,6 +50,7 @@
 			      	<jsp:include page="/WEB-INF/include/sidebar_user.jsp"/>
 	      		</c:when>
 	      		<c:when test = "${usersCode eq 1 }">
+	      			<jsp:include page="/WEB-INF/include/navbar_sessionO_admin.jsp"/>
 	      		</c:when>
 	      	</c:choose>
       	</c:otherwise>
@@ -192,6 +193,9 @@
 				                    <div class="small text-primary"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></div>
 				            	</div>
 				        	</a>
+				        	<div>
+				                 <a href="${pageContext.request.contextPath}/space/spaceDelete?space_num=${tmp.space_num }&cate_num=${cate_num }" onClick="deleteLink(); return false;">삭제</a>
+				            </div>
 				        </div>
 					</c:forEach>
 				</div>
@@ -284,6 +288,11 @@
 			}
 		})
 	
+	</script>
+	<script>
+   		const deleteLink = function(){
+			confirm("해당 글을 삭제하시겠습니까?")?this.submit():"";
+		}
 	</script>
 </body>
 </html>

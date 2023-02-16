@@ -148,8 +148,8 @@
 			<p>${spaceDto.addr }</p>
 		</div>
 		<div id="map" style="width:100%;height:350px;"></div>
+		
 		<h3 id="review">Review <a href="${pageContext.request.contextPath}/review/reviewInsertform?cate_num=${param.cate_num }&space_num=${param.space_num}">추가하기</a></h3>
-
 		<div class="container">
 			<table class="table table-striped">
 				<thead class="table-dark">
