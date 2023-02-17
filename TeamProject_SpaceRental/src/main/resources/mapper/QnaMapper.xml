@@ -18,6 +18,19 @@
 			</otherwise>
 		</choose>
 	</sql>
+	<sql id="searchCondition2">
+		<choose>
+			<when test="title != null and content != null">
+				WHERE title LIKE '%'||#{title}||'%' OR content LIKE '%'||#{content}||'%'
+			</when>
+			<when test="title != null">
+            	WHERE title LIKE '%'||#{title}||'%'
+			</when>
+			<when test="writer != null">
+            	WHERE writer LIKE '%'||#{writer}||'%'
+			</when>
+		</choose>
+	</sql>
 	
 	<select id="getList" parameterType="qnaDto" resultType="qnaDto">
       SELECT *
@@ -75,7 +88,7 @@
 				LAG(num, 1, 0) OVER (ORDER BY num DESC) qnaPrevNum,
 	   			LEAD(num, 1, 0) OVER (ORDER BY num DESC) qnaNextNum
 			FROM qna
-			<include refid="searchCondition"></include>
+			<include refid="searchCondition2"></include>
 			)result1
 		WHERE num=#{num}
 	</select>
