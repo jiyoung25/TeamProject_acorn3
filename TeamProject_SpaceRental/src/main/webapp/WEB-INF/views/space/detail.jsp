@@ -171,6 +171,7 @@
 			</thead>
 			<tbody>
 				<c:forEach var="tmp" items="${reviewlist }">
+
 					<tr>
 						<td>${tmp.review_num }</td>
 						<td>${tmp.review_writer }</td>
