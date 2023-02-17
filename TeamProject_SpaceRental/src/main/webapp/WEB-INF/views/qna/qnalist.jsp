@@ -31,8 +31,8 @@
    	</c:choose> 
 
 	<div class="container">
-      <table class="table table-striped">
-         <thead class="table-dark">
+      <table class="table align-middle mb-0 bg-white">
+         <thead class="bg-light">
             <tr>
                <th>글번호</th>
                <th>작성자</th>

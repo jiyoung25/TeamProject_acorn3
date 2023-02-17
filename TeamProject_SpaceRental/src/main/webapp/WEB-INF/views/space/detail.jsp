@@ -151,8 +151,8 @@
 		
 		<h3 id="review">Review <a href="${pageContext.request.contextPath}/review/reviewInsertform?cate_num=${param.cate_num }&space_num=${param.space_num}">추가하기</a></h3>
 		<div class="container">
-			<table class="table table-striped">
-				<thead class="table-dark">
+			<table class="table align-middle mb-0 bg-white">
+				<thead class="bg-light">
 					<tr>
 						<th>글번호</th>
 						<th>작성자</th>
@@ -212,8 +212,8 @@
 		
 		<h3 id="qna">Q&A <a href="${pageContext.request.contextPath}/qna/qnaInsertform?cate_num=${param.cate_num }&space_num=${param.space_num}">추가하기</a></h3>
 		<div class="container">
-			<table class="table table-striped">
-				<thead class="table-dark">
+			<table class="table align-middle mb-0 bg-white">
+				<thead class="bg-light">
 					<tr>
 						<th>글번호</th>
 						<th>작성자</th>
