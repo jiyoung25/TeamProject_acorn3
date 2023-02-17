@@ -36,6 +36,7 @@
       			<p class="fs-6 text-secondary">
          		<div class="col">
          			<button class="btn btn-dark" onClick="location.href='${pageContext.request.contextPath}/seller/spaceinfo'">내 공간 등록하기</button>
+         			<button class="btn btn-dark" onClick="location.href='${pageContext.request.contextPath}/seller/spacelist'">내 공간 확인하기</button>
             		<a class="navbar-brand" href="#"><strong>${sessionScope.id }</strong>님 반갑습니다.</a>
          			<a class="navbar-brand" href="${pageContext.request.contextPath}/users/logout"><small>로그아웃</small></a>
          			
