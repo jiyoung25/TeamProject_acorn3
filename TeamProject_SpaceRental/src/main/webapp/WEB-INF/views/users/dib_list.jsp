@@ -35,6 +35,8 @@
 	      	</c:choose>
       	</c:otherwise>
    	</c:choose>
+   	
+   	<%-- 찜 리스트 --%>
 	<div class="container">
 		<h1>찜한 목록</h1>
 		<table class="table align-middle mb-0 bg-white">
@@ -86,6 +88,8 @@
 		</c:if>
 		-->
 		<br>
+		
+		<%-- 페이지네이션 --%>
 		<nav>
 			<ul class="pagination">
 				<%--
@@ -112,9 +116,9 @@
 				</c:if>				
 			</ul>
 		</nav>
-		
 	</div>
-		     <!-- footer include -->
-	 		 <jsp:include page="/WEB-INF/include/footer.jsp"/>	
+	
+	<!-- footer include -->
+	<jsp:include page="/WEB-INF/include/footer.jsp"/>	
 </body>
 </html>

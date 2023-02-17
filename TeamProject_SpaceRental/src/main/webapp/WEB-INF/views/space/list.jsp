@@ -32,9 +32,6 @@
 </head>
 <body>
 	<%-- 네비바 --%>
-	<script>
-		console.log(${usersCode});
-	</script>
 	<c:choose>
 		<c:when test="${empty sessionScope.id }">
         	<jsp:include page="/WEB-INF/include/navbar_sidebar_SessionX.jsp"/>
@@ -57,89 +54,86 @@
    	</c:choose>
 
 	<div class="container">
-		<%-- 공간명 및 이미지 --%>
-			<section>
-					<c:choose>
-        				<c:when test="${cate_num eq 1 }">
-					    <section>
-					        <div class="container px-5">
-					            <div class="row gx-5 align-items-center">
-					                <div class="col-lg-6">
-					                    <div class="p-5"><img class="img-fluid rounded-circle" src="${pageContext.request.contextPath}/image/partyroom.png" alt="..."></div>
-					                </div>
-					                <div class="col-lg-6">
-					                    <div class="p-5">
-					                        <h2 class="display-4 text-center" style="font-family: 'Black Han Sans', sans-serif;">파티룸</h2>
-					                        <br>
-					                        <p class="text-center" style="font-family: Georgia, 'Times New Roman', Times, serif; color:grey">Good memories, Good service, Good people</p>
-					                    </div>
+		<%-- 공간명 및 이미지--%>
+		<section>
+			<c:choose>
+        		<c:when test="${cate_num eq 1 }">
+					<section>
+						<div class="container px-5">
+					    	<div class="row gx-5 align-items-center">
+					        	<div class="col-lg-6">
+					            	<div class="p-5"><img class="img-fluid rounded-circle" src="${pageContext.request.contextPath}/image/partyroom.png" alt="..."></div>
+					            </div>
+					            <div class="col-lg-6">
+					            	<div class="p-5">
+					                	<h2 class="display-4 text-center" style="font-family: 'Black Han Sans', sans-serif;">파티룸</h2>
+					                    <br>
+					                    <p class="text-center" style="font-family: Georgia, 'Times New Roman', Times, serif; color:grey">Good memories, Good service, Good people</p>
 					                </div>
 					            </div>
 					        </div>
-					    </section>
-					   </c:when>
+					    </div>
+					</section>
+				</c:when>
 					   
-					
-						<c:when test="${cate_num eq 2 }">
-							<section>
-						        <div class="container px-5">
-						            <div class="row gx-5 align-items-center">
-						                <div class="col-lg-6">
-						                    <div class="p-5"><img class="img-fluid rounded-circle" src="${pageContext.request.contextPath}/image/practiceroom.png" alt="..."></div>
-						                </div>
-						                <div class="col-lg-6">
-						                    <div class="p-5">
-						                        <h2 class="display-4 text-center" style="font-family: 'Black Han Sans', sans-serif;">연습실</h2>
-						                        <br>
-						                        <p class="text-center" style="font-family: Georgia, 'Times New Roman', Times, serif; color:grey">Good memories, Good service, Good people</p>
-						                    </div>
-						                </div>
-						            </div>
+				<c:when test="${cate_num eq 2 }">
+					<section>
+						<div class="container px-5">
+							<div class="row gx-5 align-items-center">
+						    	<div class="col-lg-6">
+						        	<div class="p-5"><img class="img-fluid rounded-circle" src="${pageContext.request.contextPath}/image/practiceroom.png" alt="..."></div>
 						        </div>
-						 </section>
-					</c:when>
+						        <div class="col-lg-6">
+						        	<div class="p-5">
+						            	<h2 class="display-4 text-center" style="font-family: 'Black Han Sans', sans-serif;">연습실</h2>
+						                <br>
+						            	<p class="text-center" style="font-family: Georgia, 'Times New Roman', Times, serif; color:grey">Good memories, Good service, Good people</p>
+						        	</div>
+						    	</div>
+						    </div>
+						</div>
+					</section>
+				</c:when>
 					
-						
-                	<c:when test="${cate_num eq 3 }">
-				    <section>
-				            <div class="container px-5">
-				                <div class="row gx-5 align-items-center">
-				                    <div class="col-lg-6">
-				                        <div class="p-5"><img class="img-fluid rounded-circle" src="${pageContext.request.contextPath}/image/kitchin.png" alt="..."></div>
+				<c:when test="${cate_num eq 3 }">
+					<section>
+						<div class="container px-5">
+							<div class="row gx-5 align-items-center">
+								<div class="col-lg-6">
+									<div class="p-5"><img class="img-fluid rounded-circle" src="${pageContext.request.contextPath}/image/kitchin.png" alt="..."></div>
+								</div>
+								<div class="col-lg-6">
+									<div class="p-5">
+										<h2 class="display-4 text-center" style="font-family: 'Black Han Sans', sans-serif;">공유주방</h2>
+										<br>
+										<p class="text-center" style="font-family: Georgia, 'Times New Roman', Times, serif; color:grey">Good memories, Good service, Good people</p>
 				                    </div>
-				                    <div class="col-lg-6">
-				                        <div class="p-5">
-				                            <h2 class="display-4 text-center" style="font-family: 'Black Han Sans', sans-serif;">공유주방</h2>
-				                            <br>
-				                            <p class="text-center" style="font-family: Georgia, 'Times New Roman', Times, serif; color:grey">Good memories, Good service, Good people</p>
-				                        </div>
-				                    </div>
+								</div>
+							</div>
+						</div>
+					</section>
+				</c:when>
+				    
+				<c:when test="${cate_num eq 4 }">
+					<section>
+						<div class="container px-5">
+							<div class="row gx-5 align-items-center">
+								<div class="col-lg-6">
+									<div class="p-5"><img class="img-fluid rounded-circle" src="${pageContext.request.contextPath}/image/studyroom.png" alt="..."></div>
+				                </div>
+				                <div class="col-lg-6">
+				                	<div class="p-5">
+					                    <h2 class="display-4 text-center" style="font-family: 'Black Han Sans', sans-serif;">스터디룸</h2>
+					                    <br>
+					                    <p class="text-center" style="font-family: Georgia, 'Times New Roman', Times, serif; color:grey">Good memories, Good service, Good people</p>
+				                	</div>
 				                </div>
 				            </div>
-				        </section>
-				    </c:when>
+				        </div>
+				    </section>
+				</c:when>
 				    
-                	<c:when test="${cate_num eq 4 }">
-				      <section>
-				            <div class="container px-5">
-				                <div class="row gx-5 align-items-center">
-				                    <div class="col-lg-6">
-				                        <div class="p-5"><img class="img-fluid rounded-circle" src="${pageContext.request.contextPath}/image/studyroom.png" alt="..."></div>
-				                    </div>
-				                    <div class="col-lg-6">
-				                        <div class="p-5">
-				                            <h2 class="display-4 text-center" style="font-family: 'Black Han Sans', sans-serif;">스터디룸</h2>
-				                            <br>
-				                            <p class="text-center" style="font-family: Georgia, 'Times New Roman', Times, serif; color:grey">Good memories, Good service, Good people</p>
-				                        </div>
-				                    </div>
-				                </div>
-				            </div>
-				        </section>
-				    </c:when>
-				    
-				    
-               		<c:when test="${cate_num eq 5 }">
+               	<c:when test="${cate_num eq 5 }">
 			        <section>
 			            <div class="container px-5">
 			                <div class="row gx-5 align-items-center">
@@ -156,78 +150,78 @@
 			                </div>
 			            </div>
 			        </section>
-  				</c:when>
-               </c:choose>
-               </section>
+				</c:when>
+			</c:choose>
+		</section>
     			
-    			<%-- 카테고리별 내용 --%>
-				<div class="row gx-5 mb-5 m-5">
-	               <%-- 위치 검색을 위한 toggle & checkbox --%>
-	    			<div id="areaSelectForm">
-	    				<button type="button" v-on:click="onAreaClicked">지역 검색하기</button>
-	    				<div :class= "areaToggle ?'areaToggle' : ''">
-	    					<div class="areaStyle">
-		    					<form v-on:submit="onAreaSearch">
-		    						<ul v-for="item in cities" id="cities">
-		    							<li><input type="checkbox" :value="item" class="areaCheckbox"/>{{item}}</li>
-		    						</ul>
-		    						<button>검색</button>
-		    						<button type="button" v-on:click="OnareaResetBtn" :class = "resetToggle ? 'resetToggle':''">검색 조건 리셋하기</button>
-	    						</form>
-	    					</div>
-	    				</div>
+		<%-- 카테고리별 내용 --%>
+		<div class="row gx-5 mb-5 m-5">
+	    	<%-- 위치 검색을 위한 toggle & checkbox --%>
+	    	<div id="areaSelectForm">
+	    		<button type="button" v-on:click="onAreaClicked">지역 검색하기</button>
+	    		<div :class= "areaToggle ?'areaToggle' : ''">
+	    			<div class="areaStyle">
+		    			<form v-on:submit="onAreaSearch">
+		    				<ul v-for="item in cities" id="cities">
+		    					<li><input type="checkbox" :value="item" class="areaCheckbox"/>{{item}}</li>
+		    				</ul>
+		    				<button>검색</button>
+		    				<button type="button" v-on:click="OnareaResetBtn" :class = "resetToggle ? 'resetToggle':''">검색 조건 리셋하기</button>
+	    				</form>
 	    			</div>
-				    <c:forEach var="tmp" items="${list }">
-				        <div class="col-lg-3 mb-5 ">
-				            <a class="card lift h-100" href="${pageContext.request.contextPath}/space/detail?cate_num=${cate_num}&space_num=${tmp.space_num}" style="text-decoration: none; color:black" >
-				                <img src="${pageContext.request.contextPath}${tmp.mainImagePath}"  style="height:155px;"/>
-				                <div class="card-body row">
-				                    <div>
-				                        <h4 class="card-title mb-2 text-center">${tmp.space_name }</h4>
-				                        <p class="card-text">${tmp.addr }</p>
-				                    	<p class="card-text">${tmp.oneliner }</p>
-				                    </div>
-				                </div>
-				                <div class="card-footer bg-transparent border-top d-flex align-items-center justify-content-between">
-				                    <div class="small text-primary">See more</div>
-				                    <div class="small text-primary"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></div>
-				            	</div>
-				        	</a>
-			        		<c:if test="${usersCode eq 1 }">
-				        		<div>
-				                	<a href="${pageContext.request.contextPath}/space/spaceDelete?space_num=${tmp.space_num }&cate_num=${cate_num }" onClick="deleteLink(); return false;">삭제</a>
-				            	</div>
-			        		</c:if>
+	    		</div>
+	    	</div>
+	    	
+			<c:forEach var="tmp" items="${list }">
+				<div class="col-lg-3 mb-5 ">
+					<a class="card lift h-100" href="${pageContext.request.contextPath}/space/detail?cate_num=${cate_num}&space_num=${tmp.space_num}" style="text-decoration: none; color:black" >
+				    	<img src="${pageContext.request.contextPath}${tmp.mainImagePath}"  style="height:155px;"/>
+				        <div class="card-body row">
+				        	<div>
+				            	<h4 class="card-title mb-2 text-center">${tmp.space_name }</h4>
+				             	<p class="card-text">${tmp.addr }</p>
+				            	<p class="card-text">${tmp.oneliner }</p>
+				            </div>
+						</div>
+						<div class="card-footer bg-transparent border-top d-flex align-items-center justify-content-between">
+							<div class="small text-primary">See more</div>
+							<div class="small text-primary"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></div>
 				        </div>
-					</c:forEach>
+				    </a>
+				    <div>
+				    	<a href="${pageContext.request.contextPath}/space/spaceDelete?space_num=${tmp.space_num }&cate_num=${cate_num }" onClick="deleteLink(); return false;">삭제</a>
+				    </div>
 				</div>
+			</c:forEach>
+		</div>
 		
-				<nav>
-				    <ul class="pagination justify-content-center">
-				        <!--
-				            startPageNum 이 1 이 아닌 경우에만 Prev 링크를 제공한다. 
-				            &condition=${condition}&keyword=${encodedK}
-				         -->
-				        <c:if test="${startPageNum ne 1 }">
-				            <li class="page-item">
-				                <a class="page-link" href="list?cate_num=${cate_num }&pageNum=${startPageNum-1 }&condition=${condition}&keyword=${encodedK}">Prev</a>
-				            </li>
-				        </c:if>
-				        <c:forEach var="i" begin="${startPageNum }" end="${endPageNum }">
-				            <li class="page-item ${pageNum eq i ? 'active' : '' }">
-				                <a class="page-link" href="list?cate_num=${cate_num }&pageNum=${i }&condition=${condition}&keyword=${encodedK}">${i }</a>
-				            </li>
-				        </c:forEach>
-				        <!--
-				            마지막 페이지 번호가 전체 페이지의 갯수보다 작으면 Next 링크를 제공한다. 
-				         -->
-				        <c:if test="${endPageNum lt totalPageCount }">
-				            <li class="page-item">
-				                <a class="page-link" href="list?cate_num=${cate_num }&pageNum=${endPageNum+1 }&condition=${condition}&keyword=${encodedK}">Next</a>
-				            </li>
-				        </c:if>				
-				    </ul>
-				</nav>
+		<%-- 페이지네이션 --%>
+		<nav>
+			<ul class="pagination justify-content-center">
+				<!--
+					startPageNum 이 1 이 아닌 경우에만 Prev 링크를 제공한다. 
+				    &condition=${condition}&keyword=${encodedK}
+				-->
+				<c:if test="${startPageNum ne 1 }">
+					<li class="page-item">
+				    	<a class="page-link" href="list?cate_num=${cate_num }&pageNum=${startPageNum-1 }&condition=${condition}&keyword=${encodedK}">Prev</a>
+					</li>
+				</c:if>
+				<c:forEach var="i" begin="${startPageNum }" end="${endPageNum }">
+					<li class="page-item ${pageNum eq i ? 'active' : '' }">
+				    	<a class="page-link" href="list?cate_num=${cate_num }&pageNum=${i }&condition=${condition}&keyword=${encodedK}">${i }</a>
+				    </li>
+				</c:forEach>
+				<!--
+					마지막 페이지 번호가 전체 페이지의 갯수보다 작으면 Next 링크를 제공한다. 
+				-->
+				<c:if test="${endPageNum lt totalPageCount }">
+					<li class="page-item">
+				    	<a class="page-link" href="list?cate_num=${cate_num }&pageNum=${endPageNum+1 }&condition=${condition}&keyword=${encodedK}">Next</a>
+				    </li>
+				</c:if>				
+			</ul>
+		</nav>
 		
 		<!-- footer include -->
 	 	<jsp:include page="/WEB-INF/include/footer.jsp"/>	
@@ -248,7 +242,6 @@
 			</p>
 		</c:if>
 		-->
-		
 	</div>
 	
 	<script>

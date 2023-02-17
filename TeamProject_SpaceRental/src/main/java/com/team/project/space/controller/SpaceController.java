@@ -54,16 +54,6 @@ public class SpaceController {
 		return("space/detail");
 	}
 	
-	@GetMapping("/space/detail1")
-	public String detail1() {
-		return("space/detail1");
-	}
-	
-	@RequestMapping("/space/category")
-	public String category() {
-		return("space/category");
-	}
-	
 	@RequestMapping("/space/reviewDelete")
 	public String reviewDelete(int review_num, HttpServletRequest request, int cate_num, int space_num, RedirectAttributes redirectAttributes) {
 		// 해당 reveiw_num을 삭제한다.

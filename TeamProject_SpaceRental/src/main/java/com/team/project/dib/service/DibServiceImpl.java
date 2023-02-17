@@ -117,6 +117,8 @@ public class DibServiceImpl implements DibService {
 
 	@Override
 	public void dibGetDetailData(DibDto dto, HttpServletRequest request) {
+		dto.setUsers_id((String)request.getSession().getAttribute("id"));
+		
 		request.setAttribute("dibson_num", dao.getDetailData(dto));
 	}
 }
