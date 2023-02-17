@@ -85,21 +85,21 @@
 							<th scope="row" v-if="reservCateNum === '2'"> 예약 거절</th>
 						</tr>
 				  </thead>
-					<tbody>
-						<tr v-for="item in resultList">
-							<td>{{item.reserv_num }}</td>
-							<td>{{item.space_name }}</td>
-							<td>{{item.users_id }}</td>
-							<td>{{item.reserv_count }}</td>
-							<td>{{item.reserv_date }}</td>
-							<td>{{item.reserv_time }}</td>
-							<td>{{item.reserv_reg }}</td>
-							<td>{{item.totalMoney }}</td>
-							<td v-if="reservCateNum === 1|| reservCateNum === '1'"> <button type="button" :value="item.reserv_num" v-on:click="onRejectBtn(event)">취소</button> </td>
-							<td v-if="reservCateNum === '2'"> <button type="button" :value="item.reserv_num" v-on:click="onPayBtn(event)">결제하기</button> </td>
-							<td v-if="reservCateNum === '2'"> <button type="button" :value="item.reserv_num" v-on:click="onNotPayBtn(event)">취소</button> </td>
-						</tr>
-					</tbody>	
+				  <tbody>
+					  <tr v-for="item in resultList">
+					  	<td>{{item.reserv_num }}</td>
+					  	<td>{{item.space_name }}</td>
+					  	<td>{{item.users_id }}</td>
+					  	<td>{{item.reserv_count }}</td>
+					  	<td>{{item.reserv_date }}</td>
+						<td>{{item.reserv_time }}</td>
+						<td>{{item.reserv_reg }}</td>
+						<td>{{item.totalMoney }}</td>
+						<td v-if="reservCateNum === 1|| reservCateNum === '1'"> <button type="button" :value="item.reserv_num" v-on:click="onRejectBtn(event)">취소</button> </td>
+						<td v-if="reservCateNum === '2'"> <button type="button" :value="item.reserv_num" v-on:click="onPayBtn(event)">결제하기</button> </td>
+						<td v-if="reservCateNum === '2'"> <button type="button" :value="item.reserv_num" v-on:click="onNotPayBtn(event)">취소</button> </td>
+					</tr>
+				  </tbody>	
 				</table>
 			</div>
 		
