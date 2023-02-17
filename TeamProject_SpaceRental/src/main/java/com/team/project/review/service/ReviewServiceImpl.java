@@ -74,11 +74,13 @@ public class ReviewServiceImpl implements ReviewService{
 	}
 	
 	@Override
-	public void getList2(ModelAndView mView, HttpServletRequest request) {
-		String id = (String)request.getSession().getAttribute("id");		
+	public void getList2(ModelAndView mView, HttpServletRequest request, ReviewDto dto) {
+		String id = (String)request.getSession().getAttribute("id");
+		dto.setReview_writer(id);
 		int num=reviewDao.getUsersNum(id);
 		List<ReviewDto> reviewList=reviewDao.getList2(num);
 		mView.addObject("reviewList", reviewList);
+		mView.addObject("possibleReview", reviewDao.possibleReview(dto));
 	}
 	
 	@Override
@@ -127,5 +129,25 @@ public class ReviewServiceImpl implements ReviewService{
 		ReviewDto dto=reviewDao.getData(num);
 		//request 에 담아준다.
 		request.setAttribute("dto", dto);
+	}
+
+	@Override
+	public int[] getReservNum(HttpSession session) {
+		String review_writer = (String) session.getAttribute("id");
+		return reviewDao.getReservNum(review_writer);
+	}
+
+	@Override
+	public List<ReviewDto> possibleReview(ReviewDto dto, HttpSession session) {
+		//id를 dto에 입력한다.
+		String users_id = (String)session.getAttribute("id");
+		dto.setReview_writer(users_id);
+		
+		//reservNumList를 dto에 입력한다.
+		int[] reservNumList = reviewDao.getReservNum(users_id);
+		dto.setReservNumList(reservNumList);
+		
+		reviewDao.possibleReview(dto);
+		return null;
 	}
 }

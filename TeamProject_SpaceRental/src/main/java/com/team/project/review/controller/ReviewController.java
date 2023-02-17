@@ -1,11 +1,14 @@
 package com.team.project.review.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.team.project.review.dto.ReviewDto;
@@ -57,9 +60,9 @@ public class ReviewController {
 	}
 	
 	@RequestMapping("/users/reviewList")
-	public ModelAndView reviewList(ModelAndView mView, HttpServletRequest request, HttpSession session) {
+	public ModelAndView reviewList(ModelAndView mView, HttpServletRequest request, HttpSession session, ReviewDto dto) {
 		service.getUsersNum(request, session);
-		service.getList2(mView, request);
+		service.getList2(mView, request, dto);
 		mView.setViewName("users/reviewList");
 		return mView;
 	}
