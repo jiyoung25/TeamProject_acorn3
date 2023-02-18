@@ -1,12 +1,14 @@
 package com.team.project.review.service;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.team.project.review.dao.ReviewDao;
@@ -149,5 +151,14 @@ public class ReviewServiceImpl implements ReviewService{
 		
 		reviewDao.possibleReview(dto);
 		return null;
+	}
+
+	@Override
+	public void goInsertForm(String info, HttpServletRequest request) {
+		String[] infoList = info.split("&&");
+		//select option으로 보낸 param -> [0]:reserv_num , [1]:space_num , [2]:cate_num
+		request.setAttribute("reserv_num", infoList[0]);
+		request.setAttribute("space_num", infoList[1]);
+		request.setAttribute("cate_num", infoList[2]);
 	}
 }

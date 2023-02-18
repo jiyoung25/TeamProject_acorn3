@@ -1,6 +1,7 @@
 package com.team.project.review.service;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -22,4 +23,5 @@ public interface ReviewService {
 	public void getData(HttpServletRequest request); //글 수정하기 위해 정보 불러오는 기능
 	public int[] getReservNum(HttpSession session);
 	public List<ReviewDto> possibleReview(ReviewDto dto, HttpSession session);
+	public void goInsertForm(String info, HttpServletRequest request);
 }

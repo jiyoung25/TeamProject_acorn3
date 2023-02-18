@@ -36,7 +36,7 @@
       	</c:otherwise>
    	</c:choose>
 	<div class="container">
-		<form action="${pageContext.request.contextPath}/review/reviewInsert?cate_num=${cate_num}&space_num=${space_num}" method="post">
+		<form action="${pageContext.request.contextPath}/review/reviewInsert?cate_num=${cate_num}&space_num=${space_num}&reserv_num=${reserv_num}" method="post">
 			<div>
 				<label for="review_title">제목</label>
 				<input type="text" name="review_title" id="review_title"/>

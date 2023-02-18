@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -68,22 +69,18 @@ public class ReviewController {
 	}
 	
 	@RequestMapping("/review/reviewInsertform")
-	public String reviewInsertform(HttpServletRequest request, int cate_num, int space_num) {
-		request.setAttribute("cate_num", cate_num);
-		request.setAttribute("space_num", space_num);
+	public String reviewInsertform(HttpServletRequest request, @RequestParam("possibleReview")String info) {
+		service.goInsertForm(info, request);
 		
 		return "review/reviewInsertform";
 	}
 	
 	@RequestMapping("/review/reviewInsert")
-	public String insert(HttpServletRequest request, ReviewDto dto, HttpSession session, int cate_num, int space_num) {
-		request.setAttribute("cate_num", cate_num);
-		request.setAttribute("space_num", space_num);
+	public String insert(HttpServletRequest request, ReviewDto dto, HttpSession session) {
 		//글 작성자는 세션에서 얻어낸다.
 		String writer=(String)session.getAttribute("id");
 		//dto 는 글의 제목과 내용만 있으므로 글작성자는 직접 넣어준다.
 	    dto.setReview_writer(writer);
-	    dto.setSpace_num(space_num);
 	    usersService.getReviewUsersnum(session, dto);
 		service.saveContent(dto);
 		return "review/reviewInsert";
