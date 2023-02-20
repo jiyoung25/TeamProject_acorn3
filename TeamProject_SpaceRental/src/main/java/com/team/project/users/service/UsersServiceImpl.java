@@ -182,8 +182,8 @@ public class UsersServiceImpl implements UsersService{
 		// 1234123424343xxx.jpg
 		String saveFileName=System.currentTimeMillis()+orgFileName;
 
-		// 이미지를 저장할 실제 경로 
-		String realPath=fileLocation;
+		// webapp/upload 폴더까지의 실제 경로 얻어내기 
+		String realPath=request.getServletContext().getRealPath("/resources/upload");
 		// upload 폴더가 존재하지 않을경우 만들기 위한 File 객체 생성
 		File upload=new File(realPath);
 		if(!upload.exists()) {//만일 존재 하지 않으면
@@ -200,7 +200,7 @@ public class UsersServiceImpl implements UsersService{
 
 		// json 문자열을 출력하기 위한 Map 객체 생성하고 정보 담기 
 		Map<String, Object> map=new HashMap<String, Object>();
-		map.put("imagePath", saveFileName);
+		map.put("imagePath", "/resources/upload/"+saveFileName);
 
 		return map;
 	}

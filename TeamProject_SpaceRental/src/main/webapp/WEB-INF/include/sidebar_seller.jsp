@@ -35,7 +35,16 @@
             <div class="container">
                 <div class="text-center m-5">
                     <!-- 사용자 사진-->
-                    <img class="img-fluid rounded-circle mb-1" src="https://source.unsplash.com/jSUsJWvnnEA/500x500" alt="..." style="max-width: 150px; max-height: 150px">
+                    <c:choose>
+						<c:when test="${ empty dto.profile }">
+							<img id="profileImage" class="img-fluid rounded-circle mb-1"
+			                        src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+			                        alt="..." style="max-width: 150px; max-height: 150px">
+						</c:when>
+						<c:otherwise>
+							<img id="profileImage" src="${pageContext.request.contextPath }${ dto.profile}">
+						</c:otherwise>
+					</c:choose>
                     <!-- 시용자 이름-->
                     <div class="caption text-muted mb-4">
                         <p class="fw-bold"><strong>${id }</strong></p>
