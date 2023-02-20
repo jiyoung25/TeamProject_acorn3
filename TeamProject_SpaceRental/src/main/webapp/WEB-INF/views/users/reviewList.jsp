@@ -14,6 +14,7 @@
 <script
   type="text/javascript"
   src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/star.css" />
 <body>
 	<%-- 네비바 --%>
 	<c:choose>
@@ -35,8 +36,12 @@
 	      	</c:choose>
       	</c:otherwise>
    	</c:choose>
+   	
+   	<%-- 사용자 후기 리스트 --%>
 	<div class="container">
 		<h1>나의 후기</h1>
+		
+		<%-- 사용자가 사용한 방 -> 리뷰 쓰기 가능 --%>
 		<form action="${pageContext.request.contextPath}/review/reviewInsertform" method="POST">
 			<label for="possibleReview">리뷰 쓰기</label>
 			<select name="possibleReview" id="possibleReview">
@@ -46,7 +51,7 @@
 			</select>
 			<button>리뷰 쓰기</button>
 		</form>
-
+		<%-- 리뷰 리스트 --%>
 		<table class="table align-middle mb-0 bg-white">
 			<thead class="bg-light">
 				<tr>
@@ -54,6 +59,7 @@
 					<th>작성자</th>
 					<th>제목</th>
 					<th>조회수</th>
+					<th>별점</th>
 					<th>날짜</th>
 					<th>삭제</th>
 		    	</tr>
@@ -67,6 +73,13 @@
 							<a href="${pageContext.request.contextPath}/review/reviewdetail?review_num=${tmp.review_num }">${tmp.review_title }</a>
 						</td>
 						<td>${tmp.viewcount }</td>
+						<td>
+							<%-- 별점 --%>
+							<span class="star">
+								★★★★★
+								<span style="width: ${tmp.star *10 }%;">★★★★★</span>
+							</span>
+						</td>
 						<td>${tmp.review_regdate }</td>
 						<td>
 							<a href="reviewDelete?review_num=${tmp.review_num}" onClick="deleteLink(); return false;">삭제</a>

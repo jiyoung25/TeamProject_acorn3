@@ -2,20 +2,16 @@ package com.team.project.review.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.team.project.review.dao.ReviewDao;
 import com.team.project.review.dto.ReviewDto;
-import com.team.project.seller.dto.SellerDto;
-import com.team.project.users.dto.UsersDto;
 
 @Service
 public class ReviewServiceImpl implements ReviewService{

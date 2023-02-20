@@ -11,6 +11,7 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/star.css" />
 <style>
 	.reservationForm{
 		display:flex;
@@ -163,6 +164,7 @@
 					<th>작성자</th>
 					<th>제목</th>
 					<th>조회수</th>
+					<th>별점</th>
 					<th>작성일</th>
 					<c:if test="${ usersCode eq 1}">
 						<th>삭제</th>
@@ -179,6 +181,13 @@
 							<a href="${pageContext.request.contextPath}/review/reviewdetail?review_num=${tmp.review_num }">${tmp.review_title }</a>
 						</td>
 						<td>${tmp.viewcount }</td>
+						<td>
+							<%-- 별점 --%>
+							<span class="star">
+								★★★★★
+								<span style="width: ${tmp.star *10 }%;">★★★★★</span>
+							</span>
+						</td>
 						<td>${tmp.review_regdate }</td>
 						<c:if test="${ usersCode eq 1}">
 							<td>

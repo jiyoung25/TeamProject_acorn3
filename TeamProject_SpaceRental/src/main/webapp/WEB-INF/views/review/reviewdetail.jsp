@@ -8,6 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>/views/review/reviewdetail.jsp</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/star.css" />
 <style>
    .content{
       border: 1px dotted gray;
@@ -126,6 +127,16 @@
 			<tr>
 				<th>조회수</th>
 				<td>${dto.viewcount }</td>
+			</tr>
+			<tr>
+				<th>별점</th>
+				<td>
+					<%-- 별점 --%>
+					<span class="star">
+						★★★★★
+						<span style="width: ${dto.star *10 }%;">★★★★★</span>
+					</span>
+				</td>
 			</tr>
 			<tr>
 				<th>작성일</th>

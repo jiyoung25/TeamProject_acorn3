@@ -7,7 +7,7 @@
 		FROM
 			(SELECT result1.*, ROWNUM AS rnum
 			FROM
-				(SELECT review_num,review_writer,review_title,review_content,viewcount,TO_CHAR(review_regdate, 'YY.MM.DD HH24:MI') AS review_regdate 
+				(SELECT review_num,review_writer,review_title,review_content,viewcount,TO_CHAR(review_regdate, 'YY.MM.DD HH24:MI') AS review_regdate, star
 				FROM review
 				WHERE space_num = #{space_num}
 				ORDER BY review_num DESC) result1)
@@ -17,7 +17,7 @@
 	</select>
 	
 	<select id="getList2" parameterType="int" resultType="reviewDto">
-		SELECT review_num,review_writer,review_title,review_content,viewcount,TO_CHAR(review_regdate, 'YY.MM.DD HH24:MI') AS review_regdate, reserv_num
+		SELECT review_num,review_writer,review_title,review_content,viewcount,TO_CHAR(review_regdate, 'YY.MM.DD HH24:MI') AS review_regdate, reserv_num, star
 		FROM review
 		WHERE users_num=#{users_num}
 		ORDER BY review_num 
@@ -37,14 +37,14 @@
 
 	<insert id="insert">
 		INSERT INTO review 
-		(review_num, review_writer, review_title, review_content, viewcount, review_regdate, users_num, space_num, reserv_num)
-		VALUES (review_seq.NEXTVAL, #{review_writer}, #{review_title}, #{review_content}, #{viewcount}, SYSDATE,#{users_num}, #{space_num}, #{reserv_num})
+		(review_num, review_writer, review_title, review_content, viewcount, review_regdate, users_num, space_num, reserv_num, star)
+		VALUES (review_seq.NEXTVAL, #{review_writer}, #{review_title}, #{review_content}, #{viewcount}, SYSDATE,#{users_num}, #{space_num}, #{reserv_num}, #{star})
 	</insert>
 	
 	<select id="getData" parameterType="int" resultType="reviewDto">
 		SELECT result1.*
 		FROM
-			(SELECT review_num,review_writer,review_title,review_content,viewcount,TO_CHAR(review_regdate, 'YY.MM.DD HH24:MI') AS review_regdate,
+			(SELECT review_num,review_writer,review_title,review_content,viewcount,TO_CHAR(review_regdate, 'YY.MM.DD HH24:MI') AS review_regdate, star,
 				LAG(review_num, 1, 0) OVER (ORDER BY review_num DESC) prevNum,
 	   			LEAD(review_num, 1, 0) OVER (ORDER BY review_num DESC) nextNum
 			FROM review) result1
@@ -54,7 +54,7 @@
 	<select id="getData2" parameterType="reviewDto" resultType="reviewDto">
 		SELECT result1.*
 		FROM
-			(SELECT review_num,review_writer,review_title,review_content,viewcount,TO_CHAR(review_regdate, 'YY.MM.DD HH24:MI') AS review_regdate,
+			(SELECT review_num,review_writer,review_title,review_content,viewcount,TO_CHAR(review_regdate, 'YY.MM.DD HH24:MI') AS review_regdate, star,
 				LAG(review_num, 1, 0) OVER (ORDER BY review_num DESC) prevNum,
 	   			LEAD(review_num, 1, 0) OVER (ORDER BY review_num DESC) nextNum
 			FROM review
@@ -77,7 +77,7 @@
 	<!-- #은 ?로 바뀌고 '${xxx}'는 전처리 -->
 	<update id="update" parameterType="reviewDto">
 		UPDATE review
-		SET review_title=#{review_title}, review_content='${review_content}'
+		SET review_title=#{review_title}, review_content='${review_content}', star=#{star}
 		WHERE review_num=#{review_num}
 	</update>
 	
