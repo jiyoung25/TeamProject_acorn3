@@ -51,4 +51,15 @@
 		FROM seller_space
 		WHERE space_num=#{space_num}
 	</select>
+	<select id="getRecentReviewList">
+    	SELECT *
+		FROM
+		(SELECT result1.*, rownum
+		FROM
+		(SELECT space_num, space_name, mainimagepath, addr, cate_name, cate_num, review.review_content
+		FROM (SELECT * FROM seller_space INNER JOIN space_category ON seller_space.cate_name=space_category.cate_name)
+		INNER JOIN review ON space_num=review.space_num
+		ORDER BY review.review_num DESC)result1) 
+		WHERE rownum BETWEEN 1 AND 8
+	</select>
 </mapper>
