@@ -12,8 +12,8 @@
 		display: none;
 	}
 	#profileImage{
-		width: 100px;
-	    height: 100px;
+		width: 200px;
+	    height: 200px;
 	    border: 1px solid #cecece;
 	    border-radius: 50%;
 	}
@@ -47,10 +47,9 @@
 		<a id="profileLink" href="javascript:">
 			<c:choose>
 				<c:when test="${ empty dto.profile }">
-					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
-					  <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-					  <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
-					</svg>
+					<img id="profileImage" class="img-fluid rounded-circle mb-1"
+	                    src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+	                    alt="..." style="max-width: 200px; max-height: 200px">
 				</c:when>
 				<c:otherwise>
 					<img id="profileImage" src="${pageContext.request.contextPath }${ dto.profile}">
@@ -62,14 +61,14 @@
 				value="${ empty dto.profile ? 'empty' : dto.profile }"/>		
 			<div>
 				<label for="id">아이디</label>
-				<input type="text" id="id" value="${dto.id }" disabled/>
+				<input type="text" id="id" value="${id }" disabled/>
 			</div>
 			<div>
 				<label for="email">이메일</label>
 				<input type="text" id="email" name="email" value="${dto.email }"/>
 			</div>
-			<button type="submit">수정확인</button>
-			<button type="reset">취소</button>
+			<button type="submit" class="btn btn-primary">수정확인</button>
+			<button type="reset" class="btn btn-secondary">취소</button>
 		</form>	
 		
 		<form id="imageForm" action="${pageContext.request.contextPath}/users/profile_upload" method="post" enctype="multipart/form-data">
@@ -81,8 +80,8 @@
 	</div>
 	
 	<!-- footer include -->
-	  <jsp:include page="/WEB-INF/include/footer.jsp"/>
-	<script src="${pageContext.request.contextPath }/resources/js/gura_util.js"></script>
+	<jsp:include page="/WEB-INF/include/footer.jsp"/>
+	<script src="${pageContext.request.contextPath }/js/gura_util.js"></script>
 	<script>
 
 		//프로필 이미지 링크를 클릭하면 
