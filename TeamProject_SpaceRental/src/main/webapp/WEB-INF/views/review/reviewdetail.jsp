@@ -9,6 +9,7 @@
 <title>/views/review/reviewdetail.jsp</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/star.css" />
 <style>
    .content{
       border: 1px dotted gray;
@@ -138,13 +139,24 @@
 		</div>
 		<!-- 작성자, 등록일, 조회수, 별점 -->
 		<div class="user">
-			<h4>by.${dto.review_writer } 작성일: ${dto.review_regdate } 조회수: ${dto.viewcount } </h4>
+			<h4><strong>by.</strong>${dto.review_writer } 
+      <strong>작성일</strong>: ${dto.review_regdate }
+      <strong>조회수</strong>: ${dto.viewcount }
+      <strong>별점</strong>:
+			<span class="star">
+			  ★★★★★
+				<span style="width: ${dto.star *10 }%;">★★★★★</span>
+			</span>
+      </h4>
 		</div>
 		<!-- 내용 -->
 		<div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" class="scrollspy-example bg-body-tertiary p-3 rounded-2" tabindex="0">
 	 	   <p>${dto.review_content }</p>
 		</div>
-		
+    
+		<c:if test="${usersCode eq 2 }">
+			<a href="${pageContext.request.contextPath}/seller/sellerReview">뒤로가기</a>
+		</c:if>
 		<c:if test="${sessionScope.id eq dto.review_writer }">
 			<button type="button" class="btn btn-outline-secondary">
 				<a href="${pageContext.request.contextPath}/users/reviewList">목록으로</a>

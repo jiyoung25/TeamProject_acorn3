@@ -6,6 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" review_content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/star.css">
+<script src = "${pageContext.request.contextPath}/js/star.js"></script>
 <title>/views/review/reviewInsertform.jsp</title>
 <style>
 	textarea{
@@ -35,11 +37,25 @@
 	      	</c:choose>
       	</c:otherwise>
    	</c:choose>
+   	
+   	<%-- 리뷰 입력 폼 --%>
 	<div class="container">
-		<form action="${pageContext.request.contextPath}/review/reviewInsert?cate_num=${cate_num}&space_num=${space_num}" method="post">
+		<form action="${pageContext.request.contextPath}/review/reviewInsert" method="post">
+			<input type="hidden" name="cate_num" value="${cate_num }" />
+			<input type="hidden" name="space_num" value="${space_num }" />
+			<input type="hidden" name="reserv_num" value="${reserv_num }" />
 			<div>
 				<label for="review_title">제목</label>
 				<input type="text" name="review_title" id="review_title"/>
+			</div>
+			<div>
+				<%-- 별점 --%>
+				<label>별점</label>
+				<span class="star">
+				  ★★★★★
+				  <span>★★★★★</span>
+				  <input type="range" name="star" oninput="drawStar(this)" value="1" step="1" min="0" max="10">
+				</span>
 			</div>
 			<div>
 				<label for="review_content">내용</label>

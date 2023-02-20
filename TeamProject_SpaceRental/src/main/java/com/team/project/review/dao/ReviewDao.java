@@ -9,6 +9,8 @@ public interface ReviewDao {
 	public List<ReviewDto> getList(ReviewDto dto);
 	//Review 목록 (사이드바) 가져오기
 	public List<ReviewDto> getList2(int users_num);
+	//아이디를 이용해 Review 목록 가져오기
+	public List<ReviewDto> getList3(String id);
 	//id를 이용해 UsersNum 가져오기
 	public int getUsersNum(String id);
 	//Review의 갯수
@@ -25,4 +27,8 @@ public interface ReviewDao {
 	public void delete(int num);
 	//Review 수정
 	public void update(ReviewDto dto);
+	//reserv_num 가져오기
+	public List<Integer> getReservNum(String review_writer);
+	//review를 쓸 수 있는 목록 가져오기
+	public List<ReviewDto> possibleReview(ReviewDto dto);
 }

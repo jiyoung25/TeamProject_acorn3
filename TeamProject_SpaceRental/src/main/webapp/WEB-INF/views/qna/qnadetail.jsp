@@ -145,6 +145,9 @@
 				</td>
 			</tr>
 		</table>
+		<c:if test="${usersCode eq 2 }">
+			<a href="${pageContext.request.contextPath}/seller/sellerQna">뒤로가기</a>
+		</c:if>
 		<c:if test="${sessionScope.id eq dto.writer }">
 			<a href="qnaupdateform?num=${dto.num }">수정</a>
 			<a href="javascript:" onclick="deleteConfirm()">삭제</a>

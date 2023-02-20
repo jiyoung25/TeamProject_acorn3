@@ -7,7 +7,7 @@
 		FROM
 			(SELECT result1.*, ROWNUM AS rnum
 			FROM
-				(SELECT review_num,review_writer,review_title,review_content,viewcount,TO_CHAR(review_regdate, 'YY.MM.DD HH24:MI') AS review_regdate 
+				(SELECT review_num,review_writer,review_title,review_content,viewcount,TO_CHAR(review_regdate, 'YY.MM.DD HH24:MI') AS review_regdate, star
 				FROM review
 				WHERE space_num = #{space_num}
 				ORDER BY review_num DESC) result1)
@@ -17,10 +17,18 @@
 	</select>
 	
 	<select id="getList2" parameterType="int" resultType="reviewDto">
-		SELECT review_num,review_writer,review_title,review_content,viewcount,TO_CHAR(review_regdate, 'YY.MM.DD HH24:MI') AS review_regdate
+		SELECT review_num,review_writer,review_title,review_content,viewcount,TO_CHAR(review_regdate, 'YY.MM.DD HH24:MI') AS review_regdate, reserv_num, star
 		FROM review
 		WHERE users_num=#{users_num}
 		ORDER BY review_num 
+	</select>
+	
+	<select id="getList3" parameterType="String" resultType="reviewDto">
+		SELECT review_num,review_writer,review_title,review_content,viewcount,TO_CHAR(review_regdate, 'YY.MM.DD HH24:MI') AS review_regdate
+		FROM seller_space
+		INNER JOIN review ON review.space_num = seller_space.space_num
+		WHERE seller_space.users_num=(SELECT MAX(users_num) FROM space_users WHERE id=#{id})
+		ORDER BY review_num
 	</select>
 	
 	<select id="getUsersNum" resultType="int" parameterType="String">
@@ -37,14 +45,14 @@
 
 	<insert id="insert">
 		INSERT INTO review 
-		(review_num, review_writer, review_title, review_content, viewcount, review_regdate, users_num, space_num)
-		VALUES (review_seq.NEXTVAL, #{review_writer}, #{review_title}, #{review_content}, #{viewcount}, SYSDATE,#{users_num}, #{space_num})
+		(review_num, review_writer, review_title, review_content, viewcount, review_regdate, users_num, space_num, reserv_num, star)
+		VALUES (review_seq.NEXTVAL, #{review_writer}, #{review_title}, #{review_content}, #{viewcount}, SYSDATE,#{users_num}, #{space_num}, #{reserv_num}, #{star})
 	</insert>
 	
 	<select id="getData" parameterType="int" resultType="reviewDto">
 		SELECT result1.*
 		FROM
-			(SELECT review_num,review_writer,review_title,review_content,viewcount,TO_CHAR(review_regdate, 'YY.MM.DD HH24:MI') AS review_regdate,
+			(SELECT review_num,review_writer,review_title,review_content,viewcount,TO_CHAR(review_regdate, 'YY.MM.DD HH24:MI') AS review_regdate, star,
 				LAG(review_num, 1, 0) OVER (ORDER BY review_num DESC) prevNum,
 	   			LEAD(review_num, 1, 0) OVER (ORDER BY review_num DESC) nextNum
 			FROM review) result1
@@ -54,7 +62,7 @@
 	<select id="getData2" parameterType="reviewDto" resultType="reviewDto">
 		SELECT result1.*
 		FROM
-			(SELECT review_num,review_writer,review_title,review_content,viewcount,TO_CHAR(review_regdate, 'YY.MM.DD HH24:MI') AS review_regdate,
+			(SELECT review_num,review_writer,review_title,review_content,viewcount,TO_CHAR(review_regdate, 'YY.MM.DD HH24:MI') AS review_regdate, star,
 				LAG(review_num, 1, 0) OVER (ORDER BY review_num DESC) prevNum,
 	   			LEAD(review_num, 1, 0) OVER (ORDER BY review_num DESC) nextNum
 			FROM review
@@ -77,9 +85,35 @@
 	<!-- #은 ?로 바뀌고 '${xxx}'는 전처리 -->
 	<update id="update" parameterType="reviewDto">
 		UPDATE review
-		SET review_title=#{review_title}, review_content='${review_content}'
+		SET review_title=#{review_title}, review_content='${review_content}', star=#{star}
 		WHERE review_num=#{review_num}
 	</update>
+	
+	<!-- 가능한 리뷰 목록을 구하는 mapper-->
+	<select id="possibleReview" parameterType="reviewDto" resultType="reviewDto">
+		SELECT *
+		FROM 	
+			(SELECT *
+			FROM seller_space
+			INNER JOIN space_category ON seller_space.cate_name = space_category.cate_name
+			) result1
+		INNER JOIN reservationform ON reservationform.space_num=result1.space_num
+		WHERE reservationform.users_id=#{review_writer} AND reservationform.ispaid = 'true'
+		<![CDATA[
+			AND (reserv_date< TO_CHAR(SYSDATE, 'YYYY-MM-DD'))
+		]]>
+		<if test="reservNumList != null">
+			<foreach collection="reservNumList" item="item" open="AND NOT reservationform.reserv_num=" close="" separator=" AND NOT reservationform.reserv_num=">
+	        	#{item}
+			</foreach>
+		</if>
+	</select>
+	
+	<select id="getReservNum" parameterType="string" resultType="int">
+		SELECT reserv_num
+		FROM review
+		WHERE review_writer = #{review_writer}
+	</select>
 </mapper>
 
 
