@@ -52,15 +52,13 @@
                    <a class="nav-link " href="${pageContext.request.contextPath}/seller/reservation/reservationlist">예약 리스트 확인</a>
                  </li>
                  <hr class="my-2">
-                <!-- 판매자 qnalist -->
+                <!-- 판매자 qna, review 관리 -->
                  <li class="nav-item">
-                     <a class="nav-link" href="#">사용자 QnA 목록</a>
+                     <a class="nav-link" href="${pageContext.request.contextPath }/seller/sellerReview">Review 관리</a>
                  </li>
-   
                  <hr class="my-2">
-              	<!-- 판매자 review list -->
                  <li class="nav-item">
-                     <a class="nav-link" href="#">사용자 리뷰 목록</a>
+                     <a class="nav-link" href="${pageContext.request.contextPath }/seller/sellerQna">Qna 관리</a>
                  </li>
                </ul>
         </div>

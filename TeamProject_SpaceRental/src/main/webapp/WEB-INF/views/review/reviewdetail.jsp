@@ -148,6 +148,9 @@
 				</td>
 			</tr>
 		</table>
+		<c:if test="${usersCode eq 2 }">
+			<a href="${pageContext.request.contextPath}/seller/sellerReview">뒤로가기</a>
+		</c:if>
 		<c:if test="${sessionScope.id eq dto.review_writer }">
 			<a href="reviewupdateform?review_num=${dto.review_num }">수정</a>
 			<a href="javascript:" onclick="deleteConfirm()">삭제</a>

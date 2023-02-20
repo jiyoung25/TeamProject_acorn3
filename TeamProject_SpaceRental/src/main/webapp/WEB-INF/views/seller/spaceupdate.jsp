@@ -7,6 +7,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>공간수정폼</title>
+<style>
+	.container{
+		display: flex;
+		justify-content: center;
+	}
+</style>
 </head>
 <body>
 	<%-- 네비바 --%>
@@ -31,49 +37,50 @@
    	</c:choose>
    
 	<div class="container">
-		<h1>공간 정보를 입력해 주세요.</h1>
-		<form action="${pageContext.request.contextPath}/seller/update" method="post" id="updateForm">
-			<div>
-				<label for="space_name">공간명</label><br />
-            	<input type="text" name="space_name" id="space_name" value=${dto.space_name } />
-			</div>
-			<div style="display:hidden">
-				카테고리
-				<select name="cate_name">
-					<option value="${dto.cate_name }">${dto.cate_name }</option>	
-				</select>
-			</div>
-			<div>
-				<label for="oneliner">공간 한 줄 소개</label><br />
-				<input type="text" name="oneliner" id="oneliner" value="${dto.oneliner }" />
-			</div>
-			<div>
-				<label for="intro">공간 소개</label><br />
-				<textarea name="intro" id="intro" cols="30" rows="10" >${dto.intro } </textarea>
-			</div>
-			<input type="hidden" id="mainImagePath" name="mainImagePath" />
-			<div>
-			<label for="addr">주소</label><br />				
-				<input type="text" name="addr" id="addr" value="${dto.addr }">
-				<input type="button" onclick="sample5_execDaumPostcode()" value="주소 검색"><br>
-			</div>
-				<div id="map" style="width:300px;height:300px;margin-top:10px;display:none"></div>				
-			</div>
-		    <input type="hidden" name="space_num" value="${dto.space_num }"/>
-		</form>
-		<form action="${pageContext.request.contextPath}/seller/ajax_upload" method="post" id="ajaxForm"enctype="multipart/form-data">
-		    <div>
-		    	<label for="image">이미지를 다시 선택해주세요</label>
-		    	<br>
-		    	<input type="file" name="image" id="image" 
-		    		accept=".jpg, .jpeg, .png, .JPG, .JPEG"/>
-		    </div>
-		</form>
+		<div class="menu">
+			<h1>공간 정보를 입력해 주세요.</h1>
+			<form action="${pageContext.request.contextPath}/seller/update" method="post" id="updateForm">
+				<div>
+					<label for="space_name">공간명</label><br />
+	            	<input type="text" name="space_name" id="space_name" value=${dto.space_name } />
+				</div>
+				<div style="display:hidden">
+					카테고리
+					<select name="cate_name">
+						<option value="${dto.cate_name }">${dto.cate_name }</option>	
+					</select>
+				</div>
+				<div>
+					<label for="oneliner">공간 한 줄 소개</label><br />
+					<input type="text" name="oneliner" id="oneliner" value="${dto.oneliner }" />
+				</div>
+				<div>
+					<label for="intro">공간 소개</label><br />
+					<textarea name="intro" id="intro" cols="30" rows="10" >${dto.intro } </textarea>
+				</div>
+				<input type="hidden" id="mainImagePath" name="mainImagePath" />
+				<div>
+				<label for="addr">주소</label><br />				
+					<input type="text" name="addr" id="addr" value="${dto.addr }">
+					<input type="button" onclick="sample5_execDaumPostcode()" value="주소 검색"><br>
+				</div>
+					<div id="map" style="width:300px;height:300px;margin-top:10px;display:none"></div>				
+				</div>
+			    <input type="hidden" name="space_num" value="${dto.space_num }"/>
+			</form>
+			<form action="${pageContext.request.contextPath}/seller/ajax_upload" method="post" id="ajaxForm"enctype="multipart/form-data">
+			    <div>
+			    	<label for="image">이미지를 다시 선택해주세요</label>
+			    	<br>
+			    	<input type="file" name="image" id="image" 
+			    		accept=".jpg, .jpeg, .png, .JPG, .JPEG"/>
+			    </div>
+			</form>
+			<button id="submitBtn" class="btn btn-primary">저장</button>
+		</div>
   		<div class="img-wrapper">
      		<img src="${pageContext.request.contextPath}/${dto.mainImagePath }" value="${dto.mainImagePath }" />
   		</div>
-
-		<button id="submitBtn" class="btn btn-primary">저장</button>
 	</div>
 	
 	   <!-- footer include -->

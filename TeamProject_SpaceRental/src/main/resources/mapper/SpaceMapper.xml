@@ -29,7 +29,7 @@
 						</if>
 				) result1)
 		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
-		ORDER BY rnum ASC
+		ORDER BY space_num DESC
 	</select>
 	<select id="getCount" parameterType="spaceDto" resultType="int">
 		SELECT NVL(MAX(ROWNUM), 0)

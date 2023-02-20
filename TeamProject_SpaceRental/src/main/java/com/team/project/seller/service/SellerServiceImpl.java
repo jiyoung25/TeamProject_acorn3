@@ -13,6 +13,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.team.project.qna.dao.QnaDao;
+import com.team.project.qna.dto.QnaDto;
+import com.team.project.review.dao.ReviewDao;
+import com.team.project.review.dto.ReviewDto;
 import com.team.project.seller.dao.SellerDao;
 import com.team.project.seller.dto.SellerDto;
 
@@ -20,7 +24,11 @@ import com.team.project.seller.dto.SellerDto;
 public class SellerServiceImpl implements SellerService{
 	
 	@Autowired
-	private SellerDao sellerDao;	
+	private SellerDao sellerDao;
+	@Autowired
+	private ReviewDao reviewDao;
+	@Autowired
+	private QnaDao qnaDao;
 
 	@Override
 	public void getList(ModelAndView mView, HttpServletRequest request) {
@@ -29,7 +37,21 @@ public class SellerServiceImpl implements SellerService{
 		List<SellerDto> list=sellerDao.getList(num);
 		mView.addObject("list", list);
 	}
-
+	
+	@Override
+	public void getReviewList(ModelAndView mView, HttpServletRequest request) {
+		String id = (String)request.getSession().getAttribute("id");
+		List<ReviewDto> getReviewList = reviewDao.getList3(id);
+		mView.addObject("getReviewList", getReviewList);
+	}
+	
+	@Override
+	public void getQnaList(ModelAndView mView, HttpServletRequest request) {
+		String id = (String)request.getSession().getAttribute("id");
+		List<QnaDto> getQnaList = qnaDao.getList3(id);
+		mView.addObject("getQnaList", getQnaList);
+	}
+	
 	@Override
 	public void getData(HttpServletRequest request) {
 		int num=Integer.parseInt(request.getParameter("space_num"));
@@ -131,5 +153,4 @@ public class SellerServiceImpl implements SellerService{
 		String id = (String)session.getAttribute("id");
 		request.setAttribute("users_num", sellerDao.getUsersNum(id));
 	}
-
 }

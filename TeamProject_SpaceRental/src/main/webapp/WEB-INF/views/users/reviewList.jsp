@@ -40,7 +40,6 @@
    	<%-- 사용자 후기 리스트 --%>
 	<div class="container">
 		<h1>나의 후기</h1>
-		
 		<%-- 사용자가 사용한 방 -> 리뷰 쓰기 가능 --%>
 		<form action="${pageContext.request.contextPath}/review/reviewInsertform" method="POST">
 			<label for="possibleReview">리뷰 쓰기</label>

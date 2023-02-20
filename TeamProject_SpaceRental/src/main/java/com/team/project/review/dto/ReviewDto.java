@@ -150,7 +150,7 @@ public class ReviewDto {
 	public int getReserv_num() {
 		return reserv_num;
 	}
-	
+  
 	public void setReserv_num(int reserv_num) {
 		this.reserv_num = reserv_num;
 	}
@@ -158,7 +158,6 @@ public class ReviewDto {
 	public List<Integer> getReservNumList() {
 		return reservNumList;
 	}
-	
 	public void setReservNumList(List<Integer> reservNumList) {
 		this.reservNumList = reservNumList;
 	}
