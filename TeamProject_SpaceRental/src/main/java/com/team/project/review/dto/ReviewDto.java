@@ -1,5 +1,7 @@
 package com.team.project.review.dto;
 
+import java.util.List;
+
 import org.apache.ibatis.type.Alias;
 
 @Alias("reviewDto")
@@ -7,11 +9,16 @@ public class ReviewDto {
 	private int review_num;
 	private int users_num;
 	private int space_num;
+	private int cate_num;
 	private String review_title;
 	private String review_content;
 	private String review_writer;
 	private int viewcount;
 	private String review_regdate;
+	private int reserv_num;
+	private List<Integer> reservNumList;
+	private String space_name;
+	
 	private int startRowNum;
 	private int endRowNum;
 	private int prevNum; //이전글의 글번호
@@ -19,24 +26,28 @@ public class ReviewDto {
 	
 	public ReviewDto() {}
 
-	public ReviewDto(int review_num, int users_num, int space_num, String review_title, String review_content,
-			String review_writer, int viewcount, String review_regdate, int startRowNum, int endRowNum, int prevNum,
-			int nextNum) {
+	public ReviewDto(int review_num, int users_num, int space_num, int cate_num, String review_title,
+			String review_content, String review_writer, int viewcount, String review_regdate, int reserv_num,
+			List<Integer> reservNumList, String space_name, int startRowNum, int endRowNum, int prevNum, int nextNum) {
 		super();
 		this.review_num = review_num;
 		this.users_num = users_num;
 		this.space_num = space_num;
+		this.cate_num = cate_num;
 		this.review_title = review_title;
 		this.review_content = review_content;
 		this.review_writer = review_writer;
 		this.viewcount = viewcount;
 		this.review_regdate = review_regdate;
+		this.reserv_num = reserv_num;
+		this.reservNumList = reservNumList;
+		this.space_name = space_name;
 		this.startRowNum = startRowNum;
 		this.endRowNum = endRowNum;
 		this.prevNum = prevNum;
 		this.nextNum = nextNum;
 	}
-
+	
 	public int getReview_num() {
 		return review_num;
 	}
@@ -132,5 +143,37 @@ public class ReviewDto {
 	public void setNextNum(int nextNum) {
 		this.nextNum = nextNum;
 	}
+
+	public int getReserv_num() {
+		return reserv_num;
+	}
 	
+	public void setReserv_num(int reserv_num) {
+		this.reserv_num = reserv_num;
+	}
+
+	public List<Integer> getReservNumList() {
+		return reservNumList;
+	}
+	
+	public void setReservNumList(List<Integer> reservNumList) {
+		this.reservNumList = reservNumList;
+	}
+
+	public String getSpace_name() {
+		return space_name;
+	}
+
+	public void setSpace_name(String space_name) {
+		this.space_name = space_name;
+	}
+
+	public int getCate_num() {
+		return cate_num;
+	}
+
+	public void setCate_num(int cate_num) {
+		this.cate_num = cate_num;
+	}
 }
+

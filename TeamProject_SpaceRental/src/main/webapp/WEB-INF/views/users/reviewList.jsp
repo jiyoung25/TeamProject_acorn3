@@ -37,6 +37,16 @@
    	</c:choose>
 	<div class="container">
 		<h1>나의 후기</h1>
+		<form action="${pageContext.request.contextPath}/review/reviewInsertform" method="POST">
+			<label for="possibleReview">리뷰 쓰기</label>
+			<select name="possibleReview" id="possibleReview">
+				<c:forEach items="${possibleReview }" var="item">
+					<option value="${item.reserv_num }&&${item.space_num}&&${item.cate_num}"><strong>${item.space_name } 방 리뷰쓰기</strong></option>
+				</c:forEach>
+			</select>
+			<button>리뷰 쓰기</button>
+		</form>
+
 		<table class="table align-middle mb-0 bg-white">
 			<thead class="bg-light">
 				<tr>

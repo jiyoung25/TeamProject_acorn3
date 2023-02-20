@@ -27,4 +27,8 @@ public interface ReviewDao {
 	public void delete(int num);
 	//Review 수정
 	public void update(ReviewDto dto);
+	//reserv_num 가져오기
+	public List<Integer> getReservNum(String review_writer);
+	//review를 쓸 수 있는 목록 가져오기
+	public List<ReviewDto> possibleReview(ReviewDto dto);
 }

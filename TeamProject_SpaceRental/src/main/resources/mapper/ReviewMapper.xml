@@ -17,7 +17,7 @@
 	</select>
 	
 	<select id="getList2" parameterType="int" resultType="reviewDto">
-		SELECT review_num,review_writer,review_title,review_content,viewcount,TO_CHAR(review_regdate, 'YY.MM.DD HH24:MI') AS review_regdate
+		SELECT review_num,review_writer,review_title,review_content,viewcount,TO_CHAR(review_regdate, 'YY.MM.DD HH24:MI') AS review_regdate, reserv_num
 		FROM review
 		WHERE users_num=#{users_num}
 		ORDER BY review_num 
@@ -45,8 +45,8 @@
 
 	<insert id="insert">
 		INSERT INTO review 
-		(review_num, review_writer, review_title, review_content, viewcount, review_regdate, users_num, space_num)
-		VALUES (review_seq.NEXTVAL, #{review_writer}, #{review_title}, #{review_content}, #{viewcount}, SYSDATE,#{users_num}, #{space_num})
+		(review_num, review_writer, review_title, review_content, viewcount, review_regdate, users_num, space_num, reserv_num)
+		VALUES (review_seq.NEXTVAL, #{review_writer}, #{review_title}, #{review_content}, #{viewcount}, SYSDATE,#{users_num}, #{space_num}, #{reserv_num})
 	</insert>
 	
 	<select id="getData" parameterType="int" resultType="reviewDto">
@@ -88,6 +88,32 @@
 		SET review_title=#{review_title}, review_content='${review_content}'
 		WHERE review_num=#{review_num}
 	</update>
+	
+	<!-- 가능한 리뷰 목록을 구하는 mapper-->
+	<select id="possibleReview" parameterType="reviewDto" resultType="reviewDto">
+		SELECT *
+		FROM 	
+			(SELECT *
+			FROM seller_space
+			INNER JOIN space_category ON seller_space.cate_name = space_category.cate_name
+			) result1
+		INNER JOIN reservationform ON reservationform.space_num=result1.space_num
+		WHERE reservationform.users_id=#{review_writer} AND reservationform.ispaid = 'true'
+		<![CDATA[
+			AND (reserv_date< TO_CHAR(SYSDATE, 'YYYY-MM-DD'))
+		]]>
+		<if test="reservNumList != null">
+			<foreach collection="reservNumList" item="item" open="AND NOT reservationform.reserv_num=" close="" separator=" AND NOT reservationform.reserv_num=">
+	        	#{item}
+			</foreach>
+		</if>
+	</select>
+	
+	<select id="getReservNum" parameterType="string" resultType="int">
+		SELECT reserv_num
+		FROM review
+		WHERE review_writer = #{review_writer}
+	</select>
 </mapper>
 
 
