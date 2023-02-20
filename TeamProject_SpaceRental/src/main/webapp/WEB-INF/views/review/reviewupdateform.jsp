@@ -6,6 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/star.css">
+<script src = "${pageContext.request.contextPath}/js/star.js"></script>
 <title>/views/view/reviewupdateform.jsp</title>
 </head>
 <body>
@@ -41,6 +43,15 @@
 			<div>
 				<label for="review_title">제목</label> 
 				<input type="text" name="review_title" id="review_title" value="${dto.review_title }" />
+			</div>
+			<div>
+				<%-- 별점 --%>
+				<label>별점</label>
+				<span class="star">
+				  ★★★★★
+				  <span style="width:${dto.star * 10}%;">★★★★★</span>
+				  <input type="range" name="star" oninput="drawStar(this)" value="1" step="1" min="0" max="10">
+				</span>
 			</div>
 			<div>
 				<label for="review_content">내용</label>

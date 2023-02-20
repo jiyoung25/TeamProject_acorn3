@@ -14,8 +14,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.team.project.review.dao.ReviewDao;
 import com.team.project.review.dto.ReviewDto;
-import com.team.project.seller.dto.SellerDto;
-import com.team.project.users.dto.UsersDto;
 
 @Service
 public class ReviewServiceImpl implements ReviewService{

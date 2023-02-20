@@ -18,6 +18,7 @@ public class ReviewDto {
 	private int reserv_num;
 	private List<Integer> reservNumList;
 	private String space_name;
+	private int star;
 	
 	private int startRowNum;
 	private int endRowNum;
@@ -28,7 +29,8 @@ public class ReviewDto {
 
 	public ReviewDto(int review_num, int users_num, int space_num, int cate_num, String review_title,
 			String review_content, String review_writer, int viewcount, String review_regdate, int reserv_num,
-			List<Integer> reservNumList, String space_name, int startRowNum, int endRowNum, int prevNum, int nextNum) {
+			List<Integer> reservNumList, String space_name, int star, int startRowNum, int endRowNum, int prevNum,
+			int nextNum) {
 		super();
 		this.review_num = review_num;
 		this.users_num = users_num;
@@ -42,6 +44,7 @@ public class ReviewDto {
 		this.reserv_num = reserv_num;
 		this.reservNumList = reservNumList;
 		this.space_name = space_name;
+		this.star = star;
 		this.startRowNum = startRowNum;
 		this.endRowNum = endRowNum;
 		this.prevNum = prevNum;
@@ -147,7 +150,7 @@ public class ReviewDto {
 	public int getReserv_num() {
 		return reserv_num;
 	}
-	
+  
 	public void setReserv_num(int reserv_num) {
 		this.reserv_num = reserv_num;
 	}
@@ -155,7 +158,6 @@ public class ReviewDto {
 	public List<Integer> getReservNumList() {
 		return reservNumList;
 	}
-	
 	public void setReservNumList(List<Integer> reservNumList) {
 		this.reservNumList = reservNumList;
 	}
@@ -174,6 +176,14 @@ public class ReviewDto {
 
 	public void setCate_num(int cate_num) {
 		this.cate_num = cate_num;
+	}
+
+	public int getStar() {
+		return star;
+	}
+
+	public void setStar(int star) {
+		this.star = star;
 	}
 }
 
