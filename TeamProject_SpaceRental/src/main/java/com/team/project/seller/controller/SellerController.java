@@ -34,6 +34,20 @@ public class SellerController {
 		mView.setViewName("seller/spacelist");
 		return mView;
 	}
+
+	@RequestMapping("/seller/sellerReview")
+	public ModelAndView sellerReview(ModelAndView mView, HttpServletRequest request) {
+		service.getReviewList(mView, request);
+		mView.setViewName("seller/sellerReview");
+		return mView;
+	}
+	
+	@RequestMapping("/seller/sellerQna")
+	public ModelAndView sellerQna(ModelAndView mView, HttpServletRequest request) {
+		service.getReviewList(mView, request);
+		mView.setViewName("seller/sellerReview");
+		return mView;
+	}
 	
 	@Auth(role = Role.SELLER)
 	@RequestMapping("/seller/spaceinfo")

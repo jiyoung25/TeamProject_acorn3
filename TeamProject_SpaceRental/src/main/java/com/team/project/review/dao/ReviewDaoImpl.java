@@ -30,6 +30,12 @@ public class ReviewDaoImpl implements ReviewDao{
 		return session.selectOne("review.getUsersNum", id);
 	}
 	
+	@Override
+	public List<ReviewDto> getList3(String id) {
+		
+		return session.selectList("review.getList3", id);
+	}
+	
 	@Override //Review의 갯수
 	public int getCount(ReviewDto dto) {
 		
