@@ -1,5 +1,6 @@
 package com.team.project.review.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -82,7 +83,7 @@ public class ReviewServiceImpl implements ReviewService{
 		int num=reviewDao.getUsersNum(id);
 		List<ReviewDto> reviewList=reviewDao.getList2(num);
 		mView.addObject("reviewList", reviewList);
-		mView.addObject("possibleReview", reviewDao.possibleReview(dto));
+		mView.addObject("possibleReview", this.possibleReview(dto, request.getSession()));
 	}
 	
 	@Override
@@ -109,7 +110,10 @@ public class ReviewServiceImpl implements ReviewService{
 	}
 
 	@Override
-	public void saveContent(ReviewDto dto) {
+	public void saveContent(ReviewDto dto, HttpServletRequest request) {
+		request.setAttribute("cate_num", dto.getCate_num());
+		request.setAttribute("space_num", dto.getSpace_num());
+		
 		reviewDao.insert(dto);
 	}
 
@@ -134,29 +138,31 @@ public class ReviewServiceImpl implements ReviewService{
 	}
 
 	@Override
-	public int[] getReservNum(HttpSession session) {
+	public List<Integer> getReservNum(HttpSession session) {
 		String review_writer = (String) session.getAttribute("id");
-		return reviewDao.getReservNum(review_writer);
+		List<Integer> reservNumList = new ArrayList<Integer>();
+		reservNumList = reviewDao.getReservNum(review_writer);
+		return reservNumList;
 	}
 
 	@Override
 	public List<ReviewDto> possibleReview(ReviewDto dto, HttpSession session) {
 		//id를 dto에 입력한다.
-		String users_id = (String)session.getAttribute("id");
-		dto.setReview_writer(users_id);
+		String review_writer = (String)session.getAttribute("id");
+		dto.setReview_writer(review_writer);
 		
 		//reservNumList를 dto에 입력한다.
-		int[] reservNumList = reviewDao.getReservNum(users_id);
+		List<Integer> reservNumList = reviewDao.getReservNum(review_writer);
 		dto.setReservNumList(reservNumList);
 		
-		reviewDao.possibleReview(dto);
-		return null;
+		return reviewDao.possibleReview(dto);
 	}
 
 	@Override
 	public void goInsertForm(String info, HttpServletRequest request) {
-		String[] infoList = info.split("&&");
 		//select option으로 보낸 param -> [0]:reserv_num , [1]:space_num , [2]:cate_num
+		String[] infoList = info.split("&&");
+		
 		request.setAttribute("reserv_num", infoList[0]);
 		request.setAttribute("space_num", infoList[1]);
 		request.setAttribute("cate_num", infoList[2]);

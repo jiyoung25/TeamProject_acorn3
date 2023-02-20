@@ -58,12 +58,13 @@ public class ReviewController {
 	public String reviewlist(HttpServletRequest request, int space_num) {
 		service.getList(request, space_num);
 		return "review/reviewlist";
-	}
+	}			
 	
 	@RequestMapping("/users/reviewList")
 	public ModelAndView reviewList(ModelAndView mView, HttpServletRequest request, HttpSession session, ReviewDto dto) {
 		service.getUsersNum(request, session);
 		service.getList2(mView, request, dto);
+		
 		mView.setViewName("users/reviewList");
 		return mView;
 	}
@@ -82,7 +83,7 @@ public class ReviewController {
 		//dto 는 글의 제목과 내용만 있으므로 글작성자는 직접 넣어준다.
 	    dto.setReview_writer(writer);
 	    usersService.getReviewUsersnum(session, dto);
-		service.saveContent(dto);
+		service.saveContent(dto, request);
 		return "review/reviewInsert";
 	}
 }

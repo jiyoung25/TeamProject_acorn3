@@ -1,5 +1,7 @@
 package com.team.project.review.dto;
 
+import java.util.List;
+
 import org.apache.ibatis.type.Alias;
 
 @Alias("reviewDto")
@@ -14,7 +16,7 @@ public class ReviewDto {
 	private int viewcount;
 	private String review_regdate;
 	private int reserv_num;
-	private int[] reservNumList;
+	private List<Integer> reservNumList;
 	private String space_name;
 	
 	private int startRowNum;
@@ -26,7 +28,7 @@ public class ReviewDto {
 
 	public ReviewDto(int review_num, int users_num, int space_num, int cate_num, String review_title,
 			String review_content, String review_writer, int viewcount, String review_regdate, int reserv_num,
-			int[] reservNumList, String space_name, int startRowNum, int endRowNum, int prevNum, int nextNum) {
+			List<Integer> reservNumList, String space_name, int startRowNum, int endRowNum, int prevNum, int nextNum) {
 		super();
 		this.review_num = review_num;
 		this.users_num = users_num;
@@ -150,11 +152,11 @@ public class ReviewDto {
 		this.reserv_num = reserv_num;
 	}
 
-	public int[] getReservNumList() {
+	public List<Integer> getReservNumList() {
 		return reservNumList;
 	}
 	
-	public void setReservNumList(int[] reservNumList) {
+	public void setReservNumList(List<Integer> reservNumList) {
 		this.reservNumList = reservNumList;
 	}
 
