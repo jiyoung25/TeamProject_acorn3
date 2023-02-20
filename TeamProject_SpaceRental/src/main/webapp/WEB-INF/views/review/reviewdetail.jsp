@@ -8,6 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>/views/review/reviewdetail.jsp</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 <style>
    .content{
       border: 1px dotted gray;
@@ -96,50 +97,65 @@
          transform: rotate(360deg);
       }
    }
+   
+   a:link {
+   	text-decoration: none;
+   }
+   
 </style>
 </head>
 <body>
-	<div class="container">
-		<%-- 만일 이전글(더 옛날글)의 글번호가 0 이 아니라면 (이전글이 존재한다면) --%>
-		<c:if test="${dto.prevNum ne 0 }">
-			<a href="reviewdetail?review_num=${dto.prevNum }">이전글</a>
-		</c:if>
-		<%-- 만일 다음글(더 최신글)의 글번호가 0 이 아니라면 (다음글이 존재한다면) --%>
-		<c:if test="${dto.nextNum ne 0 }">
-			<a href="reviewdetail?review_num=${dto.nextNum }">다음글</a>
-		</c:if>
+	<%-- 네비바 --%>
+	<c:choose>
+		<c:when test="${empty sessionScope.id }">
+        	<jsp:include page="/WEB-INF/include/navbar_sidebar_SessionX.jsp"/>
+      	</c:when>
+      	<c:otherwise>
+	      	<c:choose>
+	      		<c:when test="${usersCode eq 2 }">
+	      	  		<jsp:include page="/WEB-INF/include/navbar_sessionO_seller.jsp"/>
+	         		<jsp:include page="/WEB-INF/include/sidebar_seller.jsp"/>
+	      		</c:when>
+	      		<c:when test ="${usersCode eq 3 }">
+					<jsp:include page="/WEB-INF/include/navbar_sessionO_users.jsp"/>
+			      	<jsp:include page="/WEB-INF/include/sidebar_user.jsp"/>
+	      		</c:when>
+	      		<c:when test = "${usersCode eq 1 }">
+	      		</c:when>
+	      	</c:choose>
+      	</c:otherwise>
+   	</c:choose>
+	<div class="container">	
+		<h2><strong>Review</strong></h2>
+		</br>
+		<!-- 룸넘버, 룸이름 -->
+		<div class="room">
+			<h4>${dto.review_num }.${space.name }</h3>
+		</div>
+		<!-- 리뷰제목 -->
+		<div class="title">
+			<h3><strong>${dto.review_title }</strong></h3>
+		</div>
+		<!-- 작성자, 등록일, 조회수, 별점 -->
+		<div class="user">
+			<h4>by.${dto.review_writer } 작성일: ${dto.review_regdate } 조회수: ${dto.viewcount } </h4>
+		</div>
+		<!-- 내용 -->
+		<div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" class="scrollspy-example bg-body-tertiary p-3 rounded-2" tabindex="0">
+	 	   <p>${dto.review_content }</p>
+		</div>
 		
-		<h3>글 상세 보기</h3>
-		<table>
-			<tr>
-				<th>글번호</th>
-				<td>${dto.review_num }</td>
-			</tr>
-			<tr>
-				<th>작성자</th>
-				<td>${dto.review_writer }</td>
-			</tr>
-			<tr>
-				<th>제목</th>
-				<td>${dto.review_title }</td>
-			</tr>
-			<tr>
-				<th>조회수</th>
-				<td>${dto.viewcount }</td>
-			</tr>
-			<tr>
-				<th>작성일</th>
-				<td>${dto.review_regdate }</td>
-			</tr>
-			<tr>
-				<td colspan="2">
-					<div>${dto.review_content }</div>
-				</td>
-			</tr>
-		</table>
 		<c:if test="${sessionScope.id eq dto.review_writer }">
-			<a href="reviewupdateform?review_num=${dto.review_num }">수정</a>
-			<a href="javascript:" onclick="deleteConfirm()">삭제</a>
+			<button type="button" class="btn btn-outline-secondary">
+				<a href="${pageContext.request.contextPath}/users/reviewList">목록으로</a>
+			</button>
+			<button type="button" class="btn btn-outline-secondary">
+				<a href="reviewupdateform?review_num=${dto.review_num }">수정</a>
+			</button>
+			<button type="button" class="btn btn-outline-secondary">
+				<a href="javascript:" onclick="deleteConfirm()">삭제</a>
+			</button>
+			
 			<script>
 				function deleteConfirm() {
 					const isDelete = confirm("이 글을 삭제 하겠습니까?");
@@ -149,6 +165,17 @@
 				}
 			</script>
 		</c:if>
+		
+		<!--  
+		<%-- 만일 이전글(더 옛날글)의 글번호가 0 이 아니라면 (이전글이 존재한다면) --%>
+		<c:if test="${dto.prevNum ne 0 }">
+			<a href="reviewdetail?review_num=${dto.prevNum }">이전글</a>
+		</c:if>
+		<%-- 만일 다음글(더 최신글)의 글번호가 0 이 아니라면 (다음글이 존재한다면) --%>
+		<c:if test="${dto.nextNum ne 0 }">
+			<a href="reviewdetail?review_num=${dto.nextNum }">다음글</a>
+		</c:if>
+		-->
 
 	</div>
 	<script src="${pageContext.request.contextPath}/js/gura_util.js"></script>
@@ -169,5 +196,9 @@
 	         }
 	    });
 	</script> -->
+	
+	<!-- footer include -->
+	<jsp:include page="/WEB-INF/include/footer.jsp"/>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 </body>
 </html>
