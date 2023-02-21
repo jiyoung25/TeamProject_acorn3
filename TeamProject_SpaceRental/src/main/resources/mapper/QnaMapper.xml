@@ -54,11 +54,21 @@
 	</select>
    
    <select id="getList3" parameterType="String" resultType="reviewDto">
-		SELECT num,writer,title,content,viewCount,TO_CHAR(regdate, 'YY.MM.DD HH24:MI') AS regdate
-		FROM seller_space
-		INNER JOIN qna ON qna.space_num = seller_space.space_num
-		WHERE seller_space.users_num=(SELECT MAX(users_num) FROM space_users WHERE id=#{id})
-		ORDER BY num
+		SELECT *
+		FROM (
+  			SELECT num, writer, title, content, viewCount, TO_CHAR(regdate, 'YY.MM.DD HH24:MI') AS regdate,
+    		ROW_NUMBER() OVER (ORDER BY num) AS rnum
+  			FROM review
+ 			WHERE EXISTS (
+    			SELECT 1 
+    			FROM seller_space 
+    			WHERE qna.space_num = seller_space.space_num 
+      			AND seller_space.users_num = (SELECT MAX(users_num) FROM space_users WHERE id=#{sellerId})
+  			)
+		)
+		<![CDATA[
+		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
+		]]>
 	</select>
    
    	<select id="getUsersNum" resultType="int" parameterType="String">

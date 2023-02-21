@@ -23,12 +23,22 @@
 		ORDER BY review_num 
 	</select>
 	
-	<select id="getList3" parameterType="String" resultType="reviewDto">
-		SELECT review_num,review_writer,review_title,review_content,viewcount,TO_CHAR(review_regdate, 'YY.MM.DD HH24:MI') AS review_regdate
-		FROM seller_space
-		INNER JOIN review ON review.space_num = seller_space.space_num
-		WHERE seller_space.users_num=(SELECT MAX(users_num) FROM space_users WHERE id=#{id})
-		ORDER BY review_num
+	<select id="getList3" parameterType="reviewDto" resultType="reviewDto">
+		SELECT *
+		FROM (
+  			SELECT review_num, review_writer, review_title, review_content, viewcount, TO_CHAR(review_regdate, 'YY.MM.DD HH24:MI') AS review_regdate,
+    		ROW_NUMBER() OVER (ORDER BY review_num) AS rnum
+  			FROM review
+ 			WHERE EXISTS (
+    			SELECT 1 
+    			FROM seller_space 
+    			WHERE review.space_num = seller_space.space_num 
+      			AND seller_space.users_num = (SELECT MAX(users_num) FROM space_users WHERE id=#{sellerId})
+  			)
+		)
+		<![CDATA[
+		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
+		]]>
 	</select>
 	
 	<select id="getUsersNum" resultType="int" parameterType="String">
@@ -41,6 +51,13 @@
 		SELECT NVL(MAX(ROWNUM), 0)
 		FROM review
 		WHERE space_num = #{space_num}
+	</select>
+	
+	<select id="getCount2" parameterType="reviewDto" resultType="int">
+		SELECT NVL(MAX(ROWNUM), 0)
+		FROM seller_space
+		INNER JOIN review ON review.space_num = seller_space.space_num
+		WHERE seller_space.users_num=(SELECT MAX(users_num) FROM space_users WHERE id=#{sellerId})
 	</select>
 
 	<insert id="insert">
