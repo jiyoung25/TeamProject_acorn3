@@ -83,6 +83,7 @@ public class UsersServiceImpl implements UsersService{
 			//세션에 id값 저장, dto값은 mView로 보냄
 			session.setAttribute("id", id);
 			session.setAttribute("usersCode", dto.getCode());
+			session.setAttribute("profile", dto.getProfile());
 			mView.addObject("dto", dto);
 			
 			//remember box의 체크 여부 가져오기

@@ -24,13 +24,13 @@
 	            <div class="text-center m-5">
 	                <!-- 사용자 사진-->
 	                <c:choose>
-						<c:when test="${ empty dto.profile }">
+						<c:when test="${ empty profile }">
 							<img id="profileImage" class="img-fluid rounded-circle mb-1"
 					        	src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
 					        	alt="..." style="max-width: 150px; max-height: 150px">
 						</c:when>
 						<c:otherwise>
-							<img id="profileImage" src="${pageContext.request.contextPath }${ dto.profile}">
+							<img id="profileImage" src="${pageContext.request.contextPath }/${profile}">
 						</c:otherwise>
 					</c:choose>
 	            	<!-- 시용자 이름-->
