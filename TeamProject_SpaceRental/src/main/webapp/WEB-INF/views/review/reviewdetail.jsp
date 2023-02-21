@@ -126,6 +126,8 @@
 	      	</c:choose>
       	</c:otherwise>
    	</c:choose>
+   	
+   	<%-- 리뷰 내용 --%>
 	<div class="container">	
 		<h2><strong>Review</strong></h2>
 		</br>
