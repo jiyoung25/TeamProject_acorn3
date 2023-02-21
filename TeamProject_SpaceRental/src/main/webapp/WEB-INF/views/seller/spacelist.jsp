@@ -6,8 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<%-- 부트스트랩 --%>
+<jsp:include page="/WEB-INF/include/cdnlink.jsp"/>
 <title>SpaceList</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 <style>
    /* card 이미지 부모요소의 높이 지정 */
    .img-wrapper{

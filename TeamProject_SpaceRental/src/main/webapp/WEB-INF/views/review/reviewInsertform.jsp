@@ -6,6 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" review_content="width=device-width, initial-scale=1">
+<%-- 부트스트랩 --%>
+<jsp:include page="/WEB-INF/include/cdnlink.jsp"/>
+<%-- import from static folder --%>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/star.css">
 <script src = "${pageContext.request.contextPath}/js/star.js"></script>
 <title>/views/review/reviewInsertform.jsp</title>

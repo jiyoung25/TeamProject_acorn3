@@ -6,6 +6,8 @@
 <head>
 <meta charset="EUC-KR">
 <title>나의 찜 목록</title>
+<%-- 부트스트랩 --%>
+<jsp:include page="/WEB-INF/include/cdnlink.jsp"/>
 <!-- MDB -->
 <link
   href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.css" rel="stylesheet"/>
