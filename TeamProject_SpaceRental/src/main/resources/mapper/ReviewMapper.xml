@@ -7,9 +7,11 @@
 		FROM
 			(SELECT result1.*, ROWNUM AS rnum
 			FROM
-				(SELECT review_num,review_writer,review_title,review_content,viewcount,TO_CHAR(review_regdate, 'YY.MM.DD HH24:MI') AS review_regdate, star
+				(SELECT review_num,review_writer,review_title,review_content,viewcount,
+					TO_CHAR(review_regdate, 'YY.MM.DD HH24:MI') AS review_regdate, star, seller_space.space_name
 				FROM review
-				WHERE space_num = #{space_num}
+				Inner Join seller_space on seller_space.space_num = review.space_num
+				WHERE seller_space.space_num = #{space_num}
 				ORDER BY review_num DESC) result1)
 		<![CDATA[ 
 		WHERE rnum >= #{startRowNum} AND rnum <= #{endRowNum}
