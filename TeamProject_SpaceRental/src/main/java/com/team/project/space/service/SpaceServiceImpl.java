@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.team.project.space.dao.SpaceDao;
 import com.team.project.space.dto.SpaceDto;
@@ -160,5 +161,10 @@ public class SpaceServiceImpl implements SpaceService {
 	@Override
 	public void getSpaceData(HttpServletRequest request, int space_num) {
 		request.setAttribute("spaceDto", dao.getData(space_num));
+	}
+
+	@Override
+	public ModelAndView getRecentReviewList(ModelAndView mView) {
+		return mView.addObject("recentReviewList", dao.getRecentReviewList());
 	}
 }

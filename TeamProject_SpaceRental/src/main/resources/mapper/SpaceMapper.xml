@@ -51,15 +51,18 @@
 		FROM seller_space
 		WHERE space_num=#{space_num}
 	</select>
-	<select id="getRecentReviewList">
+	<select id="getRecentReviewList" resultType="spaceDto">
     	SELECT *
 		FROM
-		(SELECT result1.*, rownum
-		FROM
-		(SELECT space_num, space_name, mainimagepath, addr, cate_name, cate_num, review.review_content
-		FROM (SELECT * FROM seller_space INNER JOIN space_category ON seller_space.cate_name=space_category.cate_name)
-		INNER JOIN review ON space_num=review.space_num
-		ORDER BY review.review_num DESC)result1) 
+			(SELECT result1.*, rownum
+			FROM
+				(SELECT a.space_num, a.space_name, a.mainimagepath, a.addr, a.cate_name, a.cate_num, review.review_content, review.star
+				FROM
+					(SELECT b.space_num, b.space_name, b.mainimagepath, b.addr, b.cate_name, space_category.cate_num
+					FROM seller_space b
+					INNER JOIN space_category ON b.cate_name=space_category.cate_name) a
+				INNER JOIN review ON a.space_num=review.space_num
+				ORDER BY review.review_num DESC)result1) 
 		WHERE rownum BETWEEN 1 AND 8
 	</select>
 </mapper>
