@@ -19,6 +19,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,400;1,400&amp;display=swap" rel="stylesheet" />
 <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
 
+<%-- 부트스트랩 --%>
+<jsp:include page="/WEB-INF/include/cdnlink.jsp"/>
+
 <%-- vue.js --%>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.min.js"></script>
 
@@ -28,8 +31,6 @@
 <%-- import from static folder --%>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/chatbot.css">
 <script src="${pageContext.request.contextPath}/js/chatbot.js"></script>
-
-
 	<style>
 		.r{
 			justify-content: center;

@@ -5,6 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<%-- 부트스트랩 --%>
+<jsp:include page="/WEB-INF/include/cdnlink.jsp"/>
 <title>/views/users/pwd_updateform.jsp</title>
 </head>
 <body>
