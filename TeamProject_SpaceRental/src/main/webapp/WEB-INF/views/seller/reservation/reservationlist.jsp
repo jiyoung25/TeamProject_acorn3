@@ -9,13 +9,6 @@
 <%-- 부트스트랩 --%>
 <jsp:include page="/WEB-INF/include/cdnlink.jsp"/>
 <title>예약리스트 보기(판매자)</title>
-<!-- MDB -->
-<link
-  href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.css" rel="stylesheet"/>
-<!-- MDB -->
-<script
-  type="text/javascript"
-  src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <style>
 </style>

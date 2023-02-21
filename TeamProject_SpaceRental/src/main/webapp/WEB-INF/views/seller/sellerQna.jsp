@@ -11,10 +11,32 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h3>QnA 관리</h3>
+	<%-- 네비바 --%>
+	<c:choose>
+		<c:when test="${empty sessionScope.id }">
+        	<jsp:include page="/WEB-INF/include/navbar_sidebar_SessionX.jsp"/>
+      	</c:when>
+      	<c:otherwise>
+	      	<c:choose>
+	      		<c:when test="${usersCode eq 2 }">
+	      	  		<jsp:include page="/WEB-INF/include/navbar_sessionO_seller.jsp"/>
+	         		<jsp:include page="/WEB-INF/include/sidebar_seller.jsp"/>
+	      		</c:when>
+	      		<c:when test ="${usersCode eq 3 }">
+					<jsp:include page="/WEB-INF/include/navbar_sessionO_users.jsp"/>
+			      	<jsp:include page="/WEB-INF/include/sidebar_user.jsp"/>
+	      		</c:when>
+	      		<c:when test = "${usersCode eq 1 }">
+	      			<jsp:include page="/WEB-INF/include/navbar_sessionO_admin.jsp"/>
+	      		</c:when>
+	      	</c:choose>
+      	</c:otherwise>
+   	</c:choose>
 	<div class="container">
-		<table>
-			<thead>
+		<h1>QnA 관리</h1>
+		<%-- Q&A 리스트 --%>
+		<table class="table align-middle mb-0 bg-white">
+			<thead class="bg-light">
 				<tr>
 					<th>글번호</th>
 					<th>작성자</th>
@@ -39,7 +61,7 @@
 				</c:forEach>
 			</tbody>
 		</table>
-		<a href="${pageContext.request.contextPath }">목록으로</a>
+		<a href="${pageContext.request.contextPath }">메인으로</a>
 	</div>
 </body>
 </html>
