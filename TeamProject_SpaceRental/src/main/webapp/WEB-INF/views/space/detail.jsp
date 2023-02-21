@@ -161,6 +161,7 @@
 			<thead class="table-dark">
 				<tr>
 					<th>글번호</th>
+					<th>방이름</th>
 					<th>작성자</th>
 					<th>제목</th>
 					<th>조회수</th>
@@ -175,6 +176,7 @@
 				<c:forEach var="tmp" items="${reviewlist }">
 					<tr>
 						<td>${tmp.review_num }</td>
+						<td>${tmp.space_name }</td>
 						<td>${tmp.review_writer }</td>
 						<td>
 							<a href="${pageContext.request.contextPath}/review/reviewdetail?review_num=${tmp.review_num }">${tmp.review_title }</a>
