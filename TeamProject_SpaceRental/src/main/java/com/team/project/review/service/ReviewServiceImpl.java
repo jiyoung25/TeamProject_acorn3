@@ -48,7 +48,7 @@ public class ReviewServiceImpl implements ReviewService{
 		dto.setStartRowNum(startRowNum);
 		dto.setEndRowNum(endRowNum);
 		
-		//글 목록 얻어오기 
+		//리뷰 목록 얻어오기 
 		List<ReviewDto> reviewlist = reviewDao.getList(dto);
 		//전체글의 갯수
 		int totalRow=reviewDao.getCount(dto);

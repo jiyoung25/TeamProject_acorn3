@@ -19,7 +19,6 @@
 					<th>글번호</th>
 					<th>작성자</th>
 					<th>제목</th>
-					<th>내용</th>
 					<th>조회수</th>
 					<th>작성일</th>
 					<th>해당글 보기</th>
@@ -31,7 +30,6 @@
 						<td>${tmp.review_num }</td>
 						<td>${tmp.review_writer }</td>
 						<td>${tmp.review_title }</td>
-						<td>${tmp.review_content }</td>
 						<td>${tmp.viewcount }</td>
 						<td>${tmp.review_regdate }</td>
 						<td><a href="${pageContext.request.contextPath}/review/reviewdetail?review_num=${tmp.review_num }">보기</a></td>
@@ -39,6 +37,35 @@
 				</c:forEach>
 			</tbody>
 		</table>
+		
+		<%-- 리뷰 페이지네이션 --%>
+		<nav>
+			<ul class="pagination">
+				<%--
+					startPageNum 이 1 이 아닌 경우에만 Prev 링크를 제공한다. 
+				--%>
+				
+				<c:if test="${startPageNum ne 1 }">
+					<li class="page-item">
+						<a class="page-link" href="sellerReview?pageNum=${startPageNum-1 }">Prev</a>
+					</li>
+				</c:if>
+		        <c:forEach var="i" begin="${startPageNum }" end="${endPageNum }">
+					<li class="page-item ${pageNum eq i ? 'active' : '' }">
+						<a class="page-link" href="sellerReview?pageNum=${i }">${i }</a>
+					</li>
+		        </c:forEach>
+		        <%--
+		           	마지막 페이지 번호가 전체 페이지의 갯수보다 작으면 Next 링크를 제공한다. 
+				--%>
+				<c:if test="${endPageNum lt totalPageCount }">
+					<li class="page-item">
+						<a class="page-link" href="sellerReview?pageNum=${endPageNum+1 }">Next</a>
+					</li>
+				</c:if>
+			</ul>
+		</nav>
+		
 		<a href="${pageContext.request.contextPath }">목록으로</a>
 	</div>
 </body>
