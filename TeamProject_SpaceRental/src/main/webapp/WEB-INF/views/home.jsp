@@ -158,90 +158,21 @@
 	<!-- card -->
 	<div class="m-5 p-5 text-center  ">
 		<div class="row r">
-			<div class="col-lg-3 text-center">
-				<div class="card" style="width: 18rem;">
-				  <img src="..." class="card-img-top" alt="...">
-				  <div class="card-body">
-				    <h5 class="card-title">Card title</h5>
-				    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-				    <a href="#" class="btn btn-primary">Go somewhere</a>
-				  </div>
+			<c:forEach var="tmp" items="${recentReviewList }">
+				<div class="col-lg-3 text-center">
+					<div class="card" style="width: 18rem;">
+					  <img src="${pageContext.request.contextPath}/${tmp.mainImagePath }" class="card-img-top" alt="...">
+					  <div class="card-body">
+					    <h5 class="card-title">${tmp.space_name }</h5>
+					    <p class="card-text">
+					    	★: ${tmp.star/2 }점
+					    	${tmp.review_content }
+					    </p>
+					    <a href="${pageContext.request.contextPath}/space/detail?space_num=${tmp.space_num}&cate_num=${tmp.cate_num}" class="btn btn-primary">Go somewhere</a>
+					  </div>
+					</div>
 				</div>
-			</div>
-			<div class="col-lg-3 text-center">
-				<div class="card" style="width: 18rem;">
-				  <img src="..." class="card-img-top" alt="...">
-				  <div class="card-body">
-				    <h5 class="card-title">Card title</h5>
-				    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-				    <a href="#" class="btn btn-primary">Go somewhere</a>
-				  </div>
-				</div>
-			</div>
-			<div class="col-lg-3 text-center">
-				<div class="card" style="width: 18rem;">
-				  <img src="..." class="card-img-top" alt="...">
-				  <div class="card-body">
-				    <h5 class="card-title">Card title</h5>
-				    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-				    <a href="#" class="btn btn-primary">Go somewhere</a>
-				  </div>
-				</div>
-			</div>
-			<div class="col-lg-3 text-center">
-				<div class="card" style="width: 18rem;">
-				  <img src="..." class="card-img-top" alt="...">
-				  <div class="card-body">
-				    <h5 class="card-title">Card title</h5>
-				    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-				    <a href="#" class="btn btn-primary">Go somewhere</a>
-				  </div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="m-5 p-5 text-center  ">
-		<div class="row r">
-			<div class="col-lg-3 text-center">
-				<div class="card" style="width: 18rem;">
-				  <img src="..." class="card-img-top" alt="...">
-				  <div class="card-body">
-				    <h5 class="card-title">Card title</h5>
-				    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-				    <a href="#" class="btn btn-primary">Go somewhere</a>
-				  </div>
-				</div>
-			</div>
-			<div class="col-lg-3 text-center">
-				<div class="card" style="width: 18rem;">
-				  <img src="..." class="card-img-top" alt="...">
-				  <div class="card-body">
-				    <h5 class="card-title">Card title</h5>
-				    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-				    <a href="#" class="btn btn-primary">Go somewhere</a>
-				  </div>
-				</div>
-			</div>
-			<div class="col-lg-3 text-center">
-				<div class="card" style="width: 18rem;">
-				  <img src="..." class="card-img-top" alt="...">
-				  <div class="card-body">
-				    <h5 class="card-title">Card title</h5>
-				    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-				    <a href="#" class="btn btn-primary">Go somewhere</a>
-				  </div>
-				</div>
-			</div>
-			<div class="col-lg-3 text-center">
-				<div class="card" style="width: 18rem;">
-				  <img src="..." class="card-img-top" alt="...">
-				  <div class="card-body">
-				    <h5 class="card-title">Card title</h5>
-				    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-				    <a href="#" class="btn btn-primary">Go somewhere</a>
-				  </div>
-				</div>
-			</div>
+			</c:forEach>
 		</div>
 	</div>
    

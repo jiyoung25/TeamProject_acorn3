@@ -13,4 +13,5 @@ public interface SpaceDao {
 	public int getCount(SpaceDto dto); //카테고리별 전체 row의 수
 	public int getAllCount(); //전체 목록의 row수
 	public SpaceDto getData(int space_num);
+	public List<SpaceDto> getRecentReviewList();
 }

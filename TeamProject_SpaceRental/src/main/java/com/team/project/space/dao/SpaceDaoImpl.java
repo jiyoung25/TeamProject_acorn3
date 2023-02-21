@@ -1,17 +1,11 @@
 package com.team.project.space.dao;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.team.project.category.dto.CategoryDto;
 import com.team.project.space.dto.SpaceDto;
 
 @Repository
@@ -42,5 +36,10 @@ public class SpaceDaoImpl implements SpaceDao {
 	@Override
 	public SpaceDto getData(int space_num) {
 		return session.selectOne("space.getData", space_num);
+	}
+
+	@Override
+	public List<SpaceDto> getRecentReviewList() {
+		return session.selectList("space.getRecentReviewList");
 	}
 }

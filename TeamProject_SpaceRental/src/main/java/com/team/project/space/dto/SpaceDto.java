@@ -12,7 +12,11 @@ public class SpaceDto {
 	private String mainImagePath; // 대표이미지 경로
 	private String addr; //공간 주소
 	private String cate_name; //등록한 공간의 카테고리 이름
+	
+	//다른 table들과의 join을 위한 field
 	private int cate_num;
+	private String review_content;
+	private int star;
 	
 	//페이지 넘버링을 위한 정보
 	private int startRowNum;
@@ -21,13 +25,11 @@ public class SpaceDto {
 	//검색을 위한 정보
 	private String[] searchArea;
 	
-	public SpaceDto() {
-		
-	}
-
+	public SpaceDto() {}
+	
 	public SpaceDto(int space_num, String space_name, int users_num, String oneliner, String intro,
-			String mainImagePath, String addr, String cate_name, int cate_num, int startRowNum, int endRowNum,
-			String[] searchArea) {
+			String mainImagePath, String addr, String cate_name, int cate_num, String review_content, int star,
+			int startRowNum, int endRowNum, String[] searchArea) {
 		super();
 		this.space_num = space_num;
 		this.space_name = space_name;
@@ -38,11 +40,13 @@ public class SpaceDto {
 		this.addr = addr;
 		this.cate_name = cate_name;
 		this.cate_num = cate_num;
+		this.review_content = review_content;
+		this.star = star;
 		this.startRowNum = startRowNum;
 		this.endRowNum = endRowNum;
 		this.searchArea = searchArea;
 	}
-	
+
 	public int getSpace_num() {
 		return space_num;
 	}
@@ -116,5 +120,21 @@ public class SpaceDto {
 
 	public void setSearchArea(String[] searchArea) {
 		this.searchArea = searchArea;
+	}
+
+	public String getReview_content() {
+		return review_content;
+	}
+
+	public void setReview_content(String review_content) {
+		this.review_content = review_content;
+	}
+
+	public int getStar() {
+		return star;
+	}
+
+	public void setStar(int star) {
+		this.star = star;
 	}
 }
