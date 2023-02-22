@@ -14,25 +14,29 @@
 	<c:choose>
 		<c:when test="${empty sessionScope.id }">
         	<jsp:include page="/WEB-INF/include/navbar_sidebar_SessionX.jsp"/>
+        	<jsp:include page="/WEB-INF/include/cdnlink.jsp"/>
       	</c:when>
       	<c:otherwise>
 	      	<c:choose>
 	      		<c:when test="${usersCode eq 2 }">
 	      	  		<jsp:include page="/WEB-INF/include/navbar_sessionO_seller.jsp"/>
 	         		<jsp:include page="/WEB-INF/include/sidebar_seller.jsp"/>
+	         		<jsp:include page="/WEB-INF/include/cdnlink.jsp"/>
 	      		</c:when>
 	      		<c:when test ="${usersCode eq 3 }">
 					<jsp:include page="/WEB-INF/include/navbar_sessionO_users.jsp"/>
 			      	<jsp:include page="/WEB-INF/include/sidebar_user.jsp"/>
+			      	<jsp:include page="/WEB-INF/include/cdnlink.jsp"/>
 	      		</c:when>
 	      		<c:when test = "${usersCode eq 1 }">
+	      			<jsp:include page="/WEB-INF/include/cdnlink.jsp"/>
 	      		</c:when>
 	      	</c:choose>
       	</c:otherwise>
    	</c:choose> 
    
 <div class="container">
-	<h1>비밀 번호 수정 폼</h1>
+	<h3>비밀 번호 변경</h3>
 	<form action="${pageContext.request.contextPath}/users/pwd_update" method="post" id="myForm">
 		<div>
 			<label for="pwd">기존 비밀 번호</label>
@@ -46,8 +50,8 @@
 			<label for="newPwd2">새 비밀번호 확인</label>
 			<input type="password" id="newPwd2"/>
 		</div>
-		<button type="submit">수정하기</button>
-		<button type="reset">리셋</button>
+		<button type="submit" class="btn btn-primary">수정하기</button>
+		<button type="reset" class="btn btn-secondary">리셋</button>
 	</form>
 </div>
 
