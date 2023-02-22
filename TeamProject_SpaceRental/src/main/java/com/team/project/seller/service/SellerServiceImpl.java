@@ -70,7 +70,7 @@ public class SellerServiceImpl implements SellerService{
 		List<ReviewDto> getReviewList = reviewDao.getList3(dto);
 		
 		//전체글의 갯수
-		int totalRow=reviewDao.getCount2(dto);
+		int totalRow=reviewDao.getCount3(dto);
 		//하단 시작 페이지 번호 
 		int startPageNum = 1 + ((pageNum-1)/PAGE_DISPLAY_COUNT)*PAGE_DISPLAY_COUNT;
 		//하단 끝 페이지 번호
