@@ -61,8 +61,6 @@
 				</c:forEach>
 			</tbody>
 		</table>
-		<a href="${pageContext.request.contextPath}">메인으로 가기</a>
-	</div>
 		
 		<%-- 리뷰 페이지네이션 --%>
 		<nav>
@@ -91,7 +89,8 @@
 				</c:if>
 			</ul>
 		</nav>
-
-
+		
+		<a href="${pageContext.request.contextPath}">메인으로 가기</a>
+	</div>
 </body>
 </html>

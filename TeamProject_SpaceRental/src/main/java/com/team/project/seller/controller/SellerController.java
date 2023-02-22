@@ -44,7 +44,7 @@ public class SellerController {
 	
 	@RequestMapping("/seller/sellerQna")
 	public ModelAndView sellerQna(ModelAndView mView, HttpServletRequest request) {
-		service.getReviewList(mView, request);
+		service.getQnaList(mView, request);
 		mView.setViewName("seller/sellerQna");
 		return mView;
 	}

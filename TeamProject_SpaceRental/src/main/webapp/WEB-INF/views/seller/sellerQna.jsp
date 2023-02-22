@@ -61,6 +61,33 @@
 				</c:forEach>
 			</tbody>
 		</table>
+		
+		<nav>
+			<ul class="pagination">
+				<%--
+		        	qnaStartPageNum 이 1 이 아닌 경우에만 Prev 링크를 제공한다. 
+		        --%>
+		        <c:if test="${qnaStartPageNum ne 1 }">
+					<li class="page-item">
+						<a class="page-link" href="sellerQna?qnaPageNum=${qnaStartPageNum-1 }">Prev</a>
+					</li>
+		        </c:if>
+		        <c:forEach var="i" begin="${qnaStartPageNum }" end="${qnaEndPageNum }">
+					<li class="page-item ${qnaPageNum eq i ? 'active' : '' }">
+						<a class="page-link" href="sellerQna?qnaPageNum=${i }">${i }</a>
+					</li>
+		        </c:forEach>
+		        <%--
+		        	마지막 페이지 번호가 전체 페이지의 갯수보다 작으면 Next 링크를 제공한다. 
+		        --%>
+		        <c:if test="${qnaEndPageNum lt qnatotalPageCount }">
+					<li class="page-item">
+						<a class="page-link" href="sellerQna?qnaPageNum=${qnaEndPageNum+1 }">Next</a>
+					</li>
+		        </c:if>
+			</ul>
+		</nav>
+		
 		<a href="${pageContext.request.contextPath }">메인으로</a>
 	</div>
 </body>
