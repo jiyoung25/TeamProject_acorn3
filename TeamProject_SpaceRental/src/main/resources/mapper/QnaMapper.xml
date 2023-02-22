@@ -46,18 +46,22 @@
       ]]>
 	</select>
    
-   	<select id="getList2" parameterType="int" resultType="qnaDto">
-   		SELECT *
-		FROM
-		   (SELECT result1.*, ROWNUM AS rnum
-		   FROM
-		      (SELECT num,writer,title,content,viewCount,TO_CHAR(regdate, 'YY.MM.DD HH24:MI') AS regdate
-		      FROM qna
-		      WHERE users_num=#{users_num}
-		      ORDER BY num DESC) result1)
-		<![CDATA[ 
-		WHERE rnum >= #{qnaStartRowNum} AND rnum <= #{qnaEndRowNum}
-		]]>
+   	<select id="getList2" parameterType="qnaDto" resultType="qnaDto">
+   		SELECT num, writer, title, content, viewCount, TO_CHAR(regdate, 'YY.MM.DD HH24:MI') AS regdate
+			FROM (
+			    SELECT result2.*, ROWNUM AS rnum
+			    FROM (
+			        SELECT num, writer, title, content, viewCount, regdate
+			        FROM qna
+			        WHERE users_num=#{users_num}
+			    ) result2
+			    <![CDATA[ 
+			    WHERE ROWNUM <= #{qnaEndRowNum}
+			    ]]>
+			)
+			<![CDATA[
+			WHERE rnum >= #{qnaStartRowNum}
+			]]>
 	</select>
    
    <select id="getList3" parameterType="qnaDto" resultType="qnaDto">
@@ -90,6 +94,12 @@
 	</select>
 	
 	<select id="getCount2" parameterType="qnaDto" resultType="int">
+		SELECT NVL(MAX(ROWNUM), 0)
+		FROM qna
+		WHERE users_num=#{users_num}
+	</select>
+	
+	<select id="getCount3" parameterType="qnaDto" resultType="int">
 		SELECT NVL(MAX(ROWNUM), 0)
 		FROM qna
 		INNER JOIN seller_space ON qna.space_num = seller_space.space_num

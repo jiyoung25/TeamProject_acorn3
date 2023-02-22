@@ -133,19 +133,18 @@ public class QnaServiceImpl implements QnaService{
 		//보여줄 페이지의 끝 ROWNUM
 		int qnaEndRowNum=qnaPageNum*PAGE_ROW_COUNT;
 		
-		
-		//QnaDto 객체에 startRowNum, endRowNum 그리고  space_num을 담는다.
-		QnaDto dto=new QnaDto();
-		dto.setQnaStartRowNum(qnaStartRowNum);
-		dto.setQnaEndRowNum(qnaEndRowNum);
-		
 		String id = (String)request.getSession().getAttribute("id");
 		int num=qnaDao.getUsersNum(id);
 		
-		List<QnaDto> qnaList=qnaDao.getList2(num);
+		//QnaDto 객체에 startRowNum, endRowNum, users_num을 담는다.
+		QnaDto dto=new QnaDto();
+		dto.setQnaStartRowNum(qnaStartRowNum);
+		dto.setQnaEndRowNum(qnaEndRowNum);
+		dto.setUsers_num(num);
 		
+		List<QnaDto> qnaList=qnaDao.getList2(dto);
 		//전체글의 갯수
-		int qnatotalRow=qnaDao.getCount(dto);
+		int qnatotalRow=qnaDao.getCount2(dto);
 		
 		//하단 시작 페이지 번호 
 		int qnaStartPageNum = 1 + ((qnaPageNum-1)/PAGE_DISPLAY_COUNT)*PAGE_DISPLAY_COUNT;
