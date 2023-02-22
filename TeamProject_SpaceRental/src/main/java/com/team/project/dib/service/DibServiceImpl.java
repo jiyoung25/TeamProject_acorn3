@@ -86,9 +86,10 @@ public class DibServiceImpl implements DibService {
 		//글 목록 얻어오기
 		// cate_num==0은 전체 목록에 대비한 것이다.
 		// 전체 글의 개수도 함께 구한다.
-		dto.setUsers_id((String)session.getAttribute("id"));
+		String id = (String)session.getAttribute("id");
+		dto.setUsers_id(id);
 		List<DibDto> list = dao.getData(dto);
-		int totalRow = dao.getCount();
+		int totalRow = dao.getCount(id);
 						
 		//하단 시작 페이지 번호 
 		int startPageNum = 1 + ((pageNum-1)/PAGE_DISPLAY_COUNT)*PAGE_DISPLAY_COUNT;

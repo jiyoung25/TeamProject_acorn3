@@ -25,11 +25,14 @@ public class SpaceDto {
 	//검색을 위한 정보
 	private String[] searchArea;
 	
-	public SpaceDto() {}
+	//(예외처리)없는 방을 들어갔을 때 필요한 정보
+	private String path;
 	
+	public SpaceDto() {}
+
 	public SpaceDto(int space_num, String space_name, int users_num, String oneliner, String intro,
 			String mainImagePath, String addr, String cate_name, int cate_num, String review_content, int star,
-			int startRowNum, int endRowNum, String[] searchArea) {
+			int startRowNum, int endRowNum, String[] searchArea, String path) {
 		super();
 		this.space_num = space_num;
 		this.space_name = space_name;
@@ -45,6 +48,7 @@ public class SpaceDto {
 		this.startRowNum = startRowNum;
 		this.endRowNum = endRowNum;
 		this.searchArea = searchArea;
+		this.path = path;
 	}
 
 	public int getSpace_num() {
@@ -136,5 +140,13 @@ public class SpaceDto {
 
 	public void setStar(int star) {
 		this.star = star;
+	}
+
+	public String getPath() {
+		return path;
+	}
+
+	public void setPath(String path) {
+		this.path = path;
 	}
 }

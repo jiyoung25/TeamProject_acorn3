@@ -9,5 +9,5 @@ public interface DibDao {
 	public void delete(int dibson_num);
 	public List<DibDto> getData(DibDto dto);
 	public DibDto getDetailData(DibDto dto);
-	public int getCount();
+	public int getCount(String id);
 }

@@ -1,5 +1,6 @@
 package com.team.project.space.controller;
 
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -7,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.team.project.dib.dto.DibDto;
@@ -15,6 +16,7 @@ import com.team.project.dib.service.DibService;
 import com.team.project.qna.service.QnaService;
 import com.team.project.review.service.ReviewService;
 import com.team.project.seller.service.SellerService;
+import com.team.project.space.dto.SpaceDto;
 import com.team.project.space.service.SpaceService;
 
 @Controller
@@ -38,20 +40,20 @@ public class SpaceController {
 	}
 	
 	@GetMapping("/space/detail")
-	public String detail(HttpServletRequest request,int cate_num, int space_num, DibDto dto,HttpSession session) {
+	public ModelAndView detail(ModelAndView mView, HttpServletRequest request, DibDto dto,HttpSession session, SpaceDto spaceDto) {
 		service.getDay(request);
-		service.getSpaceData(request, space_num);
+		service.getSpaceData(mView, spaceDto, request);
 		
 		if(session.getAttribute("id")!=null) {
 			dto.setUsers_id((String)session.getAttribute("id"));
-			dto.setSpace_num(space_num);
+			dto.setSpace_num(dto.getSpace_num());
 			dibService.dibGetDetailData(dto, request);
 		}
 		
-		reviewService.getList(request, space_num);
-		qnaService.getQnaList(request, space_num);
+		reviewService.getList(request, dto.getSpace_num());
+		qnaService.getQnaList(request, dto.getSpace_num());
 		
-		return("space/detail");
+		return mView;
 	}
 	
 	@RequestMapping("/space/reviewDelete")

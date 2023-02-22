@@ -34,8 +34,8 @@ public class DibDaoImpl implements DibDao {
 	}
 
 	@Override
-	public int getCount() {
-		return session.selectOne("dib.getCount");
+	public int getCount(String id) {
+		return session.selectOne("dib.getCount", id);
 	}
 
 }
