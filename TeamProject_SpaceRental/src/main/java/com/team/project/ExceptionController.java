@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.team.project.exception.InsertReviewException;
 import com.team.project.exception.NotExistRoomException;
 
 
@@ -17,6 +18,15 @@ public class ExceptionController {
 		mView.addObject("exception", nere);
 		mView.addObject("info", "존재하지 않는 방 혹은 삭제된 방입니다.");
 		mView.setViewName("error/notexistroom");
+		return mView;
+	}
+	
+	@ExceptionHandler(InsertReviewException.class)
+	public ModelAndView InsertReview(InsertReviewException ire){
+		ModelAndView mView=new ModelAndView();
+		mView.addObject("exception", ire);
+		mView.addObject("info", "방을 예약하시고 이용 후 리뷰를 작성해주세요.");
+		mView.setViewName("error/insertreview");
 		return mView;
 	}
 	

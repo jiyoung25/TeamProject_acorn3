@@ -48,9 +48,16 @@
 		<form action="${pageContext.request.contextPath}/review/reviewInsertform" method="POST">
 			<label for="possibleReview">리뷰 쓰기</label>
 			<select name="possibleReview" id="possibleReview">
-				<c:forEach items="${possibleReview }" var="item">
-					<option value="${item.reserv_num }&&${item.space_num}&&${item.cate_num}"><strong>${item.space_name } 방 리뷰쓰기</strong></option>
-				</c:forEach>
+				<c:choose>
+					<c:when test="${not empty possibleReview }">
+						<c:forEach items="${possibleReview }" var="item">
+							<option value="${item.reserv_num }&&${item.space_num}&&${item.cate_num}"><strong>${item.space_name } 방 리뷰쓰기</strong></option>
+						</c:forEach>
+					</c:when>
+					<c:otherwise>
+						<option value=""><strong>방을 이용해주세요.</strong></option>
+					</c:otherwise>
+				</c:choose>
 			</select>
 			<button>리뷰 쓰기</button>
 		</form>

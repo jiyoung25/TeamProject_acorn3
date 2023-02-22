@@ -157,7 +157,18 @@
 	<div id="map" style="width:100%;height:350px;"></div>
 	
 	<%-- 리뷰 --%>
-	<h3 id="review">Review <a href="${pageContext.request.contextPath}/review/reviewInsertform?cate_num=${param.cate_num }&space_num=${param.space_num}">추가하기</a></h3>
+	<h3 id="review">Review
+		<a href="${pageContext.request.contextPath}/review/reviewInsertform?cate_num=${param.cate_num }&space_num=${param.space_num}">추가하기</a>
+	</h3>
+	<%-- 사용자가 사용한 방 -> 리뷰 쓰기 가능 --%>
+	<form action="${pageContext.request.contextPath}/review/reviewInsertform" method="POST">
+		<select name="possibleReview" id="possibleReview">
+			<c:forEach items="${possibleReview }" var="item">
+				<option value="${item.reserv_num }&&${item.space_num}&&${item.cate_num}"><strong>${item.space_name } 방 리뷰쓰기</strong></option>
+			</c:forEach>
+		</select>
+		<button>리뷰 쓰기</button>
+	</form>
 	<div class="container">
 		<table class="table table-striped">
 			<thead class="table-dark">

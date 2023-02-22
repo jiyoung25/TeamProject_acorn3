@@ -7,11 +7,14 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.team.project.exception.InsertReviewException;
 import com.team.project.review.dto.ReviewDto;
 import com.team.project.review.service.ReviewService;
 import com.team.project.users.service.UsersService;
@@ -69,8 +72,12 @@ public class ReviewController {
 		return mView;
 	}
 	
+	@Transactional
 	@RequestMapping("/review/reviewInsertform")
-	public String reviewInsertform(HttpServletRequest request, @RequestParam("possibleReview")String info) {
+	public String reviewInsertform(HttpServletRequest request, @RequestParam(value = "possibleReview", required = false)String info) {
+		if(StringUtils.isEmpty(info)||info.equals("")) {
+			throw new InsertReviewException("작성할 수 있는 리뷰가 없습니다.");
+		}
 		service.goInsertForm(info, request);
 		
 		return "review/reviewInsertform";

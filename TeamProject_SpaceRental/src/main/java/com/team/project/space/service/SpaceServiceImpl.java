@@ -14,13 +14,15 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.team.project.exception.NotExistRoomException;
+import com.team.project.review.dto.ReviewDto;
+import com.team.project.review.service.ReviewService;
 import com.team.project.space.dao.SpaceDao;
 import com.team.project.space.dto.SpaceDto;
 
 @Service
 public class SpaceServiceImpl implements SpaceService {
-	@Autowired
-	private SpaceDao dao;
+	@Autowired private SpaceDao dao;
+	@Autowired private ReviewService reviewService;
 	
 	@Override
 	//나중에 space Service가 생기면 그쪽으로 옮길 예정
@@ -167,6 +169,8 @@ public class SpaceServiceImpl implements SpaceService {
 			throw new NotExistRoomException(request.getRequestURI());
 		} else {
 			mView.addObject("spaceDto", dao.getData(dto.getSpace_num()));
+			List<ReviewDto> reviewList = reviewService.possibleReview(new ReviewDto(), request);
+			mView.addObject("possibleReview", reviewList);
 			mView.setViewName("/space/detail");
 		}
 		
