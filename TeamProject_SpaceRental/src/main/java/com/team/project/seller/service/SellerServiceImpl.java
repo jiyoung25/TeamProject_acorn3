@@ -127,7 +127,8 @@ public class SellerServiceImpl implements SellerService{
 		List<QnaDto> getQnaList = qnaDao.getList3(dto);
 		
 		//전체글의 갯수
-		int qnatotalRow=qnaDao.getCount2(dto);
+		int qnatotalRow=qnaDao.getCount3(dto);
+		System.out.println(qnatotalRow);
 		//하단 시작 페이지 번호 
 		int qnaStartPageNum = 1 + ((qnaPageNum-1)/PAGE_DISPLAY_COUNT)*PAGE_DISPLAY_COUNT;
 		//하단 끝 페이지 번호

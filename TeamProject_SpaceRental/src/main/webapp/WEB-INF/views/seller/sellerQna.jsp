@@ -32,6 +32,7 @@
 	      	</c:choose>
       	</c:otherwise>
    	</c:choose>
+   	
 	<div class="container">
 		<h1>QnA 관리</h1>
 		<%-- Q&A 리스트 --%>
@@ -62,6 +63,7 @@
 			</tbody>
 		</table>
 		
+		<%-- Q&A 페이지네이션 --%>
 		<nav>
 			<ul class="pagination">
 				<%--
@@ -88,7 +90,7 @@
 			</ul>
 		</nav>
 		
-		<a href="${pageContext.request.contextPath }">메인으로</a>
+		<a href="${pageContext.request.contextPath }">메인으로 가기</a>
 	</div>
 </body>
 </html>
