@@ -102,7 +102,51 @@
 </style>
 </head>
 <body>
+	<%-- 네비바 --%>
+	<c:choose>
+		<c:when test="${empty sessionScope.id }">
+        	<jsp:include page="/WEB-INF/include/navbar_sidebar_SessionX.jsp"/>
+      	</c:when>
+      	<c:otherwise>
+	      	<c:choose>
+	      		<c:when test="${usersCode eq 2 }">
+	      	  		<jsp:include page="/WEB-INF/include/navbar_sessionO_seller.jsp"/>
+	         		<jsp:include page="/WEB-INF/include/sidebar_seller.jsp"/>
+	      		</c:when>
+	      		<c:when test ="${usersCode eq 3 }">
+					<jsp:include page="/WEB-INF/include/navbar_sessionO_users.jsp"/>
+			      	<jsp:include page="/WEB-INF/include/sidebar_user.jsp"/>
+	      		</c:when>
+	      		<c:when test = "${usersCode eq 1 }">
+	      		</c:when>
+	      	</c:choose>
+      	</c:otherwise>
+   	</c:choose>
 	   
+	<%-- 리뷰 내용 --%>
+	<div class="container">	
+		<h2><strong>Q&A 상세보기</strong></h2>
+		</br>
+		<!-- 룸넘버, 룸이름 -->
+		<div class="room">
+			<h4>${dto.num }.${space.name }</h3>
+		</div>
+		<!-- 리뷰제목 -->
+		<div class="title">
+			<h3><strong>${dto.title  }</strong></h3>
+		</div>
+		<!-- 작성자, 등록일, 조회수, 별점 -->
+		<div class="user">
+			<h4><strong>by.</strong>${dto.writer } 
+    		  <strong>작성일</strong>: ${dto.regdate  }
+    		  <strong>조회수</strong>: ${dto.viewCount }
+    	  </h4>
+		</div>
+		<!-- 내용 -->
+		<div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" class="scrollspy-example bg-body-tertiary p-3 rounded-2" tabindex="0">
+	 	   <p>${dto.content }</p>
+		</div>
+	</div>
 	   
 	<div class="container">
 		<%-- 만일 이전글(더 옛날글)의 글번호가 0 이 아니라면 (이전글이 존재한다면) --%>
@@ -120,40 +164,16 @@
 			</p>
 		</c:if>
 		
-		<h3>글 상세 보기</h3>
-		<table>
-			<tr>
-				<th>글번호</th>
-				<td>${dto.num }</td>
-			</tr>
-			<tr>
-				<th>작성자</th>
-				<td>${dto.writer }</td>
-			</tr>
-			<tr>
-				<th>제목</th>
-				<td>${dto.title }</td>
-			</tr>
-			<tr>
-				<th>조회수</th>
-				<td>${dto.viewCount }</td>
-			</tr>
-			<tr>
-				<th>작성일</th>
-				<td>${dto.regdate }</td>
-			</tr>
-			<tr>
-				<td colspan="2">
-					<div>${dto.content }</div>
-				</td>
-			</tr>
-		</table>
 		<c:if test="${usersCode eq 2 }">
 			<a href="${pageContext.request.contextPath}/seller/sellerQna">뒤로가기</a>
 		</c:if>
 		<c:if test="${sessionScope.id eq dto.writer }">
-			<a href="qnaupdateform?num=${dto.num }">수정</a>
-			<a href="javascript:" onclick="deleteConfirm()">삭제</a>
+			<button type="button" class="btn btn-outline-secondary">
+				<a href="qnaupdateform?num=${dto.num }">수정</a>
+			</button>
+			<button type="button" class="btn btn-outline-secondary">
+				<a href="javascript:" onclick="deleteConfirm()">삭제</a>
+			</button>
 			<script>
 				function deleteConfirm() {
 					const isDelete = confirm("이 글을 삭제 하겠습니까?");
