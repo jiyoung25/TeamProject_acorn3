@@ -63,7 +63,7 @@ public class ReviewController {
 	@RequestMapping("/users/reviewList")
 	public ModelAndView reviewList(ModelAndView mView, HttpServletRequest request, HttpSession session, ReviewDto dto) {
 		service.getUsersNum(request, session);
-		service.getList2(mView, request, dto);
+		service.getList2(mView, request);
 		
 		mView.setViewName("users/reviewList");
 		return mView;

@@ -19,10 +19,17 @@
 	</select>
 	
 	<select id="getList2" parameterType="int" resultType="reviewDto">
-		SELECT review_num,review_writer,review_title,review_content,viewcount,TO_CHAR(review_regdate, 'YY.MM.DD HH24:MI') AS review_regdate, reserv_num, star
-		FROM review
-		WHERE users_num=#{users_num}
-		ORDER BY review_num 
+		SELECT *
+		FROM
+			(SELECT result1.*, ROWNUM AS rnum
+			FROM
+				(SELECT review_num,review_writer,review_title,review_content,viewcount,TO_CHAR(review_regdate, 'YY.MM.DD HH24:MI') AS review_regdate, reserv_num, star
+				FROM review
+				WHERE users_num=#{users_num}
+				ORDER BY review_num) result1)
+		<![CDATA[ 
+		WHERE rnum >= #{startRowNum} AND rnum <= #{endRowNum}
+		]]>	
 	</select>
 	
 	<select id="getList3" parameterType="reviewDto" resultType="reviewDto">
@@ -56,6 +63,12 @@
 	</select>
 	
 	<select id="getCount2" parameterType="reviewDto" resultType="int">
+		SELECT NVL(MAX(ROWNUM), 0)
+		FROM review
+		WHERE users_num=#{users_num}
+	</select>
+	
+	<select id="getCount3" parameterType="reviewDto" resultType="int">
 		SELECT NVL(MAX(ROWNUM), 0)
 		FROM seller_space
 		INNER JOIN review ON review.space_num = seller_space.space_num
