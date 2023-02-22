@@ -26,25 +26,29 @@
 	<c:choose>
 		<c:when test="${empty sessionScope.id }">
         	<jsp:include page="/WEB-INF/include/navbar_sidebar_SessionX.jsp"/>
+        	<jsp:include page="/WEB-INF/include/cdnlink.jsp"/>
       	</c:when>
       	<c:otherwise>
 	      	<c:choose>
 	      		<c:when test="${usersCode eq 2 }">
 	      	  		<jsp:include page="/WEB-INF/include/navbar_sessionO_seller.jsp"/>
 	         		<jsp:include page="/WEB-INF/include/sidebar_seller.jsp"/>
+	         		<jsp:include page="/WEB-INF/include/cdnlink.jsp"/>
 	      		</c:when>
 	      		<c:when test ="${usersCode eq 3 }">
 					<jsp:include page="/WEB-INF/include/navbar_sessionO_users.jsp"/>
 			      	<jsp:include page="/WEB-INF/include/sidebar_user.jsp"/>
+			      	<jsp:include page="/WEB-INF/include/cdnlink.jsp"/>
 	      		</c:when>
 	      		<c:when test = "${usersCode eq 1 }">
+	      			<jsp:include page="/WEB-INF/include/cdnlink.jsp"/>
 	      		</c:when>
 	      	</c:choose>
       	</c:otherwise>
    	</c:choose>
    
 	<div class="container">
-		<h3>회원 정보 수정 폼 입니다.</h3>
+		<h3>회원 정보 수정</h3>
 		
 		<a id="profileLink" href="javascript:">
 			<c:choose>
@@ -58,6 +62,7 @@
 				</c:otherwise>
 			</c:choose>
 		</a>
+		<p class="fst-italic text-muted">프로필이미지 수정은 재로그인시 적용됩니다.</p>        
 		<form action="${pageContext.request.contextPath}/users/update" method="post">		
 			<input type="hidden" name="profile" 
 				value="${ empty dto.profile ? 'empty' : dto.profile }"/>		
