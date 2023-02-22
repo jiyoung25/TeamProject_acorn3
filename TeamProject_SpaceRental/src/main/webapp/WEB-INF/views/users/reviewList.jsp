@@ -9,13 +9,6 @@
 <title>/users/reviewList</title>
 <%-- 부트스트랩 --%>
 <jsp:include page="/WEB-INF/include/cdnlink.jsp"/>
-<!-- MDB -->
-<link
-  href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.css" rel="stylesheet"/>
-<!-- MDB -->
-<script
-  type="text/javascript"
-  src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.js"></script>
 <%--import from static folder --%>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/star.css" />
 <body>
@@ -119,7 +112,7 @@
 			</ul>
 		</nav>
 		
-		<a href="${pageContext.request.contextPath}">메인으로 가기</a>
+		<a href="${pageContext.request.contextPath}" class="btn btn-outline-secondary">메인으로 가기</a>
 	</div>
 	<script>
    		const deleteLink = function(){
