@@ -12,7 +12,6 @@
 	<artifactId>TeamProject_SpaceRental</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>TeamProject_SpaceRental</name>
-	<packaging>war</packaging>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>1.8</java.version>
@@ -64,11 +63,6 @@
 			<groupId>org.apache.tomcat.embed</groupId>
 			<artifactId>tomcat-embed-jasper</artifactId>
 			<scope>provided</scope>
-		</dependency>
-		<dependency>
-    		<groupId>org.springframework.boot</groupId>
-      		<artifactId>spring-boot-starter-tomcat</artifactId>
-     		 <scope>provided</scope> <!-- 안되어 있는 경우 변경! -->
 		</dependency>
 		<dependency>
 			<groupId>javax.servlet</groupId>

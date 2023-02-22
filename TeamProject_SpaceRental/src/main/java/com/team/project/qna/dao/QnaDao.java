@@ -9,12 +9,14 @@ public interface QnaDao {
 	public List<QnaDto> getList(QnaDto dto);
 	//Qna 목록 (사이드바)
 	public List<QnaDto> getList2(int users_num);
-	//아이디를 이용해 Qna 목록 가져오기
-	public List<QnaDto> getList3(String id);
+	//아이디를 이용해 Review 목록 가져오기
+	public List<QnaDto> getList3(QnaDto dto);
 	//id를 이용해 UsersNum 가져오기
 	public int getUsersNum(String id);
 	//Qna의 갯수
 	public int getCount(QnaDto dto);
+	//sellerId를 이용한 Qna의 갯수
+	public int getCount2(QnaDto dto);
 	//Qna 추가
 	public void insert(QnaDto dto);
 	//Qna정보 얻어오기

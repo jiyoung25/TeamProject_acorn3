@@ -16,11 +16,12 @@ public class QnaDto {
 	private int qnaEndRowNum;
 	private int qnaPrevNum; //이전글의 글번호
 	private int qnaNextNum; //다음글의 글번호
+	private String sellerId;
 	
 	public QnaDto() {}
 
 	public QnaDto(int num, int users_num, int space_num, String title, String content, String writer, int viewCount,
-			String regdate, int qnaStartRowNum, int qnaEndRowNum, int qnaPrevNum, int qnaNextNum) {
+			String regdate, int qnaStartRowNum, int qnaEndRowNum, int qnaPrevNum, int qnaNextNum, String sellerId) {
 		super();
 		this.num = num;
 		this.users_num = users_num;
@@ -34,6 +35,7 @@ public class QnaDto {
 		this.qnaEndRowNum = qnaEndRowNum;
 		this.qnaPrevNum = qnaPrevNum;
 		this.qnaNextNum = qnaNextNum;
+		this.sellerId = sellerId;
 	}
 
 	public int getNum() {
@@ -131,4 +133,13 @@ public class QnaDto {
 	public void setQnaNextNum(int qnaNextNum) {
 		this.qnaNextNum = qnaNextNum;
 	}
+
+	public String getSellerId() {
+		return sellerId;
+	}
+
+	public void setSellerId(String sellerId) {
+		this.sellerId = sellerId;
+	}
+
 }
