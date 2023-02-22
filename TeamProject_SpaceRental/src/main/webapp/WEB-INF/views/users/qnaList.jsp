@@ -67,8 +67,37 @@
 				</c:forEach>
 			</tbody>
 		</table>
-		<a href="${pageContext.request.contextPath}">메인으로 가기</a>
+		
+		<%-- Q&A 페이지네이션 --%>
+		<nav>
+			<ul class="pagination">
+				<%--
+		        	qnaStartPageNum 이 1 이 아닌 경우에만 Prev 링크를 제공한다. 
+		        --%>
+		        <c:if test="${qnaStartPageNum ne 1 }">
+					<li class="page-item">
+						<a class="page-link" href="qnaList?qnaPageNum=${qnaStartPageNum-1 }">Prev</a>
+					</li>
+		        </c:if>
+		        <c:forEach var="i" begin="${qnaStartPageNum }" end="${qnaEndPageNum }">
+					<li class="page-item ${qnaPageNum eq i ? 'active' : '' }">
+						<a class="page-link" href="qnaList?qnaPageNum=${i }">${i }</a>
+					</li>
+		        </c:forEach>
+		        <%--
+		        	마지막 페이지 번호가 전체 페이지의 갯수보다 작으면 Next 링크를 제공한다. 
+		        --%>
+		        <c:if test="${qnaEndPageNum lt qnatotalPageCount }">
+					<li class="page-item">
+						<a class="page-link" href="qnaList?qnaPageNum=${qnaEndPageNum+1 }">Next</a>
+					</li>
+		        </c:if>
+			</ul>
+		</nav>
+		
+		<a href="${pageContext.request.contextPath}" class="btn btn-primary">메인으로 가기</a>
 	</div>
+	
 	<script>
    		const deleteLink = function(){
 			confirm("해당 글을 삭제하시겠습니까?")?this.submit():"";

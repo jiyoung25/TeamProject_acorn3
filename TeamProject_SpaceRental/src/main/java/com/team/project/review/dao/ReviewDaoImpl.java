@@ -20,9 +20,9 @@ public class ReviewDaoImpl implements ReviewDao{
 	}
 	
 	@Override //Review 목록 (사이드바) 가져오기
-	public List<ReviewDto> getList2(int users_num) {
+	public List<ReviewDto> getList2(ReviewDto dto) {
 		
-		return session.selectList("review.getList2", users_num);
+		return session.selectList("review.getList2", dto);
 	}
 	
 	@Override
@@ -42,10 +42,16 @@ public class ReviewDaoImpl implements ReviewDao{
 		return session.selectOne("review.getCount", dto);
 	}
 	
-	@Override //sellerId를 이용한 Review의 갯수
+	@Override
 	public int getCount2(ReviewDto dto) {
 		
 		return session.selectOne("review.getCount2", dto);
+	}
+	
+	@Override //sellerId를 이용한 Review의 갯수
+	public int getCount3(ReviewDto dto) {
+		
+		return session.selectOne("review.getCount3", dto);
 	}
 
 	@Override //Review 추가

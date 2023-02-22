@@ -91,6 +91,34 @@
 				</c:forEach>
 			</tbody>
 		</table>
+		
+		<%-- 리뷰 페이지네이션 --%>
+		<nav>
+			<ul class="pagination">
+				<%--
+					startPageNum 이 1 이 아닌 경우에만 Prev 링크를 제공한다. 
+				--%>
+				<c:if test="${startPageNum ne 1 }">
+					<li class="page-item">
+						<a class="page-link" href="reviewList?pageNum=${startPageNum-1 }">Prev</a>
+					</li>
+				</c:if>
+		        <c:forEach var="i" begin="${startPageNum }" end="${endPageNum }">
+					<li class="page-item ${pageNum eq i ? 'active' : '' }">
+						<a class="page-link" href="reviewList?pageNum=${i }">${i }</a>
+					</li>
+		        </c:forEach>
+		        <%--
+		           	마지막 페이지 번호가 전체 페이지의 갯수보다 작으면 Next 링크를 제공한다. 
+				--%>
+				<c:if test="${endPageNum lt totalPageCount }">
+					<li class="page-item">
+						<a class="page-link" href="reviewList?pageNum=${endPageNum+1 }">Next</a>
+					</li>
+				</c:if>
+			</ul>
+		</nav>
+		
 		<a href="${pageContext.request.contextPath}">메인으로 가기</a>
 	</div>
 	<script>

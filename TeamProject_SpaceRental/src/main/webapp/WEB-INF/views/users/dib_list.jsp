@@ -54,7 +54,7 @@
 		  		<c:forEach var="tmp" items="${list }">
 		  			<tr>
 		    			<td>
-		    				<a href="${pageContext.request.contextPath}/space/detail?cate_num=${tmp.cate_num}&space_num=${tmp.space_num}">${tmp.space_name }</a>
+		    				<a href="${pageContext.request.contextPath}/space/detail?cate_num=${tmp.cate_num}&space_num=${tmp.space_num}&path=dib">${tmp.space_name }</a>
 		    			</td>
 		      			<td>
 		        			<div class="d-flex align-items-center">
@@ -119,7 +119,6 @@
 			</ul>
 		</nav>
 	</div>
-	
 	<!-- footer include -->
 	<jsp:include page="/WEB-INF/include/footer.jsp"/>	
 </body>

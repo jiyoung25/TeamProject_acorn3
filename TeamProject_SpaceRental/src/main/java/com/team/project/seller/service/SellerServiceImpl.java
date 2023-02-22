@@ -61,7 +61,7 @@ public class SellerServiceImpl implements SellerService{
 		int endRowNum=pageNum*PAGE_ROW_COUNT;
 		
 		String id = (String)request.getSession().getAttribute("id");
-		//ReviewDto 객체에 startRowNum, endRowNum 그리고  space_num을 담는다.
+		//ReviewDto 객체에 startRowNum, endRowNum을 담는다.
 		ReviewDto dto=new ReviewDto();
 		dto.setStartRowNum(startRowNum);
 		dto.setEndRowNum(endRowNum);
@@ -70,7 +70,7 @@ public class SellerServiceImpl implements SellerService{
 		List<ReviewDto> getReviewList = reviewDao.getList3(dto);
 		
 		//전체글의 갯수
-		int totalRow=reviewDao.getCount2(dto);
+		int totalRow=reviewDao.getCount3(dto);
 		//하단 시작 페이지 번호 
 		int startPageNum = 1 + ((pageNum-1)/PAGE_DISPLAY_COUNT)*PAGE_DISPLAY_COUNT;
 		//하단 끝 페이지 번호
@@ -96,8 +96,59 @@ public class SellerServiceImpl implements SellerService{
 	
 	@Override
 	public void getQnaList(ModelAndView mView, HttpServletRequest request) {
+		//한 페이지에 몇개씩 표시할 것인지
+		final int PAGE_ROW_COUNT=5;
+		//하단 페이지를 몇개씩 표시할 것인지
+		final int PAGE_DISPLAY_COUNT=5;
+		
+		//보여줄 페이지의 번호를 일단 1이라고 초기값 지정
+		int qnaPageNum=1;
+		//페이지 번호가 파라미터로 전달되는지 읽어와 본다.
+		String strPageNum=request.getParameter("qnaPageNum");
+		//만일 페이지 번호가 파라미터로 넘어 온다면
+		if(strPageNum != null){
+			//숫자로 바꿔서 보여줄 페이지 번호로 지정한다.
+			qnaPageNum=Integer.parseInt(strPageNum);
+		}
+		
+		//보여줄 페이지의 시작 ROWNUM
+		int qnaStartRowNum=1+(qnaPageNum-1)*PAGE_ROW_COUNT;
+		//보여줄 페이지의 끝 ROWNUM
+		int qnaEndRowNum=qnaPageNum*PAGE_ROW_COUNT;
+				
 		String id = (String)request.getSession().getAttribute("id");
-		List<QnaDto> getQnaList = qnaDao.getList3(id);
+		//ReviewDto 객체에 startRowNum, endRowNum을 담는다.
+		QnaDto dto=new QnaDto();
+		dto.setQnaStartRowNum(qnaStartRowNum);
+		dto.setQnaEndRowNum(qnaEndRowNum);
+		dto.setSellerId(id);
+		
+		//리뷰 목록 얻어오기
+		List<QnaDto> getQnaList = qnaDao.getList3(dto);
+		
+		//전체글의 갯수
+		int qnatotalRow=qnaDao.getCount3(dto);
+		System.out.println(qnatotalRow);
+		//하단 시작 페이지 번호 
+		int qnaStartPageNum = 1 + ((qnaPageNum-1)/PAGE_DISPLAY_COUNT)*PAGE_DISPLAY_COUNT;
+		//하단 끝 페이지 번호
+		int qnaEndPageNum=qnaStartPageNum+PAGE_DISPLAY_COUNT-1;
+		
+
+		//전체 페이지의 갯수
+		int qnatotalPageCount=(int)Math.ceil(qnatotalRow/(double)PAGE_ROW_COUNT);
+		//끝 페이지 번호가 전체 페이지 갯수보다 크다면 잘못된 값이다.
+		if(qnaEndPageNum > qnatotalPageCount){
+			qnaEndPageNum=qnatotalPageCount; //보정해 준다.
+		}
+		//view page 에서 필요한 값을 request 에 담아준다. 
+		request.setAttribute("qnaPageNum", qnaPageNum);
+		request.setAttribute("qnaStartPageNum", qnaStartPageNum);
+		request.setAttribute("qnaEndPageNum", qnaEndPageNum);
+		request.setAttribute("qnatotalPageCount", qnatotalPageCount);
+		request.setAttribute("getQnaList", getQnaList);
+		request.setAttribute("qnatotalRow", qnatotalRow);
+		
 		mView.addObject("getQnaList", getQnaList);
 	}
 	

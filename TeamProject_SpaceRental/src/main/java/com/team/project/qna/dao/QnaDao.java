@@ -8,13 +8,17 @@ public interface QnaDao {
 	//Qna 목록
 	public List<QnaDto> getList(QnaDto dto);
 	//Qna 목록 (사이드바)
-	public List<QnaDto> getList2(int users_num);
+	public List<QnaDto> getList2(QnaDto dto);
 	//아이디를 이용해 Qna 목록 가져오기
-	public List<QnaDto> getList3(String id);
+	public List<QnaDto> getList3(QnaDto dto);
 	//id를 이용해 UsersNum 가져오기
 	public int getUsersNum(String id);
-	//Qna의 갯수
+	//아디디 당 Qna의 갯수
 	public int getCount(QnaDto dto);
+	//Qna의 갯수
+	public int getCount2(QnaDto dto);
+	//sellerId를 이용한 Qna의 갯수
+	public int getCount3(QnaDto dto);
 	//Qna 추가
 	public void insert(QnaDto dto);
 	//Qna정보 얻어오기

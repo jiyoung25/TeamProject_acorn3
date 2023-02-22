@@ -8,15 +8,17 @@ public interface ReviewDao {
 	//Review 목록 가져오기
 	public List<ReviewDto> getList(ReviewDto dto);
 	//Review 목록 (사이드바) 가져오기
-	public List<ReviewDto> getList2(int users_num);
+	public List<ReviewDto> getList2(ReviewDto dto);
 	//아이디를 이용해 Review 목록 가져오기
 	public List<ReviewDto> getList3(ReviewDto dto);
 	//id를 이용해 UsersNum 가져오기
 	public int getUsersNum(String id);
 	//Review의 갯수
 	public int getCount(ReviewDto dto);
-	//sellerId를 이용한 Review의 갯수
+	//users_num을 이용한 Review의 갯수
 	public int getCount2(ReviewDto dto);
+	//sellerId를 이용한 Review의 갯수
+	public int getCount3(ReviewDto dto);
 	//Review 추가
 	public void insert(ReviewDto dto);
 	//Review정보 얻어오기

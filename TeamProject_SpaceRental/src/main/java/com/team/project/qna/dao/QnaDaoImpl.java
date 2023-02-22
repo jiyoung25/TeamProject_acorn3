@@ -19,9 +19,15 @@ public class QnaDaoImpl implements QnaDao{
 	}
 	
 	@Override
-	public List<QnaDto> getList2(int users_num) {
+	public List<QnaDto> getList2(QnaDto dto) {
 		
-		return session.selectList("qna.getList2", users_num);
+		return session.selectList("qna.getList2", dto);
+	}
+	
+	@Override
+	public List<QnaDto> getList3(QnaDto dto) {
+		
+		return session.selectList("qna.getList3", dto);
 	}
 
 	@Override
@@ -30,15 +36,21 @@ public class QnaDaoImpl implements QnaDao{
 		return session.selectOne("qna.getUsersNum", id);
 	}
 	
-	@Override
-	public List<QnaDto> getList3(String id) {
-		
-		return session.selectList("qna.getList3", id);
-	}
-	
 	@Override //글의 갯수
 	public int getCount(QnaDto dto) {
 		return session.selectOne("qna.getCount", dto);
+	}
+	
+	@Override
+	public int getCount2(QnaDto dto) {
+		
+		return session.selectOne("qna.getCount2", dto);
+	}
+	
+	@Override
+	public int getCount3(QnaDto dto) {
+		
+		return session.selectOne("qna.getCount3", dto);
 	}
 
 	@Override //글 추가

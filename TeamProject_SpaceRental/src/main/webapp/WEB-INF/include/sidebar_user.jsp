@@ -59,7 +59,7 @@
 	            <hr class="my-2">
 	            <!-- 사용자 후기 -->
 	            <li class="nav-item">
-	                <a class="nav-link" href="${pageContext.request.contextPath}/users/reviewList">나의 후기</a>
+	                <a class="nav-link" href="${pageContext.request.contextPath}/users/reviewList">나의 Review</a>
 	            </li>
 	   
 	            <hr class="my-2">

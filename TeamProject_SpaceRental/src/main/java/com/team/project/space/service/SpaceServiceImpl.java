@@ -10,8 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.team.project.exception.NotExistRoomException;
 import com.team.project.space.dao.SpaceDao;
 import com.team.project.space.dto.SpaceDto;
 
@@ -158,9 +160,17 @@ public class SpaceServiceImpl implements SpaceService {
 			}
 	}
 
+	@Transactional
 	@Override
-	public void getSpaceData(HttpServletRequest request, int space_num) {
-		request.setAttribute("spaceDto", dao.getData(space_num));
+	public ModelAndView getSpaceData(ModelAndView mView, SpaceDto dto, HttpServletRequest request) {
+		if(dao.getData(dto.getSpace_num()) == null) {
+			throw new NotExistRoomException(request.getRequestURI());
+		} else {
+			mView.addObject("spaceDto", dao.getData(dto.getSpace_num()));
+			mView.setViewName("/space/detail");
+		}
+		
+		return mView;
 	}
 
 	@Override

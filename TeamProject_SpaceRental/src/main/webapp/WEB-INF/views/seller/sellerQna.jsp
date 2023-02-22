@@ -11,10 +11,33 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h3>QnA 관리</h3>
+	<%-- 네비바 --%>
+	<c:choose>
+		<c:when test="${empty sessionScope.id }">
+        	<jsp:include page="/WEB-INF/include/navbar_sidebar_SessionX.jsp"/>
+      	</c:when>
+      	<c:otherwise>
+	      	<c:choose>
+	      		<c:when test="${usersCode eq 2 }">
+	      	  		<jsp:include page="/WEB-INF/include/navbar_sessionO_seller.jsp"/>
+	         		<jsp:include page="/WEB-INF/include/sidebar_seller.jsp"/>
+	      		</c:when>
+	      		<c:when test ="${usersCode eq 3 }">
+					<jsp:include page="/WEB-INF/include/navbar_sessionO_users.jsp"/>
+			      	<jsp:include page="/WEB-INF/include/sidebar_user.jsp"/>
+	      		</c:when>
+	      		<c:when test = "${usersCode eq 1 }">
+	      			<jsp:include page="/WEB-INF/include/navbar_sessionO_admin.jsp"/>
+	      		</c:when>
+	      	</c:choose>
+      	</c:otherwise>
+   	</c:choose>
+   	
 	<div class="container">
-		<table>
-			<thead>
+		<h1>QnA 관리</h1>
+		<%-- Q&A 리스트 --%>
+		<table class="table align-middle mb-0 bg-white">
+			<thead class="bg-light">
 				<tr>
 					<th>글번호</th>
 					<th>작성자</th>
@@ -39,7 +62,35 @@
 				</c:forEach>
 			</tbody>
 		</table>
-		<a href="${pageContext.request.contextPath }">목록으로</a>
+		
+		<%-- Q&A 페이지네이션 --%>
+		<nav>
+			<ul class="pagination">
+				<%--
+		        	qnaStartPageNum 이 1 이 아닌 경우에만 Prev 링크를 제공한다. 
+		        --%>
+		        <c:if test="${qnaStartPageNum ne 1 }">
+					<li class="page-item">
+						<a class="page-link" href="sellerQna?qnaPageNum=${qnaStartPageNum-1 }">Prev</a>
+					</li>
+		        </c:if>
+		        <c:forEach var="i" begin="${qnaStartPageNum }" end="${qnaEndPageNum }">
+					<li class="page-item ${qnaPageNum eq i ? 'active' : '' }">
+						<a class="page-link" href="sellerQna?qnaPageNum=${i }">${i }</a>
+					</li>
+		        </c:forEach>
+		        <%--
+		        	마지막 페이지 번호가 전체 페이지의 갯수보다 작으면 Next 링크를 제공한다. 
+		        --%>
+		        <c:if test="${qnaEndPageNum lt qnatotalPageCount }">
+					<li class="page-item">
+						<a class="page-link" href="sellerQna?qnaPageNum=${qnaEndPageNum+1 }">Next</a>
+					</li>
+		        </c:if>
+			</ul>
+		</nav>
+		
+		<a href="${pageContext.request.contextPath }">메인으로 가기</a>
 	</div>
 </body>
 </html>

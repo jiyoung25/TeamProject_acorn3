@@ -46,28 +46,38 @@
       ]]>
 	</select>
    
-   	<select id="getList2" parameterType="int" resultType="qnaDto">
-		SELECT num,writer,title,content,viewCount,TO_CHAR(regdate, 'YY.MM.DD HH24:MI') AS regdate
-		FROM qna
-		WHERE users_num=#{users_num}
-		ORDER BY num 
+   	<select id="getList2" parameterType="qnaDto" resultType="qnaDto">
+   		SELECT num, writer, title, content, viewCount, TO_CHAR(regdate, 'YY.MM.DD HH24:MI') AS regdate
+			FROM (
+			    SELECT result2.*, ROWNUM AS rnum
+			    FROM (
+			        SELECT num, writer, title, content, viewCount, regdate
+			        FROM qna
+			        WHERE users_num=#{users_num}
+			    ) result2
+			    <![CDATA[ 
+			    WHERE ROWNUM <= #{qnaEndRowNum}
+			    ]]>
+			)
+			<![CDATA[
+			WHERE rnum >= #{qnaStartRowNum}
+			]]>
 	</select>
    
-   <select id="getList3" parameterType="String" resultType="reviewDto">
-		SELECT *
+   <select id="getList3" parameterType="qnaDto" resultType="qnaDto">
+		SELECT num, writer, title, content, viewCount, TO_CHAR(regdate, 'YY.MM.DD HH24:MI') AS regdate
 		FROM (
-  			SELECT num, writer, title, content, viewCount, TO_CHAR(regdate, 'YY.MM.DD HH24:MI') AS regdate,
-    		ROW_NUMBER() OVER (ORDER BY num) AS rnum
-  			FROM review
- 			WHERE EXISTS (
-    			SELECT 1 
-    			FROM seller_space 
-    			WHERE qna.space_num = seller_space.space_num 
-      			AND seller_space.users_num = (SELECT MAX(users_num) FROM space_users WHERE id=#{sellerId})
-  			)
+		    SELECT q.*, ROW_NUMBER() OVER (ORDER BY q.num) AS rnum
+		    FROM qna q
+		    WHERE EXISTS (
+		        SELECT 1
+		        FROM seller_space s
+		        JOIN space_users u ON s.users_num = u.users_num
+		        WHERE s.space_num = q.space_num AND u.id = #{sellerId}
+		    )
 		)
 		<![CDATA[
-		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
+		WHERE rnum BETWEEN #{qnaStartRowNum} AND #{qnaEndRowNum}
 		]]>
 	</select>
    
@@ -81,6 +91,21 @@
 		SELECT NVL(MAX(ROWNUM), 0)
 		FROM qna
 		<include refid="searchCondition"/>
+	</select>
+	
+	<select id="getCount2" parameterType="qnaDto" resultType="int">
+		SELECT NVL(MAX(ROWNUM), 0)
+		FROM qna
+		WHERE users_num=#{users_num}
+	</select>
+	
+	<select id="getCount3" parameterType="qnaDto" resultType="int">
+		SELECT NVL(MAX(ROWNUM), 0)
+		FROM qna
+		INNER JOIN seller_space ON qna.space_num = seller_space.space_num
+		WHERE seller_space.users_num = (
+			SELECT MAX(users_num) FROM space_users WHERE id = #{sellerId}
+		)
 	</select>
 	
 	<insert id="insert">
