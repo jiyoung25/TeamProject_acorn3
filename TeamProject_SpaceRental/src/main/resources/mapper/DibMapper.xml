@@ -27,8 +27,9 @@
 		FROM dibson_list
 		WHERE space_num=#{space_num} AND users_id=#{users_id}
 	</select>
-	<select id="getCount" resultType="int">
-		SELECT NVL(MAX(ROWNUM), 0)
+	<select id="getCount" resultType="int" parameterType="string">
+		SELECT MAX(ROWNUM)
 		FROM dibson_list
+		WHERE users_id=#{users_id}
 	</select>
 </mapper>
