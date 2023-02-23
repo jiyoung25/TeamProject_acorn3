@@ -29,6 +29,8 @@ public interface QnaDao {
 	public void addViewCount(int num);
 	//Qna 삭제
 	public void delete(int num);
+	//space 삭제시 관련 qna 삭제
+	public void delete2(int space_num);
 	//Qna 수정
 	public void update(QnaDto dto);
 }

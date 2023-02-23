@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.team.project.interceptor.Auth;
 import com.team.project.interceptor.Auth.Role;
+import com.team.project.qna.service.QnaService;
 import com.team.project.seller.dto.SellerDto;
 import com.team.project.seller.service.SellerService;
 import com.team.project.users.service.UsersService;
@@ -25,6 +26,8 @@ public class SellerController {
 	private SellerService service;
 	@Autowired
 	private UsersService usersService;
+	@Autowired
+	private QnaService qnaService;
 	
 	@Auth(role = Role.SELLER)
 	@RequestMapping("/seller/spacelist")
@@ -90,6 +93,7 @@ public class SellerController {
 	@RequestMapping("/seller/delete")
 	public String delete(int space_num, HttpServletRequest request) {
 		service.delete(space_num, request);
+		qnaService.deleteContent2(space_num, request);
 		return "redirect:/seller/spacelist"; //다시 한번 물어보는 것으로 수정예정
 	}
 	
