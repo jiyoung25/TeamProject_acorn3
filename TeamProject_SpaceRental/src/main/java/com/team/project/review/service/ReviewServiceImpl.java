@@ -107,10 +107,10 @@ public class ReviewServiceImpl implements ReviewService{
 		dto.setEndRowNum(endRowNum);
 		dto.setUsers_num(num);
 		
+		//리뷰 목록 얻어오기
 		List<ReviewDto> reviewList=reviewDao.getList2(dto);
 		//전체글의 갯수
 		int totalRow=reviewDao.getCount2(dto);
-		
 		//하단 시작 페이지 번호 
 		int startPageNum = 1 + ((pageNum-1)/PAGE_DISPLAY_COUNT)*PAGE_DISPLAY_COUNT;
 		//하단 끝 페이지 번호

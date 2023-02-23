@@ -8,6 +8,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <%-- 부트스트랩 --%>
 <jsp:include page="/WEB-INF/include/cdnlink.jsp"/>
+<!-- MDB -->
+<link
+  href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.css" rel="stylesheet"/>
+<!-- MDB -->
+<script
+  type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.js"></script>
+<%--import from static folder --%>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/star.css" />
 <title>/seller/sellerReview</title>
 </head>
 <body>
@@ -44,6 +53,7 @@
 					<th>작성자</th>
 					<th>제목</th>
 					<th>조회수</th>
+					<th>별점</th>
 					<th>작성일</th>
 					<th>해당글 보기</th>
 		    	</tr>
@@ -55,6 +65,13 @@
 						<td>${tmp.review_writer }</td>
 						<td>${tmp.review_title }</td>
 						<td>${tmp.viewcount }</td>
+						<td>
+							<%-- 별점 --%>
+							<span class="star">
+								★★★★★
+								<span style="width: ${tmp.star *10 }%;">★★★★★</span>
+							</span>
+						</td>
 						<td>${tmp.review_regdate }</td>
 						<td><a href="${pageContext.request.contextPath}/review/reviewdetail?review_num=${tmp.review_num }">보기</a></td>
 					</tr>
