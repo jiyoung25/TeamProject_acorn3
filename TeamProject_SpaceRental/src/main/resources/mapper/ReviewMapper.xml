@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="review">
-	<sql id="reviewCondition">
-		<choose>
-			<when test="space_num != null">
-				AND space_num = #{space_num}
-			</when>
-		</choose>
-	</sql>
+	
 	<select id="getList" parameterType="reviewDto" resultType="reviewDto">
 		SELECT *
 		FROM
@@ -24,7 +18,7 @@
 		]]>
 	</select>
 	
-	<select id="getList2" parameterType="int" resultType="reviewDto">
+	<select id="getList2" parameterType="reviewDto" resultType="reviewDto">
 		SELECT *
 		FROM
 			(SELECT result1.*, ROWNUM AS rnum
@@ -41,19 +35,18 @@
 	<select id="getList3" parameterType="reviewDto" resultType="reviewDto">
 		SELECT *
 		FROM (
-  			SELECT review_num, review_writer, review_title, review_content, viewcount, TO_CHAR(review_regdate, 'YY.MM.DD HH24:MI') AS review_regdate,
-    		ROW_NUMBER() OVER (ORDER BY review_num) AS rnum
-  			FROM review
- 			WHERE EXISTS (
-    			SELECT 1 
-    			FROM seller_space 
-    			WHERE review.space_num = seller_space.space_num 
-      			AND seller_space.users_num = (SELECT MAX(users_num) FROM space_users WHERE id=#{sellerId})
-  			)
-		)
+		    SELECT review_num, review_writer, review_title, review_content, viewcount, 
+		           TO_CHAR(review_regdate, 'YY.MM.DD HH24:MI') AS review_regdate, star,
+		           ROW_NUMBER() OVER (ORDER BY review_num) AS rnum
+		    FROM review
+		    INNER JOIN seller_space ON review.space_num = seller_space.space_num
+		    INNER JOIN space_users ON seller_space.users_num = space_users.users_num
+		    WHERE space_users.id = #{sellerId}
+		) sub
 		<![CDATA[
 		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
 		]]>
+		ORDER BY review_num
 	</select>
 	
 	<select id="getUsersNum" resultType="int" parameterType="String">
@@ -145,18 +138,12 @@
 	        	#{item}
 			</foreach>
 		</if>
-		<if test="space_num != 0">
-			AND reservationform.space_num = #{space_num}
-		</if>
 	</select>
 	
-	<select id="getReservNum" parameterType="reviewDto" resultType="int">
+	<select id="getReservNum" parameterType="string" resultType="int">
 		SELECT reserv_num
 		FROM review
 		WHERE review_writer = #{review_writer}
-		<if test="space_num != 0">
-			AND space_num = #{space_num}
-		</if>
 	</select>
 </mapper>
 

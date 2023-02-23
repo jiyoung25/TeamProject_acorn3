@@ -61,14 +61,14 @@ public class SellerServiceImpl implements SellerService{
 		int endRowNum=pageNum*PAGE_ROW_COUNT;
 		
 		String id = (String)request.getSession().getAttribute("id");
-		//ReviewDto 객체에 startRowNum, endRowNum을 담는다.
+		//ReviewDto 객체에 startRowNum, endRowNum, sellerId을 담는다.
 		ReviewDto dto=new ReviewDto();
 		dto.setStartRowNum(startRowNum);
 		dto.setEndRowNum(endRowNum);
 		dto.setSellerId(id);
+		
 		//리뷰 목록 얻어오기
 		List<ReviewDto> getReviewList = reviewDao.getList3(dto);
-		
 		//전체글의 갯수
 		int totalRow=reviewDao.getCount3(dto);
 		//하단 시작 페이지 번호 
@@ -128,7 +128,7 @@ public class SellerServiceImpl implements SellerService{
 		
 		//전체글의 갯수
 		int qnatotalRow=qnaDao.getCount3(dto);
-		System.out.println(qnatotalRow);
+		
 		//하단 시작 페이지 번호 
 		int qnaStartPageNum = 1 + ((qnaPageNum-1)/PAGE_DISPLAY_COUNT)*PAGE_DISPLAY_COUNT;
 		//하단 끝 페이지 번호
