@@ -49,9 +49,9 @@ public class SpaceController {
 			dto.setUsers_id((String)session.getAttribute("id"));
 			dto.setSpace_num(dto.getSpace_num());
 			dibService.dibGetDetailData(dto, request);
+			reviewService.possibleReview(reviewDto, request);
 		}
 		
-		reviewService.possibleReview(reviewDto, request);
 		reviewService.getList(request, dto.getSpace_num());
 		qnaService.getQnaList(request, dto.getSpace_num());
 		

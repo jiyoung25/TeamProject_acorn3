@@ -169,8 +169,6 @@ public class SpaceServiceImpl implements SpaceService {
 			throw new NotExistRoomException(request.getRequestURI());
 		} else {
 			mView.addObject("spaceDto", dao.getData(dto.getSpace_num()));
-			List<ReviewDto> reviewList = reviewService.possibleReview(new ReviewDto(), request);
-			mView.addObject("possibleReview", reviewList);
 			mView.setViewName("/space/detail");
 		}
 		

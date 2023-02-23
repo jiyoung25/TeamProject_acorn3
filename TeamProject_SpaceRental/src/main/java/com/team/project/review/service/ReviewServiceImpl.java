@@ -195,8 +195,9 @@ public class ReviewServiceImpl implements ReviewService{
 
 	@Override
 	public List<ReviewDto> possibleReview(ReviewDto dto, HttpServletRequest request) {
-		//id를 dto에 입력한다.
 		String review_writer = (String)request.getSession().getAttribute("id");
+
+		//id를 dto에 입력한다.
 		dto.setReview_writer(review_writer);
 		
 		//reservNumList를 dto에 입력한다.

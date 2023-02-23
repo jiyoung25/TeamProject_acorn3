@@ -145,6 +145,9 @@
 	        	#{item}
 			</foreach>
 		</if>
+		<if test="space_num != 0">
+			AND reservationform.space_num = #{space_num}
+		</if>
 	</select>
 	
 	<select id="getReservNum" parameterType="reviewDto" resultType="int">
