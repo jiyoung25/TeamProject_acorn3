@@ -82,8 +82,10 @@ public class SpaceController {
 	
 	@RequestMapping("/space/spaceDelete")
 	public String spaceDelete(HttpServletRequest request, int cate_num, int space_num, RedirectAttributes redirectAttributes) {
-		// 해당 num을 삭제한다.
+		// 해당 space_num을 삭제한다.
 		sellerService.delete(space_num, request);
+		// 해당 space_num에 대한 qna 삭제
+		qnaService.deleteContent2(space_num, request);
 		// redirect에 파라미터 전해주기
 		redirectAttributes.addAttribute("cate_num",cate_num);
 		
