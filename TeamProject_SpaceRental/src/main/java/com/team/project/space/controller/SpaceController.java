@@ -14,6 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.team.project.dib.dto.DibDto;
 import com.team.project.dib.service.DibService;
 import com.team.project.qna.service.QnaService;
+import com.team.project.review.dto.ReviewDto;
 import com.team.project.review.service.ReviewService;
 import com.team.project.seller.service.SellerService;
 import com.team.project.space.dto.SpaceDto;
@@ -40,7 +41,7 @@ public class SpaceController {
 	}
 	
 	@GetMapping("/space/detail")
-	public ModelAndView detail(ModelAndView mView, HttpServletRequest request, DibDto dto,HttpSession session, SpaceDto spaceDto) {
+	public ModelAndView detail(ModelAndView mView, HttpServletRequest request, DibDto dto,HttpSession session, SpaceDto spaceDto, ReviewDto reviewDto) {
 		service.getDay(request);
 		service.getSpaceData(mView, spaceDto, request);
 		
@@ -48,6 +49,7 @@ public class SpaceController {
 			dto.setUsers_id((String)session.getAttribute("id"));
 			dto.setSpace_num(dto.getSpace_num());
 			dibService.dibGetDetailData(dto, request);
+			reviewService.possibleReview(reviewDto, request);
 		}
 		
 		reviewService.getList(request, dto.getSpace_num());

@@ -306,6 +306,92 @@
 			</div>
 		</div>
 	</form>
+  
+	<%-- 공간 소개 --%>	
+	<h3 id="space_name">공간 제목</h3>
+	<div class="tmp">
+		<p>${spaceDto.space_name }</p>
+	</div>
+	<h3 id="oneliner">한 줄 소개</h3>
+	<div class="tmp">
+		<p>${spaceDto.oneliner }</p>
+	</div>
+	<h3 id="intro">상세 소개</h3>
+	<div class="tmp">
+		<p>${spaceDto.intro }</p>
+	</div>
+	<h3 id="addr">주소</h3>
+	<div class="tmp">
+		<p>${spaceDto.addr }</p>
+	</div>
+	
+	<%-- 지도 --%>
+	<div id="map" style="width:100%;height:350px;"></div>
+	
+	<%-- 리뷰 --%>
+	<h3 id="review">Review</h3>
+	<%-- 사용자가 사용한 방 -> 리뷰 쓰기 가능 --%>
+	<form action="${pageContext.request.contextPath}/review/reviewInsertform" method="POST">
+		<select name="possibleReview" id="possibleReview">
+			<c:choose>
+				<c:when test="${empty sessionScope.id }">
+					<option value="">로그인 해주세요.</option>				
+				</c:when>
+				<c:when test="${empty possibleReview }">
+					<option value="">방을 이용해주세요.</option>
+				</c:when>
+				<c:when test="${not empty possibleReview }">
+					<c:forEach items="${possibleReview }" var="item">
+						<option value="${item.reserv_num }&&${item.space_num}&&${item.cate_num}"><strong>${item.space_name } 방 리뷰쓰기</strong></option>
+					</c:forEach>
+				</c:when>
+			</c:choose>
+		</select>
+		<button>리뷰 쓰기</button>
+	</form>
+	<div class="container">
+		<table class="table table-striped">
+			<thead class="table-dark">
+				<tr>
+					<th>글번호</th>
+					<th>방이름</th>
+					<th>작성자</th>
+					<th>제목</th>
+					<th>조회수</th>
+					<th>별점</th>
+					<th>작성일</th>
+					<c:if test="${ usersCode eq 1}">
+						<th>삭제</th>
+					</c:if>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach var="tmp" items="${reviewlist }">
+					<tr>
+						<td>${tmp.review_num }</td>
+						<td>${tmp.space_name }</td>
+						<td>${tmp.review_writer }</td>
+						<td>
+							<a href="${pageContext.request.contextPath}/review/reviewdetail?review_num=${tmp.review_num }">${tmp.review_title }</a>
+						</td>
+						<td>${tmp.viewcount }</td>
+						<td>
+							<%-- 별점 --%>
+							<span class="star">
+								★★★★★
+								<span style="width: ${tmp.star *10 }%;">★★★★★</span>
+							</span>
+						</td>
+						<td>${tmp.review_regdate }</td>
+						<c:if test="${ usersCode eq 1}">
+							<td>
+								<a href="${pageContext.request.contextPath}/space/reviewDelete?review_num=${tmp.review_num}&cate_num=${cate_num }&space_num=${space_num}" onClick="deleteLink(); return false;">삭제</a>
+							</td>
+						</c:if>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
 		
 	
 	
