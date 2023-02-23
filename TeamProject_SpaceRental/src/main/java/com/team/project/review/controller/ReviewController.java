@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.team.project.exception.NotDeleteException;
+import com.team.project.exception.NotUpdateException;
 import com.team.project.review.dto.ReviewDto;
 import com.team.project.review.service.ReviewService;
 import com.team.project.users.service.UsersService;
@@ -26,7 +28,12 @@ public class ReviewController {
 	
 	@RequestMapping("review/reviewupdateform")
 	public String updateForm(HttpServletRequest request) {
-		service.getData(request);
+		ReviewDto dto = service.getData(request);
+		String review_writer = dto.getReview_writer();
+		String id = (String)request.getSession().getAttribute("id");
+		if(!review_writer.equals(id)) {
+			throw new NotUpdateException("타인의 리뷰를 수정하지 말아주세요.");
+		}
 		return "review/reviewupdateform";
 	}
 	
@@ -38,12 +45,23 @@ public class ReviewController {
 	
 	@RequestMapping("/review/delete")
 	public String delete(int review_num, HttpServletRequest request) {
+		String review_writer = service.getData(request).getReview_writer();
+		String id = (String)request.getSession().getAttribute("id");
+		if(!review_writer.equals(id)) {
+			throw new NotDeleteException("타인의 리뷰를 삭제하지 말아주세요.");
+		}
 		service.deleteContent(review_num, request);
 		return "redirect:/review/reviewlist";
 	}
 	
 	@RequestMapping("/users/reviewDelete")
 	public String delete2(int review_num, HttpServletRequest request) {
+		String review_writer = service.getData(request).getReview_writer();
+		String id = (String)request.getSession().getAttribute("id");
+		if(!review_writer.equals(id)) {
+			throw new NotDeleteException("타인의 리뷰를 삭제하지 말아주세요.");
+		}
+		
 		service.deleteContent(review_num, request);
 		return "redirect:/users/reviewList";
 	}

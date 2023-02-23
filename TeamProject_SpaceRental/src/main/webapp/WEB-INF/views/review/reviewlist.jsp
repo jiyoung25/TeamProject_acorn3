@@ -53,7 +53,7 @@
                </li>
             </c:forEach>
             <%--
-               마지막 페이지 번호가 전체 페이지의 갯수보다 작으면 Next 링크를 제공한다. 
+		               마지막 페이지 번호가 전체 페이지의 갯수보다 작으면 Next 링크를 제공한다. 
              --%>
             <c:if test="${endPageNum lt totalPageCount }">
                <li class="page-item">

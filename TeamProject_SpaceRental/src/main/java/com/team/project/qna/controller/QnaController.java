@@ -1,26 +1,22 @@
 package com.team.project.qna.controller;
 
-import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.team.project.exception.NotUpdateException;
 import com.team.project.qna.dto.QnaCommentDto;
 import com.team.project.qna.dto.QnaDto;
 import com.team.project.qna.service.QnaService;
+import com.team.project.review.dto.ReviewDto;
 import com.team.project.users.service.UsersService;
 
 @Controller
@@ -33,7 +29,13 @@ public class QnaController {
 	
 	@RequestMapping("/qna/qnaupdateform")
 	public String updateForm(HttpServletRequest request) {
-		service.getData(request);
+		QnaDto dto = service.getData(request);
+		String qna_writer = dto.getWriter();
+		String id = (String)request.getSession().getAttribute("id");
+		
+		if(!qna_writer.equals(id)) {
+			throw new NotUpdateException("타인의 QnA를 수정하지 말아주세요.");
+		}
 		return "qna/qnaupdateform";
 	}
 	
@@ -45,12 +47,22 @@ public class QnaController {
 	
 	@RequestMapping("/qna/delete")
 	public String delete(int num, HttpServletRequest request) {
+		String qna_writer = service.getData(request).getWriter();
+		String id = (String)request.getSession().getAttribute("id");
+		if(!qna_writer.equals(id)) {
+			throw new NotUpdateException("타인의 QnA를 삭제하지 말아주세요.");
+		}
 		service.deleteContent(num, request);
 		return "redirect:/qna/qnalist";
 	}
 	
 	@RequestMapping("/users/qnaDelete")
 	public String delete2(int num, HttpServletRequest request) {
+		String qna_writer = service.getData(request).getWriter();
+		String id = (String)request.getSession().getAttribute("id");
+		if(!qna_writer.equals(id)) {
+			throw new NotUpdateException("타인의 QnA를 삭제하지 말아주세요.");
+		}
 		service.deleteContent(num, request);
 		return "redirect:/users/qnaList";
 	}

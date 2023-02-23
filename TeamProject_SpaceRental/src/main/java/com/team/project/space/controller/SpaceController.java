@@ -13,6 +13,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.team.project.dib.dto.DibDto;
 import com.team.project.dib.service.DibService;
+import com.team.project.interceptor.Auth;
+import com.team.project.interceptor.Auth.Role;
 import com.team.project.qna.service.QnaService;
 import com.team.project.review.service.ReviewService;
 import com.team.project.seller.service.SellerService;
@@ -56,6 +58,7 @@ public class SpaceController {
 		return mView;
 	}
 	
+	@Auth(role = Role.ADMIN)
 	@RequestMapping("/space/reviewDelete")
 	public String reviewDelete(int review_num, HttpServletRequest request, int cate_num, int space_num, RedirectAttributes redirectAttributes) {
 		// 해당 reveiw_num을 삭제한다.
@@ -67,6 +70,7 @@ public class SpaceController {
 		return "redirect:/space/detail";
 	}
 	
+	@Auth(role = Role.ADMIN)
 	@RequestMapping("/space/qnaDelete")
 	public String qnaDelete(int num, HttpServletRequest request, int cate_num, int space_num, RedirectAttributes redirectAttributes) {
 		// 해당 num을 삭제한다.
@@ -78,6 +82,7 @@ public class SpaceController {
 		return "redirect:/space/detail";
 	}
 	
+	@Auth(role = Role.ADMIN)
 	@RequestMapping("/space/spaceDelete")
 	public String spaceDelete(HttpServletRequest request, int cate_num, int space_num, RedirectAttributes redirectAttributes) {
 		// 해당 num을 삭제한다.
