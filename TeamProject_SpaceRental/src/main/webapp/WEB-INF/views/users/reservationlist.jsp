@@ -37,14 +37,14 @@
 		<div class="container">
 			<%-- 예약리스트 메뉴 --%>
 			<div>
-				<button v-on:click="onReservMenu(event)" 
+				<button v-on:click="onReservMenu" 
 					id="request_reserv" value="1" 
 					> 예약 요청 </button>
-				<button v-on:click="onReservMenu(event)" 
+				<button v-on:click="onReservMenu" 
 					id="wait_pay" value="2"> 결제 대기 </button>
-				<button v-on:click="onReservMenu(event)" 
+				<button v-on:click="onReservMenu" 
 					id="complete_pay" value="3"> 결제 완료 </button>
-				<button v-on:click="onReservMenu(event)" 
+				<button v-on:click="onReservMenu" 
 					id="pass_reserv" value="4"> 거절/지난 예약 </button>
 			</div>
 			
@@ -90,9 +90,9 @@
 						<td>{{item.reserv_time }}</td>
 						<td>{{item.reserv_reg }}</td>
 						<td>{{item.totalMoney }}</td>
-						<td v-if="reservCateNum === 1|| reservCateNum === '1'"> <button type="button" :value="item.reserv_num" v-on:click="onRejectBtn(event)">취소</button> </td>
-						<td v-if="reservCateNum === '2'"> <button type="button" :value="item.reserv_num" v-on:click="onPayBtn(event)">결제하기</button> </td>
-						<td v-if="reservCateNum === '2'"> <button type="button" :value="item.reserv_num" v-on:click="onNotPayBtn(event)">취소</button> </td>
+						<td v-if="reservCateNum === 1|| reservCateNum === '1'"> <button type="button" :value="item.reserv_num" v-on:click="onRejectBtn">취소</button> </td>
+						<td v-if="reservCateNum === '2'"> <button type="button" :value="item.reserv_num" v-on:click="onPayBtn">결제하기</button> </td>
+						<td v-if="reservCateNum === '2'"> <button type="button" :value="item.reserv_num" v-on:click="onNotPayBtn">취소</button> </td>
 					</tr>
 				  </tbody>	
 				</table>
