@@ -32,4 +32,9 @@
 		FROM dibson_list
 		WHERE users_id=#{users_id}
 	</select>
+	<select id="getUserId" parameterType="int" resultType="string">
+		SELECT users_id
+		FROM dibson_list
+		WHERE dibson_num=#{dibson_num}
+	</select>
 </mapper>

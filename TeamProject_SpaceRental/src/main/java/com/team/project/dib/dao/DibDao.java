@@ -10,4 +10,5 @@ public interface DibDao {
 	public List<DibDto> getData(DibDto dto);
 	public DibDto getDetailData(DibDto dto);
 	public int getCount(String id);
+	public String getUserId(int num);
 }

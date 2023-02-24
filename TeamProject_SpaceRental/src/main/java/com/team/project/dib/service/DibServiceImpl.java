@@ -19,7 +19,8 @@ public class DibServiceImpl implements DibService {
 	private DibDao dao;
 
 	@Override
-	public void dibInsert(DibDto dto) {
+	public void dibInsert(DibDto dto, HttpSession session) {
+		dto.setUsers_id((String)session.getAttribute("id"));
 		dao.insert(dto);
 	}
 
@@ -121,5 +122,10 @@ public class DibServiceImpl implements DibService {
 		dto.setUsers_id((String)request.getSession().getAttribute("id"));
 		
 		request.setAttribute("dibson_num", dao.getDetailData(dto));
+	}
+
+	@Override
+	public String getUserId(int num) {
+		return dao.getUserId(num);
 	}
 }
