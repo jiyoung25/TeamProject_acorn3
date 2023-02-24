@@ -1,18 +1,16 @@
 package com.team.project.reserv.controller;
 
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.team.project.exception.NotUpdateException;
 import com.team.project.interceptor.Auth;
 import com.team.project.interceptor.Auth.Role;
 import com.team.project.reserv.dto.ReservDto;
@@ -39,18 +37,16 @@ public class ReservController {
 	@Auth(role = Role.SELLER)
 	@RequestMapping("/seller/reservation/check-reserv")
 	@ResponseBody
-	public String checkReserv(ReservDto dto, String num, String isReservOk){
+	public String checkReserv(ReservDto dto, String num, String isReservOk, HttpSession session){
 		dto.setReserv_num(Integer.parseInt(num));
+		String sellerId = service.getSellerId(dto);
+		String id = (String)session.getAttribute("id");
+		if(!sellerId.equals(id)) {
+			throw new NotUpdateException("타인의 예약을 수정하지 말아주세요.");
+		}
 		dto.setCheckReserv(isReservOk);
 		service.checkReserv(dto);
 		return "seller/reservation/check-reserv";
-	}
-	
-	//ajax로 reservationlistToSeller받는 것
-	@RequestMapping("/seller/reservation/getreservationlistToSeller")
-	@ResponseBody
-	public List<ReservDto> getreservationlistToSeller(HttpServletRequest request, HttpSession session, ReservDto dto) {
-		return service.reservationlistToSeller(request, session, dto);
 	}
 	
 	//ajax로 reservationlistToUser받는 것
@@ -78,8 +74,13 @@ public class ReservController {
 	@Auth(role = Role.USER)
 	@RequestMapping("/users/reservation/goPay")
 	@ResponseBody
-	public String goPay(ReservDto dto, String num, String isPaid){
+	public String goPay(ReservDto dto, String num, String isPaid, HttpSession session){
 		dto.setReserv_num(Integer.parseInt(num));
+		String userId = service.getUserId(dto);
+		String id = (String)session.getAttribute("id");
+		if(!userId.equals(id)) {
+			throw new NotUpdateException("타인의 예약을 수정하지 말아주세요.");
+		}
 		dto.setIsPaid(isPaid);
 		service.updatePaid(dto);
 		return "users/reservation/goPay";

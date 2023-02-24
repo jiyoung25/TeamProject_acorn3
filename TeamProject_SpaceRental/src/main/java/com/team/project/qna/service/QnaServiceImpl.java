@@ -280,13 +280,15 @@ public class QnaServiceImpl implements QnaService{
 	}
 
 	@Override
-	public void getData(HttpServletRequest request) {
+	public QnaDto getData(HttpServletRequest request) {
 		//수정할 글번호
 		int num=Integer.parseInt(request.getParameter("num"));
 		//수정할 글의 정보 얻어와서 
 		QnaDto dto=qnaDao.getData(num);
 		//request 에 담아준다.
 		request.setAttribute("dto", dto);
+		
+		return dto;
 	}
 
 	@Override

@@ -153,10 +153,12 @@ public class SellerServiceImpl implements SellerService{
 	}
 	
 	@Override
-	public void getData(HttpServletRequest request) {
+	public SellerDto getData(HttpServletRequest request) {
 		int num=Integer.parseInt(request.getParameter("space_num"));
 		SellerDto dto=sellerDao.getData(num);
 		request.setAttribute("dto", dto);
+		
+		return dto;
 	}
 
 	@Override
@@ -167,8 +169,8 @@ public class SellerServiceImpl implements SellerService{
 	}
 
 	@Override
-	public void delete(int space_num, HttpServletRequest request) {
-		sellerDao.delete(space_num);
+	public void delete(HttpServletRequest request) {
+		sellerDao.delete((int)request.getAttribute("space_num"));
 	}
 
 	@Override
@@ -249,8 +251,11 @@ public class SellerServiceImpl implements SellerService{
 	}
 
 	@Override
-	public void getUsersNum(HttpServletRequest request, HttpSession session) {
+	public int getUsersNum(HttpServletRequest request, HttpSession session) {
 		String id = (String)session.getAttribute("id");
-		request.setAttribute("users_num", sellerDao.getUsersNum(id));
+		int users_num = sellerDao.getUsersNum(id);
+		request.setAttribute("users_num", users_num);
+		
+		return users_num;
 	}
 }

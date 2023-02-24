@@ -177,13 +177,15 @@ public class ReviewServiceImpl implements ReviewService{
 	}
 
 	@Override
-	public void getData(HttpServletRequest request) {
+	public ReviewDto getData(HttpServletRequest request) {
 		//수정할 글번호
 		int num=Integer.parseInt(request.getParameter("review_num"));
 		//수정할 글의 정보 얻어와서 
 		ReviewDto dto=reviewDao.getData(num);
 		//request 에 담아준다.
 		request.setAttribute("dto", dto);
+		
+		return dto;
 	}
 
 	@Override

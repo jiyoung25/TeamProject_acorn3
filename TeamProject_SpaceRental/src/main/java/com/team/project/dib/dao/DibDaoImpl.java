@@ -38,4 +38,9 @@ public class DibDaoImpl implements DibDao {
 		return session.selectOne("dib.getCount", id);
 	}
 
+	@Override
+	public String getUserId(int num) {
+		return session.selectOne("dib.getUserId", num);
+	}
+
 }

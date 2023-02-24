@@ -17,7 +17,6 @@ public interface QnaService {
 	public void updateContent(QnaDto dto);
 	public void deleteContent(int num, HttpServletRequest request);
 	public void deleteContent2(int space_num, HttpServletRequest request);
-	public void getData(HttpServletRequest request); //글 수정하기 위해 정보 불러오는 기능
 	
 	public void saveComment(HttpServletRequest request); //댓글 저장
 	public void deleteComment(HttpServletRequest request); //댓글 삭제

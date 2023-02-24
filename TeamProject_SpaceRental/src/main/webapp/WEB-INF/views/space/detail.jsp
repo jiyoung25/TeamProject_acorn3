@@ -358,11 +358,10 @@
 					this.isDibed = !this.isDibed;
 					console.log(this.isDibed);
 					if(this.isDibed == true){
-						fetch("${pageContext.request.contextPath}/space/dib_insert?space_num=${spaceDto.space_num}&users_id=${id}&users_num=${spaceDto.users_num}",
+						fetch("${pageContext.request.contextPath}/space/dib_insert?space_num=${spaceDto.space_num}&users_num=${spaceDto.users_num}",
 		                        {
 		                           data: {
 		                              space_num: ${spaceDto.space_num},
-		                              users_id: "${id}",
 		                              users_num: ${spaceDto.users_num}
 		                           }
 		                        }
