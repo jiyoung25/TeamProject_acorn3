@@ -85,8 +85,9 @@ public class SpaceController {
 	@Auth(role = Role.ADMIN)
 	@RequestMapping("/space/spaceDelete")
 	public String spaceDelete(HttpServletRequest request, int cate_num, int space_num, RedirectAttributes redirectAttributes) {
+		request.setAttribute("space_num", space_num);
 		// 해당 num을 삭제한다.
-		sellerService.delete(space_num, request);
+		sellerService.delete(request);
 		// redirect에 파라미터 전해주기
 		redirectAttributes.addAttribute("cate_num",cate_num);
 		
