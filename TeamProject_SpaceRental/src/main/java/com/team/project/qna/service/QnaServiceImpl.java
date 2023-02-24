@@ -273,6 +273,11 @@ public class QnaServiceImpl implements QnaService{
 	public void deleteContent(int num, HttpServletRequest request) {
 		qnaDao.delete(num);
 	}
+	
+	@Override
+	public void deleteContent2(int space_num, HttpServletRequest request) {
+		qnaDao.delete2(space_num);
+	}
 
 	@Override
 	public QnaDto getData(HttpServletRequest request) {

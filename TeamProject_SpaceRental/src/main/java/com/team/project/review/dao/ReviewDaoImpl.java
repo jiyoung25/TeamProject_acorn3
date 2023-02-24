@@ -84,8 +84,10 @@ public class ReviewDaoImpl implements ReviewDao{
 		session.update("review.update",dto);
 	}
 	
-	public List<Integer> getReservNum(String review_writer) {
-		return session.selectList("review.getReservNum", review_writer);
+	public List<Integer> getReservNum(ReviewDto dto) {
+		System.out.println(dto.getReview_writer());
+		System.out.println(dto.getSpace_num());
+		return session.selectList("review.getReservNum", dto);
 	}
 	
 	public List<ReviewDto> possibleReview(ReviewDto dto){

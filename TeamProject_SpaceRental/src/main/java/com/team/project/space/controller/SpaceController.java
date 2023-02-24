@@ -16,6 +16,7 @@ import com.team.project.dib.service.DibService;
 import com.team.project.interceptor.Auth;
 import com.team.project.interceptor.Auth.Role;
 import com.team.project.qna.service.QnaService;
+import com.team.project.review.dto.ReviewDto;
 import com.team.project.review.service.ReviewService;
 import com.team.project.seller.service.SellerService;
 import com.team.project.space.dto.SpaceDto;
@@ -42,7 +43,7 @@ public class SpaceController {
 	}
 	
 	@GetMapping("/space/detail")
-	public ModelAndView detail(ModelAndView mView, HttpServletRequest request, DibDto dto,HttpSession session, SpaceDto spaceDto) {
+	public ModelAndView detail(ModelAndView mView, HttpServletRequest request, DibDto dto,HttpSession session, SpaceDto spaceDto, ReviewDto reviewDto) {
 		service.getDay(request);
 		service.getSpaceData(mView, spaceDto, request);
 		
@@ -50,6 +51,7 @@ public class SpaceController {
 			dto.setUsers_id((String)session.getAttribute("id"));
 			dto.setSpace_num(dto.getSpace_num());
 			dibService.dibGetDetailData(dto, request);
+			reviewService.possibleReview(reviewDto, request);
 		}
 		
 		reviewService.getList(request, dto.getSpace_num());
@@ -88,6 +90,8 @@ public class SpaceController {
 		request.setAttribute("space_num", space_num);
 		// 해당 num을 삭제한다.
 		sellerService.delete(request);
+		// 해당 space_num에 대한 qna 삭제
+		qnaService.deleteContent2(space_num, request);
 		// redirect에 파라미터 전해주기
 		redirectAttributes.addAttribute("cate_num",cate_num);
 		
