@@ -67,7 +67,7 @@
 				<input type="hidden" id="mainImagePath" name="mainImagePath" />
 				<div>
 					<label for="addr">주소</label><br />				
-					<input type="text" name="addr" id="addr" placeholder="주소">
+					<input type="text" name="addr" id="addr" placeholder="주소" readonly>
 					<input type="button" onclick="sample5_execDaumPostcode()" value="주소 검색"><br>
 				</div>
 				<div id="map" style="width:300px;height:300px;margin-top:10px;display:none"></div>
