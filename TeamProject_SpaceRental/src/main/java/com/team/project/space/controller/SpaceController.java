@@ -16,6 +16,7 @@ import com.team.project.dib.service.DibService;
 import com.team.project.interceptor.Auth;
 import com.team.project.interceptor.Auth.Role;
 import com.team.project.qna.service.QnaService;
+import com.team.project.reserv.service.ReservService;
 import com.team.project.review.dto.ReviewDto;
 import com.team.project.review.service.ReviewService;
 import com.team.project.seller.service.SellerService;
@@ -34,6 +35,8 @@ public class SpaceController {
 	private ReviewService reviewService;
 	@Autowired
 	private SellerService sellerService;
+	@Autowired
+	private ReservService reservService;
 	
 	@GetMapping("/space/list")
 	public String spaceList(HttpServletRequest request) {
@@ -91,7 +94,13 @@ public class SpaceController {
 		// 해당 num을 삭제한다.
 		sellerService.delete(request);
 		// 해당 space_num에 대한 qna 삭제
-		qnaService.deleteContent2(space_num, request);
+		qnaService.deleteContent2(request);
+		// 해당 space_num에 대한 review 삭제
+		reviewService.deleteContent2(request);
+		// 해당 space_num에 대한 찜 삭제
+		dibService.dibDelete(request);
+		// 해당 space_num에 대한 예약 삭제
+		reservService.delete(request);
 		// redirect에 파라미터 전해주기
 		redirectAttributes.addAttribute("cate_num",cate_num);
 		

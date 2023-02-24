@@ -20,8 +20,9 @@ public interface ReviewService {
 	public void saveContent(ReviewDto dto, HttpServletRequest request);
 	public void updateContent(ReviewDto dto);
 	public void deleteContent(int num, HttpServletRequest request);
+	public void deleteContent2(HttpServletRequest request);
 	public ReviewDto getData(HttpServletRequest request); //글 수정하기 위해 정보 불러오는 기능
-	public List<Integer> getReservNum(HttpSession session);
-	public List<ReviewDto> possibleReview(ReviewDto dto, HttpSession session);
+	public List<Integer> getReservNum(ReviewDto dto);
+	public List<ReviewDto> possibleReview(ReviewDto dto, HttpServletRequest request);
 	public void goInsertForm(String info, HttpServletRequest request);
 }

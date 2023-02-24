@@ -150,4 +150,9 @@ public class ReservServiceImpl implements ReservService {
 	public String getSellerId(ReservDto dto) {
 		return dao.getSellerId(dto);
 	}
+
+	@Override
+	public void delete(HttpServletRequest request) {
+		dao.delete((int)request.getAttribute("space_num"));
+	}
 }

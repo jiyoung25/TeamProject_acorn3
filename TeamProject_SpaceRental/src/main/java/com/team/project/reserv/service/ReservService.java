@@ -16,4 +16,5 @@ public interface ReservService {
 	public List<ReservDto> getReservTime(ReservDto dto);
 	public String getUserId(ReservDto dto);
 	public String getSellerId(ReservDto dto);
+	public void delete(HttpServletRequest request);
 }

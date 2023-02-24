@@ -16,7 +16,8 @@ public interface QnaService {
 	public void saveContent(QnaDto dto);
 	public void updateContent(QnaDto dto);
 	public void deleteContent(int num, HttpServletRequest request);
-	public void deleteContent2(int space_num, HttpServletRequest request);
+	public void deleteContent2(HttpServletRequest request);
+	public QnaDto getData(HttpServletRequest request);
 	
 	public void saveComment(HttpServletRequest request); //댓글 저장
 	public void deleteComment(HttpServletRequest request); //댓글 삭제

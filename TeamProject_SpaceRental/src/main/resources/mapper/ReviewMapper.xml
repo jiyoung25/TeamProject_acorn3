@@ -109,8 +109,13 @@
 	</update>
 	
 	<delete id="delete">
-		DELETE review
+		DELETE FROM review
 		WHERE review_num=#{review_num}
+	</delete>
+	
+	<delete id="delete2" parameterType="int">
+		DELETE FROM review
+		WHERE space_num = #{space_num}
 	</delete>
 	
 	<!-- #은 ?로 바뀌고 '${xxx}'는 전처리 -->
