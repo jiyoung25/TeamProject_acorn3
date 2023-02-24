@@ -86,6 +86,24 @@
   		</div>
 	</div>
 	
+	<script>		
+		document.querySelector("#submitBtn").addEventListener("click", function(e){
+	        if(document.getElementById('space_name').value == ''){
+				e.preventDefault()//제출완료 페이지로 넘어가는 것 방지
+				alert('공간명을 입력하세요!')} 
+	        if(document.getElementById('oneliner').value == ''){
+	          	e.preventDefault()
+	          	alert('한 줄 소개를 입력하세요!')}
+	        if(document.getElementById('intro').value == '') {
+	          	e.preventDefault()
+	          	alert('공간 소개를 작성해주세요!')}
+	        if(document.getElementById('addr').value == '') {
+	          	e.preventDefault()
+	          	alert('주소를 검색해주세요!')}
+	        else{document.querySelector("#insertForm").submit();}	        
+	        });
+	</script>
+	
 	<!-- footer include -->
 	<jsp:include page="/WEB-INF/include/footer.jsp"/>	  
 	  
@@ -110,11 +128,6 @@
 				//위의 form 의 input hidden 요소에 value 로 넣어서 db 에 저장
 				document.querySelector("#mainImagePath").value = data.mainImagePath;
 			});
-		});		
-
-
-		document.querySelector("#submitBtn").addEventListener("click", function(){
-			document.querySelector("#insertForm").submit();
 		});
 	</script>
 	
