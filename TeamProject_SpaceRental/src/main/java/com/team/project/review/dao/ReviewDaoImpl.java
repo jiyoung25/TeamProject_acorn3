@@ -78,6 +78,11 @@ public class ReviewDaoImpl implements ReviewDao{
 	public void delete(int review_num) {
 		session.delete("review.delete", review_num);
 	}
+	
+	@Override
+	public void delete2(int space_num) {
+		session.delete("review.delete2", space_num);
+	}
 
 	@Override //Review 수정
 	public void update(ReviewDto dto) {
@@ -93,4 +98,5 @@ public class ReviewDaoImpl implements ReviewDao{
 	public List<ReviewDto> possibleReview(ReviewDto dto){
 		return session.selectList("review.possibleReview", dto);
 	}
+	
 }

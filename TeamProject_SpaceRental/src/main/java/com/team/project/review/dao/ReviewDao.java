@@ -29,6 +29,8 @@ public interface ReviewDao {
 	public void addReviewCount(int num);
 	//Review 삭제
 	public void delete(int num);
+	//해당 space_num의 Review 삭제
+	public void delete2(int space_num);
 	//Review 수정
 	public void update(ReviewDto dto);
 	//reserv_num 가져오기

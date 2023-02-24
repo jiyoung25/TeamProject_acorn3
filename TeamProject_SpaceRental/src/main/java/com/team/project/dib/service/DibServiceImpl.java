@@ -28,6 +28,11 @@ public class DibServiceImpl implements DibService {
 	public void dibDelete(int dibson_num) {
 		dao.delete(dibson_num);
 	}
+	
+	@Override
+	public void dibDelete(HttpServletRequest request) {
+		dao.delete2((int)request.getAttribute("space_num"));
+	}
 
 	@Override
 	public void dibGetData(HttpServletRequest request, HttpSession session) {
@@ -128,4 +133,5 @@ public class DibServiceImpl implements DibService {
 	public String getUserId(int num) {
 		return dao.getUserId(num);
 	}
+
 }

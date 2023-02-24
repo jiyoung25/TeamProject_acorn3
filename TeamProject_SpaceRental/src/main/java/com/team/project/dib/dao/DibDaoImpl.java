@@ -22,6 +22,11 @@ public class DibDaoImpl implements DibDao {
 	public void delete(int dibson_num) {
 		session.delete("dib.delete", dibson_num);
 	}
+	
+	@Override
+	public void delete2(int space_num) {
+		session.delete("dib.delete2", space_num);
+	}
 
 	@Override
 	public List<DibDto> getData(DibDto dto) {

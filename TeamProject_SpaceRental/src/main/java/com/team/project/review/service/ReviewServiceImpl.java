@@ -177,6 +177,11 @@ public class ReviewServiceImpl implements ReviewService{
 	}
 
 	@Override
+	public void deleteContent2(HttpServletRequest request) {
+		reviewDao.delete2((int)request.getAttribute("space_num"));
+	}
+	
+	@Override
 	public ReviewDto getData(HttpServletRequest request) {
 		//수정할 글번호
 		int num=Integer.parseInt(request.getParameter("review_num"));
@@ -221,4 +226,5 @@ public class ReviewServiceImpl implements ReviewService{
 		request.setAttribute("space_num", infoList[1]);
 		request.setAttribute("cate_num", infoList[2]);
 	}
+
 }

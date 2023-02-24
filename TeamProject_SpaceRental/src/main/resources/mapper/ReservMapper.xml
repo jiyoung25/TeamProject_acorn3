@@ -106,4 +106,8 @@
 										INNER JOIN reservationform ON seller_space.space_num=reservationform.space_num
 										WHERE reservationform.reserv_num=123)
 	</select>
+	<delete id="delete" parameterType="int">
+		DELETE FROM reservationform
+		WHERE space_num = #{space_num}
+	</delete>
 </mapper>

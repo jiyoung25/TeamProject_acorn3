@@ -63,6 +63,11 @@ public class ReservDaoImpl implements ReservDao {
 	public String getSellerId(ReservDto dto) {
 		return session.selectOne("reserv.getSellerId", dto);
 	}
+
+	@Override
+	public void delete(int space_num) {
+		session.delete("reserv.delete", space_num);
+	}
 	
 	
 }
