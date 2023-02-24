@@ -8,13 +8,6 @@
 <title>나의 찜 목록</title>
 <%-- 부트스트랩 --%>
 <jsp:include page="/WEB-INF/include/cdnlink.jsp"/>
-<!-- MDB -->
-<link
-  href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.css" rel="stylesheet"/>
-<!-- MDB -->
-<script
-  type="text/javascript"
-  src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.js"></script>
 </head>
 <body>
 	<%-- 네비바 --%>
@@ -118,6 +111,7 @@
 				</c:if>				
 			</ul>
 		</nav>
+		<a href="${pageContext.request.contextPath}" class="btn btn-outline-secondary">메인으로 가기</a>
 	</div>
 	<!-- footer include -->
 	<jsp:include page="/WEB-INF/include/footer.jsp"/>	

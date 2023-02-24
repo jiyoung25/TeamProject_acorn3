@@ -77,6 +77,11 @@ public class QnaDaoImpl implements QnaDao{
 	public void delete(int num) {
 		session.delete("qna.delete", num);
 	}
+	
+	@Override
+	public void delete2(int space_num) {
+		session.delete("qna.delete2", space_num);
+	}
 
 	@Override
 	public void update(QnaDto dto) {

@@ -9,9 +9,11 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.team.project.exception.InsertReviewException;
 import com.team.project.review.dao.ReviewDao;
 import com.team.project.review.dto.ReviewDto;
 
@@ -105,10 +107,10 @@ public class ReviewServiceImpl implements ReviewService{
 		dto.setEndRowNum(endRowNum);
 		dto.setUsers_num(num);
 		
+		//리뷰 목록 얻어오기
 		List<ReviewDto> reviewList=reviewDao.getList2(dto);
 		//전체글의 갯수
 		int totalRow=reviewDao.getCount2(dto);
-		
 		//하단 시작 페이지 번호 
 		int startPageNum = 1 + ((pageNum-1)/PAGE_DISPLAY_COUNT)*PAGE_DISPLAY_COUNT;
 		//하단 끝 페이지 번호
@@ -130,7 +132,7 @@ public class ReviewServiceImpl implements ReviewService{
 		request.setAttribute("totalRow", totalRow);
 		
 		mView.addObject("reviewList", reviewList);
-		mView.addObject("possibleReview", this.possibleReview(dto, request.getSession()));
+		mView.addObject("possibleReview", this.possibleReview(dto, request));
 	}
 	
 	@Override
@@ -185,26 +187,29 @@ public class ReviewServiceImpl implements ReviewService{
 	}
 
 	@Override
-	public List<Integer> getReservNum(HttpSession session) {
-		String review_writer = (String) session.getAttribute("id");
+	public List<Integer> getReservNum(ReviewDto dto) {
 		List<Integer> reservNumList = new ArrayList<Integer>();
-		reservNumList = reviewDao.getReservNum(review_writer);
+		reservNumList = reviewDao.getReservNum(dto);
 		return reservNumList;
 	}
 
 	@Override
-	public List<ReviewDto> possibleReview(ReviewDto dto, HttpSession session) {
+	public List<ReviewDto> possibleReview(ReviewDto dto, HttpServletRequest request) {
+		String review_writer = (String)request.getSession().getAttribute("id");
+
 		//id를 dto에 입력한다.
-		String review_writer = (String)session.getAttribute("id");
 		dto.setReview_writer(review_writer);
 		
 		//reservNumList를 dto에 입력한다.
-		List<Integer> reservNumList = reviewDao.getReservNum(review_writer);
+		List<Integer> reservNumList = reviewDao.getReservNum(dto);
 		dto.setReservNumList(reservNumList);
+		
+		request.setAttribute("possibleReview", reviewDao.possibleReview(dto));
 		
 		return reviewDao.possibleReview(dto);
 	}
 
+	@Transactional
 	@Override
 	public void goInsertForm(String info, HttpServletRequest request) {
 		//select option으로 보낸 param -> [0]:reserv_num , [1]:space_num , [2]:cate_num

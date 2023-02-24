@@ -147,6 +147,11 @@
 		WHERE num=#{num}
 	</delete>
 	
+	<delete id="delete2">
+		DELETE qna
+		WHERE space_num=#{space_num}
+	</delete>
+	
 	<!-- #은 ?로 바뀌고 '${xxx}'는 전처리 -->
 	<update id="update" parameterType="qnaDto">
 		UPDATE qna
