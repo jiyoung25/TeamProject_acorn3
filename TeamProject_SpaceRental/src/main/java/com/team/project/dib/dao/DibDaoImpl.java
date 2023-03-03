@@ -22,6 +22,11 @@ public class DibDaoImpl implements DibDao {
 	public void delete(int dibson_num) {
 		session.delete("dib.delete", dibson_num);
 	}
+	
+	@Override
+	public void delete2(int space_num) {
+		session.delete("dib.delete2", space_num);
+	}
 
 	@Override
 	public List<DibDto> getData(DibDto dto) {
@@ -36,6 +41,11 @@ public class DibDaoImpl implements DibDao {
 	@Override
 	public int getCount(String id) {
 		return session.selectOne("dib.getCount", id);
+	}
+
+	@Override
+	public String getUserId(int num) {
+		return session.selectOne("dib.getUserId", num);
 	}
 
 }

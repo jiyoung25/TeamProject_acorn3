@@ -6,6 +6,7 @@
 		경우2: 예약 요청 거절
 		경우3: 예약 요청 수락 & 돈 아직 안냄
 		경우4: 예약 요청 수락 & 돈 냄
+		경우5: 예약 요청 수락 & 예약 날짜가 현재 시간보다 아직 안지나있음
 	 -->
 	<sql id="searchCondition">
 		<choose>
@@ -13,7 +14,7 @@
 				<![CDATA[reservationform.checkReserv IS NULL AND TO_CHAR(SYSDATE, 'YYYY-MM-dd') < reservationform.reserv_date AND]]>
 			</when>
 			<when test="checkReserv.equals('false')">
-				<![CDATA[reservationform.checkReserv = 'false' OR reservationform.reserv_date <= TO_CHAR(SYSDATE, 'YYYY-MM-dd') AND]]>
+				<![CDATA[(reservationform.checkReserv = 'false' OR reservationform.reserv_date <= TO_CHAR(SYSDATE, 'YYYY-MM-dd')) AND]]>
 			</when>
 			<when test="checkReserv.equals('true') and isPaid == null">
 				<![CDATA[reservationform.checkReserv = 'true' AND reservationform.reserv_date > TO_CHAR(SYSDATE, 'YYYY-MM-dd') AND reservationform.isPaid IS NULL AND]]>
@@ -21,7 +22,7 @@
 			<when test="checkReserv.equals('true') and isPaid.equals('true')">
 				<![CDATA[reservationform.checkReserv = 'true' AND reservationform.reserv_date > TO_CHAR(SYSDATE, 'YYYY-MM-dd') AND reservationform.isPaid ='true' AND]]>
 			</when>
-			<when test="checkReserv.equals('true') and reserv_date != null">
+			<when test="checkReserv.equals('true') and reserv_date 지남">
 				reservationform.checkReserv = 'true' AND <![CDATA[reservationform.reserv_date > TO_CHAR(SYSDATE, 'YYYY-MM-dd')]]> AND reservationform.reserv_date = #{reserv_date} AND
 			</when>
 		</choose>
@@ -91,4 +92,22 @@
 		FROM reservationform
 		WHERE reserv_date = #{reserv_date} AND checkReserv = 'true' AND space_num = #{space_num}
 	</select>
+	<select id="getUserId" parameterType="reservDto" resultType="string">
+		SELECT users_id
+		FROM reservationform
+		WHERE reserv_num = #{reserv_num}
+	</select>
+	<select id="getSellerId" parameterType="reservDto" resultType="string">
+		SELECT id
+		FROM space_users
+		INNER JOIN seller_space ON seller_space.users_num=space_users.users_num
+		WHERE seller_space.space_num = (SELECT seller_space.space_num
+										FROM seller_space
+										INNER JOIN reservationform ON seller_space.space_num=reservationform.space_num
+										WHERE reservationform.reserv_num=123)
+	</select>
+	<delete id="delete" parameterType="int">
+		DELETE FROM reservationform
+		WHERE space_num = #{space_num}
+	</delete>
 </mapper>

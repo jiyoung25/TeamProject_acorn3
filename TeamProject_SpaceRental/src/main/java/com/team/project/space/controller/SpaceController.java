@@ -13,7 +13,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.team.project.dib.dto.DibDto;
 import com.team.project.dib.service.DibService;
+import com.team.project.interceptor.Auth;
+import com.team.project.interceptor.Auth.Role;
 import com.team.project.qna.service.QnaService;
+import com.team.project.reserv.service.ReservService;
 import com.team.project.review.dto.ReviewDto;
 import com.team.project.review.service.ReviewService;
 import com.team.project.seller.service.SellerService;
@@ -32,6 +35,8 @@ public class SpaceController {
 	private ReviewService reviewService;
 	@Autowired
 	private SellerService sellerService;
+	@Autowired
+	private ReservService reservService;
 	
 	@GetMapping("/space/list")
 	public String spaceList(HttpServletRequest request) {
@@ -58,6 +63,7 @@ public class SpaceController {
 		return mView;
 	}
 	
+	@Auth(role = Role.ADMIN)
 	@RequestMapping("/space/reviewDelete")
 	public String reviewDelete(int review_num, HttpServletRequest request, int cate_num, int space_num, RedirectAttributes redirectAttributes) {
 		// 해당 reveiw_num을 삭제한다.
@@ -69,6 +75,7 @@ public class SpaceController {
 		return "redirect:/space/detail";
 	}
 	
+	@Auth(role = Role.ADMIN)
 	@RequestMapping("/space/qnaDelete")
 	public String qnaDelete(int num, HttpServletRequest request, int cate_num, int space_num, RedirectAttributes redirectAttributes) {
 		// 해당 num을 삭제한다.
@@ -80,12 +87,20 @@ public class SpaceController {
 		return "redirect:/space/detail";
 	}
 	
+	@Auth(role = Role.ADMIN)
 	@RequestMapping("/space/spaceDelete")
 	public String spaceDelete(HttpServletRequest request, int cate_num, int space_num, RedirectAttributes redirectAttributes) {
-		// 해당 space_num을 삭제한다.
-		sellerService.delete(space_num, request);
+		request.setAttribute("space_num", space_num);
+		// 해당 num을 삭제한다.
+		sellerService.delete(request);
 		// 해당 space_num에 대한 qna 삭제
-		qnaService.deleteContent2(space_num, request);
+		qnaService.deleteContent2(request);
+		// 해당 space_num에 대한 review 삭제
+		reviewService.deleteContent2(request);
+		// 해당 space_num에 대한 찜 삭제
+		dibService.dibDelete(request);
+		// 해당 space_num에 대한 예약 삭제
+		reservService.delete(request);
 		// redirect에 파라미터 전해주기
 		redirectAttributes.addAttribute("cate_num",cate_num);
 		

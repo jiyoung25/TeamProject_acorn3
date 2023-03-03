@@ -1,7 +1,5 @@
 package com.team.project.reserv.service;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,7 +22,7 @@ public class ReservServiceImpl implements ReservService {
 	}
 
 	@Override
-	public List<ReservDto> reservationlistToSeller (HttpServletRequest request, HttpSession session, ReservDto dto) {
+	public void reservationlistToSeller (HttpServletRequest request, HttpSession session, ReservDto dto) {
 		
 		//한 페이지에 몇개씩 표시할 것인지
 		final int PAGE_ROW_COUNT=10;
@@ -86,8 +84,6 @@ public class ReservServiceImpl implements ReservService {
 		request.setAttribute("list", list);
 		request.setAttribute("totalRow", totalRow);
 		request.setAttribute("pathQuery", pathQuery);
-		
-		return dao.getReservToSeller(dto);
 	}
 	
 	public void checkReserv(ReservDto dto) {
@@ -143,5 +139,20 @@ public class ReservServiceImpl implements ReservService {
 	@Override
 	public List<ReservDto> getReservTime(ReservDto dto) {
 		return dao.getTime(dto);
+	}
+
+	@Override
+	public String getUserId(ReservDto dto) {
+		return dao.getUserId(dto);
+	}
+
+	@Override
+	public String getSellerId(ReservDto dto) {
+		return dao.getSellerId(dto);
+	}
+
+	@Override
+	public void delete(HttpServletRequest request) {
+		dao.delete((int)request.getAttribute("space_num"));
 	}
 }

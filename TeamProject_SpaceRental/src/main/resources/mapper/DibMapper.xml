@@ -10,6 +10,10 @@
 		DELETE FROM dibson_list
 		WHERE dibson_num= #{dibson_num }
 	</delete>
+	<delete id="delete2" parameterType="int">
+		DELETE FROM dibson_list
+		WHERE space_num= #{space_num }
+	</delete>
 	<select id="getData" parameterType="dibDto" resultType="dibDto">
 		SELECT result2.*
 		FROM
@@ -31,5 +35,10 @@
 		SELECT MAX(ROWNUM)
 		FROM dibson_list
 		WHERE users_id=#{users_id}
+	</select>
+	<select id="getUserId" parameterType="int" resultType="string">
+		SELECT users_id
+		FROM dibson_list
+		WHERE dibson_num=#{dibson_num}
 	</select>
 </mapper>

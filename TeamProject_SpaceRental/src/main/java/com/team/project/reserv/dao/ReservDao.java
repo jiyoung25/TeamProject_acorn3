@@ -13,4 +13,7 @@ public interface ReservDao {
 	public int getUserReservCount(ReservDto dto);
 	public void updatePaid (ReservDto dto);
 	public List<ReservDto> getTime(ReservDto dto);
+	public String getUserId(ReservDto dto);
+	public String getSellerId(ReservDto dto);
+	public void delete(int space_num);
 }

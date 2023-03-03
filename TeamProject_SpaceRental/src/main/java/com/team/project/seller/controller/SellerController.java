@@ -13,9 +13,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.team.project.dib.service.DibService;
+import com.team.project.exception.NotUpdateException;
 import com.team.project.interceptor.Auth;
 import com.team.project.interceptor.Auth.Role;
 import com.team.project.qna.service.QnaService;
+import com.team.project.reserv.service.ReservService;
+import com.team.project.review.service.ReviewService;
 import com.team.project.seller.dto.SellerDto;
 import com.team.project.seller.service.SellerService;
 import com.team.project.users.service.UsersService;
@@ -28,6 +32,12 @@ public class SellerController {
 	private UsersService usersService;
 	@Autowired
 	private QnaService qnaService;
+	@Autowired
+	private ReviewService reviewService;
+	@Autowired
+	private DibService dibService;
+	@Autowired
+	private ReservService reservService;
 	
 	@Auth(role = Role.SELLER)
 	@RequestMapping("/seller/spacelist")
@@ -37,7 +47,8 @@ public class SellerController {
 		mView.setViewName("seller/spacelist");
 		return mView;
 	}
-
+	
+	@Auth(role = Role.SELLER)
 	@RequestMapping("/seller/sellerReview")
 	public ModelAndView sellerReview(ModelAndView mView, HttpServletRequest request) {
 		service.getReviewList(mView, request);
@@ -45,6 +56,7 @@ public class SellerController {
 		return mView;
 	}
 	
+	@Auth(role = Role.SELLER)
 	@RequestMapping("/seller/sellerQna")
 	public ModelAndView sellerQna(ModelAndView mView, HttpServletRequest request) {
 		service.getQnaList(mView, request);
@@ -72,8 +84,15 @@ public class SellerController {
 	@Auth(role = Role.SELLER)
 	@RequestMapping("/seller/spaceupdate")
 	public String spaceUpdate(HttpServletRequest request, HttpSession session, ModelAndView mView) {
-		service.getData(request);
 		if(session.getAttribute("id")!=null) {
+			SellerDto dto = service.getData(request);
+			int spaceOwner = dto.getUsers_num();
+			int user = service.getUsersNum(request, session);
+			
+			if(spaceOwner != user) {
+				throw new NotUpdateException("타인의 방을 수정하지 말아주세요.");
+			}
+			
 			usersService.getInfo(session, mView);
 		}
 		return "seller/spaceupdate";
@@ -83,17 +102,31 @@ public class SellerController {
 	@RequestMapping("/seller/update")
 	public String update(SellerDto dto, HttpServletRequest request, HttpSession session) {
 		service.update(dto, request);
-		System.out.println(dto.getmainImagePath());
-		System.out.println(dto.getSpace_name());
-		System.out.println(dto.getAddr());
 		
 		return "seller/update";		
 	}
 	
+	@Auth(role = Role.SELLER)
 	@RequestMapping("/seller/delete")
 	public String delete(int space_num, HttpServletRequest request) {
-		service.delete(space_num, request);
-		qnaService.deleteContent2(space_num, request);
+		SellerDto dto = service.getData(request);
+		int spaceOwner = dto.getUsers_num();
+		int user = service.getUsersNum(request, request.getSession());
+		
+		if(spaceOwner != user) {
+			throw new NotUpdateException("타인의 방을 삭제하지 말아주세요.");
+		}
+		request.setAttribute("space_num", space_num);
+		// 해당 space_num 삭제
+		service.delete(request);
+		// 해당 space_num에 대한 qna 삭제
+		qnaService.deleteContent2(request);
+		// 해당 space_num에 대한 review 삭제
+		reviewService.deleteContent2(request);
+		// 해당 space_num에 대한 찜 삭제
+		dibService.dibDelete(request);
+		// 해당 space_num에 대한 예약 삭제
+		reservService.delete(request);
 		return "redirect:/seller/spacelist"; //다시 한번 물어보는 것으로 수정예정
 	}
 	

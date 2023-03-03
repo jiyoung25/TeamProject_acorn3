@@ -21,6 +21,7 @@ public class ReservDaoImpl implements ReservDao {
 	//셀러에게 넘어간 예약 파일(셀러는 예약확인을 해주어야 함)
 	@Override
 	public List<ReservDto> getReservToSeller(ReservDto dto) {
+		System.out.println(dto.getUsers_id());
 		return session.selectList("reserv.getReservToSeller", dto);
 	}
 
@@ -51,6 +52,21 @@ public class ReservDaoImpl implements ReservDao {
 	@Override
 	public List<ReservDto> getTime(ReservDto dto) {
 		return session.selectList("reserv.getTime", dto);
+	}
+
+	@Override
+	public String getUserId(ReservDto dto) {
+		return session.selectOne("reserv.getUserId", dto);
+	}
+
+	@Override
+	public String getSellerId(ReservDto dto) {
+		return session.selectOne("reserv.getSellerId", dto);
+	}
+
+	@Override
+	public void delete(int space_num) {
+		session.delete("reserv.delete", space_num);
 	}
 	
 	

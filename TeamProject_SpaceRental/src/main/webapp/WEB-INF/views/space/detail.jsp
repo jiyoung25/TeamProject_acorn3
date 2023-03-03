@@ -107,26 +107,28 @@
 					<div id="map" style="width:100%;height:350px;"></div>	
 					
 					<%-- 리뷰 --%>
-					<h3 id="review">Review</h3>
-					<%-- 사용자가 사용한 방 -> 리뷰 쓰기 가능 --%>
-					<form action="${pageContext.request.contextPath}/review/reviewInsertform" method="POST">
-						<select name="possibleReview" id="possibleReview">
-							<c:choose>
-								<c:when test="${empty sessionScope.id }">
-									<option value="">로그인 해주세요.</option>				
-								</c:when>
-								<c:when test="${empty possibleReview }">
-									<option value="">방을 이용해주세요.</option>
-								</c:when>
-								<c:when test="${not empty possibleReview }">
-									<c:forEach items="${possibleReview }" var="item">
-										<option value="${item.reserv_num }&&${item.space_num}&&${item.cate_num}"><strong>${item.space_name } 방 리뷰쓰기</strong></option>
-									</c:forEach>
-								</c:when>
-							</c:choose>
-						</select>
-						<button>리뷰 쓰기</button>
-					</form>
+					<div>
+						<h3 id="review">Review</h3>
+						<%-- 사용자가 사용한 방 -> 리뷰 쓰기 가능 --%>
+						<form action="${pageContext.request.contextPath}/review/reviewInsertform" method="POST">
+							<select name="possibleReview" id="possibleReview">
+								<c:choose>
+									<c:when test="${empty sessionScope.id }">
+										<option value="">로그인 해주세요.</option>				
+									</c:when>
+									<c:when test="${empty possibleReview }">
+										<option value="">방을 이용해주세요.</option>
+									</c:when>
+									<c:when test="${not empty possibleReview }">
+										<c:forEach items="${possibleReview }" var="item">
+											<option value="${item.reserv_num }&&${item.space_num}&&${item.cate_num}"><strong>${item.space_name } 방 리뷰쓰기</strong></option>
+										</c:forEach>
+									</c:when>
+								</c:choose>
+							</select>
+							<button>리뷰 쓰기</button>
+						</form>
+					</div>
 					<div class="container">
 						<table class="table table-striped">
 							<thead class="table-dark">
@@ -358,11 +360,10 @@
 					this.isDibed = !this.isDibed;
 					console.log(this.isDibed);
 					if(this.isDibed == true){
-						fetch("${pageContext.request.contextPath}/space/dib_insert?space_num=${spaceDto.space_num}&users_id=${id}&users_num=${spaceDto.users_num}",
+						fetch("${pageContext.request.contextPath}/space/dib_insert?space_num=${spaceDto.space_num}&users_num=${spaceDto.users_num}",
 		                        {
 		                           data: {
 		                              space_num: ${spaceDto.space_num},
-		                              users_id: "${id}",
 		                              users_num: ${spaceDto.users_num}
 		                           }
 		                        }

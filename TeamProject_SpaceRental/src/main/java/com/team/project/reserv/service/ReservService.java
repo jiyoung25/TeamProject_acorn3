@@ -9,9 +9,12 @@ import com.team.project.reserv.dto.ReservDto;
 
 public interface ReservService {
 	public void insert(ReservDto dto, HttpSession session);
-	public List<ReservDto> reservationlistToSeller(HttpServletRequest request, HttpSession session, ReservDto dto);
+	public void reservationlistToSeller(HttpServletRequest request, HttpSession session, ReservDto dto);
 	public void checkReserv(ReservDto dto);
 	public List<ReservDto> reservationlistToUser(HttpServletRequest request, HttpSession session, ReservDto dto);
 	public void updatePaid(ReservDto dto);
 	public List<ReservDto> getReservTime(ReservDto dto);
+	public String getUserId(ReservDto dto);
+	public String getSellerId(ReservDto dto);
+	public void delete(HttpServletRequest request);
 }
