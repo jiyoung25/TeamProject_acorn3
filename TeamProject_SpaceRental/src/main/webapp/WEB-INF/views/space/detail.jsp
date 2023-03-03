@@ -247,7 +247,7 @@
 						        --%>
 						        <c:if test="${qnaStartPageNum ne 1 }">
 									<li class="page-item">
-										<a class="page-link" href="detail?cate_num=${param.cate_num }&space_num=${param.space_num}&qnaPageNum=${qnaStartPageNum-1 }&condition=${condition}&keyword=${encodedK}">Prev</a>
+										<a class="page-link" href="detail?cate_num=${param.cate_num }&space_num=${param.space_num}&qnaPageNum=${qnaStartPageNum-1 }&condition=${condition}&keyword=${encodedK}">이전글</a>
 									</li>
 						        </c:if>
 						        <c:forEach var="i" begin="${qnaStartPageNum }" end="${qnaEndPageNum }">
@@ -260,7 +260,7 @@
 						        --%>
 						        <c:if test="${qnaEndPageNum lt qnatotalPageCount }">
 									<li class="page-item">
-										<a class="page-link" href="detail?cate_num=${param.cate_num }&space_num=${param.space_num}&qnaPageNum=${qnaEndPageNum+1 }&condition=${condition}&keyword=${encodedK}">Next</a>
+										<a class="page-link" href="detail?cate_num=${param.cate_num }&space_num=${param.space_num}&qnaPageNum=${qnaEndPageNum+1 }&condition=${condition}&keyword=${encodedK}">다음글</a>
 									</li>
 						        </c:if>
 							</ul>
