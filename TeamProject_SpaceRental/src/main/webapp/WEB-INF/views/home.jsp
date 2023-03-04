@@ -60,18 +60,17 @@
 	<!--카테고리 영역 시작-->
 	<div class="m-5 p-5 text-center  ">
 	   <div class="row">
-		   <div class="col text-right">
-		      <img src="https://cdn-icons-png.flaticon.com/512/9131/9131526.png" style="width: 50px;" alt="">
-		   </div>
-		   <div class="col-3">
-		      <h2 class="section-heading text-uppercase" style="font-family: 'Black Han Sans', sans-serif;">Service list</h2>
-		      <h3 class="section-subheading text-muted">다양한 공간을 만나보세요</h3>
-		   </div>
-		      
-		   <div class="col text-left">
-		      <img src="https://cdn-icons-png.flaticon.com/512/9131/9131526.png" style="width: 50px;" alt="">
-		   </div>
-	   </div>
+			<div class="col-md-4">
+				<h2><img src="https://cdn-icons-png.flaticon.com/512/9131/9131526.png" style="width: 50px;" alt=""></h2>
+			</div>
+			<div class="col-md-4">
+				<h2 class="section-heading text-uppercase" style="font-family: 'Black Han Sans', sans-serif;">Service list</h2>
+				<h3 class="section-subheading text-muted">다양한 공간을 만나보세요</h3>
+			</div>
+			<div class="col-md-4">
+				<h2><img src="https://cdn-icons-png.flaticon.com/512/9131/9131526.png" style="width: 50px;" alt=""></h2>
+			</div>
+		</div>
 	</div>
 	
 	<!--카테고리-->
