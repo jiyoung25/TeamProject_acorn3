@@ -153,7 +153,7 @@ public class UsersController {
 	@RequestMapping(value="/users/kakaoLoginCode", method=RequestMethod.GET)
 	public ModelAndView kakaoLogin(@RequestParam(value = "code", required = false) String code, HttpServletRequest request, ModelAndView mView) throws Throwable {
 		System.out.println("#########" + code);
-		String access_Token = service.getAccessToken(code);
+		String access_Token = service.getAccessToken(code, request);
         
 		// 위에서 만든 코드 아래에 코드 추가
 		service.getUserInfo(access_Token, request, mView);

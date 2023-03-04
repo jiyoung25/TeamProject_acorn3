@@ -142,18 +142,18 @@
 			<c:forEach var="tmp" items="${recentReviewList }">
 				<div class="col-md-3">
 					<div class="card" style="width: 18rem;">
-					  <img src="${pageContext.request.contextPath}/${tmp.mainImagePath }" class="card-img-top" alt="...">
-					  <div class="card-body">
-					    <h5 class="card-title">${tmp.space_name }</h5>
-					    <p class="card-text">
-					    	★: ${tmp.star/2 }점
-					    	${tmp.review_content }
-					    </p>
-					    <a href="${pageContext.request.contextPath}/space/detail?space_num=${tmp.space_num}&cate_num=${tmp.cate_num}" class="btn btn-primary">Go somewhere</a>
-					  </div>
+						<img src="${pageContext.request.contextPath}/${tmp.mainImagePath }" class="card-img-top" alt="...">
+						<div class="card-body">
+						    <h5 class="card-title">${tmp.space_name }</h5>
+						    <p class="card-text">
+						    	★: ${tmp.star/2 }점
+						    	${tmp.review_content }
+						    </p>
+						    <a href="${pageContext.request.contextPath}/space/detail?space_num=${tmp.space_num}&cate_num=${tmp.cate_num}" class="btn btn-primary">Go somewhere</a>
+						</div>
 					</div>
 				</div>
-			</c:forEach>
+			</c:forEach>	
 		</div>
 	</div>
    
