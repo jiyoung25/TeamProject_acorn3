@@ -54,7 +54,9 @@
 			</select>
 			<button>리뷰 쓰기</button>
 		</form>
+	</div>
 		<%-- 리뷰 리스트 --%>
+	<div class="container">
 		<table class="table align-middle mb-0 bg-white">
 			<thead class="bg-light">
 				<tr>
