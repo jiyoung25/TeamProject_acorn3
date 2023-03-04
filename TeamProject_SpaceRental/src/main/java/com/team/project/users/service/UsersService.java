@@ -27,6 +27,6 @@ public interface UsersService {
 			MultipartFile mFile);
 	public void updateUser(UsersDto dto, HttpSession session);
 	public void deleteUser(HttpSession session, ModelAndView mView);
-	public String getAccessToken(String authorize_code) throws Throwable;
+	public String getAccessToken(String authorize_code, HttpServletRequest request) throws Throwable;
 	public ModelAndView getUserInfo(String access_Token, HttpServletRequest request, ModelAndView mView);
 }

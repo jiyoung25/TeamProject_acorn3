@@ -95,6 +95,7 @@ public class DibServiceImpl implements DibService {
 		String id = (String)session.getAttribute("id");
 		dto.setUsers_id(id);
 		List<DibDto> list = dao.getData(dto);
+		System.out.println(list.isEmpty());
 		int totalRow = dao.getCount(id);
 						
 		//하단 시작 페이지 번호 

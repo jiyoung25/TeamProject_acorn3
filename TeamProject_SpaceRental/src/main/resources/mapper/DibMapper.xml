@@ -32,7 +32,7 @@
 		WHERE space_num=#{space_num} AND users_id=#{users_id}
 	</select>
 	<select id="getCount" resultType="int" parameterType="string">
-		SELECT MAX(ROWNUM)
+		SELECT NVL(MAX(ROWNUM), 0)
 		FROM dibson_list
 		WHERE users_id=#{users_id}
 	</select>

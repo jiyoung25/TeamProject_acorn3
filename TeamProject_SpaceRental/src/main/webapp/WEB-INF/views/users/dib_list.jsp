@@ -43,25 +43,19 @@
 					<th>카테고리 이름</th>
 		    	</tr>
 		  	</thead>
-		  	<tbody>
-		  		<c:forEach var="tmp" items="${list }">
-		  			<tr>
-		    			<td>
-		    				<a href="${pageContext.request.contextPath}/space/detail?cate_num=${tmp.cate_num}&space_num=${tmp.space_num}&path=dib">${tmp.space_name }</a>
-		    			</td>
-		      			<td>
-		        			<div class="d-flex align-items-center">
-		          				<img
-		             				src="${pageContext.request.contextPath}/${tmp.mainImagePath}"
-		              				alt="" style="width: 45px; height: 45px" class="rounded-circle"/>
+			<tbody>
+				<c:forEach var="tmp" items="${list }">
+					<tr>
+						<td>
+							<a href="${pageContext.request.contextPath}/space/detail?cate_num=${tmp.cate_num}&space_num=${tmp.space_num}&path=dib">${tmp.space_name }</a>
+						</td>
+						<td>
+							<div class="d-flex align-items-center">
+								<img src="${pageContext.request.contextPath}/${tmp.mainImagePath}" alt="" style="width: 45px; height: 45px" class="rounded-circle" />
 							</div>
 						</td>
-						<td>
-							${tmp.addr }
-						</td>
-						<td>
-							${tmp.cate_name }
-						</td>
+						<td>${tmp.addr }</td>
+						<td>${tmp.cate_name }</td>
 					</tr>
 				</c:forEach>
 			</tbody>
