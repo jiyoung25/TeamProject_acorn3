@@ -35,38 +35,19 @@ public class UsersController {
 	private DibService dibService;
 	
 	//아이디 중복 확인을 해서 json 문자열을 리턴해주는 메소드 
-	/*@RequestMapping("/users/checkid")
-	@ResponseBody
-	public Map<String, Object> checkid(@RequestParam String inputId){
-		UsersService 가 리턴해주는 Map 을 리턴해서 json 문자열을 응답한다.
-		return service.isExistId(inputId);
-	}*/
 	@GetMapping("/users/checkid")
 	public ResponseEntity<Map<String, Object>> checkid(@RequestParam String inputId){
 		Map<String, Object> result = service.isExistId(inputId);
 		return ResponseEntity.ok(result);
 	}
 	
-	/*@RequestMapping("/users/signupform")
-	public String signupform() {
-		
-		return "users/signupform";
-	}*/
-	
 	@GetMapping("/users/signupform")
 	public ModelAndView signupform() {
 		ModelAndView mav = new ModelAndView("users/signupform");
 		return mav;
 	}
-	/*
-	// 회원 가입 요청처리
-	@RequestMapping(method = RequestMethod.POST, value = "/users/signup")
-	public ModelAndView signup(ModelAndView mView, UsersDto dto) {
-		service.addUser(dto);
-		mView.addObject("code", dto.getCode());
-		mView.setViewName("users/signup");
-		return mView;
-	}*/
+	
+	//회원가입 요청 처리
 	@PostMapping("/users/signup")
 	public ModelAndView signup(@ModelAttribute UsersDto dto) {
 		service.addUser(dto);
