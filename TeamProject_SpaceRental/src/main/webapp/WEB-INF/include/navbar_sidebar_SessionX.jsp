@@ -11,7 +11,7 @@
         </div>
 	    <div class="row">
 	         <div class="col">
-	            <a class="navbar-brand" href="${pageContext.request.contextPath}/users/loginform"><p class="fs-6 text-secondary " >Login</p></a>
+	            <a class="navbar-brand" href="${pageContext.request.contextPath}/users/login"><p class="fs-6 text-secondary " >Login</p></a>
 	         </div>
 	         <div class="col">
 	            <a class="navbar-brand" href="${pageContext.request.contextPath}/users/signupform"><p class="fs-6 text-secondary " >Signup</p></a>
@@ -46,7 +46,7 @@
                 <div class=" container">
                 	<!-- 로그인버튼 -->
                     <div class="row mx-auto" style="width: 200px;">
-                    	<button type="button" class="btn btn-outline-primary" onclick="location.href='${pageContext.request.contextPath}/users/loginform' ">login</button>
+                    	<button type="button" class="btn btn-outline-primary" onclick="location.href='${pageContext.request.contextPath}/users/login' ">login</button>
                     </div>
                         
                     <br>

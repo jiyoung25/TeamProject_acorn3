@@ -1,6 +1,8 @@
 package com.team.project.dib.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -35,7 +37,7 @@ public class DibServiceImpl implements DibService {
 	}
 
 	@Override
-	public void dibGetData(HttpServletRequest request, HttpSession session) {
+	public void dibGetData(HttpServletRequest request, HttpSession session, ModelAndView mView) {
 		//한 페이지에 몇개씩 표시할 것인지
 		final int PAGE_ROW_COUNT=5;
 		//하단 페이지를 몇개씩 표시할 것인지
@@ -95,7 +97,6 @@ public class DibServiceImpl implements DibService {
 		String id = (String)session.getAttribute("id");
 		dto.setUsers_id(id);
 		List<DibDto> list = dao.getData(dto);
-		System.out.println(list.isEmpty());
 		int totalRow = dao.getCount(id);
 						
 		//하단 시작 페이지 번호 
@@ -110,17 +111,18 @@ public class DibServiceImpl implements DibService {
 		if(endPageNum > totalPageCount){
 			endPageNum=totalPageCount; //보정해 준다.
 		}
+		
 		//view page 에서 필요한 값을 request 에 담아준다. 
-		request.setAttribute("pageNum", pageNum);
-		request.setAttribute("startPageNum", startPageNum);
-		request.setAttribute("endPageNum", endPageNum);
-		//request.setAttribute("condition", condition);
-		//request.setAttribute("keyword", keyword);
-		//request.setAttribute("encodedK", encodedK);
-		request.setAttribute("totalPageCount", totalPageCount);
-		request.setAttribute("list", list);
-		request.setAttribute("totalRow", totalRow);
-		request.setAttribute("dibDto", dao.getData(dto));
+		mView.addObject("pageNum", pageNum);
+		mView.addObject("startPageNum", startPageNum);
+		mView.addObject("endPageNum", endPageNum);
+		//mView.addObject("condition", condition);
+		//mView.addObject("keyword", keyword);
+		//mView.addObject("encodedK", encodedK);
+		mView.addObject("totalPageCount", totalPageCount);
+		mView.addObject("list", list);
+		mView.addObject("totalRow", totalRow);
+		mView.addObject("dibDto", dao.getData(dto));
 	}
 
 	@Override
