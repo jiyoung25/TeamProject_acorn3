@@ -9,9 +9,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -34,19 +38,32 @@ public class UsersController {
 	private DibService dibService;
 	
 	//아이디 중복 확인을 해서 json 문자열을 리턴해주는 메소드 
-	@RequestMapping("/users/checkid")
+	/*@RequestMapping("/users/checkid")
 	@ResponseBody
 	public Map<String, Object> checkid(@RequestParam String inputId){
-		//UsersService 가 리턴해주는 Map 을 리턴해서 json 문자열을 응답한다.
+		UsersService 가 리턴해주는 Map 을 리턴해서 json 문자열을 응답한다.
 		return service.isExistId(inputId);
+	}*/
+	@GetMapping("/users/checkid")
+	@ResponseBody
+	public ResponseEntity<Map<String, Object>> checkid(@RequestParam String inputId){
+		Map<String, Object> result = service.isExistId(inputId);
+		return ResponseEntity.ok(result);
 	}
 	
-	@RequestMapping("/users/signupform")
+	/*@RequestMapping("/users/signupform")
 	public String signupform() {
 		
 		return "users/signupform";
-	}
+	}*/
 	
+	@GetMapping("/users/signupform")
+	@ResponseBody
+	public ModelAndView signupform() {
+		ModelAndView mav = new ModelAndView("users/signupform");
+		return mav;
+	}
+	/*
 	// 회원 가입 요청처리
 	@RequestMapping(method = RequestMethod.POST, value = "/users/signup")
 	public ModelAndView signup(ModelAndView mView, UsersDto dto) {
@@ -54,6 +71,13 @@ public class UsersController {
 		mView.addObject("code", dto.getCode());
 		mView.setViewName("users/signup");
 		return mView;
+	}*/
+	@PostMapping("/users/signup")
+	@ResponseBody
+	public ModelAndView signup(@ModelAttribute UsersDto dto) {
+		service.addUser(dto);
+		ModelAndView mav = new ModelAndView("users/signup");
+		return mav;
 	}
 	
 	@GetMapping("/users/loginform")
