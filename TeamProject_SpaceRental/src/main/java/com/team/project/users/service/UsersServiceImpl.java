@@ -234,7 +234,7 @@ public class UsersServiceImpl implements UsersService{
 	}
 
 	@Override
-	public String getAccessToken(String authorize_code) throws Throwable {
+	public String getAccessToken(String authorize_code, HttpServletRequest request) throws Throwable {
 		String access_Token = "";
 		String refresh_Token = "";
 		String reqURL = "https://kauth.kakao.com/oauth/token";
@@ -245,9 +245,16 @@ public class UsersServiceImpl implements UsersService{
 			conn.setDoOutput(true);
 			BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
 			StringBuilder sb = new StringBuilder();
+			String cpath = request.getContextPath();
+			String requesturl = request.getRequestURL().toString();
+			
+			int cpathnum = requesturl.indexOf(cpath);
+			String gopath = requesturl.substring(0, cpathnum);
+			System.out.println(gopath);
+			
 			sb.append("grant_type=authorization_code");
 			sb.append("&client_id=2d35e9bcdd28d0e1fb622729f22bab0e"); //본인이 발급받은 key
-			sb.append("&redirect_uri=http://localhost:9000/ubiquitous/users/kakaoLoginCode"); // 본인이 설정한 주소
+			sb.append("&redirect_uri="+gopath+"/ubiquitous/users/kakaoLoginCode"); // 본인이 설정한 주소
 			sb.append("&code=" + authorize_code);
 			bw.write(sb.toString());
 			bw.flush();
