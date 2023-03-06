@@ -1,7 +1,6 @@
 package com.team.project.users.controller;
 
 import java.net.URLEncoder;
-import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -25,7 +25,7 @@ import com.team.project.interceptor.Auth;
 import com.team.project.interceptor.Auth.Role;
 import com.team.project.users.dto.UsersDto;
 
-@Controller
+@RestController
 public class UsersController {
 	
 	@Autowired
@@ -56,10 +56,9 @@ public class UsersController {
 		return mView;
 	}
 	
-	@GetMapping("/users/loginform")
-	public ModelAndView loginform(ModelAndView mView) {
+	@GetMapping("/users/login")
+	public ModelAndView loginform(ModelAndView mView){
 		mView.setViewName("users/loginform");
-		
 		return mView;
 	}
 
@@ -80,12 +79,11 @@ public class UsersController {
 		return mView;
 	}
 	
-	@RequestMapping("/users/logout")
-	public String logout(HttpSession session) {
-		
+	@GetMapping("/users/logout")
+	public ModelAndView logout(HttpSession session, ModelAndView mView) {
 		service.logout(session);
-		
-		return "redirect:/";
+		mView.setViewName("users/logout");
+		return mView;
 	}
 	
 	@RequestMapping("/users/profile1")
@@ -96,10 +94,10 @@ public class UsersController {
 	}
 	
 	@Auth(role = Role.USER)
-	@RequestMapping("/users/dib_list")
-	public String dib_list(HttpServletRequest request,HttpSession session) {
-		dibService.dibGetData(request, session);
-		return "users/dib_list";
+	@GetMapping("/users/dib_list")
+	public ModelAndView dib_list(HttpServletRequest request,HttpSession session, ModelAndView mView) {
+		dibService.dibGetData(request, session, mView);
+		return mView;
 	}
 	//비밀번호 수정폼 요청 처리
 	@RequestMapping("/users/pwd_updateform")
@@ -150,7 +148,7 @@ public class UsersController {
 	}
 	
 	//카카오 API에서 전송된 code 받기
-	@RequestMapping(value="/users/kakaoLoginCode", method=RequestMethod.GET)
+	@GetMapping(value="/users/kakaoLoginCode")
 	public ModelAndView kakaoLogin(@RequestParam(value = "code", required = false) String code, HttpServletRequest request, ModelAndView mView) throws Throwable {
 		System.out.println("#########" + code);
 		String access_Token = service.getAccessToken(code, request);
@@ -166,5 +164,4 @@ public class UsersController {
 		
 		return mView;
     }
-	
 }

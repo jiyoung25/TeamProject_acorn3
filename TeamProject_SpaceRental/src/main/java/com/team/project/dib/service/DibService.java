@@ -11,7 +11,7 @@ public interface DibService {
 	public void dibInsert(DibDto dto, HttpSession session);
 	public void dibDelete(int dibson_num);
 	public void dibDelete(HttpServletRequest request);
-	public void dibGetData(HttpServletRequest request, HttpSession session);
+	public void dibGetData(HttpServletRequest request, HttpSession session, ModelAndView mView);
 	public void dibGetDetailData(DibDto dto, HttpServletRequest request);
 	public String getUserId(int num);
 }
