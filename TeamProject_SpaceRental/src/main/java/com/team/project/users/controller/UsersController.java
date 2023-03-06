@@ -8,13 +8,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -45,7 +42,6 @@ public class UsersController {
 		return service.isExistId(inputId);
 	}*/
 	@GetMapping("/users/checkid")
-	@ResponseBody
 	public ResponseEntity<Map<String, Object>> checkid(@RequestParam String inputId){
 		Map<String, Object> result = service.isExistId(inputId);
 		return ResponseEntity.ok(result);
@@ -58,7 +54,6 @@ public class UsersController {
 	}*/
 	
 	@GetMapping("/users/signupform")
-	@ResponseBody
 	public ModelAndView signupform() {
 		ModelAndView mav = new ModelAndView("users/signupform");
 		return mav;
@@ -73,7 +68,6 @@ public class UsersController {
 		return mView;
 	}*/
 	@PostMapping("/users/signup")
-	@ResponseBody
 	public ModelAndView signup(@ModelAttribute UsersDto dto) {
 		service.addUser(dto);
 		ModelAndView mav = new ModelAndView("users/signup");
