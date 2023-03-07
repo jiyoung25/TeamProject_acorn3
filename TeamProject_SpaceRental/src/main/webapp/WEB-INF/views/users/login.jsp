@@ -32,9 +32,9 @@
    	</c:choose>
    
 	<div class="container">
-		<h1>Ubiquitous에 오신 것을 환영합니다</h1>
 		<c:choose>
 			<c:when test="${not empty id }">
+				<h1>Ubiquitous에 오신 것을 환영합니다</h1>
 				<p class="alert alert-success">
 					<strong>${id }</strong>님 로그인 되었습니다.
 					<a href="${url}">확인</a>

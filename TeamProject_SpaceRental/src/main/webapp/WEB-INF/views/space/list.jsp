@@ -22,7 +22,7 @@
 			display : none;
 		}
 		.areaStyle{
-			background-color:red;
+			background-color:gray;
 		}
 		#cities{
 			float:left;
@@ -159,7 +159,7 @@
 		<div class="row gx-5 mb-5 m-5">
 	    	<%-- 위치 검색을 위한 toggle & checkbox --%>
 	    	<div id="areaSelectForm">
-	    		<button type="button" v-on:click="onAreaClicked">지역 검색하기</button>
+	    		<button type="button" class="btn btn-outline-secondary" v-on:click="onAreaClicked">지역 검색하기</button>
 	    		<div :class= "areaToggle ?'areaToggle' : ''">
 	    			<div class="areaStyle">
 		    			<form v-on:submit="onAreaSearch">
@@ -185,7 +185,7 @@
 				            </div>
 						</div>
 						<div class="card-footer bg-transparent border-top d-flex align-items-center justify-content-between">
-							<div class="small text-primary">See more</div>
+							<div class="small text-primary">자세히 보기</div>
 							<div class="small text-primary"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></div>
 				        </div>
 				    </a>
