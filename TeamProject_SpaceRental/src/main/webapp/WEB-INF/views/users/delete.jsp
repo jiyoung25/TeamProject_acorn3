@@ -9,8 +9,8 @@
 </head>
 <body>
 	<div class="container">
-		<h1>알림</h1>
-		<p>
+		<h1>Ubiquitous를 사용해주셔서 감사합니다.</h1>
+		<p class="alert alert-success">
 			<strong>${requestScope.id }</strong> 님 탈퇴 처리 되었습니다.
 			<a href="${pageContext.request.contextPath}/">홈으로 돌아가기</a>
 		</p>

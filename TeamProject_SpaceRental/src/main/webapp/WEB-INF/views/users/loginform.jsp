@@ -21,17 +21,7 @@
 	background: linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
 }
 
-@media screen and (min-width: 768px) {
-	.gradient-form {
-		height: 100vh !important;
-	}
-}
-@media screen and (min-width: 768px) {
-	.gradient-custom-2 {
-		border-top-right-radius: .3rem;
-		border-bottom-right-radius: .3rem;
-	}
-}
+
 #kakaoLoginBtn:hover {
 	cursor:pointer;
 }

@@ -9,7 +9,16 @@
 <title>Q&A list</title>
 <%-- 부트스트랩 --%>
 <jsp:include page="/WEB-INF/include/cdnlink.jsp"/>
-
+<style>
+	a {
+		text-decoration: none;
+	}
+	
+	a:hover {
+		font-weight: bold;
+		text-decoration: none;
+ 	}
+</style>
 </head>
 	<%-- 네비바 --%>
 	<c:choose>

@@ -163,7 +163,7 @@
 						    <p class="card-text">
 						    	★: ${tmp.star/2 }점
 						    </p>
-						    <a href="${pageContext.request.contextPath}/space/detail?space_num=${tmp.space_num}&cate_num=${tmp.cate_num}" class="btn btn-primary">리뷰보기</a>
+						    <p>${tmp.review_content }</p>
 						</div>
 					</div>
 				</div>
