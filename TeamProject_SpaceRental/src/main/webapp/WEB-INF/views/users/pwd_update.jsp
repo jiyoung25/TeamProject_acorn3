@@ -34,13 +34,13 @@
    
 	<c:choose>
 		<c:when test="${isSuccess }">
-			<p>
+			<p class="alert alert-success">
 				<strong>${id }</strong> 님 비밀번호를 수정하고 로그 아웃되었습니다.
 				<a href="${pageContext.request.contextPath}/users/loginform">다시 로그인 하러 가기</a>
 			</p>
 		</c:when>
 		<c:otherwise>
-			<p>
+			<p class="alert alert-danger">
 				이전 비밀번호가 일치하지 않습니다.
 				<a href="${pageContext.request.contextPath}/users/pwd_updateform">다시 시도</a>
 			</p>

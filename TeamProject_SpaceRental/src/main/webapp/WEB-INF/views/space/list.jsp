@@ -11,18 +11,11 @@
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
 	<style>
-		.space_list{
-			border: 1px solid black;
-			display: inline-block;
-		}
 		.areaToggle{
 			display : none;
 		}
 		.resetToggle{
 			display : none;
-		}
-		.areaStyle{
-			background-color:gray;
 		}
 		#cities{
 			float:left;
@@ -156,7 +149,7 @@
 		</section>
     			
 		<%-- 카테고리별 내용 --%>
-		<div class="row gx-5 mb-5 m-5">
+		<div class="row">
 	    	<%-- 위치 검색을 위한 toggle & checkbox --%>
 	    	<div id="areaSelectForm">
 	    		<button type="button" class="btn btn-outline-secondary" v-on:click="onAreaClicked">지역 검색하기</button>

@@ -132,9 +132,9 @@
 	<div class="container">	
 		<h2><strong>Review</strong></h2>
 		</br>
-		<!-- 룸넘버, 룸이름 -->
+		<!-- 룸이름 -->
 		<div class="room">
-			<h4>${dto.review_num }.${space.name }</h3>
+			<h4>${dto.space_name }</h3>
 		</div>
 		<!-- 리뷰제목 -->
 		<div class="title">
@@ -143,9 +143,9 @@
 		<!-- 작성자, 등록일, 조회수, 별점 -->
 		<div class="user">
 			<h4><strong>by.</strong>${dto.review_writer } 
-      <strong>작성일</strong>: ${dto.review_regdate }
-      <strong>조회수</strong>: ${dto.viewcount }
-      <strong>별점</strong>:
+		      <strong>작성일</strong>: ${dto.review_regdate }
+		      <strong>조회수</strong>: ${dto.viewcount }
+		      <strong>별점</strong>:
 			<span class="star">
 			  ★★★★★
 				<span style="width: ${dto.star *10 }%;">★★★★★</span>

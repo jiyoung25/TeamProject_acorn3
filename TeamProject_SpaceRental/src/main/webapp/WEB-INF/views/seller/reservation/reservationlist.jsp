@@ -65,9 +65,9 @@
 			</c:when>
 		</c:choose>
 		<div id="reservList">
-			<table class="table">
-				<thead>
-					<tr class="table-info">
+			<table class="table align-middle mb-0 bg-white">
+				<thead class="bg-light">
+					<tr>
 						<th scope="row">예약 번호</th>
 						<th scope="row">방 이름</th>
 						<th scope="row">예약자 명</th>
