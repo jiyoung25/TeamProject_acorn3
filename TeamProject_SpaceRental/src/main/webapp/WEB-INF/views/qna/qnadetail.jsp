@@ -125,11 +125,9 @@
 	   
 	<%-- 리뷰 내용 --%>
 	<div class="container">	
-		<h2><strong>Q&A 상세보기</strong></h2>
-		</br>
 		<!-- 룸넘버, 룸이름 -->
 		<div class="room">
-			<h4>${dto.num }.${space.name }</h3>
+			<h4>${space.name }</h3>
 		</div>
 		<!-- 리뷰제목 -->
 		<div class="title">

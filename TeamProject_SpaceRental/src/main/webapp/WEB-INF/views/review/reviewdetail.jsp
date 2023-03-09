@@ -104,6 +104,9 @@
    	text-decoration: none;
    }
    
+   span.star{
+		font-size: 1.5rem;
+   }
 </style>
 </head>
 <body>
@@ -130,8 +133,6 @@
    	
    	<%-- 리뷰 내용 --%>
 	<div class="container">	
-		<h2><strong>Review</strong></h2>
-		</br>
 		<!-- 룸이름 -->
 		<div class="room">
 			<h4>${dto.space_name }</h3>

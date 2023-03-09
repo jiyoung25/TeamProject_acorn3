@@ -8,6 +8,16 @@
 <%-- 부트스트랩 --%>
 <jsp:include page="/WEB-INF/include/cdnlink.jsp"/>
 <title>예약 확인</title>
+<style>
+	a {
+		text-decoration: none;
+	}
+	
+	a:hover {
+		font-weight: bold;
+		text-decoration: none;
+ 	}
+</style>
 </head>
 <body>
 	<%-- 네비바 --%>
@@ -31,10 +41,11 @@
       	</c:otherwise>
    	</c:choose>
 	<div class="container">
-		<p>예약이 완료되었습니다.</p>
-		<p>판매자의 예약 확인을 기다려주세요.</p>
-		<a href="${pageContext.request.contextPath}/users/reservationlist">예약 리스트</a>
-		<a href="${pageContext.request.contextPath}/">홈으로</a>
+		<p class="alert alert-success">
+			<strong>예약이 완료되었습니다.</strong>
+			판매자의 예약 확인을 기다려주세요.
+			<a href="${pageContext.request.contextPath}/users/reservationlist">예약 리스트로 가기</a>
+		</p>
 	</div>
 </body>
 </html>

@@ -15,7 +15,11 @@
 <%-- import from static --%>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/star.css" />
 <style>
-
+	
+	body {
+        background-color:
+    }
+	
 	#noneVisible{
 		display:none;
 	}
@@ -28,16 +32,28 @@
 		display : none;
 	}
 	.nonClickedHeart{
-		width: 50px;
-		height: 50px;
+		width: 30px;
+		height: 30px;
 		color: gray;
 	}
 	.clickedHeart{
-		width: 50px;
-		height: 50px;
+		width: 30px;
+		height: 30px;
 		color: red;
 	}
 	
+	div.info{
+		text-align: left;
+	}	
+	
+	a {
+		text-decoration: none;
+	}
+	
+	a:hover {
+		font-weight: bold;
+		text-decoration: none;
+ 	}	
 </style>
 <title>공간 상세 페이지</title>
 </head>
@@ -66,7 +82,7 @@
 	<!-- 찜하기 -->
 	<div class="container text-center">
 		<form action="${pageContext.request.contextPath}/space/dib_insert" id="dibForm">
-			<h1>${spaceDto.space_name }</h1>
+			<h3>찜하기</h3>
 			<svg v-bind:class="classObject" v-on:click="clickHeartBtn" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-through-heart-fill" viewBox="0 0 16 16">
   				<path fill-rule="evenodd" d="M2.854 15.854A.5.5 0 0 1 2 15.5V14H.5a.5.5 0 0 1-.354-.854l1.5-1.5A.5.5 0 0 1 2 11.5h1.793l3.103-3.104a.5.5 0 1 1 .708.708L4.5 12.207V14a.5.5 0 0 1-.146.354l-1.5 1.5ZM16 3.5a.5.5 0 0 1-.854.354L14 2.707l-1.006 1.006c.236.248.44.531.6.845.562 1.096.585 2.517-.213 4.092-.793 1.563-2.395 3.288-5.105 5.08L8 13.912l-.276-.182A23.825 23.825 0 0 1 5.8 12.323L8.31 9.81a1.5 1.5 0 0 0-2.122-2.122L3.657 10.22a8.827 8.827 0 0 1-1.039-1.57c-.798-1.576-.775-2.997-.213-4.093C3.426 2.565 6.18 1.809 8 3.233c1.25-.98 2.944-.928 4.212-.152L13.292 2 12.147.854A.5.5 0 0 1 12.5 0h3a.5.5 0 0 1 .5.5v3Z"/>
 			</svg>
@@ -85,21 +101,28 @@
 				<div class="col-md-6">
 					<img src="${pageContext.request.contextPath}/${spaceDto.mainImagePath }" class="img-fluid"/>
 					
+					<br/>
+					<br/>
+					<br/>
 					<%-- 공간 소개 --%>	
-					<h3 id="space_name">공간 제목</h3>
-					<div class="tmp">
-						<p>${spaceDto.space_name }</p>
+					<div class="info">
+						<h1>${spaceDto.space_name }</h1>
 					</div>
-					<h3 id="oneliner">한 줄 소개</h3>
-					<div class="tmp">
+					<br/>
+					<br/>
+					
+					<div class="info">
+						<h3 id="oneliner">한 줄 소개</h3>
 						<p>${spaceDto.oneliner }</p>
 					</div>
-					<h3 id="intro">상세 소개</h3>
-					<div class="tmp">
+					
+					<div class="info">
+						<h3 id="intro">상세 소개</h3>
 						<p>${spaceDto.intro }</p>
 					</div>
-					<h3 id="addr">주소</h3>
-					<div class="tmp">
+					
+					<div class="info">
+						<h3 id="addr">주소</h3>
 						<p>${spaceDto.addr }</p>
 					</div>
 					
@@ -170,14 +193,12 @@
 			<button>리뷰 쓰기</button>
 		</form>
 		<div class="container">
-			<table class="table table-striped">
-				<thead class="table-dark">
+			<table class="table align-middle mb-0 bg-white">
+				<thead class="bg-light">
 					<tr>
-						<th>글번호</th>
-						<th>방이름</th>
 						<th>작성자</th>
 						<th>제목</th>
-						<th>조회수</th>
+						<th>내용</th>
 						<th>별점</th>
 						<th>작성일</th>
 						<c:if test="${ usersCode eq 1}">
@@ -188,13 +209,9 @@
 				<tbody>
 					<c:forEach var="tmp" items="${reviewlist }">
 						<tr>
-							<td>${tmp.review_num }</td>
-							<td>${tmp.space_name }</td>
 							<td>${tmp.review_writer }</td>
-							<td>
-								<a href="${pageContext.request.contextPath}/review/reviewdetail?review_num=${tmp.review_num }">${tmp.review_title }</a>
-							</td>
-							<td>${tmp.viewcount }</td>
+							<td>${tmp.review_title }</td>
+							<td>${tmp.review_content }</td>
 							<td>
 								<%-- 별점 --%>
 								<span class="star">
@@ -245,13 +262,12 @@
 	<%-- QnA --%>
 	<div class="container">
 		<h3 id="qna">Q&A <a href="${pageContext.request.contextPath}/qna/qnaInsertform?cate_num=${param.cate_num }&space_num=${param.space_num}">추가하기</a></h3>
-			<table class="table table-striped">
-				<thead class="table-dark">
+			<table class="table align-middle mb-0 bg-white">
+				<thead class="bg-light">
 					<tr>
-						<th>글번호</th>
 						<th>작성자</th>
 						<th>제목</th>
-						<th>조회수</th>
+						<th>내용</th>
 						<th>작성일</th>
 						<c:if test="${ usersCode eq 1}">
 							<th>삭제</th>
@@ -261,12 +277,9 @@
 				<tbody>
 					<c:forEach var="tmp" items="${list }">
 						<tr>
-							<td>${tmp.num }</td>
 							<td>${tmp.writer }</td>
-							<td>
-								<a href="${pageContext.request.contextPath}/qna/qnadetail?num=${tmp.num }&condition=${condition}&keyword=${encodedK}">${tmp.title }</a>
-							</td>
-							<td>${tmp.viewCount }</td>
+							<td>${tmp.title }</td>
+							<td>${tmp.content }</td>
 							<td>${tmp.regdate }</td>
 							<c:if test="${ usersCode eq 1}">
 								<td>

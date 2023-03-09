@@ -6,6 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Space Rental</title>
+<%-- 부트스트랩 --%>
+<jsp:include page="/WEB-INF/include/cdnlink.jsp"/>
 </head>
 <body>
 	<div class="container">

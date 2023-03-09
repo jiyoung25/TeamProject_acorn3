@@ -8,13 +8,7 @@
 <title>회원가입</title>
 <%-- 부트스트랩 --%>
 <jsp:include page="/WEB-INF/include/cdnlink.jsp"/>
-<!-- MDB -->
-<link
-  href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.css" rel="stylesheet"/>
-<!-- MDB -->
-<script
-  type="text/javascript"
-  src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.js"></script>
+
 </head>
 <body>
 	<%-- 네비바 --%>
@@ -38,7 +32,7 @@
       	</c:otherwise>
    	</c:choose>
    
-	<section class="vh-100" style="background-color: #eee;">
+	<section class="v-100" style="background-color: #eee;">
 	  <div class="container h-100">
 	    <div class="row d-flex justify-content-center align-items-center h-100">
 	      <div class="col-lg-12 col-xl-11">
@@ -91,7 +85,7 @@
 	                  </div>
 	
 	                  <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-	                    	<button type="submit" class="btn btn-secondary btn-lg text-white">회원가입</button>
+	                    	<button type="submit" class="btn btn-outline-secondary">회원가입</button>
 	                  </div>
 	                </form>
 	
