@@ -31,6 +31,21 @@
 <%-- import from static folder --%>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/chatbot.css">
 <script src="${pageContext.request.contextPath}/js/chatbot.js"></script>
+<style>
+	.container > img {
+	  position: absolute;
+	  width: 100%;
+	  height: 100%
+	  /* height: 100%; */
+	  top: 50%;
+	  left: 50%;
+	  transform: translate(-50%, -50%);
+	}
+	.card-img-top {
+		height : 15rem;
+		object-fit : cover;
+	}
+</style>
 </head>
 
 	<%-- 네비바 --%>
@@ -147,9 +162,8 @@
 						    <h5 class="card-title">${tmp.space_name }</h5>
 						    <p class="card-text">
 						    	★: ${tmp.star/2 }점
-						    	${tmp.review_content }
 						    </p>
-						    <a href="${pageContext.request.contextPath}/space/detail?space_num=${tmp.space_num}&cate_num=${tmp.cate_num}" class="btn btn-primary">Go somewhere</a>
+						    <p>${tmp.review_content }</p>
 						</div>
 					</div>
 				</div>

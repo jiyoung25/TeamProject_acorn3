@@ -11,6 +11,17 @@
 <jsp:include page="/WEB-INF/include/cdnlink.jsp"/>
 <%--import from static folder --%>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/star.css" />
+<style>
+	a {
+		text-decoration: none;
+	}
+	
+	a:hover {
+		font-weight: bold;
+		text-decoration: none;
+ 	}
+</style>
+</head>
 <body>
 	<%-- 네비바 --%>
 	<c:choose>
@@ -60,7 +71,6 @@
 		<table class="table align-middle mb-0 bg-white">
 			<thead class="bg-light">
 				<tr>
-					<th>글번호</th>
 					<th>작성자</th>
 					<th>제목</th>
 					<th>조회수</th>
@@ -72,7 +82,6 @@
 			<tbody>
 				<c:forEach var="tmp" items="${reviewList }">
 					<tr>
-						<td>${tmp.review_num }</td>
 						<td>${tmp.review_writer }</td>
 						<td>
 							<a href="${pageContext.request.contextPath}/review/reviewdetail?review_num=${tmp.review_num }">${tmp.review_title }</a>

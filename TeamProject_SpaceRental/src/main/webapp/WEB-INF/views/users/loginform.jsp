@@ -8,13 +8,7 @@
 <title>Login form</title>
 <%-- 부트스트랩 --%>
 <jsp:include page="/WEB-INF/include/cdnlink.jsp"/>
-<!-- MDB -->
-<link
-  href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.css" rel="stylesheet"/>
-<!-- MDB -->
-<script
-  type="text/javascript"
-  src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.js"></script>
+
 <style>
 .gradient-custom-2 {
 	/* fallback for old browsers */
@@ -27,17 +21,7 @@
 	background: linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
 }
 
-@media screen and (min-width: 768px) {
-	.gradient-form {
-		height: 100vh !important;
-	}
-}
-@media screen and (min-width: 768px) {
-	.gradient-custom-2 {
-		border-top-right-radius: .3rem;
-		border-bottom-right-radius: .3rem;
-	}
-}
+
 #kakaoLoginBtn:hover {
 	cursor:pointer;
 }
@@ -90,17 +74,16 @@
 							</c:otherwise>
 						</c:choose>
 	                    <input type="text" name="id" id="form2Example11" class="form-control" value="${cookie.savedId.value }"
-	                      placeholder="" autofocus />
-	                    <label class="form-label" for="form2Example11">아이디</label>
+	                    	placeholder="아이디" autofocus />
 	                  </div>
 	
 	                  <div class="mb-4">
-	                    <input type="password" id="form2Example22" name="inputPwd" class="form-control" />
-	                    <label class="form-label" for="form2Example22">비밀번호</label>
+	                    <input type="password" id="form2Example22" name="inputPwd" class="form-control"
+	                    	placeholder="비밀번호" autofocus />
 	                  </div>
 	
 	                  <div class="text-center pt-1 mb-5 pb-1">
-	                    <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="submit">Login</button>
+	                    <button class="btn btn-outline-secondary btn-block mb-3" type="submit">Login</button>
 	                    <div>
 	                    	<img id="kakaoLoginBtn" src="${pageContext.request.contextPath}/image/kakao_login_medium_wide.png" 
 	                    		onClick = "location.href='https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=2d35e9bcdd28d0e1fb622729f22bab0e&redirect_uri=http://localhost:9000/ubiquitous/users/kakaoLoginCode'" />
@@ -112,7 +95,7 @@
 	
 	                  <div class="d-flex align-items-center justify-content-center pb-4">
 	                    <p class="mb-0 me-2">아이디가 없으신가요?</p>
-	                    <button type="button" class="btn btn-outline-danger" onClick="signup()" id="signupBtn">회원가입</button>
+	                    <button type="button" class="btn btn-outline-secondary" onClick="signup()" id="signupBtn">회원가입</button>
 	                  </div>
                 	</form>
               </div>
