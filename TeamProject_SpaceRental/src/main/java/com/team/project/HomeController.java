@@ -33,6 +33,7 @@ public class HomeController {
 		chatbotService.getQnaList(mView);
 		categoryService.getCategory(mView);
 		
+		System.out.println(session.getAttribute("id"));
 		mView.setViewName("home");
 		return mView;
 	}

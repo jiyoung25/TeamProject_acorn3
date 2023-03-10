@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.team.project.reserv.dao.ReservDao;
 import com.team.project.reserv.dto.ReservDto;
@@ -22,7 +23,7 @@ public class ReservServiceImpl implements ReservService {
 	}
 
 	@Override
-	public void reservationlistToSeller (HttpServletRequest request, HttpSession session, ReservDto dto) {
+	public void reservationlistToSeller (HttpServletRequest request, ModelAndView mView, HttpSession session, ReservDto dto) {
 		
 		//한 페이지에 몇개씩 표시할 것인지
 		final int PAGE_ROW_COUNT=10;
@@ -76,14 +77,14 @@ public class ReservServiceImpl implements ReservService {
 			int indexOfPageNum = pathQuery.indexOf("pageNum");
 			pathQuery = pathQuery.substring(0, indexOfPageNum-1);
 		}
-		//view page 에서 필요한 값을 request 에 담아준다. 
-		request.setAttribute("pageNum", pageNum);
-		request.setAttribute("startPageNum", startPageNum);
-		request.setAttribute("endPageNum", endPageNum);
-		request.setAttribute("totalPageCount", totalPageCount);
-		request.setAttribute("list", list);
-		request.setAttribute("totalRow", totalRow);
-		request.setAttribute("pathQuery", pathQuery);
+		//view page 에서 필요한 값을 ModelAndView 객체에 담아준다. 
+		mView.addObject("pageNum", pageNum);
+		mView.addObject("startPageNum", startPageNum);
+		mView.addObject("endPageNum", endPageNum);
+		mView.addObject("totalPageCount", totalPageCount);
+		mView.addObject("list", list);
+		mView.addObject("totalRow", totalRow);
+		mView.addObject("pathQuery", pathQuery);
 	}
 	
 	public void checkReserv(ReservDto dto) {

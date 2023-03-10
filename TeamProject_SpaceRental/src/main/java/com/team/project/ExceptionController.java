@@ -1,8 +1,8 @@
 package com.team.project;
 
 import org.springframework.dao.DataAccessException;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.team.project.exception.NotDeleteException;
@@ -11,7 +11,7 @@ import com.team.project.exception.NotExistRoomException;
 import com.team.project.exception.NotUpdateException;
 
 
-@ControllerAdvice
+@RestControllerAdvice
 public class ExceptionController {
 	
 	@ExceptionHandler(NotDeleteException.class)

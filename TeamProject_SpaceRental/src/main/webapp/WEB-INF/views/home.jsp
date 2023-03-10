@@ -37,8 +37,8 @@
 	<c:choose>
 		<c:when test="${empty sessionScope.id }">
 	       	<jsp:include page="/WEB-INF/include/navbar_sidebar_SessionX.jsp"/>
-	     	</c:when>
-	     	<c:otherwise>
+	    </c:when>
+	    <c:otherwise>
 	      	<c:choose>
 	      		<c:when test="${usersCode eq 2 }">
 	      	  		<jsp:include page="/WEB-INF/include/navbar_sessionO_seller.jsp"/>
@@ -52,9 +52,8 @@
 	      			<jsp:include page="/WEB-INF/include/navbar_sessionO_admin.jsp"/>
 	      		</c:when>
 	      	</c:choose>
-	     	</c:otherwise>
-	  	</c:choose>
-
+		</c:otherwise>
+	</c:choose>
 
 
 	<!--카테고리 영역 시작-->

@@ -1,19 +1,23 @@
+<!-- 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+-->
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>예약리스트 보기(판매자)</title>
-<%-- 부트스트랩 --%>
+<!-- 부트스트랩
 <jsp:include page="/WEB-INF/include/cdnlink.jsp"/>
+ -->
 <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <body>
-	<%-- 네비바 --%>
+	<!-- 네비바 -->
+	<!--
 	<c:choose>
 		<c:when test="${empty sessionScope.id }">
         	<jsp:include page="/WEB-INF/include/navbar_sidebar_SessionX.jsp"/>
@@ -33,9 +37,10 @@
 	      	</c:choose>
       	</c:otherwise>
    	</c:choose>
+   	-->
    	<div id="reservMenu">
 		<div class="container">
-			<%-- 예약리스트 메뉴 --%>
+			<!-- 예약리스트 메뉴 -->
 			<div>
 				<button v-on:click="onReservMenu" 
 					id="request_reserv" value="1" 
@@ -48,7 +53,7 @@
 					id="pass_reserv" value="4"> 거절/지난 예약 </button>
 			</div>
 			
-	   		<%-- 예약 목록 --%>
+	   		<!-- 예약 목록 -->
 	   		
 	   		<div v-if="reservCateNum === 1 ||reservCateNum === '1'">
 	   			<h3>예약 요청 목록</h3><p>판매자가 회원님의 예약을 확인하고 있습니다.</p>
@@ -98,23 +103,23 @@
 				</table>
 			</div>
 		
-			<%-- 페이징 --%>
+			<!-- 페이징 -->
 			<nav>
 				<ul class="pagination">
-					<%--
+					<!--
 			        	startPageNum 이 1 이 아닌 경우에만 Prev 링크를 제공한다. 
 			        	&condition=${condition}&keyword=${encodedK}
-			        --%>
+			        -->
 			        <li class="page-item">
 			            <a class="page-link" v-on:click="onPagenation(event)" id="prev">Prev</a>
 			        </li>
-			        <%-- 페이지 번호 --%>
+			        <!-- 페이지 번호 -->
 			        <li class="page-item" v-for="item in pageList">
 			       		<a class="page-link pageBtn" :class="{'active': item == pageNum}" v-on:click="onPagenation(event)" :id="item">{{item}}</a> 	
 			        </li>
-			        <%--
+			        <!--
 			           마지막 페이지 번호가 전체 페이지의 갯수보다 작으면 Next 링크를 제공한다. 
-			        --%>
+			        -->
 			        <li class="page-item">
 			            <a class="page-link" v-on:click="onPagenation(event)" id="next">Next</a>
 			        </li>
@@ -202,20 +207,29 @@
 				onRejectBtn: async function(event){
 					let reserv_num = event.target.value;
 					//거절하고
-					const response = await axios.get("${pageContext.request.contextPath}/seller/reservation/check-reserv?num="+reserv_num+"&isReservOk=false");
+					const response = await axios.put('${pageContext.request.contextPath}/seller/reservation/check-reserv', {
+						reserv_num: reserv_num,
+						isReservOk: 'false'
+					});
 					//리스트 로딩
 					this.getList();
 				},
 				onPayBtn: async function(event){
 					let reserv_num = event.target.value;
 					//돈 내고
-					const response = await axios.get("${pageContext.request.contextPath}/users/reservation/goPay?num="+reserv_num+"&isPaid=true");
+					const response = await axios.put('${pageContext.request.contextPath}/users/reservation/goPay', {
+						reserv_num: reserv_num,
+						isPaid: 'true'
+					});
 					//리스트 로딩
 					this.getList();
 				},
 				onNotPayBtn: async function(event){
 					let reserv_num = event.target.value;
-					const response = await axios.get("${pageContext.request.contextPath}/users/reservation/goPay?num="+reserv_num+"&isPaid=false");
+					const response = await axios.put('${pageContext.request.contextPath}/users/reservation/goPay', {
+						reserv_num: reserv_num,
+						isPaid: 'false'
+					});
 					this.getList();
 				},
 				onPagenation: async function(event){
@@ -258,7 +272,8 @@
 			}
 		})
 	</script>
-	<!-- footer include -->
+	<!-- footer include
 	<jsp:include page="/WEB-INF/include/footer.jsp"/>
+	 -->
 </body>
 </html>

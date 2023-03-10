@@ -5,11 +5,13 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.web.servlet.ModelAndView;
+
 import com.team.project.reserv.dto.ReservDto;
 
 public interface ReservService {
 	public void insert(ReservDto dto, HttpSession session);
-	public void reservationlistToSeller(HttpServletRequest request, HttpSession session, ReservDto dto);
+	public void reservationlistToSeller(HttpServletRequest request, ModelAndView mView, HttpSession session, ReservDto dto);
 	public void checkReserv(ReservDto dto);
 	public List<ReservDto> reservationlistToUser(HttpServletRequest request, HttpSession session, ReservDto dto);
 	public void updatePaid(ReservDto dto);
