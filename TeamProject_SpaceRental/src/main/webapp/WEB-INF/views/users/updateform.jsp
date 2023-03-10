@@ -47,7 +47,7 @@
       	</c:otherwise>
    	</c:choose>
    
-	<div class="container">
+	<div class="container text-center">
 		<h3>회원 정보 수정</h3>
 		
 		<a id="profileLink" href="javascript:">
@@ -74,8 +74,8 @@
 				<label for="email">이메일</label>
 				<input type="text" id="email" name="email" value="${dto.email }"/>
 			</div>
-			<button type="submit" class="btn btn-primary">수정확인</button>
-			<button type="reset" class="btn btn-secondary">취소</button>
+			<button type="submit" class="btn btn-outline-secondary">수정확인</button>
+			<button type="reset" class="btn btn-outline-dark ">취소</button>
 		</form>	
 		
 		<form id="imageForm" action="${pageContext.request.contextPath}/users/profile_upload" method="post" enctype="multipart/form-data">

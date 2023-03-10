@@ -63,7 +63,7 @@
 					</c:otherwise>
 				</c:choose>
 			</select>
-			<button>리뷰 쓰기</button>
+			<button class="btn btn-outline-secondary">리뷰 쓰기</button>
 		</form>
 	</div>
 		<%-- 리뷰 리스트 --%>
