@@ -12,7 +12,7 @@
 	label {
 	  display: inline-block; /* 레이블을 인라인 블록 요소로 정의하여 박스의 좌측에 위치시킵니다. */
 	  width: 130px; /* 레이블의 너비를 정의합니다. */
-	  text-align: right; /* 레이블의 텍스트를 우측 정렬합니다. */
+	  text-align: center; /* 레이블의 텍스트를 우측 정렬합니다. */
 	  margin-right: 10px; /* 레이블과 박스 사이의 간격을 조절합니다. */
 	}
 </style>
