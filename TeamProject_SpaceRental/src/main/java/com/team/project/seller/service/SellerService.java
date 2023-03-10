@@ -21,4 +21,5 @@ public interface SellerService {
 	public Map<String, Object> saveImage(HttpServletRequest request, MultipartFile image);
     public Map<String, Object> uploadAjaxImage(SellerDto dto, HttpServletRequest request);
     public int getUsersNum(HttpServletRequest request, HttpSession session);
+    public void getAddr(HttpServletRequest request);
 }

@@ -33,4 +33,11 @@
 		DELETE FROM seller_space
 		WHERE space_num = #{space_num}
 	</delete>
+	<select id="getaddr" resultType="sellerDto">
+		SELECT addr, space_name
+		FROM seller_space
+	</select>
+	<select id="addrcount" resultType="int">
+		SELECT COUNT(addr) FROM seller_space
+	</select>
 </mapper>

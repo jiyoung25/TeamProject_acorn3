@@ -258,4 +258,10 @@ public class SellerServiceImpl implements SellerService{
 		
 		return users_num;
 	}
+
+	@Override
+	public void getAddr(HttpServletRequest request) {
+		request.setAttribute("addrList",sellerDao.getAddr());
+		request.setAttribute("addrCount", sellerDao.addrCount());
+	}
 }

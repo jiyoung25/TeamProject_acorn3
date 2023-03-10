@@ -45,4 +45,14 @@ public class SellerDaoImpl implements SellerDao{
 		return session.selectOne("seller.getUsersNum", id);
 	}
 
+	@Override
+	public List<SellerDto> getAddr() {
+		return session.selectList("seller.getaddr");
+	}
+
+	@Override
+	public int addrCount() {
+		return session.selectOne("seller.addrcount");
+	}
+
 }
