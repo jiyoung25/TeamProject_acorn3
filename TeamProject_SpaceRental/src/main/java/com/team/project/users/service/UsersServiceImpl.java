@@ -68,8 +68,9 @@ public class UsersServiceImpl implements UsersService{
 	
 	//로그인 처리를 하는 메소드
 	@Override
-	public void login(String id, String inputPwd, HttpSession session, HttpServletRequest request, ModelAndView mView, HttpServletResponse response) {
+	public UsersDto login(String id, String inputPwd, HttpSession session, HttpServletRequest request, HttpServletResponse response) {
 		UsersDto dto = dao.getData(id);
+		System.out.println("id:"+id+"pwd:"+dto.getPwd());
 		boolean isPwdOk = false;
 		
 		// id정보가 있으면 pwd체크하기
@@ -80,12 +81,10 @@ public class UsersServiceImpl implements UsersService{
 		
 		// id와 pwd가 일치하면
 		if(isPwdOk) {
-			//세션에 id값 저장, dto값은 mView로 보냄
+			//세션에 값 저장
 			session.setAttribute("id", id);
 			session.setAttribute("usersCode", dto.getCode());
 			session.setAttribute("profile", dto.getProfile());
-			mView.addObject("dto", dto);
-			
 			//remember box의 체크 여부 가져오기
 			String remember = request.getParameter("remember");
 			System.out.println(remember);
@@ -103,6 +102,7 @@ public class UsersServiceImpl implements UsersService{
 				response.addCookie(cookId);
 			}
 		}
+		return dto;
 	}
 	
 	@Override
