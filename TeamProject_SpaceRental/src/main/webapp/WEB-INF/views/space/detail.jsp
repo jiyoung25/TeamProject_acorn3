@@ -60,7 +60,30 @@
 		width: 500px;
 		height: 500px;
 	}
-
+	
+	.grid-container {
+		display: grid;
+		width: 325px;
+		grid-template-columns: 1fr 1fr 1fr 1fr;
+		gap: 5px;
+		margin:auto;
+		margin-bottom: 10px;
+	}
+	.timeBtn{
+		background-color:#ffdab9;
+	}
+	.timeBtn:focus {
+		 background-color: #be7a7b; !important
+	}
+	.timeBtn:active {
+		 background-color: #be7a7b; !important
+	}
+	.timeBtn:hover{
+		background-color:#db9662;
+	}
+	.activeBtn{
+		background-color: #be7a7b; !important
+	}
 </style>
 <title>공간 상세 페이지</title>
 </head>
@@ -105,7 +128,7 @@
 	<form id="selectTime" action="${pageContext.request.contextPath}/space/reservation" method="POST" v-on:submit="submitBtnClicked">
 		<div class="container text-center">
 			<div class="row">
-				<div class="col-md-6">
+				<div class="col-lg-6 col-md-6">
 					<img src="${pageContext.request.contextPath}/${spaceDto.mainImagePath }" class="img-fluid"/>
 					
 					<br/>
@@ -137,18 +160,40 @@
 					<div id="map" style="width:100%;height:350px;"></div>
 				</div>
 					
-				<div class="col-md-6">
-					<h3> Reservation Form </h3>
-					<%--최소: 내일부터, 최대: 2달 --%>
-					<label for="reserv_date">날짜 선택</label>
-					<input type="date" id="reserv_date" name="reserv_date" min="${minday }" max="${maxday }" v-model="day" v-on:input="dayBtnClicked"/>
-					<br />
-					<p>선택하신 날짜의 시간당 요금은 1000원 입니다.</p>
-						
-					<c:forEach var="i" begin="0" end="24">
-						<button type="button" class="timeBtn btn btn-info" value="${i }" id="timeBtn${i }"
-							v-on:click="timeBtnClicked">${i }:00</button>
-					</c:forEach>
+				<div class="col-lg-6 col-md-6">
+					<div>
+						<h3> Reservation Form </h3>
+						<%--최소: 내일부터, 최대: 2달 --%>
+						<label for="reserv_date">날짜 선택</label>
+						<input type="date" id="reserv_date" name="reserv_date" min="${minday }" max="${maxday }" v-model="day" v-on:input="dayBtnClicked"/>
+						<br />
+						<p>선택하신 날짜의 시간당 요금은 1000원 입니다.</p>
+						<div class="grid-container">
+							<c:forEach var="i" begin="7" end="10">
+								<button type="button" class="timeBtn btn" value="${i }" id="timeBtn${i }"
+									v-on:click="timeBtnClicked">${i }:00</button>
+							</c:forEach>
+						</div>
+						<div class="grid-container">
+							<c:forEach var="i" begin="11" end="14">
+								<button type="button" class="timeBtn btn btnAtive" value="${i }" id="timeBtn${i }"
+									v-on:click="timeBtnClicked">${i }:00</button>
+							</c:forEach>
+						</div>
+						<div class="grid-container">
+							<c:forEach var="i" begin="15" end="18">
+								<button type="button" class="timeBtn btn" value="${i }" id="timeBtn${i }"
+									v-on:click="timeBtnClicked">${i }:00</button>
+							</c:forEach>
+						</div>
+						<div class="grid-container">
+							<c:forEach var="i" begin="19" end="22">
+								<button type="button" class="timeBtn btn" value="${i }" id="timeBtn${i }"
+									v-on:click="timeBtnClicked">${i }:00</button>
+							</c:forEach>
+						</div>
+					</div>
+					
 					<p id="noneVisible">{{count}}{{time1}}{{time2}}</p>
 					<br />
 					<h3>선택 정보</h3>
@@ -456,6 +501,13 @@
 						} else{
 							this.checkInTime = this.time1;
 							this.checkOutTime = this.time2;
+						}
+						console.log((this.checkInTime)*1);
+						console.log(typeof ((this.checkInTime)*1));
+						console.log((this.checkOutTime)*1);
+						for(let i=((this.checkInTime)*1); i<=((this.checkOutTime)*1); i++){
+							let timeBtn = "#timeBtn" + i; 
+							document.querySelector(timeBtn).classList.add("activeBtn");
 						}
 						
 						console.log(this.timeList);
