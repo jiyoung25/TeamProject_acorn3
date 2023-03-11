@@ -11,6 +11,7 @@
 	<groupId>com.example</groupId>
 	<artifactId>TeamProject_SpaceRental</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
 	<name>TeamProject_SpaceRental</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
@@ -30,7 +31,11 @@
 			<artifactId>mybatis-spring-boot-starter</artifactId>
 			<version>2.3.0</version>
 		</dependency>
-		
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
