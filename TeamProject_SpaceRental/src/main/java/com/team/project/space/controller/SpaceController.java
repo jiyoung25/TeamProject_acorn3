@@ -87,6 +87,11 @@ public class SpaceController {
 		return "redirect:/space/detail";
 	}
 	
+	@RequestMapping("/space/detail1")
+	public String detail1() {
+		return "space/detail1";
+	}
+	
 	@Auth(role = Role.ADMIN)
 	@RequestMapping("/space/spaceDelete")
 	public String spaceDelete(HttpServletRequest request, int cate_num, int space_num, RedirectAttributes redirectAttributes) {
