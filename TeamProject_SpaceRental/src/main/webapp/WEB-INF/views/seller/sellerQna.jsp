@@ -9,6 +9,16 @@
 <%-- 부트스트랩 --%>
 <jsp:include page="/WEB-INF/include/cdnlink.jsp"/>
 <title>Insert title here</title>
+<style>
+	a {
+		text-decoration: none;
+	}
+	
+	a:hover {
+		font-weight: bold;
+		text-decoration: none;
+ 	}
+</style>
 </head>
 <body>
 	<%-- 네비바 --%>
@@ -45,7 +55,6 @@
 					<th>내용</th>
 					<th>조회수</th>
 					<th>작성일</th>
-					<th>해당글 보기</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -53,11 +62,10 @@
 					<tr>
 						<td>${tmp.num }</td>
 						<td>${tmp.writer }</td>
-						<td>${tmp.title }</td>
+						<td><a href="${pageContext.request.contextPath}/qna/qnadetail?num=${tmp.num }">${tmp.title }</a></td>
 						<td>${tmp.content }</td>
 						<td>${tmp.viewCount }</td>
 						<td>${tmp.regdate }</td>
-						<td><a href="${pageContext.request.contextPath}/qna/qnadetail?num=${tmp.num }">보기</a></td>
 					</tr>
 				</c:forEach>
 			</tbody>

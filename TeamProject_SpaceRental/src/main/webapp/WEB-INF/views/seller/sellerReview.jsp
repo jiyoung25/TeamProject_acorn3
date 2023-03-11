@@ -11,6 +11,16 @@
 <%--import from static folder --%>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/star.css" />
 <title>/seller/sellerReview</title>
+<style>
+	a {
+		text-decoration: none;
+	}
+	
+	a:hover {
+		font-weight: bold;
+		text-decoration: none;
+ 	}
+</style>
 </head>
 <body>
 	<%-- 네비바 --%>
@@ -48,7 +58,6 @@
 					<th>조회수</th>
 					<th>별점</th>
 					<th>작성일</th>
-					<th>해당글 보기</th>
 		    	</tr>
 		  	</thead>
 			<tbody>
@@ -56,7 +65,7 @@
 					<tr>
 						<td>${tmp.review_num }</td>
 						<td>${tmp.review_writer }</td>
-						<td>${tmp.review_title }</td>
+						<td><a href="${pageContext.request.contextPath}/review/reviewdetail?review_num=${tmp.review_num }">${tmp.review_title }</a></td>
 						<td>${tmp.viewcount }</td>
 						<td>
 							<%-- 별점 --%>
@@ -66,7 +75,6 @@
 							</span>
 						</td>
 						<td>${tmp.review_regdate }</td>
-						<td><a href="${pageContext.request.contextPath}/review/reviewdetail?review_num=${tmp.review_num }">보기</a></td>
 					</tr>
 				</c:forEach>
 			</tbody>

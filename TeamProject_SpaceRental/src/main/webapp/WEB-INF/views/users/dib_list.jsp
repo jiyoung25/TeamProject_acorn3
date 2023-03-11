@@ -37,7 +37,7 @@
 		<table class="table align-middle mb-0 bg-white">
 			<thead class="bg-light">
 				<tr>
-					<th>업체명</th>
+					<th>공간명</th>
 					<th>이미지</th>
 					<th>주소</th>
 					<th>카테고리 이름</th>
