@@ -43,7 +43,6 @@ public class UsersController {
 	
 	@RequestMapping("/users/signupform")
 	public String signupform() {
-		
 		return "users/signupform";
 	}
 	

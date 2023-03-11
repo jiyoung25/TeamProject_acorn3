@@ -34,7 +34,7 @@
 		WHERE space_num = #{space_num}
 	</delete>
 	<select id="getaddr" resultType="sellerDto">
-		SELECT addr, space_name
+		SELECT addr, space_name, mainimagepath
 		FROM seller_space
 	</select>
 	<select id="addrcount" resultType="int">

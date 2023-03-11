@@ -31,7 +31,7 @@
 	var positions = []
 	
 	for(let i=0; i<${addrCount}; i++){
-		geocoder.addressSearch('경기 용인시 수지구 동천동 949-2', function(result, status) {
+		geocoder.addressSearch(, function(result, status) {
 			positions[i] = {
 				title: ${addrList.space_name };
 				latling: new kakao.maps.LatLng(result[0].y, result[0].x);
