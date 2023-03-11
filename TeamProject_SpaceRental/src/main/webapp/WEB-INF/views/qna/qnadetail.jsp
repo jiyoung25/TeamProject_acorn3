@@ -99,6 +99,16 @@
          transform: rotate(360deg);
       }
    }
+   
+	a {
+		text-decoration: none;
+	}
+	
+	a:hover {
+		font-weight: bold;
+		text-decoration: none;
+ 	}
+
 </style>
 </head>
 <body>

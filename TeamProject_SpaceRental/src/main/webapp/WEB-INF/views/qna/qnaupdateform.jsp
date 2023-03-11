@@ -33,14 +33,13 @@
    	</c:choose>
    	 
 	<div class="container">
-		<h1>글 수정 폼 입니다.</h1>
+		<h1>Q&A 수정</h1>
 		<form action="qnaupdate" method="post">
 			<input type="hidden" name="num" value="${dto.num }" />
 			<div>
 				<label for="writer">작성자</label> <input type="text" id="writer"
 					value="${dto.writer }" disabled />
-			</div>
-			<div>
+
 				<label for="title">제목</label> <input type="text" name="title"
 					id="title" value="${dto.title }" />
 			</div>
@@ -48,8 +47,8 @@
 				<label for="content">내용</label>
 				<textarea name="content" id="content">${dto.content }</textarea>
 			</div>
-			<button type="submit" onclick="submitContents(this);">수정확인</button>
-			<button type="reset">취소</button>
+			<button type="submit" class="btn btn-outline-secondary" onclick="submitContents(this);">수정확인</button>
+			<button type="reset" class="btn btn-outline-dark">취소</button>
 		</form>
 	</div>
 	

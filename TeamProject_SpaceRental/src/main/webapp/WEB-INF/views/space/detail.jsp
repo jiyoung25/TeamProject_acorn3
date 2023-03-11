@@ -54,6 +54,13 @@
 		font-weight: bold;
 		text-decoration: none;
  	}	
+ 	
+ 
+	.img-fluid {
+		width: 500px;
+		height: 500px;
+	}
+
 </style>
 <title>공간 상세 페이지</title>
 </head>
@@ -163,8 +170,8 @@
 					<input type="hidden" name="space_num" value="${spaceDto.space_num }" />
 					<input type="hidden" name="users_id" value="${id }" />
 					<input type="hidden" name="totalMoney" v-bind:value="totalMoney" />
-					<button type="button" v-on:click="resetBtnClicked">다시 선택하기</button>
-					<button type="submit">예약하기</button>
+					<button type="button" class="btn btn-outline-secondary" v-on:click="resetBtnClicked">다시 선택하기</button>
+					<button type="submit" class="btn btn-outline-secondary">예약하기</button>
 				</div>
 			</div>
 		</div>
@@ -190,7 +197,7 @@
 					</c:when>
 				</c:choose>
 			</select>
-			<button>리뷰 쓰기</button>
+			<button class="btn btn-outline-secondary">리뷰 쓰기</button>
 		</form>
 		<div class="container">
 			<table class="table align-middle mb-0 bg-white">
@@ -330,7 +337,7 @@
 				<input type="text" name="keyword" placeholder="검색어..." value="${keyword }" />
 		    	<input type="hidden" name="cate_num" value=${param.cate_num }>
 		    	<input type="hidden" name="space_num" value=${param.space_num }>
-		    	<button type="submit">검색</button>
+		    	<button type="submit" class="btn btn-outline-secondary" >검색</button>
 			</form>
 		</div>
 		<c:if test="${not empty condition }">
