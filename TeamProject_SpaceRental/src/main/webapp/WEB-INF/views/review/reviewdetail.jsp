@@ -143,21 +143,27 @@
 		</div>
 		<!-- 작성자, 등록일, 조회수, 별점 -->
 		<div class="user">
-			<h4><strong>by.</strong>${dto.review_writer } 
-		      <strong>작성일</strong>: ${dto.review_regdate }
-		      <strong>조회수</strong>: ${dto.viewcount }
-		      <strong>별점</strong>:
-			<span class="star">
-			  ★★★★★
-				<span style="width: ${dto.star *10 }%;">★★★★★</span>
-			</span>
-      </h4>
+			<h4>
+				<strong>by.</strong>${dto.review_writer } 
+		    	<strong>작성일</strong>: ${dto.review_regdate }
+		    	<strong>조회수</strong>: ${dto.viewcount }
+		    	<strong>별점</strong>:
+				<span class="star">
+					★★★★★
+					<span style="width: ${dto.star *10 }%;">★★★★★</span>
+				</span>
+      		</h4>
 		</div>
+		
+		<br>
+		
 		<!-- 내용 -->
 		<div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" class="scrollspy-example bg-body-tertiary p-3 rounded-2" tabindex="0">
 	 	   <p>${dto.review_content }</p>
 		</div>
-    
+    	
+    	<br>
+    	
 		<c:if test="${usersCode eq 2 }">
 			<a href="${pageContext.request.contextPath}/seller/sellerReview">뒤로가기</a>
 		</c:if>
