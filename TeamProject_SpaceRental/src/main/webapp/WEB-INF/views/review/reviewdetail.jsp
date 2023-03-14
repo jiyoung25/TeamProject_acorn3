@@ -107,6 +107,11 @@
    span.star{
 		font-size: 1.5rem;
    }
+   
+   #grid-a-button{
+   		display: grid;
+    	grid-template-columns: 2fr 3fr 1.5fr;
+   }
 </style>
 </head>
 <body>
@@ -143,55 +148,69 @@
 		</div>
 		<!-- 작성자, 등록일, 조회수, 별점 -->
 		<div class="user">
-			<h4><strong>by.</strong>${dto.review_writer } 
-		      <strong>작성일</strong>: ${dto.review_regdate }
-		      <strong>조회수</strong>: ${dto.viewcount }
-		      <strong>별점</strong>:
-			<span class="star">
-			  ★★★★★
-				<span style="width: ${dto.star *10 }%;">★★★★★</span>
-			</span>
-      </h4>
+			<h4>
+				<strong>by.</strong>${dto.review_writer } 
+		    	<strong>작성일</strong>: ${dto.review_regdate }
+		    	<strong>조회수</strong>: ${dto.viewcount }
+		    	<strong>별점</strong>:
+				<span class="star">
+					★★★★★
+					<span style="width: ${dto.star *10 }%;">★★★★★</span>
+				</span>
+      		</h4>
 		</div>
+		
+		<br>
+		
 		<!-- 내용 -->
 		<div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" class="scrollspy-example bg-body-tertiary p-3 rounded-2" tabindex="0">
 	 	   <p>${dto.review_content }</p>
 		</div>
-    
-		<c:if test="${usersCode eq 2 }">
-			<a href="${pageContext.request.contextPath}/seller/sellerReview">뒤로가기</a>
-		</c:if>
-		<c:if test="${sessionScope.id eq dto.review_writer }">
-			<button type="button" class="btn btn-outline-secondary">
-				<a href="${pageContext.request.contextPath}/users/reviewList">목록으로</a>
-			</button>
-			<button type="button" class="btn btn-outline-secondary">
-				<a href="reviewupdateform?review_num=${dto.review_num }">수정</a>
-			</button>
-			<button type="button" class="btn btn-outline-secondary">
-				<a href="javascript:" onclick="deleteConfirm()">삭제</a>
-			</button>
+    	
+    	<br>
+    	
+    	<div id="grid-a-button">
+    		<div>
+				<%-- 만일 이전글(더 옛날글)의 글번호가 0 이 아니라면 (이전글이 존재한다면) --%>
+				<c:if test="${dto.prevNum ne 0 }">
+					<a href="reviewdetail?review_num=${dto.prevNum }">이전글</a>
+				</c:if>
+				<%-- 만일 다음글(더 최신글)의 글번호가 0 이 아니라면 (다음글이 존재한다면) --%>
+				<c:if test="${dto.nextNum ne 0 }">
+					<a href="reviewdetail?review_num=${dto.nextNum }">다음글</a>
+				</c:if>
+			</div>
 			
-			<script>
-				function deleteConfirm() {
-					const isDelete = confirm("이 글을 삭제 하겠습니까?");
-					if (isDelete) {
-						location.href = "delete?review_num=${dto.review_num}";
-					}
-				}
-			</script>
-		</c:if>
-		
-		<!--  
-		<%-- 만일 이전글(더 옛날글)의 글번호가 0 이 아니라면 (이전글이 존재한다면) --%>
-		<c:if test="${dto.prevNum ne 0 }">
-			<a href="reviewdetail?review_num=${dto.prevNum }">이전글</a>
-		</c:if>
-		<%-- 만일 다음글(더 최신글)의 글번호가 0 이 아니라면 (다음글이 존재한다면) --%>
-		<c:if test="${dto.nextNum ne 0 }">
-			<a href="reviewdetail?review_num=${dto.nextNum }">다음글</a>
-		</c:if>
-		-->
+			<div> </div>
+			
+    		<div style="text-align: right;">
+				<c:if test="${usersCode eq 2 }">
+					<a href="${pageContext.request.contextPath}/seller/sellerReview">뒤로가기</a>
+				</c:if>
+				<c:if test="${sessionScope.id eq dto.review_writer }">
+					<button type="button" class="btn btn-outline-dark" 
+						onclick="location.href=`${pageContext.request.contextPath}/users/reviewList`">
+						목록으로
+					</button>
+					<button type="button" class="btn btn-outline-dark"
+						onclick="location.href=`reviewupdateform?review_num=${dto.review_num }`">
+						수정
+					</button>
+					<button type="button" class="btn btn-outline-dark" onclick="deleteConfirm()">
+						삭제
+					</button>
+					
+					<script>
+						function deleteConfirm() {
+							const isDelete = confirm("이 글을 삭제 하겠습니까?");
+							if (isDelete) {
+								location.href = "delete?review_num=${dto.review_num}";
+							}
+						}
+					</script>
+				</c:if>
+			</div>
+		</div>
 
 	</div>
 	<script src="${pageContext.request.contextPath}/js/gura_util.js"></script>

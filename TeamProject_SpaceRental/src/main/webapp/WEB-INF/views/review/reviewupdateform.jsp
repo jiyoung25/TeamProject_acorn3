@@ -62,7 +62,7 @@
 				<label for="review_content">내용</label>
 				<textarea name="review_content" id="review_content">${dto.review_content }</textarea>
 			</div>
-			<button type="submit" class="btn btn-outline-secondary" onclick="submitContents(this);">수정확인</button>
+			<button type="submit" class="btn btn-outline-dark" onclick="submitContents(this);">수정확인</button>
 			<button type="reset" class="btn btn-outline-dark" >취소</button>
 		</form>
 	</div>

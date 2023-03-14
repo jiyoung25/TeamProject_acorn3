@@ -63,7 +63,7 @@
 					</c:otherwise>
 				</c:choose>
 			</select>
-			<button class="btn btn-outline-secondary">리뷰 쓰기</button>
+			<button class="btn btn-outline-dark">리뷰 쓰기</button>
 		</form>
 	</div>
 		<%-- 리뷰 리스트 --%>
@@ -130,7 +130,7 @@
 			</ul>
 		</nav>
 		
-		<a href="${pageContext.request.contextPath}" class="btn btn-outline-secondary">메인으로 가기</a>
+		<a href="${pageContext.request.contextPath}" class="btn btn-outline-dark">메인으로 가기</a>
 	</div>
 	<script>
    		const deleteLink = function(){
