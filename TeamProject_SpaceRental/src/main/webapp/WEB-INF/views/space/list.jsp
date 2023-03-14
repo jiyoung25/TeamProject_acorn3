@@ -21,6 +21,15 @@
 			float:left;
 			list-style-type:none;
 		}
+		
+		#search-button {
+		  margin: 10px;
+		}
+		
+		#cateimage {
+			height: 350px;
+		}
+		
 	</style>
 <title>공간 리스트</title>
 </head>
@@ -56,7 +65,7 @@
 						<div class="container px-5">
 					    	<div class="row gx-5 align-items-center">
 					        	<div class="col-lg-6">
-					            	<div class="p-5"><img class="img-fluid rounded-circle" src="${pageContext.request.contextPath}/image/partyroom.png" alt="..."></div>
+					            	<div class="p-5"><img id="cateimage" class="img-fluid rounded-circle" src="${pageContext.request.contextPath}/image/partyroom.png" alt="..."></div>
 					            </div>
 					            <div class="col-lg-6">
 					            	<div class="p-5">
@@ -75,7 +84,7 @@
 						<div class="container px-5">
 							<div class="row gx-5 align-items-center">
 						    	<div class="col-lg-6">
-						        	<div class="p-5"><img class="img-fluid rounded-circle" src="${pageContext.request.contextPath}/image/practiceroom.png" alt="..."></div>
+						        	<div class="p-5"><img id="cateimage" class="img-fluid rounded-circle" src="${pageContext.request.contextPath}/image/practiceroom.png" alt="..."></div>
 						        </div>
 						        <div class="col-lg-6">
 						        	<div class="p-5">
@@ -94,7 +103,7 @@
 						<div class="container px-5">
 							<div class="row gx-5 align-items-center">
 								<div class="col-lg-6">
-									<div class="p-5"><img class="img-fluid rounded-circle" src="${pageContext.request.contextPath}/image/kitchin.png" alt="..."></div>
+									<div class="p-5"><img id="cateimage" class="img-fluid rounded-circle" src="${pageContext.request.contextPath}/image/kitchin.png" alt="..."></div>
 								</div>
 								<div class="col-lg-6">
 									<div class="p-5">
@@ -113,7 +122,7 @@
 						<div class="container px-5">
 							<div class="row gx-5 align-items-center">
 								<div class="col-lg-6">
-									<div class="p-5"><img class="img-fluid rounded-circle" src="${pageContext.request.contextPath}/image/studyroom.png" alt="..."></div>
+									<div class="p-5"><img id="cateimage" class="img-fluid rounded-circle" src="${pageContext.request.contextPath}/image/studyroom.png" alt="..."></div>
 				                </div>
 				                <div class="col-lg-6">
 				                	<div class="p-5">
@@ -132,7 +141,7 @@
 			            <div class="container px-5">
 			                <div class="row gx-5 align-items-center">
 			                    <div class="col-lg-6">
-			                        <div class="p-5"><img class="img-fluid rounded-circle" src="${pageContext.request.contextPath}/image/learningroom.png" alt="..."></div>
+			                        <div class="p-5"><img id="cateimage" class="img-fluid rounded-circle" src="${pageContext.request.contextPath}/image/learningroom.png" alt="..."></div>
 			                    </div>
 			                    <div class="col-lg-6">
 			                        <div class="p-5">
@@ -152,14 +161,14 @@
 		<div class="row">
 	    	<%-- 위치 검색을 위한 toggle & checkbox --%>
 	    	<div id="areaSelectForm">
-	    		<button type="button" class="btn btn-outline-secondary" v-on:click="onAreaClicked">지역 검색하기</button>
+	    		<button type="button" class="btn btn-outline-dark" v-on:click="onAreaClicked">지역 검색하기</button>
 	    		<div :class= "areaToggle ?'areaToggle' : ''">
 	    			<div class="areaStyle">
 		    			<form v-on:submit="onAreaSearch">
 		    				<ul v-for="item in cities" id="cities">
 		    					<li><input type="checkbox" :value="item" class="areaCheckbox"/>{{item}}</li>
 		    				</ul>
-		    				<button>검색</button>
+		    				<button id="search-button" class="btn btn-outline-dark">검색</button>
 		    				<button type="button" v-on:click="OnareaResetBtn" :class = "resetToggle ? 'resetToggle':''">검색 조건 리셋하기</button>
 	    				</form>
 	    			</div>
