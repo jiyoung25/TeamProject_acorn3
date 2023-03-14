@@ -45,7 +45,7 @@
       border-top: 1px solid #888;
    }
    .comment-form textarea{
-      width: 84%;
+      width: 86%;
       height: 100px;
    }
    .comment-form button{
@@ -108,7 +108,11 @@
 		font-weight: bold;
 		text-decoration: none;
  	}
-
+ 	
+	#grid-a-button{
+   		display: grid;
+    	grid-template-columns: 2fr 3fr 1.5fr;
+   }
 </style>
 </head>
 <body>
@@ -155,48 +159,60 @@
 		<div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" class="scrollspy-example bg-body-tertiary p-3 rounded-2" tabindex="0">
 	 	   <p>${dto.content }</p>
 		</div>
-	</div>
 	
-	<br>
-	   
-	<div class="container">
-		<%-- 만일 이전글(더 옛날글)의 글번호가 0 이 아니라면 (이전글이 존재한다면) --%>
-		<c:if test="${dto.qnaPrevNum ne 0 }">
-			<a href="qnadetail?num=${dto.qnaPrevNum }&condition=${condition}&keyword=${encodedK}">이전글</a>
-		</c:if>
-		<%-- 만일 다음글(더 최신글)의 글번호가 0 이 아니라면 (다음글이 존재한다면) --%>
-		<c:if test="${dto.qnaNextNum ne 0 }">
-			<a href="qnadetail?num=${dto.qnaNextNum }&condition=${condition}&keyword=${encodedK}">다음글</a>
-		</c:if>
-		<%-- 만일 검색 키워드가 있다면 --%>
-		<c:if test="${not empty keyword }">
-			<p>
-				<strong>${keyword }</strong> 검색어로 검색된 내용 자세히 보기
-			</p>
-		</c:if>
+		<br>
 		
-		<c:if test="${usersCode eq 2 }">
-			<a href="${pageContext.request.contextPath}/seller/sellerQna">뒤로가기</a>
-		</c:if>
-		<c:if test="${sessionScope.id eq dto.writer }">
-			<button type="button" class="btn btn-outline-secondary">
-				<a href="qnaupdateform?num=${dto.num }">수정</a>
-			</button>
-			<button type="button" class="btn btn-outline-secondary">
-				<a href="javascript:" onclick="deleteConfirm()">삭제</a>
-			</button>
-			<script>
-				function deleteConfirm() {
-					const isDelete = confirm("이 글을 삭제 하겠습니까?");
-					if (isDelete) {
-						location.href = "delete?num=${dto.num}";
-					}
-				}
-			</script>
-		</c:if>
+		<div id="grid-a-button">
+			<div>	
+				<%-- 만일 이전글(더 옛날글)의 글번호가 0 이 아니라면 (이전글이 존재한다면) --%>
+				<c:if test="${dto.qnaPrevNum ne 0 }">
+					<a href="qnadetail?num=${dto.qnaPrevNum }&condition=${condition}&keyword=${encodedK}">이전글</a>
+				</c:if>
+				<%-- 만일 다음글(더 최신글)의 글번호가 0 이 아니라면 (다음글이 존재한다면) --%>
+				<c:if test="${dto.qnaNextNum ne 0 }">
+					<a href="qnadetail?num=${dto.qnaNextNum }&condition=${condition}&keyword=${encodedK}">다음글</a>
+				</c:if>
+				<%-- 만일 검색 키워드가 있다면 --%>
+				<c:if test="${not empty keyword }">
+					<p>
+						<strong>${keyword }</strong> 검색어로 검색된 내용 자세히 보기
+					</p>
+				</c:if>
+			</div>
+			
+			<div> </div>
+			
+			<div style="text-align: right;">
+				<c:if test="${usersCode eq 2 }">
+					<a href="${pageContext.request.contextPath}/seller/sellerQna">뒤로가기</a>
+				</c:if>
+				<c:if test="${sessionScope.id eq dto.writer }">
+					<button type="button" class="btn btn-outline-dark" 
+						onclick="location.href=`${pageContext.request.contextPath}/users/qnaList`">
+						목록으로
+					</button>
+					<button type="button" class="btn btn-outline-dark" 
+						onclick="location.href=`qnaupdateform?num=${dto.num }`">
+						수정
+					</button>
+					<button type="button" class="btn btn-outline-dark" onclick="deleteConfirm()">
+						삭제
+					</button>
+					<script>
+						function deleteConfirm() {
+							const isDelete = confirm("이 글을 삭제 하겠습니까?");
+							if (isDelete) {
+								location.href = "delete?num=${dto.num}";
+							}
+						}
+					</script>
+				</c:if>
+			</div>
+		</div>
+	
 		
 		<br><br>
-		
+			
 		<h4>댓글을 입력해 주세요</h4>
 		<!-- 원글에 댓글을 작성할 폼 -->
 		<form class="comment-form insert-form" action="comment_insert"
@@ -205,7 +221,7 @@
 			<input type="hidden" name="ref_group" value="${dto.num }" />
 			<!-- 원글의 작성자가 댓글의 대상자가 된다. -->
 			<input type="hidden" name="target_id" value="${dto.writer }" />
-
+	
 			<textarea name="content">${empty id ? '댓글 작성을 위해 로그인이 필요 합니다.' : '' }</textarea>
 			<button type="submit">등록</button>
 		</form>
@@ -299,7 +315,9 @@
 	    	</svg>
 		</div>
 	</div>
+	
 	<br><br><br>
+	
 	<!-- footer include -->
 	<jsp:include page="/WEB-INF/include/footer.jsp"/>
 	

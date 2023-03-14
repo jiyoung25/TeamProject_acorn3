@@ -64,7 +64,7 @@
 				<label for="review_content">내용</label>
 				<textarea name="review_content" id="review_content" rows="10"></textarea>
 			</div>
-			<button type="submit" class="btn btn-outline-secondary"onclick="submitContents(this)">저장</button>
+			<button type="submit" class="btn btn-outline-dark"onclick="submitContents(this)">저장</button>
 		</form>
 	</div>
 	<script src="${pageContext.request.contextPath }/SmartEditor/js/HuskyEZCreator.js"></script>
