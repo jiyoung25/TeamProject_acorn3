@@ -7,6 +7,11 @@
 <meta charset="UTF-8">
 <%-- 부트스트랩 --%>
 <jsp:include page="/WEB-INF/include/cdnlink.jsp"/>
+<style>
+	a {
+		text-decoration-line: none;
+	}
+</style>
 <title>/views/users/login.jsp</title>
 </head>
 <body>
@@ -34,17 +39,16 @@
 	<div class="container">
 		<c:choose>
 			<c:when test="${not empty id }">
-				<h1>Ubiquitous에 오신 것을 환영합니다</h1>
-				<p class="alert alert-success">
-					<strong>${id }</strong>님 로그인 되었습니다.
-					<a href="${url}">확인</a>
-				</p>
+				<script>
+					console.log('${url}');
+					location.href = '${url}';
+				</script>
 			</c:when>
 			<c:otherwise>
-				<h3>로그인 실패</h3>
+				<h3 class="mt-3 mb-3">로그인 실패</h3>
 				<p class="alert alert-danger">
 					로그인 정보를 다시 확인해주세요.
-					<a href="${pageContext.request.contextPath}/users/loginform?url=${encodedUrl}">로그인 다시 시도하기</a>
+					<a href="${pageContext.request.contextPath}/users/loginform?url=${encodedUrl}" class='alert-link'>로그인 다시 시도하기</a>
 				</p>
 			</c:otherwise>
 		</c:choose>

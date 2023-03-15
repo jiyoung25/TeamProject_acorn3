@@ -28,6 +28,7 @@ public class ReservController {
 		return "space/reservation";
 	}
 	
+	@Auth(role = Role.SELLER)
 	@RequestMapping("/seller/reservation/reservationlist")
 	public String reservationlistToSeller(HttpServletRequest request, HttpSession session, ReservDto dto) {
 		service.reservationlistToSeller(request, session, dto);
@@ -65,6 +66,7 @@ public class ReservController {
 		return list;
 	}
 	
+	@Auth(role = Role.USER)
 	@RequestMapping("/users/reservationlist")
 	public String reservationlistToUser(HttpServletRequest request, HttpSession session, ReservDto dto) {
 
