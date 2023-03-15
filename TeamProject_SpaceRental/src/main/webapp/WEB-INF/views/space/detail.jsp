@@ -540,6 +540,9 @@
 					this.count=0;
 					this.time1=0;
 					this.time2=0;
+					for(let i=this.checkInTime; i<=this.checkOutTime; i++){
+						document.querySelector("#timeBtn"+i).classList.remove("activeBtn");
+					}
 					this.checkInTime=0;
 					this.checkOutTime=0;
 					this.totalMoney=0;
@@ -554,6 +557,7 @@
 						let timeBtn = "#timeBtn"+i;
 						document.querySelector(timeBtn).classList.remove("disabled");
 						document.querySelector(timeBtn).classList.remove("duplicate");
+						document.querySelector(timeBtn).classList.remove("activeBtn");
 					}
 					
 					//비동기 처리한 결과를 바로 vue의 data에 적용해서 쓰기 위해, fetch가 아닌 async/await를 사용한다.
