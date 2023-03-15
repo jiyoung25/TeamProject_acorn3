@@ -9,6 +9,16 @@
 <%-- 부트스트랩 --%>
 <jsp:include page="/WEB-INF/include/cdnlink.jsp"/>
 <title>/views/users/signup</title>
+<style>
+	a {
+		text-decoration: none;
+	}
+	
+	a:hover {
+		font-weight: bold;
+		text-decoration: none;
+ 	}
+</style>
 </head>
 <body>
 	<%-- 네비바 --%>
@@ -36,13 +46,13 @@
 		<p class="alert alert-success">
 			<c:choose>
 				<c:when test="${code eq 1 }">
-					관리자님 가입되었습니다.
+					<strong>관리자로</strong>님 가입되었습니다.
 				</c:when>
 				<c:when test="${code eq 2 }">
-					판매자님 가입되었습니다.
+					<strong>판매자로</strong> 가입되었습니다.
 				</c:when>
 				<c:otherwise>
-					회원님 가입되었습니다.
+					<strong>회원으로</strong> 가입되었습니다.
 				</c:otherwise>
 			</c:choose>
 			<a href="${pageContext.request.contextPath}/users/loginform">로그인 하러가기</a>
