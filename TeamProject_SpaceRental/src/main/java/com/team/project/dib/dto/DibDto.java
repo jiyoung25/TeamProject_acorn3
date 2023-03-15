@@ -12,6 +12,7 @@ public class DibDto {
     //찜리스트를 뽑기 위한 dto
     private String space_name;
     private String mainImagePath;
+    private String oneliner;
     private String addr;
     private int cate_num;
     private String cate_name;
@@ -25,7 +26,8 @@ public class DibDto {
     }
 
 	public DibDto(int dibson_num, int users_num, String users_id, int space_num, String space_name,
-			String mainImagePath, String addr, int cate_num, String cate_name, int startRowNum, int endRowNum) {
+			String mainImagePath, String oneliner, String addr, int cate_num, String cate_name, int startRowNum,
+			int endRowNum) {
 		super();
 		this.dibson_num = dibson_num;
 		this.users_num = users_num;
@@ -33,6 +35,7 @@ public class DibDto {
 		this.space_num = space_num;
 		this.space_name = space_name;
 		this.mainImagePath = mainImagePath;
+		this.oneliner = oneliner;
 		this.addr = addr;
 		this.cate_num = cate_num;
 		this.cate_name = cate_name;
@@ -72,22 +75,6 @@ public class DibDto {
 		this.space_num = space_num;
 	}
 
-	public int getStartRowNum() {
-		return startRowNum;
-	}
-
-	public void setStartRowNum(int startRowNum) {
-		this.startRowNum = startRowNum;
-	}
-
-	public int getEndRowNum() {
-		return endRowNum;
-	}
-
-	public void setEndRowNum(int endRowNum) {
-		this.endRowNum = endRowNum;
-	}
-
 	public String getSpace_name() {
 		return space_name;
 	}
@@ -102,6 +89,14 @@ public class DibDto {
 
 	public void setMainImagePath(String mainImagePath) {
 		this.mainImagePath = mainImagePath;
+	}
+
+	public String getOneliner() {
+		return oneliner;
+	}
+
+	public void setOneliner(String oneliner) {
+		this.oneliner = oneliner;
 	}
 
 	public String getAddr() {
@@ -126,5 +121,21 @@ public class DibDto {
 
 	public void setCate_name(String cate_name) {
 		this.cate_name = cate_name;
+	}
+
+	public int getStartRowNum() {
+		return startRowNum;
+	}
+
+	public void setStartRowNum(int startRowNum) {
+		this.startRowNum = startRowNum;
+	}
+
+	public int getEndRowNum() {
+		return endRowNum;
+	}
+
+	public void setEndRowNum(int endRowNum) {
+		this.endRowNum = endRowNum;
 	}
 }
