@@ -74,8 +74,11 @@
 				<label for="email">이메일</label>
 				<input type="text" id="email" name="email" value="${dto.email }"/>
 			</div>
-			<button type="submit" class="btn btn-outline-secondary">수정확인</button>
-			<button type="reset" class="btn btn-outline-dark ">취소</button>
+			<div class="col">
+				<button type="submit" class="btn btn-outline-secondary">수정확인</button>
+				<button type="reset" class="btn btn-outline-dark ">취소</button>
+				<button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#pwdModal">비밀번호 변경</button>
+			</div>
 		</form>	
 		
 		<form id="imageForm" action="${pageContext.request.contextPath}/users/profile_upload" method="post" enctype="multipart/form-data">
@@ -84,6 +87,24 @@
 			<button type="submit">업로드</button>
 		</form>
 					
+	</div>
+	<!-- Modal -->
+	<div class="modal fade" id="pwdModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h1 class="modal-title fs-5" id="exampleModalLabel">Message</h1>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					비밀번호를 변경하시겠습니까 ?
+				</div>
+                <div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+					<button type="button" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/users/pwd_updateform' ">확인</button>
+                </div>
+			</div>
+		</div>
 	</div>
 	
 	<!-- footer include -->

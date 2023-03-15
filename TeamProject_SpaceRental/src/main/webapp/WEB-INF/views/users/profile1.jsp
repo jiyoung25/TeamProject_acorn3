@@ -49,7 +49,7 @@
       	</c:otherwise>
    	</c:choose>
 	<!--프로필 사진-->
-	<div class="container">
+	<div class="container ">
 		<div class="row">
 			<div class="col-md-6 text-center">
 				<div class="card-title mx-auto p-5">
@@ -76,7 +76,7 @@
             </div>
             
 			<!--프로필 정보 영역-->
-			<div class="col-md-6">	
+			<div class="col-md-6 mx-auto p-5" style="background-color:;" >	
 		        <!--아이디 및 가입일-->
 		        <div>
 		            <label for="address2" class="form-label">아이디</label>
@@ -91,32 +91,7 @@
 		            <label for="exampleFormControlInput1" class="form-label">Email</label>
 		            <input type="email" class="form-control" placeholder="${dto.email }" aria-label="readonly input example" readonly>
 		        </div>
-		        <!--비밀번호-->
-		        <div>
-	                <label for="address2" class="form-label">password</label>
-                    <input class="form-control" type="text" value="보안상 표시하지 않습니다" aria-label="readonly input example" readonly>
-					<br/>
-					<button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#pwdModal">비밀번호 변경</button>		                
-                </div>		                
-               		                
-                <!-- Modal -->
-                <div class="modal fade" id="pwdModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-	                    <div class="modal-content">
-	                        <div class="modal-header">
-		                        <h1 class="modal-title fs-5" id="exampleModalLabel">Message</h1>
-		                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-	                        </div>
-	                        <div class="modal-body">
-	                        	비밀번호를 변경하시겠습니까 ?
-	                        </div>
-	                        <div class="modal-footer">
-		                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
-		                        <button type="button" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/users/pwd_updateform' ">확인</button>
-	                        </div>
-	                    </div>
-                    </div>
-            	</div>
+		        
             	<hr class="my-5">
 	            <!--수정 및 탈퇴하기 버튼-->
 	            <div>		                
