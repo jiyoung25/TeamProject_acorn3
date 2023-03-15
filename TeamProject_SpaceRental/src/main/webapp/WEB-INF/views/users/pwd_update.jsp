@@ -7,10 +7,14 @@
 <meta charset="UTF-8">
 <%-- 부트스트랩 --%>
 <jsp:include page="/WEB-INF/include/cdnlink.jsp"/>
+<style>
+	a {
+		text-decoration-line: none;
+	}
+</style>
 <title>/views/users/pwd_update.jsp</title>
 </head>
 <body>
-<div class="container">
 	<%-- 네비바 --%>
 	<c:choose>
 		<c:when test="${empty sessionScope.id }">
@@ -32,21 +36,24 @@
       	</c:otherwise>
    	</c:choose>
    
-	<c:choose>
-		<c:when test="${isSuccess }">
-			<p class="alert alert-success">
-				<strong>${id }</strong> 님 비밀번호를 수정하고 로그 아웃되었습니다.
-				<a href="${pageContext.request.contextPath}/users/loginform">다시 로그인 하러 가기</a>
-			</p>
-		</c:when>
-		<c:otherwise>
-			<p class="alert alert-danger">
-				이전 비밀번호가 일치하지 않습니다.
-				<a href="${pageContext.request.contextPath}/users/pwd_updateform">다시 시도</a>
-			</p>
-		</c:otherwise>
-	</c:choose>
-</div>
+	<div class="container">
+		<c:choose>
+			<c:when test="${isSuccess }">
+				<h3 class="mt-3 mb-3">비밀번호 수정 성공</h3>
+				<p class="alert alert-success">
+					<strong>${id }</strong> 님 비밀번호를 수정하고 로그 아웃되었습니다.
+					<a href="${pageContext.request.contextPath}/users/loginform" class='alert-link'>다시 로그인 하러 가기</a>
+				</p>
+			</c:when>
+			<c:otherwise>
+				<h3 class="mt-3 mb-3">비밀번호 수정 실패</h3>
+				<p class="alert alert-danger">
+					이전 비밀번호가 일치하지 않습니다.
+					<a href="${pageContext.request.contextPath}/users/pwd_updateform" class='alert-link'>다시 시도</a>
+				</p>
+			</c:otherwise>
+		</c:choose>
+	</div>
 
 	<!-- footer include -->
 	  <jsp:include page="/WEB-INF/include/footer.jsp"/>
