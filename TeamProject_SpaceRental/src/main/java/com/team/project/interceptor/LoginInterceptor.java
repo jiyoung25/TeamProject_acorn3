@@ -24,6 +24,8 @@ public class LoginInterceptor implements HandlerInterceptor{
 		//만일 로그인을 하지 않았다면
 		if(id == null) {
 			//로그인 페이지로 리다일렉트 이동 시키고 false 를 리턴한다.
+			//context path
+			String cPath=request.getContextPath();
 			//원래 가려던 url 정보 읽어오기
 			String url=request.getRequestURI();
 			//GET 방식 전송 파라미터를 query 문자열로 읽어오기 ( a=xxx&b=xxx&c=xxx )
@@ -32,15 +34,16 @@ public class LoginInterceptor implements HandlerInterceptor{
 			String encodedUrl=null;
 			if(query==null) {//전송 파라미터가 없다면 
 				encodedUrl=URLEncoder.encode(url);
-			}else {
+				}else {
 				// 원래 목적지가 /test/xxx.jsp 라고 가정하면 아래와 같은 형식의 문자열을 만든다.
 				// "/test/xxx.jsp?a=xxx&b=xxx ..."
 				encodedUrl=URLEncoder.encode(url+"?"+query);
 			}
 			
 			//3. 로그인을 하지 않았다면  /users/loginform 페이지로 리다일렉트 이동 시킨다. (HttpServletResponse)
-			String cPath=request.getContextPath();
 			response.sendRedirect(cPath+"/users/loginform?url="+encodedUrl);
+			//context path를 뺀 url경로
+			request.setAttribute("servletPath", request.getServletPath());
 			
 			return false;
 		}
