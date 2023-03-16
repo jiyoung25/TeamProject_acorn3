@@ -1,5 +1,6 @@
 package com.team.project.seller.service;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,4 +22,5 @@ public interface SellerService {
 	public Map<String, Object> saveImage(HttpServletRequest request, MultipartFile image);
     public Map<String, Object> uploadAjaxImage(SellerDto dto, HttpServletRequest request);
     public int getUsersNum(HttpServletRequest request, HttpSession session);
+    public List<SellerDto> getAddr(HttpServletRequest request, int cate_num);
 }

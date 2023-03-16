@@ -158,6 +158,8 @@
 		</section>
     			
 		<%-- 카테고리별 내용 --%>
+		<%-- 지도 검색을 위한 버튼 --%>
+		<button type="button" class="btn btn-outline-secondary" onClick="location.href='${pageContext.request.contextPath}/space/navigator?cate_num=${param.cate_num }'">지도로 보기</button>
 		<div class="row">
 	    	<%-- 위치 검색을 위한 toggle & checkbox --%>
 	    	<div id="areaSelectForm">
