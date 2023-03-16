@@ -184,7 +184,7 @@
 				        <div class="card-body row">
 				        	<div>
 				            	<h4 class="card-title mb-2 text-center">${tmp.space_name }</h4>
-				             	<p class="card-text">${tmp.addr }</p>
+				             	<p class="card-text">${tmp.addr } ${tmp.addr2 }</p>
 				            	<p class="card-text">${tmp.oneliner }</p>
 				            </div>
 						</div>

@@ -11,6 +11,7 @@ public class SpaceDto {
 	private String intro; //등록한 공간 상세 소개
 	private String mainImagePath; // 대표이미지 경로
 	private String addr; //공간 주소
+	private String addr2; //공간 상세주소
 	private String cate_name; //등록한 공간의 카테고리 이름
 	
 	//다른 table들과의 join을 위한 field
@@ -31,7 +32,7 @@ public class SpaceDto {
 	public SpaceDto() {}
 
 	public SpaceDto(int space_num, String space_name, int users_num, String oneliner, String intro,
-			String mainImagePath, String addr, String cate_name, int cate_num, String review_content, int star,
+			String mainImagePath, String addr, String addr2, String cate_name, int cate_num, String review_content, int star,
 			int startRowNum, int endRowNum, String[] searchArea, String path) {
 		super();
 		this.space_num = space_num;
@@ -41,6 +42,7 @@ public class SpaceDto {
 		this.intro = intro;
 		this.mainImagePath = mainImagePath;
 		this.addr = addr;
+		this.addr2 = addr2;
 		this.cate_name = cate_name;
 		this.cate_num = cate_num;
 		this.review_content = review_content;
@@ -92,6 +94,12 @@ public class SpaceDto {
 	}
 	public void setAddr(String addr) {
 		this.addr = addr;
+	}
+	public String getAddr2() {
+		return addr2;
+	}
+	public void setAddr2(String addr2) {
+		this.addr2 = addr2;
 	}
 	public String getCate_name() {
 		return cate_name;
