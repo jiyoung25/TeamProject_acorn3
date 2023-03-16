@@ -51,10 +51,10 @@
 			<button type="submit" class="btn btn-outline-dark" onclick="submitContents(this)">저장</button>
 		</form>
 	</div>
-	
-	   <!-- footer include -->
-	  <jsp:include page="/WEB-INF/include/footer.jsp"/>
-	  
+
+	<!-- footer include -->
+	<jsp:include page="/WEB-INF/include/footer.jsp" />
+
 	<script src="${pageContext.request.contextPath }/SmartEditor/js/HuskyEZCreator.js"></script>
 	<script>
 		var oEditors = [];
