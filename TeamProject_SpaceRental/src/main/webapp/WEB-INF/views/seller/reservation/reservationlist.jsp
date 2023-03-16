@@ -11,6 +11,9 @@
 <title>예약리스트 보기(판매자)</title>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <style>
+	br{
+		mso-data-placement:same-cell;
+	}
 </style>
 </head>
 <body>
@@ -35,112 +38,126 @@
       	</c:otherwise>
    	</c:choose>
    	
-	<div class="container">
-		<%-- 예약리스트 메뉴 --%>
-		<div id="reservMenu">
-			<button onClick="location.href='${pageContext.request.contextPath}/seller/reservation/reservationlist?reservCateNum=1'" 
-				id="request_reserv" value="1" 
-				> 예약 요청 </button>
-			<button onClick="location.href='${pageContext.request.contextPath}/seller/reservation/reservationlist?checkReserv=true&reservCateNum=2'" 
-				id="wait_pay" value="2"> 결제 대기 </button>
-			<button onClick="location.href='${pageContext.request.contextPath}/seller/reservation/reservationlist?checkReserv=true&isPaid=true&reservCateNum=3'" 
-				id="complete_pay" value="3"> 결제 완료 </button>
-			<button onClick="location.href='${pageContext.request.contextPath}/seller/reservation/reservationlist?checkReserv=false&reservCateNum=4'" 
-				id="pass_reserv" value="4"> 거절/지난 예약 </button>
+	<div class="container" id="sellerReservList">
+		<div class="row">
+			<%-- 예약리스트 메뉴 --%>
+			<div class="col-lg-2" style="margin-top:97px;">
+				<ul class="list-group">
+					<li class="list-group-item list-group-item-dark">예약 리스트 확인</li>
+					<li class="list-group-item list-group-item-secondary list-group-item-action reservMenuList ${param.reservCateNum eq 1 ? 'active' : '' }"
+					  	onClick="location.href='${pageContext.request.contextPath}/seller/reservation/reservationlist?reservCateNum=1'" 
+						id="request_reserv" value="1">예약 요청</li>
+					<li class="list-group-item list-group-item-secondary list-group-item-action reservMenuList ${param.reservCateNum eq 2 ? 'active' : '' }"
+					 	onClick="location.href='${pageContext.request.contextPath}/seller/reservation/reservationlist?checkReserv=true&reservCateNum=2'" 
+						id="wait_pay" value="2">결제 대기</li>
+					<li class="list-group-item list-group-item-secondary list-group-item-action reservMenuList ${param.reservCateNum eq 3 ? 'active' : '' }"
+						onClick="location.href='${pageContext.request.contextPath}/seller/reservation/reservationlist?checkReserv=true&isPaid=true&reservCateNum=3'" 
+						id="complete_pay" value="3">결제 완료</li>
+					<li class="list-group-item list-group-item-secondary list-group-item-action reservMenuList ${param.reservCateNum eq 4 ? 'active' : '' }"
+						onClick="location.href='${pageContext.request.contextPath}/seller/reservation/reservationlist?checkReserv=false&reservCateNum=4'" 
+						id="pass_reserv" value="4">거절/지난 예약</li>
+				</ul>
+			</div>
+			
+	   		<%-- 예약 목록 --%>
+	   		<div class="col-lg-10 mt-3 mb-1">
+				<c:choose>
+					<c:when test="${(param.reservCateNum eq 1) or ( empty param.reservCateNum) }">
+						<h3>예약 요청 목록</h3><p>들어온 예약 요청 목록입니다.</p>
+					</c:when>
+					<c:when test="${param.reservCateNum eq 2 }">
+						<h3>결제 대기 목록</h3><p>결제 대기 중인 예약 목록입니다.</p>
+					</c:when>
+					<c:when test="${param.reservCateNum eq 3 }">
+						<h3>결제 완료 목록</h3><p>결제가 완료된 목록입니다.</p>
+					</c:when>
+					<c:when test="${param.reservCateNum eq 4 }">
+						<h3>거절/지난 예약</h3><p>예약이 취소된 목록입니다.</p>
+					</c:when>
+				</c:choose>
+				<div id="reservList">
+					<table class="table align-middle mb-0 bg-white">
+						<thead class="bg-light">
+							<tr>
+								<th scope="row">예약<br>번호</th>
+								<th scope="row">방<br>이름</th>
+								<th scope="row">예약자 명</th>
+								<th scope="row">예약자 수</th>
+								<th scope="row">예약<br>날짜</th>
+								<th scope="row">예약<br>시간</th>
+								<th scope="row">예약<br>메시지</th>
+								<th scope="row">예약<br>등록일</th>
+								<th scope="row">총<br>비용</th>
+								<c:choose>
+									<c:when test="${(param.reservCateNum eq 1) or (empty param.reservCateNum)}">
+										<th scope="row">예약<br>수락</th>
+										<th scope="row">예약<br>거절</th>
+									</c:when>
+									<c:when test="${param.reservCateNum eq 2 }">
+										<th scope="row">예약<br>거절</th>
+									</c:when>
+								</c:choose>
+							</tr>
+						</thead>
+					    <c:forEach var="tmp" items="${list }">
+							<tbody>
+								<tr>
+									<td>${tmp.reserv_num }</td>
+									<td>${tmp.space_name }</td>
+									<td>${tmp.users_id }</td>
+									<td>${tmp.reserv_count }</td>
+									<td>${tmp.reserv_date }</td>
+									<td>${tmp.reserv_time }</td>
+									<td>${tmp.reserv_comment }</td>
+									<td>${tmp.reserv_reg }</td>
+									<td>${tmp.totalMoney }</td>
+									<c:choose>
+										<c:when test="${(param.reservCateNum eq 1) or (empty param.reservCateNum)}">
+											<td><button id="okBtn${tmp.reserv_num }" type="button" class="btn btn-outline-dark" style="--bs-btn-padding-y: 0.1rem; --bs-btn-padding-x: .5rem;" onClick="checkBtn(this.id, event)" value="${tmp.reserv_date }&&${tmp.space_num }&&${tmp.reserv_time}">Ok</button></td>
+											<td><button id="rejectBtn${tmp.reserv_num }" type="button" class="btn btn-outline-dark" style="--bs-btn-padding-y: 0.1rem; --bs-btn-padding-x: .5rem;" onClick="checkBtn(this.id)">Reject</button></td>
+										</c:when>
+										<c:when test="${param.reservCateNum eq 2 }">
+											<td><button id="rejectBtn${tmp.reserv_num }" type="button" class="btn btn-outline-dark" style="--bs-btn-padding-y: 0.1rem; --bs-btn-padding-x: .5rem;" onClick="checkBtn(this.id)">Reject</button></td>
+										</c:when>
+									</c:choose>
+								</tr>
+							</tbody>	
+						</c:forEach>
+					</table>
+				</div>
+			
+				<%-- 페이징 --%>
+				<nav class="mt-3">
+					<ul class="pagination">
+						<%--
+				        	startPageNum 이 1 이 아닌 경우에만 Prev 링크를 제공한다. 
+				        	&condition=${condition}&keyword=${encodedK}
+				        --%>
+				        <c:if test="${startPageNum ne 1 }">
+				            <li class="page-item">
+				            	<a class="page-link" href="reservationlist?${pathQuery }&pageNum=${startPageNum-1 }">Prev</a>
+				        	</li>
+				        </c:if>
+				        <c:forEach var="i" begin="${startPageNum }" end="${endPageNum }">
+				            <li class="page-item ${pageNum eq i ? 'active' : '' }">
+				            	<a class="page-link" href="reservationlist?${pathQuery }&pageNum=${i }">${i }</a>
+				        	</li>
+				        </c:forEach>
+				        <%--
+				           마지막 페이지 번호가 전체 페이지의 갯수보다 작으면 Next 링크를 제공한다. 
+				        --%>
+				        <c:if test="${endPageNum lt totalPageCount }">
+				            <li class="page-item">
+				            	<a class="page-link" href="reservationlist?${pathQuery }&pageNum=${endPageNum+1 }">Next</a>
+				        	</li>
+				    	</c:if>
+					</ul>
+				</nav>
+			</div>
 		</div>
-		
-   		<%-- 예약 목록 --%>
-		<c:choose>
-			<c:when test="${(param.reservCateNum eq 1) or ( empty param.reservCateNum) }">
-				<h3>예약 요청 목록</h3><p>들어온 예약 요청 목록입니다.</p>
-			</c:when>
-			<c:when test="${param.reservCateNum eq 2 }">
-				<h3>결제 대기 목록</h3><p>결제 대기 중인 예약 목록입니다.</p>
-			</c:when>
-			<c:when test="${param.reservCateNum eq 3 }">
-				<h3>결제 완료 목록</h3><p>결제가 완료된 목록입니다.</p>
-			</c:when>
-			<c:when test="${param.reservCateNum eq 4 }">
-				<h3>거절/지난 예약</h3><p>예약이 취소된 목록입니다.</p>
-			</c:when>
-		</c:choose>
-		<div id="reservList">
-			<table class="table align-middle mb-0 bg-white">
-				<thead class="bg-light">
-					<tr>
-						<th scope="row">예약 번호</th>
-						<th scope="row">방 이름</th>
-						<th scope="row">예약자 명</th>
-						<th scope="row">예약자 수</th>
-						<th scope="row">예약 날짜</th>
-						<th scope="row">예약 시간</th>
-						<th scope="row">예약 등록일</th>
-						<th scope="row">총 비용</th>
-						<c:choose>
-							<c:when test="${(param.reservCateNum eq 1) or (empty param.reservCateNum)}">
-								<th scope="row">예약 수락</th>
-								<th scope="row">예약 거절</th>
-							</c:when>
-							<c:when test="${param.reservCateNum eq 2 }">
-								<th scope="row">예약 거절</th>
-							</c:when>
-						</c:choose>
-					</tr>
-				</thead>
-			    <c:forEach var="tmp" items="${list }">
-					<tbody>
-						<tr>
-							<td>${tmp.reserv_num }</td>
-							<td>${tmp.space_name }</td>
-							<td>${tmp.users_id }</td>
-							<td>${tmp.reserv_count }</td>
-							<td>${tmp.reserv_date }</td>
-							<td>${tmp.reserv_time }</td>
-							<td>${tmp.reserv_reg }</td>
-							<td>${tmp.totalMoney }</td>
-							<c:choose>
-								<c:when test="${(param.reservCateNum eq 1) or (empty param.reservCateNum)}">
-									<td><button id="okBtn${tmp.reserv_num }" type="button" onClick="checkBtn(this.id, event)" value="${tmp.reserv_date }&&${tmp.space_num }&&${tmp.reserv_time}">Ok</button></td>
-									<td><button id="rejectBtn${tmp.reserv_num }" type="button" onClick="checkBtn(this.id)">Reject</button></td>
-								</c:when>
-								<c:when test="${param.reservCateNum eq 2 }">
-									<td><button id="rejectBtn${tmp.reserv_num }" type="button" onClick="checkBtn(this.id)">Reject</button></td>
-								</c:when>
-							</c:choose>
-						</tr>
-					</tbody>	
-				</c:forEach>
-			</table>
-		</div>
-	
-		<%-- 페이징 --%>
-		<nav>
-			<ul class="pagination">
-				<%--
-		        	startPageNum 이 1 이 아닌 경우에만 Prev 링크를 제공한다. 
-		        	&condition=${condition}&keyword=${encodedK}
-		        --%>
-		        <c:if test="${startPageNum ne 1 }">
-		            <li class="page-item">
-		            	<a class="page-link" href="reservationlist?${pathQuery }&pageNum=${startPageNum-1 }">Prev</a>
-		        	</li>
-		        </c:if>
-		        <c:forEach var="i" begin="${startPageNum }" end="${endPageNum }">
-		            <li class="page-item ${pageNum eq i ? 'active' : '' }">
-		            	<a class="page-link" href="reservationlist?${pathQuery }&pageNum=${i }">${i }</a>
-		        	</li>
-		        </c:forEach>
-		        <%--
-		           마지막 페이지 번호가 전체 페이지의 갯수보다 작으면 Next 링크를 제공한다. 
-		        --%>
-		        <c:if test="${endPageNum lt totalPageCount }">
-		            <li class="page-item">
-		            	<a class="page-link" href="reservationlist?${pathQuery }&pageNum=${endPageNum+1 }">Next</a>
-		        	</li>
-		    	</c:if>
-			</ul>
-		</nav>
 	</div>
+	<!-- footer include -->
+	<jsp:include page="/WEB-INF/include/footer.jsp"/>
 	<!-- 결제 수락/ 예약 거절 버튼 -->
 	<script>
 		const checkBtn = async function(clickedId, event){

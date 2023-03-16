@@ -11,6 +11,14 @@
 <jsp:include page="/WEB-INF/include/cdnlink.jsp"/>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<style>
+	.reservMenuList{
+		cursor:pointer;
+	}
+	.pagination{
+		cursor:pointer;
+	}
+</style>
 </head>
 <body>
 	<%-- 네비바 --%>
@@ -35,95 +43,97 @@
    	</c:choose>
    	<div id="reservMenu">
 		<div class="container">
-			<%-- 예약리스트 메뉴 --%>
-			<div>
-				<button v-on:click="onReservMenu" 
-					id="request_reserv" value="1" 
-					> 예약 요청 </button>
-				<button v-on:click="onReservMenu" 
-					id="wait_pay" value="2"> 결제 대기 </button>
-				<button v-on:click="onReservMenu" 
-					id="complete_pay" value="3"> 결제 완료 </button>
-				<button v-on:click="onReservMenu" 
-					id="pass_reserv" value="4"> 거절/지난 예약 </button>
+			<div class="row">
+				<%-- 예약리스트 메뉴 --%>
+				<div class="col-md-2" style="margin-top:97px;">
+					<ul class="list-group">
+						<li class="list-group-item list-group-item-dark">나의 예약</li>
+						<li class="list-group-item list-group-item-secondary list-group-item-action reservMenuList" :class="{'active': reservCateNum === 1}" v-on:click="onReservMenu" id="request_reserv" value="1" >예약 요청</li>
+						<li class="list-group-item list-group-item-secondary list-group-item-action reservMenuList" :class="{'active': reservCateNum === 2}" v-on:click="onReservMenu" id="wait_pay" value="2">결제 대기</li>
+						<li class="list-group-item list-group-item-secondary list-group-item-action reservMenuList" :class="{'active': reservCateNum === 3}" v-on:click="onReservMenu" id="complete_pay" value="3">결제 완료</li>
+						<li class="list-group-item list-group-item-secondary list-group-item-action reservMenuList" :class="{'active': reservCateNum === 4}" v-on:click="onReservMenu" id="pass_reserv" value="4">거절/지난 예약</li>
+					</ul>
+				</div>
+				
+		   		<%-- 예약 목록 --%>
+		   		<div class="col-md-10 mt-3 mb-1">
+			   		<div v-if="reservCateNum === 1 ||reservCateNum === '1'">
+			   			<h3>예약 요청 목록</h3><p>판매자가 회원님의 예약을 확인하고 있습니다.</p>
+			   		</div>
+			   		<div v-else-if="reservCateNum === 2 ||reservCateNum === '2'">
+			   			<h3>결제 대기 목록</h3><p>결제해주시면 예약이 확정됩니다.</p>
+			   		</div>
+			   		<div v-else-if="reservCateNum === 3 ||reservCateNum === '3'">
+			   			<h3>결제 완료 목록</h3><p>결제가 완료된 목록입니다.</p>
+			   		</div>
+			   		<div v-else-if="reservCateNum === 4 ||reservCateNum === '4'">
+			   			<h3>거절/지난 예약</h3><p>예약이 취소된 목록입니다.</p>
+			   		</div>
+					<div id="reservList">
+						<table class="table align-middle mb-0 bg-white">
+						  <thead class="bg-light">
+								<tr>
+									<th scope="row">예약 번호</th>
+									<th scope="row">방 이름</th>
+									<th scope="row">예약자 명</th>
+									<th scope="row">예약자 수</th>
+									<th scope="row">예약 날짜</th>
+									<th scope="row">예약 시간</th>
+									<th scope="row">예약 메시지</th>
+									<th scope="row">예약 등록일</th>
+									<th scope="row">총 비용</th>
+									<th scope="row" v-if="reservCateNum === 1 || reservCateNum === '1'"> 예약 취소 </th>
+									<th scope="row" v-if="reservCateNum === '2'"> 결제하기 </th>
+									<th scope="row" v-if="reservCateNum === '2'"> 예약 거절</th>
+								</tr>
+						  </thead>
+						  <tbody>
+							  <tr v-for="item in resultList">
+							  	<td>{{item.reserv_num }}</td>
+							  	<td>{{item.space_name }}</td>
+							  	<td>{{item.users_id }}</td>
+							  	<td>{{item.reserv_count }}</td>
+							  	<td>{{item.reserv_date }}</td>
+								<td>{{item.reserv_time }}</td>
+								<td>{{item.reserv_comment}}</td>
+								<td>{{item.reserv_reg }}</td>
+								<td>{{item.totalMoney }}</td>
+								<td v-if="reservCateNum === 1|| reservCateNum === '1'"> <button type="button" class="btn btn-outline-dark" style="--bs-btn-padding-y: 0.1rem; --bs-btn-padding-x: .5rem;" :value="item.reserv_num" v-on:click="onRejectBtn">취소</button> </td>
+								<td v-if="reservCateNum === 2|| reservCateNum === '2'"> <button type="button" class="btn btn-outline-dark" style="--bs-btn-padding-y: 0.1rem; --bs-btn-padding-x: .5rem;" :value="item.reserv_num" v-on:click="onPayBtn">결제하기</button> </td>
+								<td v-if="reservCateNum === 2|| reservCateNum === '2'"> <button type="button" class="btn btn-outline-dark" style="--bs-btn-padding-y: 0.1rem; --bs-btn-padding-x: .5rem;" :value="item.reserv_num" v-on:click="onNotPayBtn">취소</button> </td>
+							</tr>
+						  </tbody>	
+						</table>
+					</div>
+				
+					<%-- 페이징 --%>
+					<nav class="mt-3">
+						<ul class="pagination">
+							<%--
+					        	startPageNum 이 1 이 아닌 경우에만 Prev 링크를 제공한다. 
+					        	&condition=${condition}&keyword=${encodedK}
+					        --%>
+					        <li class="page-item">
+					            <a class="page-link" v-on:click="onPagenation(event)" id="prev">Prev</a>
+					        </li>
+					        <%-- 페이지 번호 --%>
+					        <li class="page-item" v-for="item in pageList">
+					       		<a class="page-link pageBtn" :class="{'active': item == pageNum}" v-on:click="onPagenation(event)" :id="item">{{item}}</a> 	
+					        </li>
+					        <%--
+					           마지막 페이지 번호가 전체 페이지의 갯수보다 작으면 Next 링크를 제공한다. 
+					        --%>
+					        <li class="page-item">
+					            <a class="page-link" v-on:click="onPagenation(event)" id="next">Next</a>
+					        </li>
+						</ul>
+					</nav>
+				</div>
 			</div>
-			
-	   		<%-- 예약 목록 --%>
-	   		
-	   		<div v-if="reservCateNum === 1 ||reservCateNum === '1'">
-	   			<h3>예약 요청 목록</h3><p>판매자가 회원님의 예약을 확인하고 있습니다.</p>
-	   		</div>
-	   		<div v-else-if="reservCateNum === '2'">
-	   			<h3>결제 대기 목록</h3><p>결제해주시면 예약이 확정됩니다.</p>
-	   		</div>
-	   		<div v-else-if="reservCateNum === '3'">
-	   			<h3>결제 완료 목록</h3><p>결제가 완료된 목록입니다.</p>
-	   		</div>
-	   		<div v-else-if="reservCateNum === '4'">
-	   			<h3>거절/지난 예약</h3><p>예약이 취소된 목록입니다.</p>
-	   		</div>
-			{{reservCateNum}} {{gofor}} {{totalRow}}
-			<div id="reservList">
-				<table class="table align-middle mb-0 bg-white">
-				  <thead class="bg-light">
-						<tr>
-							<th scope="row">예약 번호</th>
-							<th scope="row">방 이름</th>
-							<th scope="row">예약자 명</th>
-							<th scope="row">예약자 수</th>
-							<th scope="row">예약 날짜</th>
-							<th scope="row">예약 시간</th>
-							<th scope="row">예약 등록일</th>
-							<th scope="row">총 비용</th>
-							<th scope="row" v-if="reservCateNum === 1 || reservCateNum === '1'"> 예약 취소 </th>
-							<th scope="row" v-if="reservCateNum === '2'"> 결제하기 </th>
-							<th scope="row" v-if="reservCateNum === '2'"> 예약 거절</th>
-						</tr>
-				  </thead>
-				  <tbody>
-					  <tr v-for="item in resultList">
-					  	<td>{{item.reserv_num }}</td>
-					  	<td>{{item.space_name }}</td>
-					  	<td>{{item.users_id }}</td>
-					  	<td>{{item.reserv_count }}</td>
-					  	<td>{{item.reserv_date }}</td>
-						<td>{{item.reserv_time }}</td>
-						<td>{{item.reserv_reg }}</td>
-						<td>{{item.totalMoney }}</td>
-						<td v-if="reservCateNum === 1|| reservCateNum === '1'"> <button type="button" :value="item.reserv_num" v-on:click="onRejectBtn">취소</button> </td>
-						<td v-if="reservCateNum === '2'"> <button type="button" :value="item.reserv_num" v-on:click="onPayBtn">결제하기</button> </td>
-						<td v-if="reservCateNum === '2'"> <button type="button" :value="item.reserv_num" v-on:click="onNotPayBtn">취소</button> </td>
-					</tr>
-				  </tbody>	
-				</table>
-			</div>
-		
-			<%-- 페이징 --%>
-			<nav>
-				<ul class="pagination">
-					<%--
-			        	startPageNum 이 1 이 아닌 경우에만 Prev 링크를 제공한다. 
-			        	&condition=${condition}&keyword=${encodedK}
-			        --%>
-			        <li class="page-item">
-			            <a class="page-link" v-on:click="onPagenation(event)" id="prev">Prev</a>
-			        </li>
-			        <%-- 페이지 번호 --%>
-			        <li class="page-item" v-for="item in pageList">
-			       		<a class="page-link pageBtn" :class="{'active': item == pageNum}" v-on:click="onPagenation(event)" :id="item">{{item}}</a> 	
-			        </li>
-			        <%--
-			           마지막 페이지 번호가 전체 페이지의 갯수보다 작으면 Next 링크를 제공한다. 
-			        --%>
-			        <li class="page-item">
-			            <a class="page-link" v-on:click="onPagenation(event)" id="next">Next</a>
-			        </li>
-				</ul>
-			</nav>
 		</div>
 	</div>
-	
-	
+	<!-- footer include -->
+	<jsp:include page="/WEB-INF/include/footer.jsp"/>
 	<!-- vue를 이용한 비동기 메뉴 -->
 	<script>
 		const basicRoot = "${pageContext.request.contextPath}/users/getreservationlistToUser";

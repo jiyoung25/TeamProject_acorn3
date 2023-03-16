@@ -6,13 +6,53 @@
 <head>
 <meta charset="UTF-8" name="viewport"
 	content="width=device-width, initial-scale=1">
+<!-- 부트스트랩 -->
+<jsp:include page="/WEB-INF/include/cdnlink.jsp"/>
 <!-- axios import -->
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <title>navigator test</title>
+<style>
+	html, body{
+		height:100%;
+		margin:0;
+		padding:0;
+	}
+</style>
 </head>
 <body>
-	<!-- 지도 -->
-	<div id="map" style="width: 100%; height: 350px;"></div>
+	<%-- 네비바 --%>
+	<c:choose>
+		<c:when test="${empty sessionScope.id }">
+        	<jsp:include page="/WEB-INF/include/navbar_sidebar_SessionX.jsp"/>
+      	</c:when>
+      	<c:otherwise>
+	      	<c:choose>
+	      		<c:when test="${usersCode eq 2 }">
+	      	  		<jsp:include page="/WEB-INF/include/navbar_sessionO_seller.jsp"/>
+	         		<jsp:include page="/WEB-INF/include/sidebar_seller.jsp"/>
+	      		</c:when>
+	      		<c:when test ="${usersCode eq 3 }">
+					<jsp:include page="/WEB-INF/include/navbar_sessionO_users.jsp"/>
+			      	<jsp:include page="/WEB-INF/include/sidebar_user.jsp"/>
+	      		</c:when>
+	      		<c:when test = "${usersCode eq 1 }">
+	      			<jsp:include page="/WEB-INF/include/navbar_sessionO_admin.jsp"/>
+	      		</c:when>
+	      	</c:choose>
+      	</c:otherwise>
+   	</c:choose>
+	<%-- 지도 --%>
+	<div id="map" style="width: 100%; height:80%;"></div>
+	<%-- 목록 버튼 --%>
+	<div class="text-center mt-2">
+		<button type="button" class="btn btn-outline-dark text-center" onClick="location.href='${pageContext.request.contextPath}/space/list?cate_num=${param.cate_num }'">
+			<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-list-ul" viewBox="0 0 20 20">
+  				<path fill-rule="evenodd" d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm-3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+			</svg>목록으로
+		</button>
+	</div>
+	<!-- footer include -->
+	<jsp:include page="/WEB-INF/include/footer.jsp"/>	
 	<!-- 주소 api -->
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9a606f0cedbe2671e138a677a7e0f3ff&libraries=services"></script>
