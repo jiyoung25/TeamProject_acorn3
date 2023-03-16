@@ -42,7 +42,7 @@
 				<form action="${pageContext.request.contextPath}/seller/update" method="post" id="updateForm">
 					<div>
 						<label for="space_name">공간명</label><br />
-		            	<input type="text" name="space_name" id="space_name" style="width: 315px" value=${dto.space_name } />
+		            	<input type="text" name="space_name" id="space_name" style="width: 320px" value=${dto.space_name } />
 					</div>
 					<div style="display:hidden">
 						카테고리
@@ -52,7 +52,7 @@
 					</div>
 					<div>
 						<label for="oneliner">공간 한 줄 소개</label><br />
-						<input type="text" name="oneliner" id="oneliner" style="width: 315px" value="${dto.oneliner }" />
+						<input type="text" name="oneliner" id="oneliner" style="width: 320px" value="${dto.oneliner }" />
 					</div>
 					<div>
 						<label for="intro">공간 소개</label><br />
@@ -61,17 +61,18 @@
 					<input type="hidden" id="mainImagePath" name="mainImagePath" />
 					<div>
 					<label for="addr">주소</label><br />				
-						<input type="text" name="addr" id="addr" value="${dto.addr }">
+						<input type="text" name="addr" id="addr" value="${dto.addr }" readonly style="width: 320px">
+						<input type="text" name="addr2" id="addr2" value="${dto.addr2 }" style="width: 320px"><br>
 						<input type="button" onclick="sample5_execDaumPostcode()" value="주소 검색"><br>
 					</div>
-					<div id="map" style="width:300px;height:300px;margin-top:10px;display:none"></div>				
+					<div id="map" style="margin-left:auto;margin-right:auto;width:320px;height:320px;margin-top:10px;display:none"></div>				
 				    <input type="hidden" name="space_num" value="${dto.space_num }"/>
 				</form>
 			</div>
 			
 			<div class="col-md-6">
 				<form action="${pageContext.request.contextPath}/seller/ajax_upload" method="post" id="ajaxForm"enctype="multipart/form-data">
-				    <div>
+				    <div><br><br>
 				    	<label for="image">이미지를 다시 선택해주세요</label>
 				    	<br>
 				    	<input type="file" name="image" id="image" 

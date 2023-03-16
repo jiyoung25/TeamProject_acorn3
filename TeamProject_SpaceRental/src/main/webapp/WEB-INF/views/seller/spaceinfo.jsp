@@ -42,7 +42,7 @@
 				<form action="${pageContext.request.contextPath}/seller/insert" method="post" id="insertForm">
 					<div>
 						<label for="space_name">공간명</label><br />
-		            	<input type="text" name="space_name" id="space_name" style="width: 315px"/>
+		            	<input type="text" name="space_name" id="space_name" style="width: 320px"/>
 					</div>
 					<br/>
 					<div>
@@ -58,7 +58,7 @@
 					<br/>
 					<div>
 						<label for="oneliner">공간 한 줄 소개</label><br />
-						<input type="text" name="oneliner" id="oneliner" style="width: 315px" />
+						<input type="text" name="oneliner" id="oneliner" style="width: 320px" />
 					</div>
 					<br/>
 					<div>
@@ -68,16 +68,17 @@
 					<input type="hidden" id="mainImagePath" name="mainImagePath" />
 					<div>
 						<label for="addr">주소</label><br />				
-						<input type="text" name="addr" id="addr" placeholder="주소" readonly style="width: 300px">
+						<input type="text" name="addr" id="addr" placeholder="주소를 검색해주세요" readonly style="width: 320px">
+						<input type="text" name="addr2" id="addr2" placeholder="상세주소를 입력하세요" style="width: 320px"><br>
 						<input type="button" onclick="sample5_execDaumPostcode()" value="주소 검색"><br>
 					</div>
-					<div id="map" style="width:300px;height:300px;margin-top:10px;display:none"></div>
+					<div id="map" style="margin-left:auto;margin-right:auto;width:320px;height:320px;margin-top:10px;display:none"></div>
 				</form>
 			</div>
 			
 			<div class="col-md-6">
 				<form action="${pageContext.request.contextPath}/seller/ajax_upload" method="post" id="ajaxForm"enctype="multipart/form-data">
-				    <div>
+				    <div><br><br>
 				    	<label for="image">이미지</label>
 				    	<input type="file" name="image" id="image" 
 				    		accept=".jpg, .jpeg, .png, .JPG, .JPEG"/>

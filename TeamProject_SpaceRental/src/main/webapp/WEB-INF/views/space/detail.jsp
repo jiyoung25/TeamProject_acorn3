@@ -153,7 +153,7 @@
 					
 					<div class="info">
 						<h3 id="addr">주소</h3>
-						<p>${spaceDto.addr }</p>
+						<p>${spaceDto.addr } ${spaceDto.addr2 }</p>						
 					</div>
 					
 					<%-- 지도 --%>
