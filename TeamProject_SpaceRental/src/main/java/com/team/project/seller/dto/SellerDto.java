@@ -13,6 +13,7 @@ public class SellerDto {
 	private String intro;
 	private String mainImagePath;
 	private String addr;
+	private String addr2;
 	private MultipartFile image;	//이미지 파일 업로드 처리를 위한 필드
 	private String cate_name;
 	private int cate_num;
@@ -21,7 +22,7 @@ public class SellerDto {
 	public SellerDto() {}
 
 	public SellerDto(int space_num, String space_name, int users_num, String oneliner, String intro,
-			String mainImagePath, String addr, MultipartFile image, String cate_name, int cate_num, int code) {
+			String mainImagePath, String addr, String addr2, MultipartFile image, String cate_name, int cate_num, int code) {
 		super();
 		this.space_num = space_num;
 		this.space_name = space_name;
@@ -30,6 +31,7 @@ public class SellerDto {
 		this.intro = intro;
 		this.mainImagePath = mainImagePath;
 		this.addr = addr;
+		this.addr2 = addr2;
 		this.image = image;
 		this.cate_name = cate_name;
 		this.cate_num = cate_num;
@@ -90,6 +92,14 @@ public class SellerDto {
 
 	public void setAddr(String addr) {
 		this.addr = addr;
+	}
+	
+	public String getAddr2() {
+		return addr2;
+	}
+
+	public void setAddr2(String addr2) {
+		this.addr2 = addr2;
 	}
 
 	public MultipartFile getImage() {

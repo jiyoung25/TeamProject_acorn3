@@ -13,20 +13,20 @@
 		WHERE id=#{id}
 	</select>
 	<select id="getData" resultType="sellerDto" parameterType="int">
-		SELECT space_name, oneliner, intro, mainImagePath, addr, cate_name, space_num, users_num
+		SELECT space_name, oneliner, intro, mainImagePath, addr, addr2, cate_name, space_num, users_num
 		FROM seller_space
 		WHERE space_num=#{space_num}
 	</select>
 	<insert id="insert" parameterType="sellerDto">
 		INSERT INTO seller_space
-		(space_num, space_name, users_num, oneliner, intro, mainImagePath, addr, cate_name)
+		(space_num, space_name, users_num, oneliner, intro, mainImagePath, addr, addr2, cate_name)
 		VALUES(seller_space_seq.NEXTVAL, #{space_name}, #{users_num},
-			#{oneliner}, #{intro}, #{mainImagePath}, #{addr}, #{cate_name})
+			#{oneliner}, #{intro}, #{mainImagePath}, #{addr}, #{addr2}, #{cate_name})
 	</insert>
 	<update id="update" parameterType="sellerDto">
 	 	UPDATE seller_space
 	 	SET space_name = #{space_name}, oneliner=#{oneliner}, intro=#{intro},
-	 		mainImagePath = #{mainImagePath}, addr=#{addr}, cate_name=#{cate_name}
+	 		mainImagePath = #{mainImagePath}, addr=#{addr}, addr2=#{addr2}, cate_name=#{cate_name}
 	 	WHERE space_num = #{space_num}
 	</update>
 	<delete id="delete" parameterType="int">
