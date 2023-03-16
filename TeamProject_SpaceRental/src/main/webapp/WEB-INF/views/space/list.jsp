@@ -156,14 +156,20 @@
 				</c:when>
 			</c:choose>
 		</section>
-    			
+  
 		<%-- 카테고리별 내용 --%>
-		<%-- 지도 검색을 위한 버튼 --%>
-		<button type="button" class="btn btn-outline-secondary" onClick="location.href='${pageContext.request.contextPath}/space/navigator?cate_num=${param.cate_num }'">지도로 보기</button>
-		<div class="row">
+	    <div class="row">
+	    	<%-- 지도 검색을 위한 버튼 --%>
+	    	<div>
+		    	<div class="col-lg-2">
+					<button type="button" class="btn btn-outline-dark mb-2" onClick="location.href='${pageContext.request.contextPath}/space/navigator?cate_num=${param.cate_num }'" style="width:100%">지도로 보기</button>
+		    	</div>
+	    	</div>
 	    	<%-- 위치 검색을 위한 toggle & checkbox --%>
 	    	<div id="areaSelectForm">
-	    		<button type="button" class="btn btn-outline-dark" v-on:click="onAreaClicked">지역 검색하기</button>
+	    		<div class="col-lg-2">
+	    			<button type="button" class="btn btn-outline-dark" v-on:click="onAreaClicked" style="width:100%; white-space: nowrap; ">지역 검색하기</button>
+	    		</div>
 	    		<div :class= "areaToggle ?'areaToggle' : ''">
 	    			<div class="areaStyle">
 		    			<form v-on:submit="onAreaSearch">
@@ -176,7 +182,10 @@
 	    			</div>
 	    		</div>
 	    	</div>
-	    	
+	    </div>
+	    
+	    <%-- 공간 리스트 --%>
+		<div class="row">
 			<c:forEach var="tmp" items="${list }">
 				<div class="col-lg-3 mb-5 ">
 					<a class="card lift h-100" href="${pageContext.request.contextPath}/space/detail?cate_num=${cate_num}&space_num=${tmp.space_num}" style="text-decoration: none; color:black" >
