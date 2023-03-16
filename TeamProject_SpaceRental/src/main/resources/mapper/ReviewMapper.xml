@@ -38,7 +38,7 @@
 		SELECT *
 		FROM (
 		    SELECT review_num, review_writer, review_title, review_content, viewcount, 
-		           TO_CHAR(review_regdate, 'YY.MM.DD HH24:MI') AS review_regdate, star,
+		           TO_CHAR(review_regdate, 'YY.MM.DD HH24:MI') AS review_regdate, star, seller_space.space_name,
 		           ROW_NUMBER() OVER (ORDER BY review_num) AS rnum
 		    FROM review
 		    INNER JOIN seller_space ON review.space_num = seller_space.space_num
