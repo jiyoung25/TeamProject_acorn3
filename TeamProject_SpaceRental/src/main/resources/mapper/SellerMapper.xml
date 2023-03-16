@@ -33,11 +33,16 @@
 		DELETE FROM seller_space
 		WHERE space_num = #{space_num}
 	</delete>
-	<select id="getaddr" resultType="sellerDto">
-		SELECT addr, space_name
+	<select id="getaddr" resultType="sellerDto" parameterType="int">
+		SELECT addr, space_name, mainImagePath, space_num
 		FROM seller_space
+		INNER JOIN space_category ON space_category.cate_name=seller_space.cate_name
+		WHERE space_category.cate_num= #{cate_num}
 	</select>
-	<select id="addrcount" resultType="int">
-		SELECT COUNT(addr) FROM seller_space
+	<select id="addrcount" resultType="int" parameterType="int">
+		SELECT COUNT(addr)
+		FROM seller_space
+		INNER JOIN space_category ON space_category.cate_name=seller_space.cate_name
+		WHERE space_category.cate_num= #{cate_num}
 	</select>
 </mapper>

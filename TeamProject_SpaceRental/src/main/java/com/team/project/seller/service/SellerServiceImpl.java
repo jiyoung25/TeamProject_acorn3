@@ -260,8 +260,7 @@ public class SellerServiceImpl implements SellerService{
 	}
 
 	@Override
-	public void getAddr(HttpServletRequest request) {
-		request.setAttribute("addrList",sellerDao.getAddr());
-		request.setAttribute("addrCount", sellerDao.addrCount());
+	public List<SellerDto> getAddr(HttpServletRequest request, int cate_num) {
+		return sellerDao.getAddr(cate_num);
 	}
 }

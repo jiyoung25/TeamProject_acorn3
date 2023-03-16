@@ -16,6 +16,6 @@ public interface SellerDao {
 	//공간 삭제
 	public void delete(int space_num);
 	public int getUsersNum(String id);
-	public List<SellerDto> getAddr();
-	public int addrCount();
+	public List<SellerDto> getAddr(int cate_num);
+	public int addrCount(int cate_num);
 }
