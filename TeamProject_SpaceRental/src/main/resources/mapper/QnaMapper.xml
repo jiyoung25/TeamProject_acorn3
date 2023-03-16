@@ -61,20 +61,21 @@
 		]]>
 	</select>
    
-   <select id="getList3" parameterType="qnaDto" resultType="qnaDto">
-		SELECT num, writer, title, content, viewCount, TO_CHAR(regdate, 'YY.MM.DD HH24:MI') AS regdate
+	<select id="getList3" parameterType="qnaDto" resultType="qnaDto">
+   		SELECT *
 		FROM (
-		    SELECT q.*, ROW_NUMBER() OVER (ORDER BY q.num) AS rnum
-		    FROM qna q
-		    WHERE EXISTS (
-		        SELECT 1
-		        FROM seller_space s
-		        JOIN space_users u ON s.users_num = u.users_num
-		        WHERE s.space_num = q.space_num AND u.id = #{sellerId}
-		    )
+		    SELECT result1.*, ROWNUM AS rnum
+		    FROM (
+		        SELECT num, writer, title, content, viewCount, TO_CHAR(regdate, 'YY.MM.DD HH24:MI') AS regdate, seller_space.space_name
+		        FROM qna
+		        INNER JOIN seller_space ON qna.space_num = seller_space.space_num
+		        INNER JOIN space_users ON seller_space.users_num = space_users.users_num
+		        WHERE seller_space.space_num = qna.space_num AND space_users.id = #{sellerId}
+		        ORDER BY num DESC
+		    ) result1
 		)
-		<![CDATA[
-		WHERE rnum BETWEEN #{qnaStartRowNum} AND #{qnaEndRowNum}
+		<![CDATA[ 
+		WHERE rnum >= #{qnaStartRowNum} AND rnum <= #{qnaEndRowNum}
 		]]>
 	</select>
    
