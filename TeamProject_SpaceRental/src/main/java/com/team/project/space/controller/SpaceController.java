@@ -1,6 +1,8 @@
 package com.team.project.space.controller;
 
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -8,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -19,6 +22,7 @@ import com.team.project.qna.service.QnaService;
 import com.team.project.reserv.service.ReservService;
 import com.team.project.review.dto.ReviewDto;
 import com.team.project.review.service.ReviewService;
+import com.team.project.seller.dto.SellerDto;
 import com.team.project.seller.service.SellerService;
 import com.team.project.space.dto.SpaceDto;
 import com.team.project.space.service.SpaceService;
@@ -87,6 +91,11 @@ public class SpaceController {
 		return "redirect:/space/detail";
 	}
 	
+	@RequestMapping("/space/detail1")
+	public String detail1() {
+		return "space/detail1";
+	}
+	
 	@Auth(role = Role.ADMIN)
 	@RequestMapping("/space/spaceDelete")
 	public String spaceDelete(HttpServletRequest request, int cate_num, int space_num, RedirectAttributes redirectAttributes) {
@@ -105,5 +114,18 @@ public class SpaceController {
 		redirectAttributes.addAttribute("cate_num",cate_num);
 		
 		return "redirect:/space/list";
+	}
+	
+
+	
+	@RequestMapping("/space/navigator")
+	public String navigator(int cate_num) {
+		return "space/navigator";
+	}
+	
+	@GetMapping("/space/marker")
+	@ResponseBody
+	public List<SellerDto> maker(HttpServletRequest request, int cate_num){
+		return sellerService.getAddr(request, cate_num);
 	}
 }

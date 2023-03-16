@@ -8,13 +8,7 @@
 <title>회원가입</title>
 <%-- 부트스트랩 --%>
 <jsp:include page="/WEB-INF/include/cdnlink.jsp"/>
-<!-- MDB -->
-<link
-  href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.css" rel="stylesheet"/>
-<!-- MDB -->
-<script
-  type="text/javascript"
-  src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.js"></script>
+
 </head>
 <body>
 	<%-- 네비바 --%>
@@ -38,12 +32,12 @@
       	</c:otherwise>
    	</c:choose>
    
-	<section class="vh-100" style="background-color: #eee;">
+	<section class="v-100" style="background-color: #eee;">
 	  <div class="container h-100">
 	    <div class="row d-flex justify-content-center align-items-center h-100">
-	      <div class="col-lg-12 col-xl-11">
+	      <div class="col-lg-12 col-xl-8">
 	        <div class="card text-black" style="border-radius: 25px;">
-	          <div class="card-body p-md-5">
+	          <div class="card-body p-md-2">
 	            <div class="row justify-content-center">
 	              <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
 	
@@ -61,7 +55,7 @@
 	                    <div class="flex-fill mb-0">
 	                      <label class="form-label" for="id">아이디</label>
 	                      <input type="text" name="id" id="id" class="form-control" />
-	                      <small class="form-text text-muted">5~20자의 영문 소문자.</small>
+	                      <small class="form-text text-muted">5~10자의 영문 소문자.</small>
 	                    </div>
 	                  </div>
 	                  <div class="d-flex flex-row align-items-center mb-4">
@@ -85,13 +79,13 @@
 	                  <div class="d-flex flex-row align-items-center mb-4">
 	                    <i class="fas fa-key fa-lg me-3 fa-fw"></i>
 	                    <div class="flex-fill mb-0">
-	                      <input type="password" name="pwd2" id="pwd2" class="form-control" />
 	                      <label class="form-label" for="pwd2">비밀번호 확인</label>
+	                      <input type="password" name="pwd2" id="pwd2" class="form-control" />
 	                    </div>
 	                  </div>
 	
 	                  <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-	                    	<button type="submit" class="btn btn-secondary btn-lg text-white">회원가입</button>
+	                    	<button type="submit" class="btn btn-outline-dark">회원가입</button>
 	                  </div>
 	                </form>
 	
@@ -106,6 +100,8 @@
 	
 	<!-- footer include -->
 	  <jsp:include page="/WEB-INF/include/footer.jsp"/>
+	
+	
 	
 	<script>
 	//유효성 여부를 저장할 변수를 만들고 초기값 대입 
@@ -218,6 +214,45 @@
 			event.preventDefault(); //폼 전송을 막는다.
 			alert('다시 확인해주세요!');
 		}
+	});
+	
+	// form 요소
+	const myForm = document.getElementById('myForm');
+
+	// input 요소들
+	const idInput = document.getElementById('id');
+	const emailInput = document.getElementById('email');
+	const pwdInput = document.getElementById('pwd');
+	const pwd2Input = document.getElementById('pwd2');
+
+	// submit 버튼 요소
+	const submitBtn = document.querySelector('button[type="submit"]');
+
+	// form submit 이벤트 리스너
+	myForm.addEventListener('submit', (event) => {
+	  // 필수 입력값이 모두 채워졌는지 확인
+	  if (idInput.value.trim() === '' || emailInput.value.trim() === '' || pwdInput.value.trim() === '' || pwd2Input.value.trim() === '') {
+	    event.preventDefault(); // submit 이벤트 취소
+	    return; // 함수 종료
+	  }
+	  
+	  // 비밀번호와 비밀번호 확인이 일치하는지 확인
+	  if (pwdInput.value !== pwd2Input.value) {
+	    event.preventDefault(); // submit 이벤트 취소
+	    return; // 함수 종료
+	  }
+	});
+
+	// input 값이 변경될 때마다 버튼 활성화 여부 확인
+	myForm.addEventListener('input', () => {
+	  // 필수 입력값이 모두 채워졌는지 확인
+	  const allInputsFilled = idInput.value.trim() !== '' && emailInput.value.trim() !== '' && pwdInput.value.trim() !== '' && pwd2Input.value.trim() !== '';
+
+	  // 비밀번호와 비밀번호 확인이 일치하는지 확인
+	  const passwordsMatch = pwdInput.value === pwd2Input.value;
+
+	  // 버튼 활성화 여부 결정
+	  submitBtn.disabled = !allInputsFilled || !passwordsMatch;
 	});
 	</script>
 </body>

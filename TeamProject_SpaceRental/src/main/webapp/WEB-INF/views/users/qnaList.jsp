@@ -45,8 +45,7 @@
 		<table class="table align-middle mb-0 bg-white">
 			<thead class="bg-light">
 				<tr>
-					<th>글번호</th>
-					<th>작성자</th>
+					<th>방이름</th>
 					<th>제목</th>
 					<th>조회수</th>
 					<th>날짜</th>
@@ -56,8 +55,7 @@
 			<tbody>
 				<c:forEach var="tmp" items="${qnaList }">
 					<tr>
-						<td>${tmp.num }</td>
-						<td>${tmp.writer }</td>
+						<td>${tmp.space_name }</td>
 						<td>
 							<a href="${pageContext.request.contextPath}/qna/qnadetail?num=${tmp.num }">${tmp.title }</a>
 						</td>
@@ -98,7 +96,7 @@
 			</ul>
 		</nav>
 		
-		<a href="${pageContext.request.contextPath}" class="btn btn-outline-secondary">메인으로 가기</a>
+		<a href="${pageContext.request.contextPath}" class="btn btn-outline-dark">메인으로 가기</a>
 	</div>
 	
 	<script>

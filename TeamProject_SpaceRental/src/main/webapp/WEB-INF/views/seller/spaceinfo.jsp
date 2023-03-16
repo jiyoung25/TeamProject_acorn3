@@ -10,10 +10,7 @@
 <jsp:include page="/WEB-INF/include/cdnlink.jsp"/>
 <title>SpaceInfo</title>
 <style>
-	.container{
-		display: flex;
-		justify-content: center;
-	}
+	
 </style>
 </head>
 <body>
@@ -38,52 +35,62 @@
       	</c:otherwise>
    	</c:choose>
 	   
-	<div class="container">
-		<div class="menu">
-			<h1>공간 등록</h1>
-			<form action="${pageContext.request.contextPath}/seller/insert" method="post" id="insertForm">
-				<div>
-					<label for="space_name">공간명</label><br />
-	            	<input type="text" name="space_name" id="space_name"/>
-				</div>
-				<div>
-					카테고리
-					<select name="cate_name">
-						<option name="cate_name" value="파티룸">파티룸</option>
-						<option name="cate_name" value="연습실">연습실</option>
-						<option name="cate_name" value="스터디룸">스터디룸</option>
-						<option name="cate_name" value="강의실">강의실</option>
-						<option name="cate_name" value="공유주방">공유주방</option>	
-					</select>
-				</div>
-				<div>
-					<label for="oneliner">공간 한 줄 소개</label><br />
-					<input type="text" name="oneliner" id="oneliner" />
-				</div>
-				<div>
-					<label for="intro">공간 상세 소개</label><br />
-					<textarea name="intro" id="intro" cols="40" rows="10"></textarea>
-				</div>
-				<input type="hidden" id="mainImagePath" name="mainImagePath" />
-				<div>
-					<label for="addr">주소</label><br />				
-					<input type="text" name="addr" id="addr" placeholder="주소" readonly>
-					<input type="button" onclick="sample5_execDaumPostcode()" value="주소 검색"><br>
-				</div>
-				<div id="map" style="width:300px;height:300px;margin-top:10px;display:none"></div>
-			</form>
-			<form action="${pageContext.request.contextPath}/seller/ajax_upload" method="post" id="ajaxForm"enctype="multipart/form-data">
-			    <div>
-			    	<label for="image">이미지</label>
-			    	<input type="file" name="image" id="image" 
-			    		accept=".jpg, .jpeg, .png, .JPG, .JPEG"/>
-			    </div>
-			</form>
-			<button id="submitBtn" class="btn btn-primary">저장</button>
+	<div class="container text-center ">
+		<div class="row">
+			<div class="col-md-6">
+				<h1>공간 등록</h1>
+				<form action="${pageContext.request.contextPath}/seller/insert" method="post" id="insertForm">
+					<div>
+						<label for="space_name">공간명</label><br />
+		            	<input type="text" name="space_name" id="space_name" style="width: 315px"/>
+					</div>
+					<br/>
+					<div>
+						카테고리
+						<select name="cate_name">
+							<option name="cate_name" value="파티룸">파티룸</option>
+							<option name="cate_name" value="연습실">연습실</option>
+							<option name="cate_name" value="스터디룸">스터디룸</option>
+							<option name="cate_name" value="강의실">강의실</option>
+							<option name="cate_name" value="공유주방">공유주방</option>	
+						</select>
+					</div>
+					<br/>
+					<div>
+						<label for="oneliner">공간 한 줄 소개</label><br />
+						<input type="text" name="oneliner" id="oneliner" style="width: 315px" />
+					</div>
+					<br/>
+					<div>
+						<label for="intro">공간 상세 소개</label><br />
+						<textarea name="intro" id="intro" cols="40" rows="10"></textarea>
+					</div>
+					<input type="hidden" id="mainImagePath" name="mainImagePath" />
+					<div>
+						<label for="addr">주소</label><br />				
+						<input type="text" name="addr" id="addr" placeholder="주소" readonly style="width: 300px">
+						<input type="button" onclick="sample5_execDaumPostcode()" value="주소 검색"><br>
+					</div>
+					<div id="map" style="width:300px;height:300px;margin-top:10px;display:none"></div>
+				</form>
+			</div>
+			
+			<div class="col-md-6">
+				<form action="${pageContext.request.contextPath}/seller/ajax_upload" method="post" id="ajaxForm"enctype="multipart/form-data">
+				    <div>
+				    	<label for="image">이미지</label>
+				    	<input type="file" name="image" id="image" 
+				    		accept=".jpg, .jpeg, .png, .JPG, .JPEG"/>
+				    </div>
+				</form>
+	
+		  		<div class="img-wrapper">
+		     		<img />
+		  		</div>
+		  		<br/>
+		  		<button id="submitBtn" class="btn btn-outline-secondary">저장</button>
+		  	</div>
 		</div>
-  		<div class="img-wrapper">
-     		<img />
-  		</div>
 	</div>
 	
 	<script>		

@@ -6,20 +6,18 @@
 <!--네비바-->
 <nav class="navbar bg-body-tertiary">
 	<div class="container-fluid">
-    	<div class="ml-5" >
+    	<div class="ml-3" >
         	<a class="navbar-brand" href="${pageContext.request.contextPath}/"><p class="fs-3 fw-semibold  " >Ubiquitous</p></a>
         </div>
       	<div class="row">
-      		<p class="fs-6 text-secondary">
-         		<div class="col">
-         			<button class="btn btn-dark" onClick="location.href='${pageContext.request.contextPath}/seller/spaceinfo'">내 공간 등록하기</button>
-         			<button class="btn btn-dark" onClick="location.href='${pageContext.request.contextPath}/seller/spacelist'">내 공간 확인하기</button>
-            		<a class="navbar-brand" href="#"><strong>${sessionScope.id }</strong>님 반갑습니다.</a>
-         			<a class="navbar-brand" href="${pageContext.request.contextPath}/users/logout"><small>로그아웃</small></a>
-           			<button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
-            			<span class="navbar-toggler-icon"></span>
-           			</button>
-         		</div>
+      		<p class="fs-6">
+     			<button class="btn btn-dark" onClick="location.href='${pageContext.request.contextPath}/seller/spaceinfo'">내 공간 등록하기</button>
+     			<button class="btn btn-dark" onClick="location.href='${pageContext.request.contextPath}/seller/spacelist'">내 공간 확인하기</button>
+        		<strong>${sessionScope.id }</strong>님
+     			<a class="navbar-brand" href="${pageContext.request.contextPath}/users/logout"><small>로그아웃</small></a>
+       			<button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+        			<span class="navbar-toggler-icon"></span>
+       			</button>
         	</p>
     	</div>
 	</div>

@@ -12,6 +12,9 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/star.css">
 <script src = "${pageContext.request.contextPath}/js/star.js"></script>
 <title>/views/view/reviewupdateform.jsp</title>
+<style>
+	
+</style>
 </head>
 <body>
 	<%-- 네비바 --%>
@@ -36,14 +39,13 @@
    	</c:choose>
    	
 	<div class="container">
-		<h1>글 수정 폼 입니다.</h1>
+		<h1>Review 수정</h1>
 		<form action="reviewupdate" method="post">
 			<input type="hidden" name="review_num" value="${dto.review_num }" />
 			<div>
 				<label for="review_writer">작성자</label> 
 				<input type="text" id="review_writer" value="${dto.review_writer }" disabled />
-			</div>
-			<div>
+		
 				<label for="review_title">제목</label> 
 				<input type="text" name="review_title" id="review_title" value="${dto.review_title }" />
 			</div>
@@ -60,8 +62,8 @@
 				<label for="review_content">내용</label>
 				<textarea name="review_content" id="review_content">${dto.review_content }</textarea>
 			</div>
-			<button type="submit" onclick="submitContents(this);">수정확인</button>
-			<button type="reset">취소</button>
+			<button type="submit" class="btn btn-outline-dark" onclick="submitContents(this);">수정확인</button>
+			<button type="reset" class="btn btn-outline-dark" >취소</button>
 		</form>
 	</div>
 	<!-- SmartEditor 에서 필요한 javascript 로딩  -->

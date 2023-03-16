@@ -63,7 +63,7 @@
 					</c:otherwise>
 				</c:choose>
 			</select>
-			<button>리뷰 쓰기</button>
+			<button class="btn btn-outline-dark">리뷰 쓰기</button>
 		</form>
 	</div>
 		<%-- 리뷰 리스트 --%>
@@ -71,10 +71,10 @@
 		<table class="table align-middle mb-0 bg-white">
 			<thead class="bg-light">
 				<tr>
-					<th>작성자</th>
+					<th>방이름</th>
 					<th>제목</th>
-					<th>조회수</th>
 					<th>별점</th>
+					<th>조회수</th>
 					<th>날짜</th>
 					<th>삭제</th>
 		    	</tr>
@@ -82,11 +82,10 @@
 			<tbody>
 				<c:forEach var="tmp" items="${reviewList }">
 					<tr>
-						<td>${tmp.review_writer }</td>
+						<td>${tmp.space_name }</td>
 						<td>
 							<a href="${pageContext.request.contextPath}/review/reviewdetail?review_num=${tmp.review_num }">${tmp.review_title }</a>
 						</td>
-						<td>${tmp.viewcount }</td>
 						<td>
 							<%-- 별점 --%>
 							<span class="star">
@@ -94,6 +93,7 @@
 								<span style="width: ${tmp.star *10 }%;">★★★★★</span>
 							</span>
 						</td>
+						<td>${tmp.viewcount }</td>
 						<td>${tmp.review_regdate }</td>
 						<td>
 							<a href="reviewDelete?review_num=${tmp.review_num}" onClick="deleteLink(); return false;">삭제</a>
@@ -102,7 +102,7 @@
 				</c:forEach>
 			</tbody>
 		</table>
-		
+		<br>
 		<%-- 리뷰 페이지네이션 --%>
 		<nav>
 			<ul class="pagination">
@@ -130,7 +130,7 @@
 			</ul>
 		</nav>
 		
-		<a href="${pageContext.request.contextPath}" class="btn btn-outline-secondary">메인으로 가기</a>
+		<a href="${pageContext.request.contextPath}" class="btn btn-outline-dark">메인으로 가기</a>
 	</div>
 	<script>
    		const deleteLink = function(){

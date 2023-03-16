@@ -53,7 +53,7 @@ public class QnaController {
 			throw new NotUpdateException("타인의 QnA를 삭제하지 말아주세요.");
 		}
 		service.deleteContent(num, request);
-		return "redirect:/qna/qnalist";
+		return "redirect:/users/qnaList";
 	}
 	
 	@RequestMapping("/users/qnaDelete")

@@ -23,7 +23,7 @@ public class WebConfig implements WebMvcConfigurer{
 		registry.addInterceptor(loginInterceptor)
 		.addPathPatterns("/users/*","/space/*", "/seller/*","/review/*","/qna/*")
 		.excludePathPatterns("/users/signupform", "/users/signup", "/users/loginform", "/users/login", "/users/checkid", "/users/kakaoLoginCode",
-				"/space/category", "/space/list", "/space/detail",
+				"/space/category", "/space/list", "/space/detail", "/space/marker", "space/navigator",
 				"/review/reviewdetail","/review/reviewlist",
 				"/qna/qnadetail","/qna/qnalist","/qna/ajax_comment_list");
 		

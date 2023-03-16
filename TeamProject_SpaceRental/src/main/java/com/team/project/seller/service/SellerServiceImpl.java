@@ -258,4 +258,9 @@ public class SellerServiceImpl implements SellerService{
 		
 		return users_num;
 	}
+
+	@Override
+	public List<SellerDto> getAddr(HttpServletRequest request, int cate_num) {
+		return sellerDao.getAddr(cate_num);
+	}
 }

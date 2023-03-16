@@ -6,7 +6,7 @@
 <%--네비바--%>
 <nav class="navbar bg-body-tertiary">
 	<div class="container-fluid">
-		<div class="ml-5" >
+		<div class="ml-3" >
 			<a class="navbar-brand" href="${pageContext.request.contextPath}/"><p class="fs-3 fw-semibold" >Ubiquitous</p></a>
         </div>
 	    <div class="row">

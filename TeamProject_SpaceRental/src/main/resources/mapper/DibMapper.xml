@@ -17,9 +17,9 @@
 	<select id="getData" parameterType="dibDto" resultType="dibDto">
 		SELECT result2.*
 		FROM
-			(SELECT dibson_num, space_name, users_id, space_num, mainImagePath, addr, space_category.cate_num, space_category.cate_name, rownum as rnum
+			(SELECT dibson_num, space_name, users_id, space_num, mainImagePath, addr, space_category.cate_num, space_category.cate_name, rownum as rnum, oneliner
 			FROM
-				(SELECT dibson_num, space_name, users_id, seller_space.space_num space_num, dib_regdate, mainImagePath, addr, cate_name 
+				(SELECT dibson_num, space_name, users_id, seller_space.space_num space_num, dib_regdate, mainImagePath, addr, cate_name , oneliner
 				FROM dibson_list
 				INNER JOIN seller_space ON dibson_list.space_num=seller_space.space_num
 				WHERE users_id=#{users_id}) result1

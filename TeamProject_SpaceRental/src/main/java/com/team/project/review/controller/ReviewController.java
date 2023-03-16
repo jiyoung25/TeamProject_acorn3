@@ -51,7 +51,7 @@ public class ReviewController {
 			throw new NotDeleteException("타인의 리뷰를 삭제하지 말아주세요.");
 		}
 		service.deleteContent(review_num, request);
-		return "redirect:/review/reviewlist";
+		return "redirect:/users/reviewList";
 	}
 	
 	@RequestMapping("/users/reviewDelete")
