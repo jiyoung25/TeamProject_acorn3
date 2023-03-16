@@ -15,14 +15,13 @@ public class SellerDto {
 	private String addr;
 	private MultipartFile image;	//이미지 파일 업로드 처리를 위한 필드
 	private String cate_name;
+	private int cate_num;
 	private int code;
 	
 	public SellerDto() {}
 
-	public SellerDto(int space_num, String space_name, String oneliner, String intro, String mainImagePath, String addr,
-
-			MultipartFile image, int users_num, String cate_name) {
-
+	public SellerDto(int space_num, String space_name, int users_num, String oneliner, String intro,
+			String mainImagePath, String addr, MultipartFile image, String cate_name, int cate_num, int code) {
 		super();
 		this.space_num = space_num;
 		this.space_name = space_name;
@@ -33,6 +32,8 @@ public class SellerDto {
 		this.addr = addr;
 		this.image = image;
 		this.cate_name = cate_name;
+		this.cate_num = cate_num;
+		this.code = code;
 	}
 
 	public int getSpace_num() {
@@ -51,6 +52,14 @@ public class SellerDto {
 		this.space_name = space_name;
 	}
 
+	public int getUsers_num() {
+		return users_num;
+	}
+
+	public void setUsers_num(int users_num) {
+		this.users_num = users_num;
+	}
+
 	public String getOneliner() {
 		return oneliner;
 	}
@@ -67,11 +76,11 @@ public class SellerDto {
 		this.intro = intro;
 	}
 
-	public String getmainImagePath() {
+	public String getMainImagePath() {
 		return mainImagePath;
 	}
 
-	public void setmainImagePath(String mainImagePath) {
+	public void setMainImagePath(String mainImagePath) {
 		this.mainImagePath = mainImagePath;
 	}
 
@@ -91,15 +100,6 @@ public class SellerDto {
 		this.image = image;
 	}
 
-
-	public int getUsers_num() {
-		return users_num;
-	}
-
-	public void setUsers_num(int users_num) {
-		this.users_num = users_num;
-	}
-
 	public String getCate_name() {
 		return cate_name;
 	}
@@ -107,4 +107,21 @@ public class SellerDto {
 	public void setCate_name(String cate_name) {
 		this.cate_name = cate_name;
 	}
+
+	public int getCate_num() {
+		return cate_num;
+	}
+
+	public void setCate_num(int cate_num) {
+		this.cate_num = cate_num;
+	}
+
+	public int getCode() {
+		return code;
+	}
+
+	public void setCode(int code) {
+		this.code = code;
+	}
+
 }
