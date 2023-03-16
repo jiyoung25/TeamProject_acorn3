@@ -132,8 +132,8 @@
 			</div>
 		</div>
 	</div>
-	
-	
+	<!-- footer include -->
+	<jsp:include page="/WEB-INF/include/footer.jsp"/>
 	<!-- vue를 이용한 비동기 메뉴 -->
 	<script>
 		const basicRoot = "${pageContext.request.contextPath}/users/getreservationlistToUser";

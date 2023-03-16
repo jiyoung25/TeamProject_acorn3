@@ -41,11 +41,14 @@
       	</c:otherwise>
    	</c:choose>
 	<div class="container">
+		<h1 class="mt-3 mb-3">예약 알림</h1>
 		<p class="alert alert-success">
 			<strong>예약이 완료되었습니다.</strong>
 			판매자의 예약 확인을 기다려주세요.
-			<a href="${pageContext.request.contextPath}/users/reservationlist">예약 리스트로 가기</a>
+			<a  class='alert-link' href="${pageContext.request.contextPath}/users/reservationlist">예약 리스트로 가기</a>
 		</p>
 	</div>
+	<!-- footer include -->
+	<jsp:include page="/WEB-INF/include/footer.jsp"/>
 </body>
 </html>

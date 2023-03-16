@@ -156,6 +156,8 @@
 			</div>
 		</div>
 	</div>
+	<!-- footer include -->
+	<jsp:include page="/WEB-INF/include/footer.jsp"/>
 	<!-- 결제 수락/ 예약 거절 버튼 -->
 	<script>
 		const checkBtn = async function(clickedId, event){
