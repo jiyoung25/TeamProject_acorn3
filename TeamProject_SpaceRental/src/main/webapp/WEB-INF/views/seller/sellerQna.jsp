@@ -70,7 +70,7 @@
 				</c:forEach>
 			</tbody>
 		</table>
-		
+		<br>
 		<%-- Q&A 페이지네이션 --%>
 		<nav>
 			<ul class="pagination">
@@ -98,7 +98,7 @@
 			</ul>
 		</nav>
 		
-		<a href="${pageContext.request.contextPath }">메인으로 가기</a>
+		<a href="${pageContext.request.contextPath}" class="btn btn-outline-dark">메인으로 가기</a>
 	</div>
 </body>
 </html>

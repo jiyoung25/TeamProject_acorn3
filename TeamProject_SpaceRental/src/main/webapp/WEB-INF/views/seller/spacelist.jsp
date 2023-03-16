@@ -66,25 +66,26 @@
       	</c:otherwise>
    	</c:choose>	
 	<div class="container">	
-	<h1>내 공간정보 관리</h1>
-		<a href="${pageContext.request.contextPath}/seller/spaceinfo">새 공간 등록하기</a><br/>
-	   	<div class="row">
-			<c:forEach var="tmp" items="${list }">
-				<div class="col-4 col-md-3 col-lg-2">
-	         		<div class="card mb-3">	            		
-		               		<div class="img-wrapper">
+		<h1>내 공간정보 관리</h1>
+			<button class="btn btn-outline-dark" onclick="location.href=`${pageContext.request.contextPath}/seller/spaceinfo`">새 공간 등록하기</button>
+			<div style="height: 25px;"></div>
+		   	<div class="row">
+				<c:forEach var="tmp" items="${list }">
+					<div class="col-4 col-md-3 col-lg-2">
+		         		<div class="card mb-3">	            		
+		               		<div class="img-wrapper" onclick="location.href=`${pageContext.request.contextPath}/space/detail?space_num=${tmp.space_num}`">
 		                  		<img class="card-img-top" src="${pageContext.request.contextPath }${tmp.mainImagePath}" />
 		               		</div>
-	            		<div class="card-body">
-	            			<p class="card-text"><strong>${tmp.space_name}</strong></p>
-	               			<p><small>공간번호: ${tmp.space_num}</small></p>							
-							<a href="spaceupdate?space_num=${tmp.space_num}">수정</a>
-							<a href="delete?space_num=${tmp.space_num }" onClick="deleteLink(); return false;">삭제</a>						
-	            		</div>
-	         		</div>
-	      		</div>
-			</c:forEach>
-	   	</div>
+		            		<div class="card-body">
+		            			<p class="card-text"><strong>${tmp.space_name}</strong></p>
+		               			<p><small>공간번호: ${tmp.space_num}</small></p>							
+								<a href="spaceupdate?space_num=${tmp.space_num}">수정</a>
+								<a href="delete?space_num=${tmp.space_num }" onClick="deleteLink(); return false;">삭제</a>						
+		            		</div>
+		         		</div>
+		      		</div>
+				</c:forEach>
+		</div>
 	   	<script>
 	   		const deleteLink = function(){
 	   			confirm("해당 글을 삭제하시겠습니까?")?this.submit():"";
@@ -93,10 +94,6 @@
 	   	
 	   <!-- footer include -->
 	  <jsp:include page="/WEB-INF/include/footer.jsp"/>
-	   	
-
-	   	
-	   	
 	</div>
 </body>
 </html>

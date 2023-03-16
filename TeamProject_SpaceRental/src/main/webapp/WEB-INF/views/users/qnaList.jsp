@@ -68,7 +68,7 @@
 				</c:forEach>
 			</tbody>
 		</table>
-		
+		<br>
 		<%-- Q&A 페이지네이션 --%>
 		<nav>
 			<ul class="pagination">
