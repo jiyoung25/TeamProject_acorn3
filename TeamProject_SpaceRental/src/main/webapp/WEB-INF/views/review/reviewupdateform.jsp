@@ -8,6 +8,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <%-- 부트스트랩 --%>
 <jsp:include page="/WEB-INF/include/cdnlink.jsp"/>
+<%-- CKEditor --%>
+<script type="text/javascript" src="${pageContext.request.contextPath}/ckeditor/ckeditor.js"></script>
 <%-- import from static folder --%>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/star.css">
 <script src = "${pageContext.request.contextPath}/js/star.js"></script>
@@ -39,87 +41,44 @@
    	</c:choose>
    	
 	<div class="container">
-		<h1>Review 수정</h1>
+		<h2 class="mt-2 mb-3">Review Update</h2>
 		<form action="reviewupdate" method="post">
 			<input type="hidden" name="review_num" value="${dto.review_num }" />
-			<div>
-				<label for="review_writer">작성자</label> 
-				<input type="text" id="review_writer" value="${dto.review_writer }" disabled />
-		
-				<label for="review_title">제목</label> 
-				<input type="text" name="review_title" id="review_title" value="${dto.review_title }" />
+			<div class="input-group mb-3">
+				<span class="input-group-text" style="width:10%; justify-content: center; align-items: center; display: flex;">작성자</span>
+				<input type="text" id="review_writer" class="form-control" value="${dto.review_writer }" disabled />
 			</div>
-			<div>
+			<div class="input-group mb-3">
+				<span class="input-group-text" style="width:10%; justify-content: center; align-items: center; display: flex;">제목</span>
+				<input type="text" name="review_title" id="review_title" class="form-control" value="${dto.review_title }" />
+			</div>
+			<div class="input-group mb-3">
 				<%-- 별점 --%>
-				<label>별점</label>
-				<span class="star">
-				  ★★★★★
-				  <span style="width:${dto.star * 10}%;">★★★★★</span>
-				  <input type="range" name="star" oninput="drawStar(this)" value="1" step="1" min="0" max="10">
+				<span class="input-group-text" style="width:10%; justify-content: center; align-items: center; display: flex;">별점</span>
+				<span style="border:solid #DEE2E6 1px; width:90%; border-top-right-radius:5px; border-bottom-right-radius:5px;">
+					<span class="star" style="font-size:1.5rem">
+					  ★★★★★
+					  <span style="width:${dto.star * 10}%;">★★★★★</span>
+					  <input type="range" name="star" oninput="drawStar(this)" value="1" step="1" min="0" max="10">
+					</span>
 				</span>
 			</div>
 			<div>
-				<label for="review_content">내용</label>
-				<textarea name="review_content" id="review_content">${dto.review_content }</textarea>
+				<textarea name="review_content" class="form-control" id="review_content">${dto.review_content }</textarea>
+					<script type="text/javascript">	// 글쓰기 editor 및 사진 업로드 기능
+						CKEDITOR.replace('review_content',
+						{
+							filebrowserImageUploadUrl:'${pageContext.request.contextPath}/space/uploadImage'
+						});
+					</script>
 			</div>
-			<button type="submit" class="btn btn-outline-dark" onclick="submitContents(this);">수정확인</button>
-			<button type="reset" class="btn btn-outline-dark" >취소</button>
+			<div class="text-center mt-3">
+				<button type="submit" class="btn btn-dark" onclick="submitContents(this);">수정확인</button>
+				<button type="button" class="btn btn-outline-dark" onClick="history.back();">뒤로 가기</button>
+			</div>
 		</form>
 	</div>
-	<!-- SmartEditor 에서 필요한 javascript 로딩  -->
-	<script
-		src="${pageContext.request.contextPath }/SmartEditor/js/HuskyEZCreator.js"></script>
-	<script>
-	   var oEditors = [];
-	   
-	   //추가 글꼴 목록
-	   //var aAdditionalFontSet = [["MS UI Gothic", "MS UI Gothic"], ["Comic Sans MS", "Comic Sans MS"],["TEST","TEST"]];
-	   
-	   nhn.husky.EZCreator.createInIFrame({
-	      oAppRef: oEditors,
-	      elPlaceHolder: "review_content",
-	      sSkinURI: "${pageContext.request.contextPath}/SmartEditor/SmartEditor2Skin.html",   
-	      htParams : {
-	         bUseToolbar : true,            // 툴바 사용 여부 (true:사용/ false:사용하지 않음)
-	         bUseVerticalResizer : true,      // 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
-	         bUseModeChanger : true,         // 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
-	         //aAdditionalFontList : aAdditionalFontSet,      // 추가 글꼴 목록
-	         fOnBeforeUnload : function(){
-	            //alert("완료!");
-	         }
-	      }, //boolean
-	      fOnAppLoad : function(){
-	         //예제 코드
-	         //oEditors.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
-	      },
-	      fCreator: "createSEditor2"
-	   });
-	   
-	   function pasteHTML() {
-	      var sHTML = "<span style='color:#FF0000;'>이미지도 같은 방식으로 삽입합니다.<\/span>";
-	      oEditors.getById["review_content"].exec("PASTE_HTML", [sHTML]);
-	   }
-	   
-	   function showHTML() {
-	      var sHTML = oEditors.getById["review_content"].getIR();
-	      alert(sHTML);
-	   }
-	      
-	   function submitContents(elClickedObj) {
-	      oEditors.getById["review_content"].exec("UPDATE_CONTENTS_FIELD", []);   // 에디터의 내용이 textarea에 적용됩니다.
-	      
-	      // 에디터의 내용에 대한 값 검증은 이곳에서 document.getElementById("content").value를 이용해서 처리하면 됩니다.
-	      
-	      try {
-	         elClickedObj.form.submit();
-	      } catch(e) {}
-	   }
-	   
-	   function setDefaultFont() {
-	      var sDefaultFont = '궁서';
-	      var nFontSize = 24;
-	      oEditors.getById["review_content"].setDefaultFont(sDefaultFont, nFontSize);
-	   }
-	</script>
+	<!-- footer include -->
+	<jsp:include page="/WEB-INF/include/footer.jsp"/>
 </body>
 </html>

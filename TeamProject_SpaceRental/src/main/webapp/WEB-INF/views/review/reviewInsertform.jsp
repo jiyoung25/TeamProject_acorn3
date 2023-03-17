@@ -8,16 +8,12 @@
 <meta name="viewport" review_content="width=device-width, initial-scale=1">
 <%-- 부트스트랩 --%>
 <jsp:include page="/WEB-INF/include/cdnlink.jsp"/>
+<%-- CKEditor --%>
+<script type="text/javascript" src="${pageContext.request.contextPath}/ckeditor/ckeditor.js"></script>
 <%-- import from static folder --%>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/star.css">
 <script src = "${pageContext.request.contextPath}/js/star.js"></script>
 <title>/views/review/reviewInsertform.jsp</title>
-<style>
-	textarea{
-		width: 768px;
-		height: 300px;
-	}
-</style>
 </head>
 <body>
 	<%-- 네비바 --%>
@@ -44,39 +40,43 @@
    	<%-- 리뷰 입력 폼 --%>
 	<div class="container">
 		<div class="row">
-		<h3>리뷰 작성</h3>
+			<h2 class="mt-2 mb-3">Review Insert</h2>
 			<form action="${pageContext.request.contextPath}/review/reviewInsert" method="post">
 				<input type="hidden" name="cate_num" value="${cate_num }" />
 				<input type="hidden" name="space_num" value="${space_num }" />
 				<input type="hidden" name="reserv_num" value="${reserv_num }" />
-				<div>
-					<input type="text" name="review_title" id="review_title" class="form-control" type="text" placeholder="제목" aria-label=".form-control-lg example"/>
+				<div class="input-group mb-3">
+					<span class="input-group-text" style="width:10%; justify-content: center; align-items: center; display: flex;">제목</span>
+					<input type="text" name="review_title" id="review_title" class="form-control" />
 				</div>
-				<div>
+				<div class="input-group mb-3">
 					<%-- 별점 --%>
-					<span class="star" style="font-size:2.0rem">
-					  ★★★★★
-					  <span>★★★★★</span>
-					  <input type="range" name="star" oninput="drawStar(this)" value="1" step="1" min="0" max="10">
+					<span class="input-group-text" style="width:10%; justify-content: center; align-items: center; display: flex;">별점</span>
+					<span style="border:solid #DEE2E6 1px; width:90%; border-top-right-radius:5px; border-bottom-right-radius:5px;">
+						<span class="star" style="font-size:1.5rem">
+						  ★★★★★
+						  <span>★★★★★</span>
+						  <input type="range" name="star" oninput="drawStar(this)" value="1" step="1" min="0" max="10">
+						</span>
 					</span>
 				</div>
 				<div class="mt-2">
-					<div id="editor" name="review_content">This is some sample content.</div>
+					<textarea name="review_content" class="form-control" id="review_content"></textarea>
+					<script type="text/javascript">	// 글쓰기 editor 및 사진 업로드 기능
+						CKEDITOR.replace('review_content',
+						{
+							filebrowserImageUploadUrl:'${pageContext.request.contextPath}/space/uploadImage'
+						});
+					</script>
 				</div>
-				<button type="submit" class="btn btn-outline-dark"onclick="submitContents(this)">저장</button>
+				<div class="text-center mt-3">
+					<button type="submit" id="submitBtn" class="btn btn-dark" onclick="submitContents(this)">저장하기</button>
+					<button type="button" class="btn btn-outline-dark" onClick="history.back();">뒤로 가기</button>
+				</div>
 			</form>
 		</div>
 	</div>
 	<!-- footer include -->
 	<jsp:include page="/WEB-INF/include/footer.jsp"/>
-	<!-- CKEditor -->
-	<script src="https://cdn.ckeditor.com/ckeditor5/31.1.0/classic/ckeditor.js"></script>
-	<script>
-	  ClassicEditor
-	    .create( document.querySelector( '#editor' ) )
-	    .catch( error => {
-	      console.error( error );
-	    } );
-	</script>
 </body>
 </html>
