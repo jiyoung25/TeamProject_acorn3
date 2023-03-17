@@ -176,6 +176,7 @@
 			</c:forEach>	
 		</div>
 	</div>
+	
    
 	<!-- 챗봇 -->
 	<div id="divBox" class="animate__animated animate__fadeIn">
@@ -214,7 +215,19 @@
 	            }
 	        }
 	    });
-	</script>  
+	</script>
+	<script>
+		var cardBody = document.querySelectorAll('.card-body p');
+		for (var i = 0; i < cardBody.length; i++) {
+			var text = cardBody[i].innerText;
+			var length = 15; // 카드 크기에 따라 조절 가능한 글자수
+			var trimmedText = text.substring(0, length);
+			if (text.length > length) {
+			  trimmedText = trimmedText + '...';
+			}
+			cardBody[i].innerText = trimmedText;
+		}
+</script>  
 </body>
 
 </html>
