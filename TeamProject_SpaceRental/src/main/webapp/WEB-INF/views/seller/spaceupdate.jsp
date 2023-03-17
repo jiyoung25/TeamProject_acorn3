@@ -70,7 +70,7 @@
 				</form>
 			</div>
 			
-			<div class="col-md-6">
+			<div class="col-md-6" style="padding-top: 47px;">
 				<form action="${pageContext.request.contextPath}/seller/ajax_upload" method="post" id="ajaxForm"enctype="multipart/form-data">
 				    <div><br><br>
 				    	<label for="image">이미지를 다시 선택해주세요</label>
@@ -81,8 +81,9 @@
 				</form>
 		
 		  		<div class="img-wrapper">
-		     		<img src="${pageContext.request.contextPath}/${dto.mainImagePath }" value="${dto.mainImagePath }" />
+		     		<img src="${pageContext.request.contextPath}/${dto.mainImagePath }" value="${dto.mainImagePath }" style="height: 460px;"/>
 		  		</div>
+		  		<br/>
 		  		<button id="submitBtn" class="btn btn-outline-secondary">저장</button>
 		  	</div>
 		</div>

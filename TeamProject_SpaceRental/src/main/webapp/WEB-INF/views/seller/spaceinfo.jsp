@@ -76,7 +76,7 @@
 				</form>
 			</div>
 			
-			<div class="col-md-6">
+			<div class="col-md-6" style="padding-top: 50px;">
 				<form action="${pageContext.request.contextPath}/seller/ajax_upload" method="post" id="ajaxForm"enctype="multipart/form-data">
 				    <div><br><br>
 				    	<label for="image">이미지</label>
@@ -86,7 +86,7 @@
 				</form>
 	
 		  		<div class="img-wrapper">
-		     		<img />
+		     		<img style="height: 460px;"/>
 		  		</div>
 		  		<br/>
 		  		<button id="submitBtn" class="btn btn-outline-secondary">저장</button>
