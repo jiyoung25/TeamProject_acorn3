@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>/users/reviewList</title>
+<title>나의 후기</title>
 <%-- 부트스트랩 --%>
 <jsp:include page="/WEB-INF/include/cdnlink.jsp"/>
 <%--import from static folder --%>
@@ -40,6 +40,7 @@
 	      		</c:when>
 	      		<c:when test = "${usersCode eq 1 }">
 	      			<jsp:include page="/WEB-INF/include/navbar_sessionO_admin.jsp"/>
+	      			<jsp:include page="/WEB-INF/include/sidebar_admin.jsp"/>
 	      		</c:when>
 	      	</c:choose>
       	</c:otherwise>

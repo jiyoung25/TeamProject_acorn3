@@ -78,6 +78,20 @@
 		WHERE rnum >= #{qnaStartRowNum} AND rnum <= #{qnaEndRowNum}
 		]]>
 	</select>
+	
+	<select id="adminQna" parameterType="qnaDto" resultType="qnaDto">
+   		SELECT *
+		FROM
+			(SELECT result1.*, ROWNUM AS rnum
+			FROM
+				(SELECT num,writer,title,content,viewCount,TO_CHAR(regdate, 'YY.MM.DD HH24:MI') AS regdate, seller_space.space_name
+				FROM qna
+				Inner Join seller_space ON qna.space_num = seller_space.space_num
+				ORDER BY num DESC) result1)
+		<![CDATA[ 
+		WHERE rnum >= #{qnaStartRowNum} AND rnum <= #{qnaEndRowNum}
+		]]>
+	</select>
    
    	<select id="getUsersNum" resultType="int" parameterType="String">
 		SELECT users_num
@@ -104,6 +118,11 @@
 		WHERE seller_space.users_num = (
 			SELECT MAX(users_num) FROM space_users WHERE id = #{sellerId}
 		)
+	</select>
+	
+	<select id="adminCount" parameterType="qnaDto" resultType="int">
+		SELECT NVL(MAX(ROWNUM), 0)
+		FROM qna
 	</select>
 	
 	<insert id="insert">

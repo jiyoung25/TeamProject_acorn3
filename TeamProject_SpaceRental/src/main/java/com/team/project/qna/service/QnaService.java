@@ -11,6 +11,7 @@ import com.team.project.qna.dto.QnaDto;
 public interface QnaService {
 	public void getQnaList(HttpServletRequest request, int space_num);
 	public void getList2(ModelAndView mView, HttpServletRequest request);
+	public void adminQna(ModelAndView mView, HttpServletRequest request);
 	public void getUsersNum(HttpServletRequest request, HttpSession session);
 	public void getDetail(HttpServletRequest request);
 	public void saveContent(QnaDto dto);
