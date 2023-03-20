@@ -69,9 +69,10 @@
 									<div>
 									<label for="addr">주소</label><br />				
 										<input class="form-control" type="text" name="addr" id="addr" value="${dto.addr }" readonly style="margin-left:auto;margin-right:auto;width: 320px">
-										<input class="form-control" type="text" name="addr2" id="addr2" value="${dto.addr2 }" style="margin-left:auto;margin-right:auto;width: 320px"
-											aria-describedby="button-addon2"><br>
-										<button class="btn btn-outline-secondary" type="button" id="button-addon2" onclick="sample5_execDaumPostcode()">주소 검색</button><br>
+										<div class="input-group" style="margin-left:auto;margin-right:auto;width: 320px">
+											<input class="form-control" type="text" name="addr2" id="addr2" value="${dto.addr2 }" aria-describedby="button-addon2">
+											<button class="btn btn-outline-secondary" type="button" id="button-addon2" onclick="sample5_execDaumPostcode()">주소 검색</button>
+										</div>
 									</div>
 									<div id="map" style="margin-left:auto;margin-right:auto;width:320px;height:320px;margin-top:10px;display:none"></div>				
 								    <input type="hidden" name="space_num" value="${dto.space_num }"/>
