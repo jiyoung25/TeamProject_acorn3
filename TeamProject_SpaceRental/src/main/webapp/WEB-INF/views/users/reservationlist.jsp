@@ -75,7 +75,6 @@
 								<tr>
 									<th scope="row">예약 번호</th>
 									<th scope="row">방 이름</th>
-									<th scope="row">예약자 명</th>
 									<th scope="row">예약자 수</th>
 									<th scope="row">예약 날짜</th>
 									<th scope="row">예약 시간</th>
@@ -90,8 +89,7 @@
 						  <tbody>
 							  <tr v-for="item in resultList">
 							  	<td>{{item.reserv_num }}</td>
-							  	<td>{{item.space_name }}</td>
-							  	<td>{{item.users_id }}</td>
+							  	<td v-on:click="onSpaceBtn(item.cate_num,item.space_num)" style="cursor:pointer;">{{item.space_name }}</td>
 							  	<td>{{item.reserv_count }}</td>
 							  	<td>{{item.reserv_date }}</td>
 								<td>{{item.reserv_time }}</td>
@@ -114,17 +112,17 @@
 					        	&condition=${condition}&keyword=${encodedK}
 					        --%>
 					        <li class="page-item">
-					            <a class="page-link" v-on:click="onPagenation(event)" id="prev">Prev</a>
+					            <a class="page-link" v-on:click="onPagenation" id="prev">Prev</a>
 					        </li>
 					        <%-- 페이지 번호 --%>
 					        <li class="page-item" v-for="item in pageList">
-					       		<a class="page-link pageBtn" :class="{'active': item == pageNum}" v-on:click="onPagenation(event)" :id="item">{{item}}</a> 	
+					       		<a class="page-link pageBtn" :class="{'active': item == pageNum}" v-on:click="onPagenation" :id="item">{{item}}</a> 	
 					        </li>
 					        <%--
 					           마지막 페이지 번호가 전체 페이지의 갯수보다 작으면 Next 링크를 제공한다. 
 					        --%>
 					        <li class="page-item">
-					            <a class="page-link" v-on:click="onPagenation(event)" id="next">Next</a>
+					            <a class="page-link" v-on:click="onPagenation" id="next">Next</a>
 					        </li>
 						</ul>
 					</nav>
@@ -264,6 +262,9 @@
 					console.log(this.gofor);
 					//pageNum을 파라미터로 넘긴 값으로 list를 받아오고, 버튼 활성화 시키기
 					this.getList();
+				},
+				onSpaceBtn:function(cate_num,space_num){
+					location.href="${pageContext.request.contextPath}/space/detail?cate_num="+cate_num+"&space_num="+space_num;
 				}
 			}
 		})
