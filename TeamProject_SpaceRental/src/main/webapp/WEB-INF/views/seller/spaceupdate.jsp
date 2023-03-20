@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <%-- 부트스트랩 --%>
 <jsp:include page="/WEB-INF/include/cdnlink.jsp"/>
-<title>공간수정폼</title>
+<title>공간업데이트 (판매자) :Ubiquitous</title>
 <style>
 
 </style>

@@ -13,7 +13,7 @@
 <%-- import from static folder --%>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/star.css">
 <script src = "${pageContext.request.contextPath}/js/star.js"></script>
-<title>/views/view/reviewupdateform.jsp</title>
+<title>리뷰 업데이트 :Ubiquitous</title>
 <style>
 	
 </style>

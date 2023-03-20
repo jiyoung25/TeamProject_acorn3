@@ -43,7 +43,12 @@
 			</div>
 	
 			<ul class="navbar-nav justify-content-end flex-grow-1 pe-3 ml-3 text-center fw-bold">
-	    		<!-- 판매자 예약list -->   
+	    		<!-- 판매자 예약list -->
+				<!-- 내 공간 확인하기 -->  
+				<li class="nav-item">
+	        		<a class="nav-link " href="${pageContext.request.contextPath}/seller/spacelist">내 공간 확인하기</a>
+	        	</li>   
+	    		<hr class="my-2">
 	    		<li class="nav-item">
 	        		<a class="nav-link " href="${pageContext.request.contextPath}/seller/reservation/reservationlist">예약 리스트 확인</a>
 	        	</li>

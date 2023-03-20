@@ -10,7 +10,7 @@
 <jsp:include page="/WEB-INF/include/cdnlink.jsp"/>
 <%-- CKEditor --%>
 <script type="text/javascript" src="${pageContext.request.contextPath}/ckeditor/ckeditor.js"></script>
-<title>/views/qna/qnaupdateform.jsp</title>
+<title>Q&A 업데이트 :Ubiquitous</title>
 </head>
 <body>
 	<%-- 네비바 --%>

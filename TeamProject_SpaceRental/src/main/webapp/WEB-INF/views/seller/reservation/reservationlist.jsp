@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <%-- 부트스트랩 --%>
 <jsp:include page="/WEB-INF/include/cdnlink.jsp"/>
-<title>예약리스트 보기(판매자)</title>
+<title>예약리스트 (판매자) :Ubiquitous</title>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <style>
 	br{

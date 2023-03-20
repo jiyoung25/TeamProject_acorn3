@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>/views/review/reviewInsertjsp</title>
+<title>리뷰 추가메세지 :Ubiquitous</title>
 </head>
 <body>
 	<script>
