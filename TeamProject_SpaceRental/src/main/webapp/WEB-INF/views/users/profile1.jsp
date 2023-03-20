@@ -20,7 +20,11 @@
 		width: 250px;
 	}
 	
-	
+	.separator {
+		width: 350px;
+		height: 1px;
+		background-color: black;
+	}
 </style>
 </head>
 <body>
@@ -48,12 +52,13 @@
 	      	</c:choose>
       	</c:otherwise>
    	</c:choose>
-	<!--프로필 사진-->
-	<div class="container ">
-		<div class="row">
+	
+	<div class="container">
+		<br>
+		<div class="row shadow p-3 mb-5 bg-body rounded">
 			<div class="col-md-6 text-center">
 				<div class="card-title mx-auto p-5">
-                    <p class="fs-1 text-center fw-bold" style="color:#000000; ">My profile</p>
+                    <p class="fs-1 text-center fw-bold" style="color:#000000; ">My Profile</p>
                 </div>
                 <!-- 사용자 프로필사진-->
                 <div class=" text-center">				    
@@ -70,29 +75,32 @@
                 </div>
                 <!--사용자 이름-->
                 <div class="text-center caption fst-italic text-muted mb-4 p-5">
-                    <p>${sessionScope.id }</p>
+                    <p style="font-size:2em"><strong>${sessionScope.id }</strong></p>
                 </div>                				
                 <br>
             </div>
-            
+            <br>
 			<!--프로필 정보 영역-->
-			<div class="col-md-6 mx-auto p-5" style="background-color:;" >	
-		        <!--아이디 및 가입일-->
-		        <div>
+			<div class="col-md-6 mx-auto"  style="display: flex; flex-direction: column; align-items: center; margin: auto; ">	
+	        	<!--아이디 및 가입일-->
+		        <div >
 		            <label for="address2" class="form-label">아이디</label>
-		            <input class="form-control" type="text" value="${id }" aria-label="readonly input example" readonly>                        
-		        </div>    
+		            <input style="width:350px" class="form-control" type="text" value="${id }" aria-label="readonly input example" readonly>                        
+		        </div>
+		        <br>
 		        <div>
 		            <label for="address2" class="form-label">가입일</label>
-		            <input class="form-control" type="text" value="${dto.regdate }" aria-label="readonly input example" readonly>
+		            <input style="width:350px" class="form-control" type="text" value="${dto.regdate }" aria-label="readonly input example" readonly>
 		        </div>
+		        <br>
 		        <!--이메일-->
 		        <div>
 		            <label for="exampleFormControlInput1" class="form-label">Email</label>
-		            <input type="email" class="form-control" placeholder="${dto.email }" aria-label="readonly input example" readonly>
+		            <input style="width:350px" type="email" class="form-control" placeholder="${dto.email }" aria-label="readonly input example" readonly>
 		        </div>
-		        
-            	<hr class="my-5">
+		        <br>
+            	<hr class="separator">
+            	<br>
 	            <!--수정 및 탈퇴하기 버튼-->
 	            <div>		                
 	                <button type="button" class=" btn btn-outline-success " onclick="location.href='${pageContext.request.contextPath}/users/updateform' ">정보수정</button>
@@ -120,7 +128,7 @@
 	                        <div class="modal-footer">
 	                            <button type="button" class="btn btn-secondary"
 	                                data-bs-dismiss="modal">아니오</button>
-	                            <button type="button" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/users/delete' ">예</button>
+	                            <button type="button" class="btn btn-danger" onclick="location.href='${pageContext.request.contextPath}/users/delete' ">예</button>
 	                        </div>
 	                    </div>
 	                </div>
