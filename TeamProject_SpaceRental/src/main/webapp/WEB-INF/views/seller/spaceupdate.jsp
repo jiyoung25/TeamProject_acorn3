@@ -49,28 +49,29 @@
 								<form action="${pageContext.request.contextPath}/seller/update" method="post" id="updateForm">
 									<div>
 										<label for="space_name">공간명</label><br />
-						            	<input type="text" name="space_name" id="space_name" style="width: 320px" value=${dto.space_name } />
+						            	<input class="form-control" type="text" name="space_name" id="space_name" style="margin-left:auto;margin-right:auto;width: 320px" value=${dto.space_name } />
 									</div>
 									<div style="display:hidden">
 										카테고리
-										<select class="form-select" name="cate_name">
+										<select class="form-select" name="cate_name" style="margin-left:auto;margin-right:auto;width: 320px">
 											<option value="${dto.cate_name }">${dto.cate_name }</option>	
 										</select>
 									</div>
 									<div>
 										<label for="oneliner">공간 한 줄 소개</label><br />
-										<input type="text" name="oneliner" id="oneliner" style="width: 320px" value="${dto.oneliner }" />
+										<input class="form-control" type="text" name="oneliner" id="oneliner" style="margin-left:auto;margin-right:auto;width: 320px" value="${dto.oneliner }" />
 									</div>
 									<div>
 										<label for="intro">공간 소개</label><br />
-										<textarea name="intro" id="intro" cols="40" rows="10" >${dto.intro } </textarea>
+										<textarea class="form-control" name="intro" id="intro" cols="40" rows="10" style="margin-left:auto;margin-right:auto;width: 320px">${dto.intro } </textarea>
 									</div>
 									<input type="hidden" id="mainImagePath" name="mainImagePath" />
 									<div>
 									<label for="addr">주소</label><br />				
-										<input type="text" name="addr" id="addr" value="${dto.addr }" readonly style="width: 320px">
-										<input type="text" name="addr2" id="addr2" value="${dto.addr2 }" style="width: 320px"><br>
-										<input type="button" onclick="sample5_execDaumPostcode()" value="주소 검색"><br>
+										<input class="form-control" type="text" name="addr" id="addr" value="${dto.addr }" readonly style="margin-left:auto;margin-right:auto;width: 320px">
+										<input class="form-control" type="text" name="addr2" id="addr2" value="${dto.addr2 }" style="margin-left:auto;margin-right:auto;width: 320px"
+											aria-describedby="button-addon2"><br>
+										<button class="btn btn-outline-secondary" type="button" id="button-addon2" onclick="sample5_execDaumPostcode()">주소 검색</button><br>
 									</div>
 									<div id="map" style="margin-left:auto;margin-right:auto;width:320px;height:320px;margin-top:10px;display:none"></div>				
 								    <input type="hidden" name="space_num" value="${dto.space_num }"/>
