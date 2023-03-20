@@ -10,7 +10,7 @@
 <jsp:include page="/WEB-INF/include/cdnlink.jsp"/>
 <%--import from static folder --%>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/star.css" />
-<title>/seller/sellerReview</title>
+<title>리뷰 관리(판매자)</title>
 <style>
 	a {
 		text-decoration: none;

@@ -7,7 +7,7 @@
 <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
 <%-- vue.js --%>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
-<title>Ubiquitous/수정 금지</title>
+<title>Error 수정금지 :Ubiquitous</title>
 </head>
 <body>
 	<div class="container">

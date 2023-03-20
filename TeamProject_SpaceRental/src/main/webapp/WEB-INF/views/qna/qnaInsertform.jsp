@@ -10,7 +10,7 @@
 <jsp:include page="/WEB-INF/include/cdnlink.jsp"/>
 <%-- CKEditor --%>
 <script type="text/javascript" src="${pageContext.request.contextPath}/ckeditor/ckeditor.js"></script>
-<title>/views/space/qnaInsertform.jsp</title>
+<title>Q&A 추가관리 :Ubiquitous</title>
 <style>
 	textarea{
 		width: 768px;

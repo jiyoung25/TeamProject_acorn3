@@ -12,7 +12,7 @@
 		text-decoration-line: none;
 	}
 </style>
-<title>/views/users/login.jsp</title>
+<title>로그인 성공여부 :Ubiquitous</title>
 </head>
 <body>
 	<%-- 네비바 --%>

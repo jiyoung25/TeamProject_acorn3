@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <%-- 부트스트랩 --%>
 <jsp:include page="/WEB-INF/include/cdnlink.jsp"/>
-<title>Insert title here</title>
+<title>Q&A 관리(판매자) :Ubiquitous</title>
 <style>
 	a {
 		text-decoration: none;
