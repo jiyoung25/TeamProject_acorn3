@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <%-- 부트스트랩 --%>
 <jsp:include page="/WEB-INF/include/cdnlink.jsp"/>
-<title>SpaceList</title>
+<title>공간리스트(판매자) :Ubiquitous</title>
 <style>
    /* card 이미지 부모요소의 높이 지정 */
    .img-wrapper{

@@ -52,6 +52,7 @@
 			INNER JOIN reservationform ON result1.space_num=reservationform.space_num
 			WHERE <include refid="searchCondition"/> users_num=(SELECT MAX(users_num) FROM seller_space WHERE users_num = (select users_num FROM space_users WHERE id=#{users_id})))result2
 		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
+		ORDER BY reserv_num DESC
 	</select>
 	<select id="getSellerCount" resultType="int" parameterType="reservDto">
 		SELECT NVL(MAX(ROWNUM), 0)
@@ -76,6 +77,7 @@
 						INNER JOIN reservationform ON reservationform.space_num = A.space_num
 						WHERE <include refid="searchCondition"/> users_id = #{users_id})result1) 
 		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
+		ORDER BY reserv_num DESC
 	</select>
 	<select id="getUserReservCount" resultType="int" parameterType="reservDto">
 		SELECT NVL(MAX(ROWNUM), 0)

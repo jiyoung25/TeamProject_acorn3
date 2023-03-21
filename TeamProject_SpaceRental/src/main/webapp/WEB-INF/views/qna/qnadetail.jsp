@@ -10,7 +10,7 @@
 <jsp:include page="/WEB-INF/include/cdnlink.jsp"/>
 <%-- animate.css --%>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-<title>/views/qna/qnadetail.jsp</title>
+<title>Q&A :Ubiquitous</title>
 <style>
    .content{
       border: 1px dotted gray;

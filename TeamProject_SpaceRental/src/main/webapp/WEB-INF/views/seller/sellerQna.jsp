@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <%-- 부트스트랩 --%>
 <jsp:include page="/WEB-INF/include/cdnlink.jsp"/>
-<title>Insert title here</title>
+<title>Q&A 관리(판매자) :Ubiquitous</title>
 <style>
 	a {
 		text-decoration: none;
@@ -100,5 +100,8 @@
 		
 		<a href="${pageContext.request.contextPath}" class="btn btn-outline-dark">메인으로 가기</a>
 	</div>
+	
+	<!-- footer include -->
+	<jsp:include page="/WEB-INF/include/footer.jsp" />
 </body>
 </html>

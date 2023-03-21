@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>/users/reviewList</title>
+<title>나의 후기 :Ubiquitous</title>
 <%-- 부트스트랩 --%>
 <jsp:include page="/WEB-INF/include/cdnlink.jsp"/>
 <%--import from static folder --%>
@@ -40,6 +40,7 @@
 	      		</c:when>
 	      		<c:when test = "${usersCode eq 1 }">
 	      			<jsp:include page="/WEB-INF/include/navbar_sessionO_admin.jsp"/>
+	      			<jsp:include page="/WEB-INF/include/sidebar_admin.jsp"/>
 	      		</c:when>
 	      	</c:choose>
       	</c:otherwise>
@@ -137,5 +138,8 @@
 			confirm("해당 글을 삭제하시겠습니까?")?this.submit():"";
 		}
 	</script>
+	
+	<!-- footer include -->
+	<jsp:include page="/WEB-INF/include/footer.jsp"/>
 </body>
 </html>

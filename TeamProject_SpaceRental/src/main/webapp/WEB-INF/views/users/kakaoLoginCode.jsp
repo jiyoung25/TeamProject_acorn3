@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
-<title>카카오 회원가입 추가 정보 입력</title>
+<title>카카오 회원가입 :Ubiquitous</title>
 </head>
 <body>
 	<%--
@@ -47,5 +47,7 @@
 		</div>
 		<button type="submit"> 제출하기 </button>
 	</form>
+	<!-- footer include -->
+	<jsp:include page="/WEB-INF/include/footer.jsp" />
 </body>
 </html>

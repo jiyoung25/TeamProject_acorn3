@@ -31,6 +31,12 @@ public class ReviewDaoImpl implements ReviewDao{
 		return session.selectList("review.getList3", dto);
 	}
 	
+	@Override
+	public List<ReviewDto> adminReview(ReviewDto dto) {
+		
+		return session.selectList("review.adminReview", dto);
+	}
+	
 	@Override //id를 이용해 UsersNum 가져오기
 	public int getUsersNum(String id) {
 		return session.selectOne("review.getUsersNum", id);
@@ -52,6 +58,12 @@ public class ReviewDaoImpl implements ReviewDao{
 	public int getCount3(ReviewDto dto) {
 		
 		return session.selectOne("review.getCount3", dto);
+	}
+	
+	@Override //모든 Review의 갯수
+	public int adminCount(ReviewDto dto) {
+		
+		return session.selectOne("review.adminCount", dto);
 	}
 
 	@Override //Review 추가

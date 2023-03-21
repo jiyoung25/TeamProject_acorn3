@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <%-- 부트스트랩 --%>
 <jsp:include page="/WEB-INF/include/cdnlink.jsp"/>
-<title>/views/users/pwd_updateform.jsp</title>
+<title>비밀번호 수정 :Ubiquitous</title>
 <style>
 	label {
 	  display: inline-block; /* 레이블을 인라인 블록 요소로 정의하여 박스의 좌측에 위치시킵니다. */
@@ -63,8 +63,9 @@
 		</form>
 	</div>
 	
-	      <!-- footer include -->
-		  <jsp:include page="/WEB-INF/include/footer.jsp"/>
+	<!-- footer include -->
+	<jsp:include page="/WEB-INF/include/footer.jsp"/>
+	
 	<script>
 		//폼에 submit 이벤트가 일어났을때 실행할 함수를 등록하고 
 		document.querySelector("#myForm").addEventListener("submit", function(e){

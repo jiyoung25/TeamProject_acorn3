@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <%-- 부트스트랩 --%>
 <jsp:include page="/WEB-INF/include/cdnlink.jsp"/>
-<title>/views/users/signup</title>
+<title>회원가입 성공 :Ubiquitous</title>
 <style>
 	a {
 		text-decoration: none;
@@ -59,7 +59,7 @@
 		</p>
 	</div>
 	
-	  <!-- footer include -->
-	  <jsp:include page="/WEB-INF/include/footer.jsp"/>
+	<!-- footer include -->
+	<jsp:include page="/WEB-INF/include/footer.jsp"/>
 </body>
 </html>

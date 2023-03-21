@@ -51,6 +51,21 @@
 		ORDER BY review_num
 	</select>
 	
+	<select id="adminReview" parameterType="reviewDto" resultType="reviewDto">
+		SELECT *
+		FROM
+			(SELECT result1.*, ROWNUM AS rnum
+			FROM
+				(SELECT review_num,review_writer,review_title,review_content,viewcount,
+						TO_CHAR(review_regdate, 'YY.MM.DD HH24:MI') AS review_regdate, reserv_num, star, seller_space.space_name
+				FROM review
+				Inner Join seller_space ON review.space_num = seller_space.space_num
+				ORDER BY review_num) result1)
+		<![CDATA[ 
+		WHERE rnum >= #{startRowNum} AND rnum <= #{endRowNum}
+		]]>	
+	</select>
+	
 	<select id="getUsersNum" resultType="int" parameterType="String">
 		SELECT users_num
 		FROM space_users
@@ -74,6 +89,11 @@
 		FROM seller_space
 		INNER JOIN review ON review.space_num = seller_space.space_num
 		WHERE seller_space.users_num=(SELECT MAX(users_num) FROM space_users WHERE id=#{sellerId})
+	</select>
+	
+	<select id="adminCount" parameterType="reviewDto" resultType="int">
+		SELECT NVL(MAX(ROWNUM), 0)
+		FROM review
 	</select>
 
 	<insert id="insert">

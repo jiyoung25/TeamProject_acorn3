@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <%-- 부트스트랩 --%>
 <jsp:include page="/WEB-INF/include/cdnlink.jsp"/>
-<title>/views/qna/qnalist</title>
+<title>Q&A 리스트보기 :Ubiquitous</title>
 </head>
 <body>
 	<%-- 네비바 --%>
@@ -82,7 +82,7 @@
          </ul>
       </nav>
 	      
-      <!-- 검색 폼 -->
+		<!-- 검색 폼 -->
 		<form action="detail" method="get">
     		<label for="condition">검색조건</label>
     		<select name="condition" id="condition">
@@ -102,9 +102,9 @@
 				<a href="${pageContext.request.contextPath}/space/detail?cate_num=${cate_num}&space_num=${space_num}">리셋</a>
 			</p>
 		</c:if>
-   </div>
+	</div>
    
-       <!-- footer include -->
-	  <jsp:include page="/WEB-INF/include/footer.jsp"/>
+	<!-- footer include -->
+	<jsp:include page="/WEB-INF/include/footer.jsp"/>
 </body>
 </html>

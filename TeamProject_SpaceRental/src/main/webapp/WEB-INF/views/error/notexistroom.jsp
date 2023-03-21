@@ -7,9 +7,31 @@
 <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
 <%-- vue.js --%>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
-<title>Ubiquitous/존재하지 않는 방</title>
+<title>Error 존재하지 않는 방 :Ubiquitous</title>
 </head>
 <body>
+	<%-- 네비바 --%>
+	<c:choose>
+		<c:when test="${empty sessionScope.id }">
+			<jsp:include page="/WEB-INF/include/navbar_sidebar_SessionX.jsp" />
+		</c:when>
+		<c:otherwise>
+			<c:choose>
+				<c:when test="${usersCode eq 2 }">
+					<jsp:include page="/WEB-INF/include/navbar_sessionO_seller.jsp" />
+					<jsp:include page="/WEB-INF/include/sidebar_seller.jsp" />
+				</c:when>
+				<c:when test="${usersCode eq 3 }">
+					<jsp:include page="/WEB-INF/include/navbar_sessionO_users.jsp" />
+					<jsp:include page="/WEB-INF/include/sidebar_user.jsp" />
+				</c:when>
+				<c:when test="${usersCode eq 1 }">
+					<jsp:include page="/WEB-INF/include/navbar_sessionO_admin.jsp" />
+					<jsp:include page="/WEB-INF/include/sidebar_admin.jsp" />
+				</c:when>
+			</c:choose>
+		</c:otherwise>
+	</c:choose>
 	<div class="container">
 		<h3>NON-EXISTENT ROOM</h3>
 		<p class="alert alert-info">
@@ -17,5 +39,7 @@
 			<a href="${pageContext.request.contextPath}/">인덱스로</a>
 		</p>
 	</div>
+	<!-- footer include -->
+	<jsp:include page="/WEB-INF/include/footer.jsp" />
 </body>
 </html>

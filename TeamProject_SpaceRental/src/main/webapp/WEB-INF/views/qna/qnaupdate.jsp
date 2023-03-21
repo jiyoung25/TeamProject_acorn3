@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <%-- 부트스트랩 --%>
 <jsp:include page="/WEB-INF/include/cdnlink.jsp"/>
-<title>/views/qna/qnaupdate.jsp</title>
+<title>Q&A 업데이트메세지 :Ubiquitous</title>
 </head>
 <body>
 	<%-- 네비바 --%>
@@ -31,7 +31,7 @@
    	</c:choose> 
 
 	<!-- footer include -->
-	  <jsp:include page="/WEB-INF/include/footer.jsp"/>
+	<jsp:include page="/WEB-INF/include/footer.jsp"/>
 	  
 	  
 	<script>

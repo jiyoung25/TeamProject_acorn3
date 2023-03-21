@@ -29,6 +29,12 @@ public class QnaDaoImpl implements QnaDao{
 		
 		return session.selectList("qna.getList3", dto);
 	}
+	
+	@Override
+	public List<QnaDto> adminQna(QnaDto dto) {
+		
+		return session.selectList("qna.adminQna", dto);
+	}
 
 	@Override
 	public int getUsersNum(String id) {
@@ -51,6 +57,11 @@ public class QnaDaoImpl implements QnaDao{
 	public int getCount3(QnaDto dto) {
 		
 		return session.selectOne("qna.getCount3", dto);
+	}
+	
+	@Override
+	public int adminCount(QnaDto dto) {
+		return session.selectOne("qna.adminCount", dto);
 	}
 
 	@Override //글 추가

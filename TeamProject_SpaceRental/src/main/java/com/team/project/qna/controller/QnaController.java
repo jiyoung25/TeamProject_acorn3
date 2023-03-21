@@ -56,6 +56,13 @@ public class QnaController {
 		return "redirect:/users/qnaList";
 	}
 	
+	@RequestMapping("/admin/qnaDelete")
+	public String adminDelete(int num, HttpServletRequest request) {
+		
+		service.deleteContent(num, request);
+		return "redirect:/admin/adminQna";
+	}
+	
 	@RequestMapping("/users/qnaDelete")
 	public String delete2(int num, HttpServletRequest request) {
 		String qna_writer = service.getData(request).getWriter();
@@ -84,6 +91,14 @@ public class QnaController {
 		service.getUsersNum(request, session);
 		service.getList2(mView, request);
 		mView.setViewName("users/qnaList");
+		return mView;
+	}
+	
+	@RequestMapping("/admin/adminQna")
+	public ModelAndView adminQna(ModelAndView mView, HttpServletRequest request, HttpSession session) {
+		service.getUsersNum(request, session);
+		service.adminQna(mView, request);
+		mView.setViewName("admin/adminQna");
 		return mView;
 	}
 	

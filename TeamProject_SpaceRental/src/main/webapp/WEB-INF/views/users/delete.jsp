@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Space Rental</title>
+<title>회원 탈퇴메세지 :Ubiquitous</title>
 <%-- 부트스트랩 --%>
 <jsp:include page="/WEB-INF/include/cdnlink.jsp"/>
 <style>
@@ -49,5 +49,8 @@
 			<a href="${pageContext.request.contextPath}/">홈으로 돌아가기</a>
 		</p>
 	</div>
+	
+	<!-- footer include -->
+	<jsp:include page="/WEB-INF/include/footer.jsp" />
 </body>
 </html>

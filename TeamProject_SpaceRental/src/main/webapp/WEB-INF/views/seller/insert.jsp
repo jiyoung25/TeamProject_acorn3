@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <%-- 부트스트랩 --%>
 <jsp:include page="/WEB-INF/include/cdnlink.jsp"/>
-<title>insert</title>
+<title>공간추가 메세지(판매자) :Ubiquitous</title>
 </head>
 <body>
 	<%-- 네비바 --%>
@@ -34,7 +34,7 @@
    
    
    	<!-- footer include -->
-	  <jsp:include page="/WEB-INF/include/footer.jsp"/>
+	<jsp:include page="/WEB-INF/include/footer.jsp"/>
 	  
 	  
 	  

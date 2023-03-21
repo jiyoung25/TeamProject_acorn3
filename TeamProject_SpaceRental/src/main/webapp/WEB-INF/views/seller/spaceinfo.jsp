@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <%-- 부트스트랩 --%>
 <jsp:include page="/WEB-INF/include/cdnlink.jsp"/>
-<title>SpaceInfo</title>
+<title>공간등록 (판매자) :Ubiquitous</title>
 <style>
 	
 </style>
@@ -34,56 +34,84 @@
 	      	</c:choose>
       	</c:otherwise>
    	</c:choose>   	
-   	<section class="v-100" style="background-color: #eee;">
-	  <div class="container h-100">
-	    <div class="row row-cols-lg-6 h-100">
-	      <div class="col-lg-6">
-	        <div class="card text-black" style="border-radius: 25px;">
-	          <div class="card-body p-md-6">
-	            <div class="d-flex flex-row justify-content-center">
-	              <div class="col-md-12">
-					<div class="container text-center">
-						<div class="row">
-							<div class="col-md-12">
-								<h1>공간 등록</h1>
-								<form action="${pageContext.request.contextPath}/seller/insert" method="post" id="insertForm">
-									<div>
-										<label for="space_name">공간명</label><br />
-						            	<input class="form-control" type="text" name="space_name" id="space_name" style="margin-left:auto;margin-right:auto;width: 320px"/>
-									</div>
-									<br/>
-									<div>
-										카테고리
-										<select class="form-select" name="cate_name" style="margin-left:auto;margin-right:auto;width: 320px">
-											<option name="cate_name" value="파티룸">파티룸</option>
-											<option name="cate_name" value="연습실">연습실</option>
-											<option name="cate_name" value="스터디룸">스터디룸</option>
-											<option name="cate_name" value="강의실">강의실</option>
-											<option name="cate_name" value="공유주방">공유주방</option>	
-										</select>
-									</div>
-									<br/>
-									<div>
-										<label for="oneliner">공간 한 줄 소개</label><br />
-										<input class="form-control" type="text" name="oneliner" id="oneliner" style="margin-left:auto;margin-right:auto;width: 320px" />
-									</div>
-									<br/>
-									<div>
-										<label for="intro">공간 상세 소개</label><br />
-										<textarea class="form-control" name="intro" id="intro" cols="40" rows="10" style="margin-left:auto;margin-right:auto;width: 320px"></textarea>
-									</div>
-									<input type="hidden" id="mainImagePath" name="mainImagePath" />
-									<br/>
-									<div>
-										<label for="addr">주소</label><br />										
-										<input class="form-control" type="text" name="addr" id="addr" placeholder="주소를 검색해주세요" readonly style="margin-left:auto;margin-right:auto;width: 320px">
-										<div class="input-group" style="margin-left:auto;margin-right:auto;width: 320px">
-											<input class="form-control" type="text" name="addr2" id="addr2" placeholder="상세주소를 입력하세요" aria-describedby="button-addon2">
-											<button class="btn btn-outline-secondary" type="button" id="button-addon2" onclick="sample5_execDaumPostcode()">주소 검색</button>
+	<section class="v-100" style="background-color: #eee;">
+		<div class="container h-100">
+			<div class="row row-cols-lg-6 h-100">
+				<div class="col-lg-6">
+					<div class="card text-black" style="border-radius: 25px;">
+						<div class="card-body p-md-6">
+							<div class="d-flex flex-row justify-content-center">
+								<div class="col-md-12">
+									<div class="container text-center">
+										<div class="row">
+											<div class="col-md-12">
+												<h1>공간 등록</h1>
+												<form action="${pageContext.request.contextPath}/seller/insert" method="post" id="insertForm">
+													<div>
+														<label for="space_name">공간명</label><br />
+										            	<input class="form-control" type="text" name="space_name" id="space_name" style="margin-left:auto;margin-right:auto;width: 320px"/>
+													</div>
+													<br/>
+													<div>
+														카테고리
+														<select class="form-select" name="cate_name" style="margin-left:auto;margin-right:auto;width: 320px">
+															<option name="cate_name" value="파티룸">파티룸</option>
+															<option name="cate_name" value="연습실">연습실</option>
+															<option name="cate_name" value="스터디룸">스터디룸</option>
+															<option name="cate_name" value="강의실">강의실</option>
+															<option name="cate_name" value="공유주방">공유주방</option>	
+														</select>
+													</div>
+													<br/>
+													<div>
+														<label for="oneliner">공간 한 줄 소개</label><br />
+														<input class="form-control" type="text" name="oneliner" id="oneliner" style="margin-left:auto;margin-right:auto;width: 320px" />
+													</div>
+													<br/>
+													<div>
+														<label for="intro">공간 상세 소개</label><br />
+														<textarea class="form-control" name="intro" id="intro" cols="40" rows="10" style="margin-left:auto;margin-right:auto;width: 320px"></textarea>
+													</div>
+													<input type="hidden" id="mainImagePath" name="mainImagePath" />
+													<br/>
+													<div>
+														<label for="addr">주소</label><br />										
+														<input class="form-control" type="text" name="addr" id="addr" placeholder="주소를 검색해주세요" readonly style="margin-left:auto;margin-right:auto;width: 320px">
+														<div class="input-group" style="margin-left:auto;margin-right:auto;width: 320px">
+															<input class="form-control" type="text" name="addr2" id="addr2" placeholder="상세주소를 입력하세요" aria-describedby="button-addon2">
+															<button class="btn btn-outline-secondary" type="button" id="button-addon2" onclick="sample5_execDaumPostcode()">주소 검색</button>
+														</div>
+													</div>	
+													<div id="map" style="margin-left:auto;margin-right:auto;width:320px;height:320px;margin-top:10px;display:none"></div>
+												</form>
+											</div>
 										</div>
-									</div>	
-									<div id="map" style="margin-left:auto;margin-right:auto;width:320px;height:320px;margin-top:10px;display:none"></div>
-								</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-6">
+					<div class="card text-black" style="border-radius: 25px;">
+						<div class="card-body p-md-6">
+							<div class="d-flex flex-row justify-content-center">
+								<div class="col-md-12">
+									<div class="col-md-12">
+										<form action="${pageContext.request.contextPath}/seller/ajax_upload" method="post" id="ajaxForm"enctype="multipart/form-data">
+										    <div><br><br>
+										    	<label class="form-label" for="image">이미지</label>
+										    	<input class="form-control" type="file" name="image" id="image" 
+										    		accept=".jpg, .jpeg, .png, .JPG, .JPEG"/>
+										    </div>
+										</form>
+								  		<div class="img-wrapper">
+								     		<img />
+								  		</div>
+								  		<br/>
+								  		<button id="submitBtn" class="btn btn-outline-secondary">저장</button>
+								  	</div>
+								</div>
 							</div>
 						</div>
 			         </div>
@@ -115,11 +143,8 @@
 				  	</div>
 				  </div>
 				</div>
-	          </div>
-            </div>
-          </div>
-        </div>
-	  </div>
+			</div>
+		</div>
 	</section>
 	<script>		
 		document.querySelector("#submitBtn").addEventListener("click", function(e){

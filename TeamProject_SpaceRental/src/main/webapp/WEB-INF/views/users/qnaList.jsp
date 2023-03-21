@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Q&A list</title>
+<title>나의 Q&A :Ubiquitous</title>
 <%-- 부트스트랩 --%>
 <jsp:include page="/WEB-INF/include/cdnlink.jsp"/>
 <style>
@@ -98,6 +98,9 @@
 		
 		<a href="${pageContext.request.contextPath}" class="btn btn-outline-dark">메인으로 가기</a>
 	</div>
+	
+	<!-- footer include -->
+	<jsp:include page="/WEB-INF/include/footer.jsp"/>
 	
 	<script>
    		const deleteLink = function(){
