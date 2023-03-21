@@ -71,7 +71,7 @@
 		<br>
 		<%-- Q&A 페이지네이션 --%>
 		<nav>
-			<ul class="pagination">
+			<ul class="pagination justify-content-center">
 				<%--
 		        	qnaStartPageNum 이 1 이 아닌 경우에만 Prev 링크를 제공한다. 
 		        --%>

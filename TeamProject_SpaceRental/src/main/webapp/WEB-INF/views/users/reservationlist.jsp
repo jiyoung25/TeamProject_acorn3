@@ -106,7 +106,7 @@
 				
 					<%-- 페이징 --%>
 					<nav class="mt-3">
-						<ul class="pagination">
+						<ul class="pagination justify-content-center">
 							<%--
 					        	startPageNum 이 1 이 아닌 경우에만 Prev 링크를 제공한다. 
 					        	&condition=${condition}&keyword=${encodedK}
