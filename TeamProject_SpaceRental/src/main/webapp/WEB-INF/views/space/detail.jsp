@@ -85,7 +85,7 @@
 		background-color: #be7a7b; !important
 	}
 </style>
-<title>공간 상세 페이지</title>
+<title>공간 상세보기 :Ubiquitous</title>
 </head>
 <body>
 	<%-- 네비바 --%>

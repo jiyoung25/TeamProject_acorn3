@@ -10,7 +10,7 @@
 <jsp:include page="/WEB-INF/include/cdnlink.jsp"/>
 <!-- axios import -->
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<title>navigator test</title>
+<title>공간 지도위치 :Ubiquitous</title>
 <style>
 	html, body{
 		height:100%;

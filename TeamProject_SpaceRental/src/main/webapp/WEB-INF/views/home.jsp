@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Space Rental</title>
+<title>Ubiquitous</title>
 
 <%-- 폰트 --%>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -69,6 +69,7 @@
 	      		</c:when>
 	      		<c:when test = "${usersCode eq 1 }">
 	      			<jsp:include page="/WEB-INF/include/navbar_sessionO_admin.jsp"/>
+	      			<jsp:include page="/WEB-INF/include/sidebar_admin.jsp"/>
 	      		</c:when>
 	      	</c:choose>
 	     	</c:otherwise>
@@ -176,6 +177,7 @@
 			</c:forEach>	
 		</div>
 	</div>
+	
    
 	<!-- 챗봇 -->
 	<div id="divBox" class="animate__animated animate__fadeIn">
@@ -214,7 +216,19 @@
 	            }
 	        }
 	    });
-	</script>  
+	</script>
+	<script>
+		var cardBody = document.querySelectorAll('.card-body p');
+		for (var i = 0; i < cardBody.length; i++) {
+			var text = cardBody[i].innerText;
+			var length = 15; // 카드 크기에 따라 조절 가능한 글자수
+			var trimmedText = text.substring(0, length);
+			if (text.length > length) {
+			  trimmedText = trimmedText + '...';
+			}
+			cardBody[i].innerText = trimmedText;
+		}
+</script>  
 </body>
 
 </html>

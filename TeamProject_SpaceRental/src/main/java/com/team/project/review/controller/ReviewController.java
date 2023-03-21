@@ -66,6 +66,13 @@ public class ReviewController {
 		return "redirect:/users/reviewList";
 	}
 	
+	@RequestMapping("/admin/reviewDelete")
+	public String reviewDelete(int review_num, HttpServletRequest request) {
+		
+		service.deleteContent(review_num, request);
+		return "redirect:/admin/adminReview";
+	}
+	
 	@RequestMapping("/review/reviewdetail")
 	public String reviewdetail(HttpServletRequest request) {
 		service.getDetail(request);
@@ -84,6 +91,15 @@ public class ReviewController {
 		service.getList2(mView, request);
 		
 		mView.setViewName("users/reviewList");
+		return mView;
+	}
+	
+	@RequestMapping("/admin/adminReview")
+	public ModelAndView adminReview(ModelAndView mView, HttpServletRequest request, HttpSession session, ReviewDto dto) {
+		service.getUsersNum(request, session);
+		service.adminReview(mView, request);
+		
+		mView.setViewName("admin/adminReview");
 		return mView;
 	}
 	

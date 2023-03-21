@@ -12,7 +12,7 @@
 		text-decoration-line: none;
 	}
 </style>
-<title>/views/users/pwd_update.jsp</title>
+<title>비밀번호 수정 성공여부 :Ubiquitous</title>
 </head>
 <body>
 	<%-- 네비바 --%>

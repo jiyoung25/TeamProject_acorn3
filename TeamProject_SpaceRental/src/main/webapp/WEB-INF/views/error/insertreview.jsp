@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
-<title>Ubiquitous/리뷰 작성 예외</title>
+<title>Error 리뷰작성 :Ubiquitous</title>
 </head>
 <body>
 	<div class="container">

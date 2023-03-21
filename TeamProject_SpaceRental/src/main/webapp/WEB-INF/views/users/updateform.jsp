@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <%-- 부트스트랩 --%>
 <jsp:include page="/WEB-INF/include/cdnlink.jsp"/>
-<title>/views/users/updateform.jsp</title>
+<title>회원 정보수정 :Ubiquitous</title>
 <style>
 	/* 이미지 업로드 폼을 숨긴다 */
 	#imageForm{

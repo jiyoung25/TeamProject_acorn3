@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>/views/error/404.jsp</title>
+<title>Error 404 :Ubiquitous</title>
 </head>
 <body>
 	<div class="container">

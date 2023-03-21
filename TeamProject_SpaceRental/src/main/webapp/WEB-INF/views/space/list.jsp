@@ -31,7 +31,7 @@
 		}
 		
 	</style>
-<title>공간 리스트</title>
+<title>공간 리스트 :Ubiquitous</title>
 </head>
 <body>
 	<%-- 네비바 --%>

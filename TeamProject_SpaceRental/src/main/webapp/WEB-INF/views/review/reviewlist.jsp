@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <%-- 부트스트랩 --%>
 <jsp:include page="/WEB-INF/include/cdnlink.jsp"/>
-<title>/views/review/reviewlist</title>
+<title>리뷰 리스트보기 :Ubiquitous</title>
 </head>
 <body>
 	<div class="container">
