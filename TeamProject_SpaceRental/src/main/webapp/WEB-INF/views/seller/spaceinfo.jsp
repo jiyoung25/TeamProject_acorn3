@@ -107,7 +107,8 @@
 						</form>
 			
 				  		<div class="img-wrapper">
-				     		<img />
+				  		<br/>
+				     		<img class="img-fluid"/>
 				  		</div>
 				  		<br/>
 				  		<button id="submitBtn" class="btn btn-outline-secondary">저장</button>
