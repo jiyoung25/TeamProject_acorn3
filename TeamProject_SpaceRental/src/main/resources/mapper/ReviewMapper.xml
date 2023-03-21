@@ -8,7 +8,7 @@
 			(SELECT result1.*, ROWNUM AS rnum
 			FROM
 				(SELECT review_num,review_writer,review_title,review_content,viewcount,
-					TO_CHAR(review_regdate, 'YY.MM.DD HH24:MI') AS review_regdate, star, seller_space.space_name
+					TO_CHAR(review_regdate, 'YY.MM.DD') AS review_regdate, star, seller_space.space_name
 				FROM review
 				Inner Join seller_space on seller_space.space_num = review.space_num
 				WHERE seller_space.space_num = #{space_num}

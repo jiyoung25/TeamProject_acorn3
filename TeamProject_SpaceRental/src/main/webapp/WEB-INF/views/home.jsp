@@ -160,17 +160,17 @@
 			<div class="carousel-inner">
 				<div class="carousel-item active">
 					<img
-						src="https://images.unsplash.com/photo-1573164574511-73c773193279?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80"
+						src="${pageContext.request.contextPath}/image/spaceImage2.png"
 						class="d-block w-100" alt="...">
 				</div>
 				<div class="carousel-item">
 					<img
-						src="https://images.unsplash.com/photo-1537365587684-f490102e1225?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80"
+						src="${pageContext.request.contextPath}/image/spaceImage.png"
 						class="d-block w-100" alt="...">
 				</div>
 				<div class="carousel-item">
 					<img
-						src="https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+						src="${pageContext.request.contextPath}/image/spaceImage3.png"
 						class="d-block w-100" alt="...">
 				</div>
 			</div>
@@ -194,7 +194,7 @@
 		</h4>
 		<div class="row text-center">
 			<c:forEach var="tmp" items="${recentReviewList }">
-				<div class="col-md-3">
+				<div class="col-md-3 mb-3">
 					<div class="card" style="width: 18rem;">
 						<a
 							href="${pageContext.request.contextPath}/space/detail?space_num=${tmp.space_num}"

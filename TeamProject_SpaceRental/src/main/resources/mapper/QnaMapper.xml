@@ -37,7 +37,7 @@
       FROM
          (SELECT result1.*, ROWNUM AS rnum
          FROM
-            (SELECT num,writer,title,content,viewCount,TO_CHAR(regdate, 'YY.MM.DD HH24:MI') AS regdate
+            (SELECT num,writer,title,content,viewCount,TO_CHAR(regdate, 'YY.MM.DD') AS regdate
             FROM qna
             <include refid="searchCondition"/>
             ORDER BY num DESC) result1)

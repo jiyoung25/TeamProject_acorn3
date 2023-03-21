@@ -11,6 +11,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
+import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -188,6 +189,19 @@ public class SpaceServiceImpl implements SpaceService {
 
 	@Override
 	public ModelAndView getRecentReviewList(ModelAndView mView) {
+		List<SpaceDto> recentReviewList =  dao.getRecentReviewList();
+		for(int i=0; i<recentReviewList.size(); i++) {
+			String reviewContent = recentReviewList.get(i).getReview_content();
+			// 정규표현식 패턴을 작성합니다.
+			Pattern pattern = Pattern.compile("<img.*?>");
+
+			// 패턴에 매칭되는 부분을 제거합니다.
+			java.util.regex.Matcher matcher = pattern.matcher(reviewContent);
+			String result = matcher.replaceAll("");
+
+			// 결과를 출력합니다. //이미지 태그를 뗀 content내용
+			System.out.println(result);
+		}
 		return mView.addObject("recentReviewList", dao.getRecentReviewList());
 	}
 	
