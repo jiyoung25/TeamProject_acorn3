@@ -14,6 +14,9 @@
 	br{
 		mso-data-placement:same-cell;
 	}
+	.reservMenuList:hover{
+		cursor:pointer;
+	}
 </style>
 </head>
 <body>
@@ -38,11 +41,11 @@
       	</c:otherwise>
    	</c:choose>
    	
-	<div class="container" id="sellerReservList">
+	<div class="container">
 		<div class="row">
 			<%-- 예약리스트 메뉴 --%>
 			<div class="col-lg-2" style="margin-top:97px;">
-				<ul class="list-group">
+				<ul class="list-group" id="reservListMenu">
 					<li class="list-group-item list-group-item-dark">예약 리스트 확인</li>
 					<li class="list-group-item list-group-item-secondary list-group-item-action reservMenuList ${param.reservCateNum eq 1 ? 'active' : '' }"
 					  	onClick="location.href='${pageContext.request.contextPath}/seller/reservation/reservationlist?reservCateNum=1'" 
@@ -103,7 +106,9 @@
 							<tbody>
 								<tr>
 									<td>${tmp.reserv_num }</td>
-									<td>${tmp.space_name }</td>
+									<td onClick="location.href='${pageContext.request.contextPath}/space/detail?cate_num=${tmp.cate_num }&space_num=${tmp.space_num }'" style="cursor:pointer;">
+										${tmp.space_name }
+									</td>
 									<td>${tmp.users_id }</td>
 									<td>${tmp.reserv_count }</td>
 									<td>${tmp.reserv_date }</td>
