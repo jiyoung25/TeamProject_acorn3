@@ -47,5 +47,7 @@
 		</div>
 		<button type="submit"> 제출하기 </button>
 	</form>
+	<!-- footer include -->
+	<jsp:include page="/WEB-INF/include/footer.jsp" />
 </body>
 </html>

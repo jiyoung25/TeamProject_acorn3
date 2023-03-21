@@ -63,8 +63,9 @@
 		</form>
 	</div>
 	
-	      <!-- footer include -->
-		  <jsp:include page="/WEB-INF/include/footer.jsp"/>
+	<!-- footer include -->
+	<jsp:include page="/WEB-INF/include/footer.jsp"/>
+	
 	<script>
 		//폼에 submit 이벤트가 일어났을때 실행할 함수를 등록하고 
 		document.querySelector("#myForm").addEventListener("submit", function(e){

@@ -82,7 +82,7 @@
          </ul>
       </nav>
 	      
-      <!-- 검색 폼 -->
+		<!-- 검색 폼 -->
 		<form action="detail" method="get">
     		<label for="condition">검색조건</label>
     		<select name="condition" id="condition">
@@ -102,9 +102,9 @@
 				<a href="${pageContext.request.contextPath}/space/detail?cate_num=${cate_num}&space_num=${space_num}">리셋</a>
 			</p>
 		</c:if>
-   </div>
+	</div>
    
-       <!-- footer include -->
-	  <jsp:include page="/WEB-INF/include/footer.jsp"/>
+	<!-- footer include -->
+	<jsp:include page="/WEB-INF/include/footer.jsp"/>
 </body>
 </html>

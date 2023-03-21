@@ -9,6 +9,28 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 </head>
 <body>
+	<%-- 네비바 --%>
+	<c:choose>
+		<c:when test="${empty sessionScope.id }">
+			<jsp:include page="/WEB-INF/include/navbar_sidebar_SessionX.jsp" />
+		</c:when>
+		<c:otherwise>
+			<c:choose>
+				<c:when test="${usersCode eq 2 }">
+					<jsp:include page="/WEB-INF/include/navbar_sessionO_seller.jsp" />
+					<jsp:include page="/WEB-INF/include/sidebar_seller.jsp" />
+				</c:when>
+				<c:when test="${usersCode eq 3 }">
+					<jsp:include page="/WEB-INF/include/navbar_sessionO_users.jsp" />
+					<jsp:include page="/WEB-INF/include/sidebar_user.jsp" />
+				</c:when>
+				<c:when test="${usersCode eq 1 }">
+					<jsp:include page="/WEB-INF/include/navbar_sessionO_admin.jsp" />
+					<jsp:include page="/WEB-INF/include/sidebar_admin.jsp" />
+				</c:when>
+			</c:choose>
+		</c:otherwise>
+	</c:choose>
 	<div class="container">
 		<h1>Oops!</h1>
 		<p class="alert alert-danger">
@@ -16,5 +38,7 @@
 			<a href="${pageContext.request.contextPath}/">인덱스로 돌아가기</a>
 		</p>
 	</div>
+	<!-- footer include -->
+	<jsp:include page="/WEB-INF/include/footer.jsp" />
 </body>
 </html>

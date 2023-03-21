@@ -99,6 +99,9 @@
 		<a href="${pageContext.request.contextPath}" class="btn btn-outline-dark">메인으로 가기</a>
 	</div>
 	
+	<!-- footer include -->
+	<jsp:include page="/WEB-INF/include/footer.jsp"/>
+	
 	<script>
    		const deleteLink = function(){
 			confirm("해당 글을 삭제하시겠습니까?")?this.submit():"";

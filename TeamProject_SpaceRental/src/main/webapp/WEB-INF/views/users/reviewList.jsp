@@ -138,5 +138,8 @@
 			confirm("해당 글을 삭제하시겠습니까?")?this.submit():"";
 		}
 	</script>
+	
+	<!-- footer include -->
+	<jsp:include page="/WEB-INF/include/footer.jsp"/>
 </body>
 </html>

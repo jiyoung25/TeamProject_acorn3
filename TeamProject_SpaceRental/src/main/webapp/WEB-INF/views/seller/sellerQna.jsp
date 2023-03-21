@@ -100,5 +100,8 @@
 		
 		<a href="${pageContext.request.contextPath}" class="btn btn-outline-dark">메인으로 가기</a>
 	</div>
+	
+	<!-- footer include -->
+	<jsp:include page="/WEB-INF/include/footer.jsp" />
 </body>
 </html>

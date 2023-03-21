@@ -49,5 +49,8 @@
 			<a href="${pageContext.request.contextPath}/">홈으로 돌아가기</a>
 		</p>
 	</div>
+	
+	<!-- footer include -->
+	<jsp:include page="/WEB-INF/include/footer.jsp" />
 </body>
 </html>

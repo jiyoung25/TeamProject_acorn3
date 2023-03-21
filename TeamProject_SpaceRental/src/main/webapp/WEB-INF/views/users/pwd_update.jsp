@@ -56,6 +56,6 @@
 	</div>
 
 	<!-- footer include -->
-	  <jsp:include page="/WEB-INF/include/footer.jsp"/>
+	<jsp:include page="/WEB-INF/include/footer.jsp"/>
 </body>
 </html>
