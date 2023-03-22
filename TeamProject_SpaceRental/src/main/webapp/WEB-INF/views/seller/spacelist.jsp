@@ -41,6 +41,13 @@
 	   	*/
 		object-fit: contain;	
    	}
+   	a {
+		 text-decoration-line: none;
+		/*   text-decoration-line: underline; */
+		/*   text-decoration-line: overline; */
+		/*   text-decoration-line: line-through; */
+		/*   text-decoration-line: underline line-through overline; */
+	}
 </style>
 </head>
 <body>
@@ -66,7 +73,7 @@
       	</c:otherwise>
    	</c:choose>	
 	<div class="container">	
-		<h1>내 공간정보 관리</h1>
+		<h1 class="mt-3 mb-3">내 공간정보 관리</h1>
 			<button class="btn btn-outline-dark" onclick="location.href=`${pageContext.request.contextPath}/seller/spaceinfo`">새 공간 등록하기</button>
 			<div style="height: 25px;"></div>
 		   	<div class="row">
@@ -74,7 +81,7 @@
 					<div class="col-4 col-md-3 col-lg-2">
 		         		<div class="card mb-3">	            		
 		               		<div class="img-wrapper" onclick="location.href=`${pageContext.request.contextPath}/space/detail?space_num=${tmp.space_num}`">
-		                  		<img class="card-img-top" src="${pageContext.request.contextPath }${tmp.mainImagePath}" />
+		                  		<img class="card-img-top" src="${pageContext.request.contextPath }${tmp.mainImagePath}" style="cursor:pointer;" />
 		               		</div>
 		            		<div class="card-body">
 		            			<p class="card-text"><strong>${tmp.space_name}</strong></p>

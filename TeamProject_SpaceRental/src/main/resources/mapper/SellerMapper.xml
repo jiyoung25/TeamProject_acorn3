@@ -5,7 +5,7 @@
 		SELECT space_num, space_name, mainImagePath
 		FROM seller_space
 		WHERE users_num=#{users_num}
-		ORDER BY space_num ASC
+		ORDER BY space_num DESC
 	</select>
 	<select id="getUsersNum" resultType="int" parameterType="String">
 		SELECT users_num
