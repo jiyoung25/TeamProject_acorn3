@@ -331,6 +331,7 @@ public class UsersServiceImpl implements UsersService{
 				kakaoExist = "true";
 				request.getSession().setAttribute("id", kakaoId);
 				request.getSession().setAttribute("usersCode", checkKakaoId.getCode());
+				request.getSession().setAttribute("profile", checkKakaoId.getProfile());
 			};
 			
 			//pwd값 생성하기
