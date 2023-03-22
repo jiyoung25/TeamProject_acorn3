@@ -84,18 +84,18 @@
 			<div class="col-md-6 mx-auto"  style="display: flex; flex-direction: column; align-items: center; margin: auto; ">	
 	        	<!--아이디 및 가입일-->
 		        <div >
-		            <label for="address2" class="form-label">아이디</label>
+		            <label class="form-label">아이디</label>
 		            <input style="width:350px" class="form-control" type="text" value="${id }" aria-label="readonly input example" readonly>                        
 		        </div>
 		        <br>
 		        <div>
-		            <label for="address2" class="form-label">가입일</label>
+		            <label class="form-label">가입일</label>
 		            <input style="width:350px" class="form-control" type="text" value="${dto.regdate }" aria-label="readonly input example" readonly>
 		        </div>
 		        <br>
 		        <!--이메일-->
 		        <div>
-		            <label for="exampleFormControlInput1" class="form-label">Email</label>
+		            <label class="form-label">Email</label>
 		            <input style="width:350px" type="email" class="form-control" placeholder="${dto.email }" aria-label="readonly input example" readonly>
 		        </div>
 		        <br>

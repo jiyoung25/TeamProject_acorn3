@@ -141,7 +141,7 @@
 	<div class="container">	
 		<!-- 룸넘버, 룸이름 -->
 		<div class="room">
-			<h4>${space.name }</h3>
+			<h4>${space.name }</h4>
 		</div>
 		<!-- 리뷰제목 -->
 		<div class="title">
@@ -157,7 +157,7 @@
 		<br>
 		<!-- 내용 -->
 		<div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" class="scrollspy-example bg-body-tertiary p-3 rounded-2" tabindex="0">
-	 	   <p>${dto.content }</p>
+	 	   ${dto.content }
 		</div>
 	
 		<br>

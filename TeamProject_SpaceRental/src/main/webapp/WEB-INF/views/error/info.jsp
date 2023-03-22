@@ -7,6 +7,10 @@
 <meta charset="UTF-8">
 <title>Error info :Ubiquitous</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+<%-- 부트스트랩 --%>
+<jsp:include page="/WEB-INF/include/cdnlink.jsp" />
+<%-- vue.js --%>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.min.js"></script>
 </head>
 <body>
 	<%-- 네비바 --%>
