@@ -38,7 +38,7 @@
    	 
 	<div class="container">
 		<h1>Q&A 수정</h1>
-		<form action="qnaupdate" method="post">
+		<form action="qnaupdate" method="post" id="updateForm">
 			<input type="hidden" name="num" value="${dto.num }" />
 			<div class="input-group mb-3">
 				<span class="input-group-text" style="width:10%; justify-content: center; align-items: center; display: flex;">작성자</span>
@@ -58,7 +58,7 @@
 				</script>
 			</div>
 			<div class="text-center mt-3">
-				<button type="submit" class="btn btn-dark" onclick="submitContents(this)">저장하기</button>
+				<button type="submit" id="submitBtn" class="btn btn-dark" onclick="submitContents(this)">저장하기</button>
 				<button type="button" class="btn btn-outline-dark" onClick="history.back();">뒤로 가기</button>
 			</div>
 		</form>
@@ -66,6 +66,18 @@
 	
 	<!-- footer include -->
 	<jsp:include page="/WEB-INF/include/footer.jsp"/>
+	
+	<!-- js -->
+	<script>		
+		document.querySelector("#submitBtn").addEventListener("click", function(e){
+	        if(document.getElementById('title').value == ''){
+				e.preventDefault();//제출완료 페이지로 넘어가는 것 방지
+				alert('QnA제목을 입력해 주세요.');
+			} else{
+	        	document.querySelector("#updateForm").submit();
+	        }	        
+	    });
+	</script>
 
 </body>
 </html>

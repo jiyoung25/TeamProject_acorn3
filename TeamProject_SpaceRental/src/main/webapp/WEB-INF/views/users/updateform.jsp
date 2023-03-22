@@ -50,62 +50,70 @@
    	</c:choose>
    
 	<div class="container text-center">
-		<h3>회원 정보 수정</h3>
-		
-		<a id="profileLink" href="javascript:">
-			<c:choose>
-				<c:when test="${ empty dto.profile }">
-					<img id="profileImage" class="img-fluid rounded-circle mb-1"
-	                    src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
-	                    alt="..." style="max-width: 200px; max-height: 200px">
-				</c:when>
-				<c:otherwise>
-					<img id="profileImage" src="${pageContext.request.contextPath }${ dto.profile}">
-				</c:otherwise>
-			</c:choose>
-		</a>
-		<p class="fst-italic text-muted">프로필이미지 수정은 재로그인시 적용됩니다.</p>        
-		<form action="${pageContext.request.contextPath}/users/update" method="post">		
-			<input type="hidden" name="profile" 
-				value="${ empty dto.profile ? 'empty' : dto.profile }"/>		
-			<div>
-				<label for="id">아이디</label>
-				<input type="text" id="id" value="${id }" disabled/>
+		<div class="row shadow p-3 mb-5 mt-5 bg-body rounded">
+			<div class="col-md-4"></div>
+			<div class="col-md-4">
+				<h3 class="mt-3 mb-3">회원 정보 수정</h3>
+				<a id="profileLink" href="javascript:">
+					<c:choose>
+						<c:when test="${ empty dto.profile }">
+							<img id="profileImage" class="img-fluid rounded-circle mb-1"
+			                    src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+			                    alt="..." style="max-width: 200px; max-height: 200px">
+						</c:when>
+						<c:otherwise>
+							<img id="profileImage" src="${pageContext.request.contextPath }${ dto.profile}">
+						</c:otherwise>
+					</c:choose>
+				</a>   
+				<form action="${pageContext.request.contextPath}/users/update" method="post">		
+					<input type="hidden" name="profile" 
+						value="${ empty dto.profile ? 'empty' : dto.profile }"/>
+					<div class="row text-center mt-4">
+						<div class="input-group mb-3">
+							<span class="input-group-text" style="width:30%; justify-content: center; align-items: center; display: flex;">아이디</span>
+							<input type="text" id="id" value="${id }" class="form-control" disabled />
+						</div>
+					</div>
+					<div>
+						<div class="input-group mb-3">
+							<span class="input-group-text" style="width:30%; justify-content: center; align-items: center; display: flex;">이메일</span>
+							<input type="text" id="email" name="email" value="${dto.email }" class="form-control"/>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-4 mb-1" style="padding:5px;"><button type="submit" class="btn btn-dark" style="width:100%;">수정확인</button></div>
+						<div class="col-lg-5 mb-1" style="padding:5px;"><button type="button" class="btn btn-dark" style="width:100%;" data-bs-toggle="modal" data-bs-target="#pwdModal">비밀번호 변경</button></div>
+						<div class="col-lg-3 mb-1" style="padding:5px;"><button type="reset" class="btn btn-outline-dark " style="width:100%;">취소</button></div>				
+					</div>
+				</form>	
+				
+				<form id="imageForm" action="${pageContext.request.contextPath}/users/profile_upload" method="post" enctype="multipart/form-data">
+					프로필 사진
+					<input type="file" id="image" name="image" accept=".jpg, .png, .gif"/>
+					<button type="submit">업로드</button>
+				</form>
+							
 			</div>
-			<div>
-				<label for="email">이메일</label>
-				<input type="text" id="email" name="email" value="${dto.email }"/>
-			</div>
-			<div class="col">
-				<button type="submit" class="btn btn-outline-secondary">수정확인</button>
-				<button type="reset" class="btn btn-outline-dark ">취소</button>
-				<button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#pwdModal">비밀번호 변경</button>
-			</div>
-		</form>	
-		
-		<form id="imageForm" action="${pageContext.request.contextPath}/users/profile_upload" method="post" enctype="multipart/form-data">
-			프로필 사진
-			<input type="file" id="image" name="image" accept=".jpg, .png, .gif"/>
-			<button type="submit">업로드</button>
-		</form>
-					
-	</div>
-	<!-- Modal -->
-	<div class="modal fade" id="pwdModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h1 class="modal-title fs-5" id="exampleModalLabel">Message</h1>
-					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			<!-- Modal -->
+			<div class="modal fade" id="pwdModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h1 class="modal-title fs-5" id="exampleModalLabel">Message</h1>
+							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						</div>
+						<div class="modal-body">
+							비밀번호를 변경하시겠습니까 ?
+						</div>
+		                <div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+							<button type="button" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/users/pwd_updateform' ">확인</button>
+		                </div>
+					</div>
 				</div>
-				<div class="modal-body">
-					비밀번호를 변경하시겠습니까 ?
-				</div>
-                <div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
-					<button type="button" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/users/pwd_updateform' ">확인</button>
-                </div>
 			</div>
+			<div class="col-md-4"></div>
 		</div>
 	</div>
 	

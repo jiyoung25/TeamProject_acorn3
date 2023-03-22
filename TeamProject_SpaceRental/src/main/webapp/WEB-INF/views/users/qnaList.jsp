@@ -43,7 +43,7 @@
       	</c:otherwise>
    	</c:choose>
 	<div class="container">
-		<h1>Q&A</h1>
+		<h1 class="mt-3 mb-3">나의 Q&A</h1>
 		<table class="table align-middle mb-0 bg-white">
 			<thead class="bg-light">
 				<tr>

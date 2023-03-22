@@ -25,13 +25,12 @@
 		}
 		
 		#search-button {
-		  margin: 10px;
+		    margin: 10px;
 		}
 		
 		#cateimage {
 			height: 350px;
 		}
-		
 	</style>
 <title>공간 리스트 :Ubiquitous</title>
 </head>
@@ -168,18 +167,26 @@
 		    	</div>
 	    	</div>
 	    	<%-- 위치 검색을 위한 toggle & checkbox --%>
-	    	<div id="areaSelectForm">
+	    	<div id="areaSelectForm" class="mb-3">
 	    		<div class="col-lg-2">
-	    			<button type="button" class="btn btn-outline-dark" v-on:click="onAreaClicked" style="width:100%; white-space: nowrap; ">지역 검색하기</button>
+	    			<button type="button" class="btn btn-outline-dark mb-3" v-on:click="onAreaClicked" style="width:100%; white-space: nowrap; ">지역 검색하기</button>
 	    		</div>
 	    		<div :class= "areaToggle ?'areaToggle' : ''">
-	    			<div class="areaStyle">
+	    			<div class="areaStyle row">
 		    			<form v-on:submit="onAreaSearch">
-		    				<ul v-for="item in cities" id="cities">
-		    					<li><input type="checkbox" :value="item" class="areaCheckbox"/>{{item}}</li>
-		    				</ul>
-		    				<button id="search-button" class="btn btn-outline-dark">검색</button>
-		    				<button type="button" v-on:click="OnareaResetBtn" :class = "resetToggle ? 'resetToggle':''">검색 조건 리셋하기</button>
+		    				<div style="border:2px solid black;padding:5px 20px; margin: 0 30px;">
+			    				<div class="row" style="">
+				    				<ul class="form-check" style="width:100%; height:100%; position:relative;list-style:none;">
+				    					<li v-for="item in cities" id="cities" style="position:relative; height:100%; width:20%; float:left;"><input class="form-check-input" type="checkbox" :value="item" class="areaCheckbox"/>{{item}}</li>
+				    				</ul>
+			    				</div>
+			    				<div class="row">
+			    					<div class="col">
+			    						<button type="submit" id="search-button" class="btn btn-outline-dark">검색</button>
+				    					<button type="button" v-on:click="OnareaResetBtn" class="btn btn-outline-dark" :class = "resetToggle ? 'resetToggle':''">검색 조건 리셋하기</button>
+			    					</div>
+			    				</div>
+		    				</div>
 	    				</form>
 	    			</div>
 	    		</div>
@@ -268,11 +275,15 @@
 			data:{
 				areaToggle:true,
 				resetToggle:true,
-				cities:['서울', '경기', '인천', '강원', '충북', '충남', '대전', '전북', '전남', '광주', '경북', '경남', '대구', '부산', '울산', '제주']
+				cities:['서울', '경기', '인천', '강원', '충북', '충남', '대전', '전북', '전남', '광주', '경북', '경남', '대구', '부산', '울산', '제주'],
+				selectedCities:[]
 			},
 			mounted(){
 				if(${not empty param.search}){
+					this.areaToggle=false;
 					this.resetToggle=false;
+					const searchedCities = '${param.search}';
+					this.selectedCities = searchedCities.split(',');
 				}
 			},
 			methods:{

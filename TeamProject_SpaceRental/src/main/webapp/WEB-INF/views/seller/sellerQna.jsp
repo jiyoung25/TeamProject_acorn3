@@ -54,7 +54,6 @@
 					<th>방이름</th>
 					<th>작성자</th>
 					<th>제목</th>
-					<th>내용</th>
 					<th>조회수</th>
 					<th>작성일</th>
 				</tr>
@@ -65,7 +64,6 @@
 						<td>${tmp.space_name }</td>
 						<td>${tmp.writer }</td>
 						<td><a href="${pageContext.request.contextPath}/qna/qnadetail?num=${tmp.num }">${tmp.title }</a></td>
-						<td>${tmp.content }</td>
 						<td>${tmp.viewCount }</td>
 						<td>${tmp.regdate }</td>
 					</tr>

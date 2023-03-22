@@ -46,23 +46,37 @@
    	</c:choose> 
    
 	<div class="container text-center" >
-		<h3>비밀 번호 변경</h3>
-		<form action="${pageContext.request.contextPath}/users/pwd_update" method="post" id="myForm">
-			<div>
-				<label for="pwd">기존 비밀 번호</label>
-				<input type="password" name="pwd" id="pwd"/>
+		<div class="row shadow p-3 mb-5 mt-5 bg-body rounded">
+			<div class="col-md-4"></div>
+			<div class="col-md-4">
+				<h3 class="mt-3">비밀 번호 변경</h3>
+				<form action="${pageContext.request.contextPath}/users/pwd_update" method="post" id="myForm">
+					<div class="row text-center mt-4">
+						<div class="input-group">
+							<span class="input-group-text" style="width:35%; justify-content: center; align-items: center; display: flex;">기존 비밀번호</span>
+							<input  type="password" name="pwd" id="pwd" class="form-control" />
+						</div>
+					</div>
+					<div class="row text-center mt-4">
+						<div class="input-group">
+							<span class="input-group-text" style="width:35%; justify-content: center; align-items: center; display: flex;">새 비밀번호</span>
+							<input  type="password" name="newPwd" id="newPwd" class="form-control" />
+						</div>
+					</div>
+					<div class="row text-center mt-4">
+						<div class="input-group mb-4">
+							<span class="input-group-text" style="width:35%; justify-content: center; align-items: center; display: flex;">새 비밀번호 확인</span>
+							<input  type="password" id="newPwd2" class="form-control" />
+						</div>
+					</div>
+					<div class="row">
+						<div class="col"><button type="submit" class="btn btn-dark" style="width:100%">수정하기</button></div>
+						<div class="col"><button type="reset" class="btn btn-outline-dark" style="width:100%">리셋</button></div>
+					</div>
+				</form>
 			</div>
-			<div>
-				<label for="newPwd">새 비밀번호</label>
-				<input type="password" name="newPwd" id="newPwd"/>
-			</div>
-			<div>
-				<label for="newPwd2">새 비밀번호 확인</label>
-				<input type="password" id="newPwd2"/>
-			</div>
-			<button type="submit" class="btn btn-outline-secondary">수정하기</button>
-			<button type="reset" class="btn btn-outline-dark">리셋</button>
-		</form>
+			<div class="col-md-4"></div>
+		</div>
 	</div>
 	
 	<!-- footer include -->

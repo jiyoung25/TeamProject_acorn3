@@ -43,7 +43,7 @@
 	<div class="container">
 		<div class="row">
 			<h2 class="mt-2 mb-3">Review Insert</h2>
-			<form action="${pageContext.request.contextPath}/review/reviewInsert" method="post">
+			<form id="insertForm" action="${pageContext.request.contextPath}/review/reviewInsert" method="post">
 				<input type="hidden" name="cate_num" value="${cate_num }" />
 				<input type="hidden" name="space_num" value="${space_num }" />
 				<input type="hidden" name="reserv_num" value="${reserv_num }" />
@@ -56,9 +56,9 @@
 					<span class="input-group-text" style="width:10%; justify-content: center; align-items: center; display: flex;">별점</span>
 					<span style="border:solid #DEE2E6 1px; width:90%; border-top-right-radius:5px; border-bottom-right-radius:5px;">
 						<span class="star" style="font-size:1.5rem">
-						  ★★★★★
-						  <span>★★★★★</span>
-						  <input type="range" name="star" oninput="drawStar(this)" value="1" step="1" min="0" max="10">
+						  	★★★★★
+						  	<span>★★★★★</span>
+						  	<input type="range" name="star" id="star" oninput="drawStar(this)" value="0" step="1" min="0" max="10">
 						</span>
 					</span>
 				</div>
@@ -80,5 +80,19 @@
 	</div>
 	<!-- footer include -->
 	<jsp:include page="/WEB-INF/include/footer.jsp"/>
+	<!-- js -->
+	<script>		
+		document.querySelector("#submitBtn").addEventListener("click", function(e){
+	        if(document.getElementById('review_title').value == ''){
+				e.preventDefault();//제출완료 페이지로 넘어가는 것 방지
+				alert('리뷰 제목을 입력해 주세요.');
+			} else if(document.getElementById('star').value == 0){
+	          	e.preventDefault();
+	          	alert('별점을 입력해 주세요.');
+	        } else{
+	        	document.querySelector("#insertForm").submit();
+	        }	        
+	    });
+	</script>
 </body>
 </html>
