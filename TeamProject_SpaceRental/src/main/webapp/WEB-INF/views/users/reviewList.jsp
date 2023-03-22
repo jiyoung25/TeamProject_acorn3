@@ -48,24 +48,32 @@
    	
    	<%-- 사용자 후기 리스트 --%>
 	<div class="container">
-		<h1>나의 후기</h1>
+		<h1 class="mt-3 mb-3">나의 Review</h1>
 		<%-- 사용자가 사용한 방 -> 리뷰 쓰기 가능 --%>
-		<form action="${pageContext.request.contextPath}/review/reviewInsertform" method="POST">
-			<label for="possibleReview">리뷰 쓰기</label>
-			<select name="possibleReview" id="possibleReview">
-				<c:choose>
-					<c:when test="${not empty possibleReview }">
-						<c:forEach items="${possibleReview }" var="item">
-							<option value="${item.reserv_num }&&${item.space_num}&&${item.cate_num}"><strong>${item.space_name } 방 리뷰쓰기</strong></option>
-						</c:forEach>
-					</c:when>
-					<c:otherwise>
-						<option value=""><strong>방을 이용해주세요.</strong></option>
-					</c:otherwise>
-				</c:choose>
-			</select>
-			<button class="btn btn-outline-dark">리뷰 쓰기</button>
-		</form>
+		<div class="mb-3">
+			<form action="${pageContext.request.contextPath}/review/reviewInsertform" method="POST">
+				<div class="row">
+					<div class="col-md-4 mb-3">
+						<select name="possibleReview" id="possibleReview" class="form-select">
+							<c:choose>
+								<c:when test="${not empty possibleReview }">
+									<c:forEach items="${possibleReview }" var="item">
+										<option value="${item.reserv_num }&&${item.space_num}&&${item.cate_num}"><strong>${item.space_name } 방 리뷰쓰기</strong></option>
+									</c:forEach>
+								</c:when>
+								<c:otherwise>
+									<option value=""><strong>방을 이용해주세요.</strong></option>
+								</c:otherwise>
+							</c:choose>
+						</select>
+					</div>
+					<div class="col-md-2">
+						<button class="btn btn-outline-dark" style="width:100%;">리뷰 쓰기</button>
+					</div>
+					<div class="col-6"></div>
+				</div>
+			</form>
+		</div>
 	</div>
 		<%-- 리뷰 리스트 --%>
 	<div class="container">
