@@ -105,22 +105,22 @@
 	<select id="getData" parameterType="int" resultType="reviewDto">
 		SELECT result1.*
 		FROM
-			(SELECT review_num,review_writer,review_title,review_content,viewcount,TO_CHAR(review_regdate, 'YY.MM.DD HH24:MI') AS review_regdate, star,
+			(SELECT space_name, review_num,review_writer,review_title,review_content,viewcount,TO_CHAR(review_regdate, 'YY.MM.DD HH24:MI') AS review_regdate, star,
 				LAG(review_num, 1, 0) OVER (ORDER BY review_num DESC) prevNum,
 	   			LEAD(review_num, 1, 0) OVER (ORDER BY review_num DESC) nextNum
-			FROM review) result1
+			FROM review A
+			INNER JOIN seller_space B ON A.space_num=B.space_num) result1
 		WHERE review_num=#{review_num}
 	</select>
 	
 	<select id="getData2" parameterType="reviewDto" resultType="reviewDto">
 		SELECT result1.*
 		FROM
-			(SELECT review_num,review_writer,review_title,review_content,viewcount,TO_CHAR(review_regdate, 'YY.MM.DD HH24:MI') AS review_regdate, star,
+			(SELECT space_name, review_num,review_writer,review_title,review_content,viewcount,TO_CHAR(review_regdate, 'YY.MM.DD HH24:MI') AS review_regdate, star,
 				LAG(review_num, 1, 0) OVER (ORDER BY review_num DESC) prevNum,
 	   			LEAD(review_num, 1, 0) OVER (ORDER BY review_num DESC) nextNum
-			FROM review
-			
-			)result1
+			FROM review A
+			INNER JOIN seller_space B ON A.space_num=B.space_num) result1
 		WHERE review_num=#{review_num}
 	</select>
 	

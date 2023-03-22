@@ -113,6 +113,11 @@
    		display: grid;
     	grid-template-columns: 2fr 3fr 1.5fr;
    }
+   	.container img {
+		max-width: 100%;
+		height: auto;
+		object-fit: cover;
+	}
 </style>
 </head>
 <body>
@@ -138,21 +143,21 @@
    	</c:choose>
 	   
 	<%-- 리뷰 내용 --%>
-	<div class="container">	
+	<div class="container">
+		<h1 class="mt-3 mb-3">QnA 상세 보기</h1>	
 		<!-- 룸넘버, 룸이름 -->
-		<div class="room">
-			<h4>${space.name }</h3>
-		</div>
 		<!-- 리뷰제목 -->
-		<div class="title">
-			<h3><strong>${dto.title  }</strong></h3>
+		<div class="title" style="padding: .43em 0em .35em .7em; margin: 1em 0; font-weight: bold; color: #232323; background: #f1f3f5; border-left: solid 10px;">
+			<div class="room">
+				<h5>${dto.space_name }.</h5>
+			</div>
+			<h3>${dto.title  }</h3>
 		</div>
 		<!-- 작성자, 등록일, 조회수, 별점 -->
-		<div class="user">
-			<h4><strong>by.</strong>${dto.writer } 
-    		  <strong>작성일</strong>: ${dto.regdate  }
-    		  <strong>조회수</strong>: ${dto.viewCount }
-    	  </h4>
+		<div class="user row">
+			<div class="col-md-4" style="font-size:1.5rem;"><strong>by.</strong>${dto.writer }</div>
+			<div class="col-md-4" style="font-size:1.5rem;"><strong>작성일</strong>: ${dto.regdate  }</div>
+    		<div class="col-md-4" style="font-size:1.5rem;"><strong>조회수</strong>: ${dto.viewCount }</div>
 		</div>
 		<br>
 		<!-- 내용 -->
@@ -162,15 +167,15 @@
 	
 		<br>
 		
-		<div id="grid-a-button">
-			<div>	
+		<div class="row">
+			<div class="col-4">	
 				<%-- 만일 이전글(더 옛날글)의 글번호가 0 이 아니라면 (이전글이 존재한다면) --%>
 				<c:if test="${dto.qnaPrevNum ne 0 }">
-					<a href="qnadetail?num=${dto.qnaPrevNum }&condition=${condition}&keyword=${encodedK}">이전글</a>
+					<a href="qnadetail?num=${dto.qnaPrevNum }&condition=${condition}&keyword=${encodedK}" class="btn btn-outline-dark" role="button">이전글</a>
 				</c:if>
 				<%-- 만일 다음글(더 최신글)의 글번호가 0 이 아니라면 (다음글이 존재한다면) --%>
 				<c:if test="${dto.qnaNextNum ne 0 }">
-					<a href="qnadetail?num=${dto.qnaNextNum }&condition=${condition}&keyword=${encodedK}">다음글</a>
+					<a href="qnadetail?num=${dto.qnaNextNum }&condition=${condition}&keyword=${encodedK}" class="btn btn-outline-dark" role="button">다음글</a>
 				</c:if>
 				<%-- 만일 검색 키워드가 있다면 --%>
 				<c:if test="${not empty keyword }">
@@ -180,16 +185,14 @@
 				</c:if>
 			</div>
 			
-			<div> </div>
-			
-			<div style="text-align: right;">
+			<div class="col-8" style="text-align: right;">
 				<c:if test="${usersCode eq 2 }">
-					<a href="${pageContext.request.contextPath}/seller/sellerQna">뒤로가기</a>
+					<a href="${pageContext.request.contextPath}/seller/sellerQna" class="btn btn-outline-dark" role="button">QnA목록으로</a>
 				</c:if>
 				<c:if test="${sessionScope.id eq dto.writer }">
 					<button type="button" class="btn btn-outline-dark" 
 						onclick="location.href=`${pageContext.request.contextPath}/users/qnaList`">
-						목록으로
+						나의 QnA 목록
 					</button>
 					<button type="button" class="btn btn-outline-dark" 
 						onclick="location.href=`qnaupdateform?num=${dto.num }`">
@@ -212,7 +215,7 @@
 	
 		
 		<br><br>
-			
+		<hr></hr>
 		<h4>댓글을 입력해 주세요</h4>
 		<!-- 원글에 댓글을 작성할 폼 -->
 		<form class="comment-form insert-form" action="comment_insert"
@@ -222,8 +225,8 @@
 			<!-- 원글의 작성자가 댓글의 대상자가 된다. -->
 			<input type="hidden" name="target_id" value="${dto.writer }" />
 	
-			<textarea name="content">${empty id ? '댓글 작성을 위해 로그인이 필요 합니다.' : '' }</textarea>
-			<button type="submit">등록</button>
+			<textarea name="content" class="form-control">${empty id ? '댓글 작성을 위해 로그인이 필요 합니다.' : '' }</textarea>
+			<button type="submit" class="btn btn-dark">등록</button>
 		</form>
 		<!-- 댓글 목록 -->
 		<div class="comments">
@@ -286,16 +289,16 @@
 									type="hidden" name="target_id" value="${tmp.writer }" /> <input
 									type="hidden" name="comment_group"
 									value="${tmp.comment_group }" />
-								<textarea name="content"></textarea>
-								<button type="submit">등록</button>
+								<textarea name="content" class="form-control"></textarea>
+								<button type="submit" class="btn btn-dark">등록</button>
 							</form>
 							<c:if test="${tmp.writer eq id }">
 								<form id="updateForm${tmp.num }"
 									class="comment-form update-form" action="comment_update"
 									method="post">
 									<input type="hidden" name="num" value="${tmp.num }" />
-									<textarea name="content">${tmp.content }</textarea>
-									<button type="submit">수정</button>
+									<textarea name="content" class="form-control">${tmp.content }</textarea>
+									<button type="submit" class="btn btn-dark">수정</button>
 								</form>
 							</c:if>
 							</li>
