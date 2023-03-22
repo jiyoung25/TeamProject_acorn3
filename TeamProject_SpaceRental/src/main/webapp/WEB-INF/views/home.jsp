@@ -27,6 +27,8 @@
 <%-- import from static folder --%>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/chatbot.css">
 <script src="${pageContext.request.contextPath}/js/chatbot.js"></script>
+<%--페비콘 링크 --%>
+<link rel="icon" href="${pageContext.request.contextPath}/image/ubiquitous_favicon.png">
 <style>
 .container>img {
 	position: absolute;

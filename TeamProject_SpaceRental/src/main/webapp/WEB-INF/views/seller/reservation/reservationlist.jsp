@@ -10,6 +10,8 @@
 <jsp:include page="/WEB-INF/include/cdnlink.jsp"/>
 <title>예약리스트 (판매자) :Ubiquitous</title>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<%--페비콘 링크 --%>
+<link rel="icon" href="${pageContext.request.contextPath}/image/ubiquitous_favicon.png">
 <style>
 	br{
 		mso-data-placement:same-cell;

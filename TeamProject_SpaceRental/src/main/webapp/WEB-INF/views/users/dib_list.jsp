@@ -6,6 +6,8 @@
 <head>
 <meta charset="EUC-KR">
 <title>나의 찜 목록 :Ubiquitous</title>
+<%--페비콘 링크 --%>
+<link rel="icon" href="${pageContext.request.contextPath}/image/ubiquitous_favicon.png">
 <%-- 부트스트랩 --%>
 <jsp:include page="/WEB-INF/include/cdnlink.jsp"/>
 </head>

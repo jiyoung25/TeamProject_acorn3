@@ -10,6 +10,8 @@
 <jsp:include page="/WEB-INF/include/cdnlink.jsp"/>
 <!-- axios import -->
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<%--페비콘 링크 --%>
+<link rel="icon" href="${pageContext.request.contextPath}/image/ubiquitous_favicon.png">
 <title>공간 지도위치 :Ubiquitous</title>
 <style>
 	html, body{

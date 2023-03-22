@@ -77,6 +77,8 @@
 <%-- import from static --%>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/star.css" />
+<%--페비콘 링크 --%>
+<link rel="icon" href="${pageContext.request.contextPath}/image/ubiquitous_favicon.png">
 </head>
 <body>
 	<%-- 네비바 --%>
