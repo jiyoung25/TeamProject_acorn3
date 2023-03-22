@@ -6,6 +6,12 @@
 <head>
 <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
 <title>Error 리뷰작성 :Ubiquitous</title>
+<%-- 부트스트랩 --%>
+<jsp:include page="/WEB-INF/include/cdnlink.jsp" />
+<%-- vue.js --%>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.min.js"></script>
+<%--페비콘 링크 --%>
+<link rel="icon" href="${pageContext.request.contextPath}/image/ubiquitous_favicon.png">
 </head>
 <body>
 	<%-- 네비바 --%>

@@ -11,6 +11,8 @@
 <%-- CKEditor --%>
 <script type="text/javascript" src="${pageContext.request.contextPath}/ckeditor/ckeditor.js"></script>
 <title>Q&A 업데이트 :Ubiquitous</title>
+<%--페비콘 링크 --%>
+<link rel="icon" href="${pageContext.request.contextPath}/image/ubiquitous_favicon.png">
 </head>
 <body>
 	<%-- 네비바 --%>

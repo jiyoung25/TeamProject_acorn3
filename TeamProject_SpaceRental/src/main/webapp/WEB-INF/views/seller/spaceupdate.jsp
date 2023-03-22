@@ -8,6 +8,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <%-- 부트스트랩 --%>
 <jsp:include page="/WEB-INF/include/cdnlink.jsp"/>
+<%--페비콘 링크 --%>
+<link rel="icon" href="${pageContext.request.contextPath}/image/ubiquitous_favicon.png">
 <title>공간업데이트 (판매자) :Ubiquitous</title>
 <style>
 
@@ -35,83 +37,84 @@
       	</c:otherwise>
    	</c:choose>
    	<section class="v-100" style="background-color: #eee;">
-	  <div class="container h-100">
-	    <div class="row row-cols-lg-6 h-100">
-	      <div class="col-lg-6">
-	        <div class="card text-black" style="border-radius: 25px;">
-	          <div class="card-body p-md-6">
-	            <div class="d-flex flex-row justify-content-center">
-	              <div class="col-md-12">
-					<div class="container text-center ">
-						<div class="row">
-							<div class="col-md-12">
-								<h1>공간 등록</h1>
-								<form action="${pageContext.request.contextPath}/seller/update" method="post" id="updateForm">
-									<div>
-										<label for="space_name">공간명</label><br />
-						            	<input class="form-control" type="text" name="space_name" id="space_name" style="margin-left:auto;margin-right:auto;width: 320px" value=${dto.space_name } />
-									</div>
-									<div style="display:hidden">
-										카테고리
-										<select class="form-select" name="cate_name" style="margin-left:auto;margin-right:auto;width: 320px">
-											<option value="${dto.cate_name }">${dto.cate_name }</option>	
-										</select>
-									</div>
-									<div>
-										<label for="oneliner">공간 한 줄 소개</label><br />
-										<input class="form-control" type="text" name="oneliner" id="oneliner" style="margin-left:auto;margin-right:auto;width: 320px" value="${dto.oneliner }" />
-									</div>
-									<div>
-										<label for="intro">공간 소개</label><br />
-										<textarea class="form-control" name="intro" id="intro" cols="40" rows="10" style="margin-left:auto;margin-right:auto;width: 320px">${dto.intro } </textarea>
-									</div>
-									<input type="hidden" id="mainImagePath" name="mainImagePath" />
-									<div>
-									<label for="addr">주소</label><br />				
-										<input class="form-control" type="text" name="addr" id="addr" value="${dto.addr }" readonly style="margin-left:auto;margin-right:auto;width: 320px">
-										<div class="input-group" style="margin-left:auto;margin-right:auto;width: 320px">
-											<input class="form-control" type="text" name="addr2" id="addr2" value="${dto.addr2 }" aria-describedby="button-addon2">
-											<button class="btn btn-outline-secondary" type="button" id="button-addon2" onclick="sample5_execDaumPostcode()">주소 검색</button>
+	  	<div class="container h-100">
+	    	<div class="row row-cols-lg-6 h-100">
+	      		<div class="col-lg-6"><br/>
+	        		<div class="card text-black" style="border-radius: 25px;">
+	          			<div class="card-body p-md-6">
+	            			<div class="d-flex flex-row justify-content-center">
+	              				<div class="col-md-12">
+									<div class="container text-center">
+										<div class="row">
+											<div class="col-md-12">
+												<h1>공간 등록</h1>
+												<form action="${pageContext.request.contextPath}/seller/update" method="post" id="updateForm">
+													<div>
+														<label for="space_name">공간명</label><br />
+										            	<input class="form-control" type="text" name="space_name" id="space_name" style="margin-left:auto;margin-right:auto;width: 320px" value=${dto.space_name } />
+													</div>
+													<div style="display:hidden">
+														카테고리
+														<select class="form-select" name="cate_name" style="margin-left:auto;margin-right:auto;width: 320px">
+															<option value="${dto.cate_name }">${dto.cate_name }</option>	
+														</select>
+													</div>
+													<div>
+														<label for="oneliner">공간 한 줄 소개</label><br />
+														<input class="form-control" type="text" name="oneliner" id="oneliner" style="margin-left:auto;margin-right:auto;width: 320px" value="${dto.oneliner }" />
+													</div>
+													<div>
+														<label for="intro">공간 소개</label><br />
+														<textarea class="form-control" name="intro" id="intro" cols="40" rows="10" style="margin-left:auto;margin-right:auto;width: 320px">${dto.intro } </textarea>
+													</div>
+													<input type="hidden" id="mainImagePath" name="mainImagePath" />
+													<div>
+													<label for="addr">주소</label><br />				
+														<input class="form-control" type="text" name="addr" id="addr" value="${dto.addr }" readonly style="margin-left:auto;margin-right:auto;width: 320px">
+														<div class="input-group" style="margin-left:auto;margin-right:auto;width: 320px">
+															<input class="form-control" type="text" name="addr2" id="addr2" value="${dto.addr2 }" aria-describedby="button-addon2">
+															<button class="btn btn-outline-secondary" type="button" id="button-addon2" onclick="sample5_execDaumPostcode()">주소 검색</button>
+														</div>
+													</div>
+													<div id="map" style="margin-left:auto;margin-right:auto;width:320px;height:320px;margin-top:10px;display:none"></div>				
+												    <input type="hidden" name="space_num" value="${dto.space_num }"/>
+												</form>
+											</div>
 										</div>
-									</div>
-									<div id="map" style="margin-left:auto;margin-right:auto;width:320px;height:320px;margin-top:10px;display:none"></div>				
-								    <input type="hidden" name="space_num" value="${dto.space_num }"/>
-								</form>
+		         					</div>
+	           					</div>
+	         				</div>
+	       				</div>
+	     			</div>
+	   			</div>
+		   		<div class="col-lg-6"><br/>
+	        		<div class="card text-black" style="border-radius: 25px;">
+	          			<div class="card-body p-md-6">
+	            			<div class="d-flex flex-row justify-content-center">
+	              				<div class="col-md-12">			
+									<div class="col-md-12">
+										<form action="${pageContext.request.contextPath}/seller/ajax_upload" method="post" id="ajaxForm"enctype="multipart/form-data">
+						    				<div class="text-center"><br><br>
+										    	<label class="form-label" for="image">이미지를 다시 선택해주세요</label>
+										    	<br>
+										    	<input class="form-control" type="file" name="image" id="image" 
+										    		accept=".jpg, .jpeg, .png, .JPG, .JPEG"/>
+										    </div>
+										</form>
+								  		<div class="img-wrapper">
+								  		<br/>
+								     		<img class="img-fluid" src="${pageContext.request.contextPath}/${dto.mainImagePath }" value="${dto.mainImagePath }" />
+								  		</div>
+								  		<br/>
+				  						<button id="submitBtn" class="btn btn-outline-secondary">저장</button>
+				  					</div>
+				  				</div>
 							</div>
-						</div>
-			         </div>
-		           </div>
-		         </div>
-		       </div>
-		     </div>
-		   </div>
-		   <div class="col-lg-6">
-	        <div class="card text-black" style="border-radius: 25px;">
-	          <div class="card-body p-md-6">
-	            <div class="d-flex flex-row justify-content-center">
-	              <div class="col-md-12">			
-					<div class="col-md-12">
-						<form action="${pageContext.request.contextPath}/seller/ajax_upload" method="post" id="ajaxForm"enctype="multipart/form-data">
-						    <div><br><br>
-						    	<label class="form-label" for="image">이미지를 다시 선택해주세요</label>
-						    	<br>
-						    	<input class="form-control" type="file" name="image" id="image" 
-						    		accept=".jpg, .jpeg, .png, .JPG, .JPEG"/>
-						    </div>
-						</form>
-				
-				  		<div class="img-wrapper">
-				     		<img src="${pageContext.request.contextPath}/${dto.mainImagePath }" value="${dto.mainImagePath }" />
-				  		</div>
-				  		<button id="submitBtn" class="btn btn-outline-secondary">저장</button>
-				  	</div>
-				  </div>
-				</div>
-	          </div>
-            </div>
-          </div>
-        </div>
-	  </div>
+	          			</div>
+            		</div>
+          		</div>
+        	</div><br/>
+	  	</div>
 	</section>
 	   <!-- footer include -->
 	  <jsp:include page="/WEB-INF/include/footer.jsp"/>

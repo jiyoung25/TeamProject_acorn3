@@ -8,7 +8,8 @@
 <title>회원가입 :Ubiquitous</title>
 <%-- 부트스트랩 --%>
 <jsp:include page="/WEB-INF/include/cdnlink.jsp"/>
-
+<%--페비콘 링크 --%>
+<link rel="icon" href="${pageContext.request.contextPath}/image/ubiquitous_favicon.png">
 </head>
 <body>
 	<%-- 네비바 --%>
@@ -35,7 +36,7 @@
 	<section class="v-100" style="background-color: #eee;">
 	  <div class="container h-100">
 	    <div class="row d-flex justify-content-center align-items-center h-100">
-	      <div class="col-lg-12 col-xl-8">
+	      <div class="col-lg-12 col-xl-8"><br />
 	        <div class="card text-black" style="border-radius: 25px;">
 	          <div class="card-body p-md-2">
 	            <div class="row justify-content-center">
@@ -94,7 +95,7 @@
 	          </div>
 	        </div>
 	      </div>
-	    </div>
+	    </div><br />
 	  </div>
 	</section>
 	

@@ -7,6 +7,8 @@
 <meta charset="UTF-8">
 <%-- 부트스트랩 --%>
 <jsp:include page="/WEB-INF/include/cdnlink.jsp"/>
+<%--페비콘 링크 --%>
+<link rel="icon" href="${pageContext.request.contextPath}/image/ubiquitous_favicon.png">
 <title>회원 정보수정 :Ubiquitous</title>
 <style>
 	/* 이미지 업로드 폼을 숨긴다 */

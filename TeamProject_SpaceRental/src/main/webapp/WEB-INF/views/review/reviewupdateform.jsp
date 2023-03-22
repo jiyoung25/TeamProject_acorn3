@@ -13,6 +13,8 @@
 <%-- import from static folder --%>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/star.css">
 <script src = "${pageContext.request.contextPath}/js/star.js"></script>
+<%--페비콘 링크 --%>
+<link rel="icon" href="${pageContext.request.contextPath}/image/ubiquitous_favicon.png">
 <title>리뷰 업데이트 :Ubiquitous</title>
 <style>
 	

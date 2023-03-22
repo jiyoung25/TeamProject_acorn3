@@ -8,6 +8,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <%-- 부트스트랩 --%>
 <jsp:include page="/WEB-INF/include/cdnlink.jsp"/>
+<%--페비콘 링크 --%>
+<link rel="icon" href="${pageContext.request.contextPath}/image/ubiquitous_favicon.png">
 <title>공간등록 (판매자) :Ubiquitous</title>
 <style>
 	
@@ -37,7 +39,7 @@
 	<section class="v-100" style="background-color: #eee;">
 		<div class="container h-100">
 			<div class="row row-cols-lg-6 h-100">
-				<div class="col-lg-6">
+				<div class="col-lg-6"><br/>
 					<div class="card text-black" style="border-radius: 25px;">
 						<div class="card-body p-md-6">
 							<div class="d-flex flex-row justify-content-center">
@@ -92,7 +94,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-lg-6">
+				<div class="col-lg-6"><br/>
 					<div class="card text-black" style="border-radius: 25px;">
 						<div class="card-body p-md-6">
 							<div class="d-flex flex-row justify-content-center">
@@ -106,7 +108,8 @@
 										    </div>
 										</form>
 								  		<div class="img-wrapper">
-								     		<img />
+								     	<br/>
+				     						<img class="img-fluid"/>
 								  		</div>
 								  		<br/>
 								  		<button id="submitBtn" class="btn btn-outline-secondary">저장</button>
@@ -114,36 +117,9 @@
 								</div>
 							</div>
 						</div>
-			         </div>
-		           </div>
-		         </div>
-		       </div>
-		     </div>
-		   </div>
-		   <div class="col-lg-6">
-	        <div class="card text-black" style="border-radius: 25px;">
-	          <div class="card-body p-md-6">
-	            <div class="d-flex flex-row justify-content-center">
-	              <div class="col-md-12">
-					<div class="col-md-12">
-						<form action="${pageContext.request.contextPath}/seller/ajax_upload" method="post" id="ajaxForm"enctype="multipart/form-data">
-						    <div><br><br>
-						    	<label class="form-label" for="image">이미지</label>
-						    	<input class="form-control" type="file" name="image" id="image" 
-						    		accept=".jpg, .jpeg, .png, .JPG, .JPEG"/>
-						    </div>
-						</form>
-			
-				  		<div class="img-wrapper">
-				  		<br/>
-				     		<img class="img-fluid"/>
-				  		</div>
-				  		<br/>
-				  		<button id="submitBtn" class="btn btn-outline-secondary">저장</button>
-				  	</div>
-				  </div>
-				</div>
-			</div>
+			        </div>
+		        </div>	         
+			</div><br/>
 		</div>
 	</section>
 	<script>		

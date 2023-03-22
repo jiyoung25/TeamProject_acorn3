@@ -77,6 +77,8 @@
 <%-- import from static --%>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/star.css" />
+<%--페비콘 링크 --%>
+<link rel="icon" href="${pageContext.request.contextPath}/image/ubiquitous_favicon.png">
 </head>
 <body>
 	<%-- 네비바 --%>
@@ -237,7 +239,7 @@
 								
 								<%-- 리뷰 페이지네이션 --%>
 								<nav>
-									<ul class="pagination">
+									<ul class="pagination justify-content-center">
 										<%--
 											startPageNum 이 1 이 아닌 경우에만 Prev 링크를 제공한다. 
 										--%>
@@ -294,7 +296,7 @@
 						</table>
 						<%-- QnA 페이지네이션 --%>
 						<nav>
-							<ul class="pagination">
+							<ul class="pagination justify-content-center">
 								<%--
 						        	qnaStartPageNum 이 1 이 아닌 경우에만 Prev 링크를 제공한다. 
 						        	&condition=${condition}&keyword=${encodedK}
