@@ -101,7 +101,8 @@
 						</form>
 				
 				  		<div class="img-wrapper">
-				     		<img src="${pageContext.request.contextPath}/${dto.mainImagePath }" value="${dto.mainImagePath }" />
+				  		<br/>
+				     		<img class="img-fluid" src="${pageContext.request.contextPath}/${dto.mainImagePath }" value="${dto.mainImagePath }" />
 				  		</div>
 				  		<button id="submitBtn" class="btn btn-outline-secondary">저장</button>
 				  	</div>
