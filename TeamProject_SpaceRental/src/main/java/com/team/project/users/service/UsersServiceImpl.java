@@ -107,7 +107,7 @@ public class UsersServiceImpl implements UsersService{
 	
 	@Override
 	public void logout(HttpSession session) {
-		session.removeAttribute("id");
+		session.invalidate();
 	}
 
 	@Override
@@ -218,6 +218,8 @@ public class UsersServiceImpl implements UsersService{
 			//users 테이블의 profile 칼럼을 null 인 상태로 유지하기 위해 profile 에 null 을 넣어준다.
 			dto.setProfile(null);
 		}
+		
+		session.setAttribute("profile", dto.getProfile());
 		dao.update(dto);
 	}
 
