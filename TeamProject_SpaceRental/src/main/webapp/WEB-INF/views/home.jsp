@@ -12,18 +12,18 @@
 <%-- 폰트 --%>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
-<link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,600;1,600&amp;display=swap" rel="stylesheet" />
-<link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,300;0,500;0,600;0,700;1,300;1,500;1,600;1,700&amp;display=swap" rel="stylesheet" />
-<link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,400;1,400&amp;display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css"/>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,600;1,600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,300;0,500;0,600;0,700;1,300;1,500;1,600;1,700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,400;1,400&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
 <%-- 부트스트랩 --%>
 <jsp:include page="/WEB-INF/include/cdnlink.jsp" />
 <%-- vue.js --%>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.min.js"></script>
 <%-- animate.css --%>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 <%-- import from static folder --%>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/chatbot.css">
 <script src="${pageContext.request.contextPath}/js/chatbot.js"></script>
@@ -31,7 +31,7 @@
 .container>img {
 	position: absolute;
 	width: 100%;
-	height: 100% /* height: 100%; */
+	height: 100%; /* height: 100%; */
 	  top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
@@ -51,21 +51,21 @@
 	<%-- 네비바 --%>
 	<c:choose>
 		<c:when test="${empty sessionScope.id }">
-			<jsp:include page="/WEB-INF/include/navbar_sidebar_SessionX.jsp" />
+			<jsp:include page="/WEB-INF/include/navbar_sidebar_SessionX.jsp"/>
 		</c:when>
 		<c:otherwise>
 			<c:choose>
 				<c:when test="${usersCode eq 2 }">
-					<jsp:include page="/WEB-INF/include/navbar_sessionO_seller.jsp" />
-					<jsp:include page="/WEB-INF/include/sidebar_seller.jsp" />
+					<jsp:include page="/WEB-INF/include/navbar_sessionO_seller.jsp"/>
+					<jsp:include page="/WEB-INF/include/sidebar_seller.jsp"/>
 				</c:when>
 				<c:when test="${usersCode eq 3 }">
-					<jsp:include page="/WEB-INF/include/navbar_sessionO_users.jsp" />
-					<jsp:include page="/WEB-INF/include/sidebar_user.jsp" />
+					<jsp:include page="/WEB-INF/include/navbar_sessionO_users.jsp"/>
+					<jsp:include page="/WEB-INF/include/sidebar_user.jsp"/>
 				</c:when>
 				<c:when test="${usersCode eq 1 }">
-					<jsp:include page="/WEB-INF/include/navbar_sessionO_admin.jsp" />
-					<jsp:include page="/WEB-INF/include/sidebar_admin.jsp" />
+					<jsp:include page="/WEB-INF/include/navbar_sessionO_admin.jsp"/>
+					<jsp:include page="/WEB-INF/include/sidebar_admin.jsp"/>
 				</c:when>
 			</c:choose>
 		</c:otherwise>
@@ -109,7 +109,7 @@
 			<!--연습실-->
 			<div class="col">
 				<img src="https://cdn-icons-png.flaticon.com/512/4488/4488230.png"
-					style="width: 200px;" alt="">
+					style="width: 200px;">
 				<h2 class="fw-normal"
 					style="font-family: 'Black Han Sans', sans-serif;">연습실</h2>
 				<p>
@@ -204,7 +204,7 @@
 							<div class="card-body">
 								<h5 class="card-title">${tmp.space_name }</h5>
 								<p class="card-text">★: ${tmp.star/2 }점</p>
-								<p>${tmp.review_content }</p>
+								${tmp.review_content }
 							</div>
 						</a>
 					</div>
