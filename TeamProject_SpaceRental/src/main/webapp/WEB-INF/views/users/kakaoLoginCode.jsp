@@ -5,6 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+<%--페비콘 링크 --%>
+<link rel="icon" href="${pageContext.request.contextPath}/image/ubiquitous_favicon.png">
 <title>카카오 회원가입 :Ubiquitous</title>
 </head>
 <body>

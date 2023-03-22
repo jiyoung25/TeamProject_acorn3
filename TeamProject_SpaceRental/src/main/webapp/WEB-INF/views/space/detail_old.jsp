@@ -14,6 +14,8 @@
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <%-- import from static --%>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/star.css" />
+<%--페비콘 링크 --%>
+<link rel="icon" href="${pageContext.request.contextPath}/image/ubiquitous_favicon.png">
 <style>
 	body {
         background-color:

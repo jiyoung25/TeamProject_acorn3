@@ -7,6 +7,8 @@
 <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
 <%-- 부트스트랩 --%>
 <jsp:include page="/WEB-INF/include/cdnlink.jsp"/>
+<%--페비콘 링크 --%>
+<link rel="icon" href="${pageContext.request.contextPath}/image/ubiquitous_favicon.png">
 <title>공간예약 확인메세지 :Ubiquitous</title>
 <style>
 	a {

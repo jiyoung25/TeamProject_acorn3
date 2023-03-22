@@ -7,6 +7,8 @@
 <meta charset="UTF-8">
 <%-- 부트스트랩 --%>
 <jsp:include page="/WEB-INF/include/cdnlink.jsp"/>
+<%--페비콘 링크 --%>
+<link rel="icon" href="${pageContext.request.contextPath}/image/ubiquitous_favicon.png">
 <style>
 	a {
 		text-decoration-line: none;

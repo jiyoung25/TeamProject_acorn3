@@ -7,6 +7,8 @@
 <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
 <%-- 부트스트랩 --%>
 <jsp:include page="/WEB-INF/include/cdnlink.jsp"/>
+<%--페비콘 링크 --%>
+<link rel="icon" href="${pageContext.request.contextPath}/image/ubiquitous_favicon.png">
 <%-- vue.js, axios --%>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>

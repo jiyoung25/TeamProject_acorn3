@@ -8,7 +8,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <%-- 何飘胶飘乏 --%>
 <jsp:include page="/WEB-INF/include/cdnlink.jsp"/>
+<%-- vue.js --%>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.min.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/star.css" />
+<%--其厚能 傅农 --%>
+<link rel="icon" href="${pageContext.request.contextPath}/image/ubiquitous_favicon.png">
 <title>包府磊 Review 包府</title>
 </head>
 <body>
