@@ -82,7 +82,7 @@
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-lg-4 mb-1" style="padding:5px;"><button type="submit" class="btn btn-dark" style="width:100%;">수정확인</button></div>
+						<div class="col-lg-4 mb-1" style="padding:5px;"><button type="submit" id="submitBtn" class="btn btn-dark" style="width:100%;">수정확인</button></div>
 						<div class="col-lg-5 mb-1" style="padding:5px;"><button type="button" class="btn btn-dark" style="width:100%;" data-bs-toggle="modal" data-bs-target="#pwdModal">비밀번호 변경</button></div>
 						<div class="col-lg-3 mb-1" style="padding:5px;"><button type="reset" class="btn btn-outline-dark " style="width:100%;">취소</button></div>				
 					</div>
@@ -93,7 +93,6 @@
 					<input type="file" id="image" name="image" accept=".jpg, .png, .gif"/>
 					<button type="submit">업로드</button>
 				</form>
-							
 			</div>
 			<!-- Modal -->
 			<div class="modal fade" id="pwdModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -119,9 +118,9 @@
 	
 	<!-- footer include -->
 	<jsp:include page="/WEB-INF/include/footer.jsp"/>
+	<%-- 프로필 이미지 --%>
 	<script src="${pageContext.request.contextPath }/js/gura_util.js"></script>
 	<script>
-
 		//프로필 이미지 링크를 클릭하면 
 		document.querySelector("#profileLink").addEventListener("click", function(){
 			// input type="file" 을 강제 클릭 시킨다. 
@@ -149,7 +148,30 @@
 				document.querySelector("#profileLink").innerHTML=img;
 			});
 		});		
-		
+		<%-- 이메일 검증식 --%>
+		let isEmailValid = false;
+		document.querySelector("#email").addEventListener("input", function(){
+			this.classList.remove("is-valid");
+			this.classList.remove("is-invalid");
+			//입력한 이메일
+			const inputEmail=this.value;
+			//이메일을 검증할 정규 표현식  
+			const reg=/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+			//만일 입력한 이메일이 정규표현식 검증을 통과 하지 못했다면
+			if(!reg.test(inputEmail)){
+				this.classList.add("is-invalid");
+				isEmailValid=false;
+			}else{//통과 했다면 
+				this.classList.add("is-valid");
+				isEmailValid=true;
+			}
+		});
+		document.querySelector("#submitBtn").addEventListener("click", function(e){
+			if(!isEmailValid){
+				e.preventDefault();
+				alert("이메일을 확인해주세요.");
+			}
+		});
 	</script>
 </body>
 </html>
