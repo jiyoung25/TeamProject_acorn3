@@ -155,6 +155,33 @@
 		WHERE num=#{num}
 	</select>
 	
+	<select id="sellerQnaData" parameterType="qnaDto" resultType="qnaDto">
+		SELECT result1.*
+		FROM
+			(SELECT space_name, num,writer,title,content,viewCount,TO_CHAR(regdate, 'YY.MM.DD HH24:MI') AS regdate,
+				LAG(num, 1, 0) OVER (ORDER BY num DESC) qnaPrevNum,
+	   			LEAD(num, 1, 0) OVER (ORDER BY num DESC) qnaNextNum
+	   		FROM qna
+			INNER JOIN seller_space ON qna.space_num = seller_space.space_num
+		    INNER JOIN space_users ON seller_space.users_num = space_users.users_num
+		    WHERE seller_space.space_num = qna.space_num AND space_users.id = #{sellerId}
+		    ORDER BY num DESC ) result1
+		WHERE num=#{num}
+	</select>
+	
+	<select id="usersQnaData" parameterType="qnaDto" resultType="qnaDto">
+		SELECT result1.*
+		FROM (
+			SELECT space_name, num, writer, title, content, viewCount, TO_CHAR(regdate, 'YY.MM.DD HH24:MI') AS regdate,
+				LAG(num, 1, 0) OVER (ORDER BY num DESC) qnaPrevNum,
+				LEAD(num, 1, 0) OVER (ORDER BY num DESC) qnaNextNum
+    		FROM qna
+		    INNER JOIN seller_space ON qna.space_num = seller_space.space_num
+		    WHERE qna.users_num = #{users_num}
+		    ORDER BY num DESC ) result1
+		WHERE num=#{num}
+	</select>
+	
 	<update id="addViewCount" parameterType="int">
 		UPDATE qna
 		SET viewCount = viewCount+1

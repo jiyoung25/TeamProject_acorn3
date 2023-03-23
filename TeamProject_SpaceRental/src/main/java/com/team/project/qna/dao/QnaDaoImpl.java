@@ -78,6 +78,16 @@ public class QnaDaoImpl implements QnaDao{
 	public QnaDto getData(QnaDto dto) {
 		return session.selectOne("qna.getData2", dto);
 	}
+	
+	@Override
+	public QnaDto sellerQnaData(QnaDto dto) {
+		return session.selectOne("qna.sellerQnaData", dto);
+	}
+	
+	@Override
+	public QnaDto usersQnaData(QnaDto dto) {
+		return session.selectOne("qna.usersQnaData", dto);
+	}
 
 	@Override //조회수 올리는 메소드
 	public void addViewCount(int num) {
@@ -98,4 +108,5 @@ public class QnaDaoImpl implements QnaDao{
 	public void update(QnaDto dto) {
 		session.update("qna.update",dto);
 	}
+
 }

@@ -59,7 +59,7 @@
 					<tr>
 						<td>${tmp.space_name }</td>
 						<td>
-							<a href="${pageContext.request.contextPath}/qna/qnadetail?num=${tmp.num }">${tmp.title }</a>
+							<a href="${pageContext.request.contextPath}/users/usersQnaDetail?num=${tmp.num }">${tmp.title }</a>
 						</td>
 						<td>${tmp.viewCount }</td>
 						<td>${tmp.regdate }</td>

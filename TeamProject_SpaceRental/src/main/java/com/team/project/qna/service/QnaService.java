@@ -14,6 +14,8 @@ public interface QnaService {
 	public void adminQna(ModelAndView mView, HttpServletRequest request);
 	public void getUsersNum(HttpServletRequest request, HttpSession session);
 	public void getDetail(HttpServletRequest request);
+	public void sellerQnaDetail(HttpServletRequest request);
+	public void usersQnaDetail(HttpServletRequest request);
 	public void saveContent(QnaDto dto);
 	public void updateContent(QnaDto dto);
 	public void deleteContent(int num, HttpServletRequest request);
