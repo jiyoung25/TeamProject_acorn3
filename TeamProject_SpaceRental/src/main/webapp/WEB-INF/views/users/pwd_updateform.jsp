@@ -48,7 +48,7 @@
 	<div class="container text-center" >
 		<div class="row shadow p-3 mb-5 mt-5 bg-body rounded">
 			<div class="col-md-4"></div>
-			<div class="col-md-4">
+			<div class="col-lg-4">
 				<h3 class="mt-3">비밀 번호 변경</h3>
 				<form action="${pageContext.request.contextPath}/users/pwd_update" method="post" id="myForm">
 					<div class="row text-center mt-4">
@@ -62,6 +62,7 @@
 							<span class="input-group-text" style="width:35%; justify-content: center; align-items: center; display: flex;">새 비밀번호</span>
 							<input  type="password" name="newPwd" id="newPwd" class="form-control" />
 						</div>
+						<small class="form-text text-muted">8자리이상 영문 대 소문자, 숫자, 특수문자를 사용하세요.</small>
 					</div>
 					<div class="row text-center mt-4">
 						<div class="input-group mb-4">
@@ -69,8 +70,8 @@
 							<input  type="password" id="newPwd2" class="form-control" />
 						</div>
 					</div>
-					<div class="row">
-						<div class="col"><button type="submit" class="btn btn-dark" style="width:100%">수정하기</button></div>
+					<div class="row mb-5">
+						<div class="col"><button type="submit" id="submitBtn" class="btn btn-dark" style="width:100%">수정하기</button></div>
 						<div class="col"><button type="reset" class="btn btn-outline-dark" style="width:100%">리셋</button></div>
 					</div>
 				</form>
@@ -83,11 +84,43 @@
 	<jsp:include page="/WEB-INF/include/footer.jsp"/>
 	
 	<script>
+		//비밀번호 검증식
+		let isPwdValid = false;
+		function checkPwd(){
+			//먼저 2개의 클래스를 제거하고 
+			document.querySelector("#newPwd").classList.remove("is-valid");
+			document.querySelector("#newPwd").classList.remove("is-invalid");
+			//입력한 두개의 비밀 번호를 읽어와서 
+			const pwd=document.querySelector("#newPwd").value;
+			const pwd2=document.querySelector("#newPwd2").value;
+			
+			//비밀번호를 검증할 정규 표현식
+			const reg=/(?=.*\d{1,50})(?=.*[~`!@#$%\^&*()-+=]{1,50})(?=.*[a-zA-Z]{2,50}).{8,50}$/;
+			//만일 정규표현식 검증을 통과 하지 못했다면
+			if(!reg.test(pwd)){
+				document.querySelector("#newPwd").classList.add("is-invalid");
+				isPwdValid=false;
+				return; //함수를 여기서 끝내라 
+			} else{
+				isPwdValid=true;
+			}
+		}
+		
+		document.querySelector("#newPwd").addEventListener("input", function(){
+			checkPwd();
+		});
+		
 		//폼에 submit 이벤트가 일어났을때 실행할 함수를 등록하고 
 		document.querySelector("#myForm").addEventListener("submit", function(e){
+			//비밀번호가 검증식에 통과하지 못할 때 폼전송을 막는다.
+			if(!isPwdValid){
+				e.preventDefault();
+				alert("비밀번호 양식을 확인해주세요.");
+			}
+			
+			//새 비밀번호와 비밀번호 확인이 일치하지 않으면 폼 전송을 막는다.
 			let pwd1=document.querySelector("#newPwd").value;
 			let pwd2=document.querySelector("#newPwd2").value;
-			//새 비밀번호와 비밀번호 확인이 일치하지 않으면 폼 전송을 막는다.
 			if(pwd1 != pwd2){
 				alert("비밀번호를 확인 하세요!");
 				e.preventDefault();//폼 전송 막기 
