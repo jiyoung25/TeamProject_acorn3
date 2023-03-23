@@ -9,64 +9,75 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
-	#noneVisible {
-		display: none;
-	}
-	#dibSubmitBtn {
-		display: none;
-	}
-	.nonClickedHeart {
-		width: 30px;
-		height: 30px;
-		color: gray;
-	}
-	.clickedHeart {
-		width: 30px;
-		height: 30px;
-		color: red;
-	}
-	a {
-		text-decoration: none;
-	}
-	a:hover {
-		font-weight: bold;
-		text-decoration: none;
-	}
-	.img-fluid {
-		width: 500px;
-		height: 500px;
-	}
-	.grid-container {
-		display: grid;
-		width: 325px;
-		grid-template-columns: 1fr 1fr 1fr 1fr;
-		gap: 5px;
-		margin: auto;
-		margin-bottom: 10px;
-	}
-	.reservationForm{
-		padding: 2em 2em;
-		margin: 2em 10px;
-		font-weight: bold;
-		color: #565656;
-		background: #f8f9fa;
-		box-shadow: 0px 0px 0px 10px #f8f9fa;
-		border: solid 2px #d3d3d3;
-		border-radius: 8px;
-	}
-	.heartBtn {
-	  	transition: all 0.2s linear;
-	}
-	.heartBtn:hover {
-	  	transform: scale(1.4);
-	}
-	#spaceName{
-	    /* 한 줄 자르기 */
-	    display: inline-block;
-	    white-space: nowrap;
-	    overflow: hidden;
-	    text-overflow: ellipsis;
-	}
+#noneVisible {
+	display: none;
+}
+
+#dibSubmitBtn {
+	display: none;
+}
+
+.nonClickedHeart {
+	width: 30px;
+	height: 30px;
+	color: gray;
+}
+
+.clickedHeart {
+	width: 30px;
+	height: 30px;
+	color: red;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	font-weight: bold;
+	text-decoration: none;
+}
+
+.img-fluid {
+	width: 500px;
+	height: 500px;
+}
+
+.grid-container {
+	display: grid;
+	width: 325px;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+	gap: 5px;
+	margin: auto;
+	margin-bottom: 10px;
+}
+
+.reservationForm {
+	padding: 2em 2em;
+	margin: 2em 10px;
+	font-weight: bold;
+	color: #565656;
+	background: #f8f9fa;
+	box-shadow: 0px 0px 0px 10px #f8f9fa;
+	border: solid 2px #d3d3d3;
+	border-radius: 8px;
+}
+
+.heartBtn {
+	transition: all 0.2s linear;
+}
+
+.heartBtn:hover {
+	transform: scale(1.4);
+}
+
+#spaceName {
+	/* 한 줄 자르기 */
+	display: inline-block;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
 </style>
 <title>공간 상세 페이지</title>
 <%-- 부트스트랩 --%>
@@ -78,7 +89,8 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/star.css" />
 <%--페비콘 링크 --%>
-<link rel="icon" href="${pageContext.request.contextPath}/image/ubiquitous_favicon.png">
+<link rel="icon"
+	href="${pageContext.request.contextPath}/image/ubiquitous_favicon.png">
 </head>
 <body>
 	<%-- 네비바 --%>
@@ -108,26 +120,39 @@
 			<!--공간사진-->
 			<div class="col align-center">
 				<div class="row mt-3 mb-3">
-					<div id="imgWrapper" style="width:100%; height:400px; overflow:hidden;">
-						<img src="${pageContext.request.contextPath}/${spaceDto.mainImagePath }" class="img-fluid" style="width:100%; height:100%; object-fit:cover;">
+					<div id="imgWrapper"
+						style="width: 100%; height: 400px; overflow: hidden;">
+						<img
+							src="${pageContext.request.contextPath}/${spaceDto.mainImagePath }"
+							class="img-fluid"
+							style="width: 100%; height: 100%; object-fit: cover;">
 					</div>
 				</div>
 				<!--공간이름-->
 				<div class="row text-center">
-					<div class="fs-1 text-center col" id="spaceName" style="padding: 0.5em; margin: 1em 0; border: solid 3px #000000;">
+					<div class="fs-1 text-center col" id="spaceName"
+						style="padding: 0.5em; margin: 1em 0; border: solid 3px #000000;">
 						<div class="row">
 							<div class="col-10">${spaceDto.space_name }</div>
 							<div class="col-2">
 								<!-- 찜하기 -->
 								<div class="container text-center">
-									<form action="${pageContext.request.contextPath}/space/dib_insert" id="dibForm">
-										<svg v-bind:class="classObject" v-on:click="clickHeartBtn" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-suit-heart-fill heartBtn align-middle" viewBox="0 0 16 16" style="cursor:pointer;">
-											<path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z"/>
+									<form
+										action="${pageContext.request.contextPath}/space/dib_insert"
+										id="dibForm">
+										<svg v-bind:class="classObject" v-on:click="clickHeartBtn"
+											xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+											fill="currentColor"
+											class="bi bi-suit-heart-fill heartBtn align-middle"
+											viewBox="0 0 16 16" style="cursor: pointer;">
+											<path
+												d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z" />
 										</svg>
-										<input type="hidden" name="space_num" value="${spaceDto.space_num }" />
-										<input type="hidden" name="users_num" value="${spaceDto.users_num }" />
-										<input type="hidden" name="users_id" value="${id }" />
-										<button type="submit" id="dibSubmitBtn" >제출</button>
+										<input type="hidden" name="space_num"
+											value="${spaceDto.space_num }" /> <input type="hidden"
+											name="users_num" value="${spaceDto.users_num }" /> <input
+											type="hidden" name="users_id" value="${id }" />
+										<button type="submit" id="dibSubmitBtn">제출</button>
 									</form>
 								</div>
 							</div>
@@ -156,7 +181,7 @@
 					</ul>
 					<!-- 탭 내용 -->
 					<div class="tab-content" id="myTabContent">
-						<%-- 1. 공간 소개 --%>	
+						<%-- 1. 공간 소개 --%>
 						<div class="tab-pane fade show active" id="home-tab-pane"
 							role="tabpanel" aria-labelledby="home-tab" tabindex="0">
 							<div class="alert alert-secondary text-black mt-3" role="alert">
@@ -170,33 +195,40 @@
 								<br>
 								<h4 class="alert-heading">주소</h4>
 								<hr>
-								<p class="mb-0">${spaceDto.addr } ${spaceDto.addr2 }</p>
+								<p class="mb-0">${spaceDto.addr }${spaceDto.addr2 }</p>
 							</div>
-							<div id="map" style="width:100%;height:350px;"></div>
+							<div id="map" style="width: 100%; height: 350px;"></div>
 						</div>
 						<%-- 2. 사용자가 사용한 방 -> 리뷰 쓰기 가능 --%>
-						<div class="tab-pane fade" id="review-tab-pane" role="tabpanel" aria-labelledby="review-tab" tabindex="0">
+						<div class="tab-pane fade" id="review-tab-pane" role="tabpanel"
+							aria-labelledby="review-tab" tabindex="0">
 							<div class="mt-3 mb-3">
-								<form action="${pageContext.request.contextPath}/review/reviewInsertform" method="POST">
+								<form
+									action="${pageContext.request.contextPath}/review/reviewInsertform"
+									method="POST">
 									<div class="row">
 										<div class="col-9">
-											<select name="possibleReview" id="possibleReview" class="form-select">
+											<select name="possibleReview" id="possibleReview"
+												class="form-select">
 												<c:choose>
-													<c:when test="${empty sessionScope.id }">			
+													<c:when test="${empty sessionScope.id }">
 													</c:when>
 													<c:when test="${empty possibleReview }">
 														<option value="">방을 이용해주세요.</option>
 													</c:when>
 													<c:when test="${not empty possibleReview }">
 														<c:forEach items="${possibleReview }" var="item">
-															<option value="${item.reserv_num }&&${item.space_num}&&${item.cate_num}"><strong>${item.space_name } 방 리뷰쓰기</strong></option>
+															<option
+																value="${item.reserv_num }&&${item.space_num}&&${item.cate_num}"><strong>${item.space_name }
+																	방 리뷰쓰기</strong></option>
 														</c:forEach>
 													</c:when>
 												</c:choose>
 											</select>
 										</div>
 										<div class="col-3">
-											<button class="btn btn-outline-dark" style="width:100%;">리뷰 쓰기</button>
+											<button class="btn btn-outline-dark" style="width: 100%;">리뷰
+												쓰기</button>
 										</div>
 									</div>
 								</form>
@@ -218,25 +250,25 @@
 										<c:forEach var="tmp" items="${reviewlist }">
 											<tr>
 												<td>${tmp.review_writer }</td>
-												<td><a href="${pageContext.request.contextPath}/review/reviewdetail?review_num=${tmp.review_num}" style="text-decoration: none;">${tmp.review_title }</a></td>
+												<td><a
+													href="${pageContext.request.contextPath}/review/reviewdetail?review_num=${tmp.review_num}"
+													style="text-decoration: none;">${tmp.review_title }</a></td>
 												<td>
-													<%-- 별점 --%>
-													<span class="star">
-														★★★★★
-														<span style="width: ${tmp.star *10 }%;">★★★★★</span>
-													</span>
+													<%-- 별점 --%> <span class="star"> ★★★★★ <span
+														style="width: ${tmp.star *10 }%;">★★★★★</span>
+												</span>
 												</td>
 												<td>${tmp.review_regdate }</td>
 												<c:if test="${ usersCode eq 1}">
-													<td>
-														<a href="${pageContext.request.contextPath}/space/reviewDelete?review_num=${tmp.review_num}&cate_num=${cate_num }&space_num=${space_num}" onClick="deleteLink(); return false;">삭제</a>
-													</td>
+													<td><a
+														href="${pageContext.request.contextPath}/space/reviewDelete?review_num=${tmp.review_num}&cate_num=${cate_num }&space_num=${space_num}"
+														onClick="deleteLink(); return false;">삭제</a></td>
 												</c:if>
 											</tr>
 										</c:forEach>
 									</tbody>
 								</table>
-								
+
 								<%-- 리뷰 페이지네이션 --%>
 								<nav>
 									<ul class="pagination justify-content-center">
@@ -244,30 +276,36 @@
 											startPageNum 이 1 이 아닌 경우에만 Prev 링크를 제공한다. 
 										--%>
 										<c:if test="${startPageNum ne 1 }">
-											<li class="page-item">
-												<a class="page-link" href="detail?cate_num=${param.cate_num }&space_num=${param.space_num}&pageNum=${startPageNum-1 }">Prev</a>
+											<li class="page-item"><a class="page-link"
+												href="detail?cate_num=${param.cate_num }&space_num=${param.space_num}&pageNum=${startPageNum-1 }">Prev</a>
 											</li>
 										</c:if>
-								        <c:forEach var="i" begin="${startPageNum }" end="${endPageNum }">
+										<c:forEach var="i" begin="${startPageNum }"
+											end="${endPageNum }">
 											<li class="page-item ${pageNum eq i ? 'active' : '' }">
-												<a class="page-link" href="detail?cate_num=${param.cate_num }&space_num=${param.space_num}&pageNum=${i }">${i }</a>
+												<a class="page-link"
+												href="detail?cate_num=${param.cate_num }&space_num=${param.space_num}&pageNum=${i }">${i }</a>
 											</li>
-								        </c:forEach>
-								        <%--
+										</c:forEach>
+										<%--
 								           	마지막 페이지 번호가 전체 페이지의 갯수보다 작으면 Next 링크를 제공한다. 
 										--%>
 										<c:if test="${endPageNum lt totalPageCount }">
-											<li class="page-item">
-												<a class="page-link" href="detail?cate_num=${param.cate_num }&space_num=${param.space_num}&pageNum=${endPageNum+1 }">Next</a>
+											<li class="page-item"><a class="page-link"
+												href="detail?cate_num=${param.cate_num }&space_num=${param.space_num}&pageNum=${endPageNum+1 }">Next</a>
 											</li>
 										</c:if>
 									</ul>
 								</nav>
-							</div>	
+							</div>
 						</div>
 						<%-- QnA --%>
-						<div class="tab-pane fade" id="qna-tab-pane" role="tabpanel" aria-labelledby="qna-tab" tabindex="0">
-							<button type="button" onclick="location.href='${pageContext.request.contextPath}/qna/qnaInsertform?cate_num=${param.cate_num }&space_num=${param.space_num}'" class="btn btn-outline-dark mt-3 mb-3" style="width:100%;">QnA 추가하기</button>
+						<div class="tab-pane fade" id="qna-tab-pane" role="tabpanel"
+							aria-labelledby="qna-tab" tabindex="0">
+							<button type="button"
+								onclick="location.href='${pageContext.request.contextPath}/qna/qnaInsertform?cate_num=${param.cate_num }&space_num=${param.space_num}'"
+								class="btn btn-outline-dark mt-3 mb-3" style="width: 100%;">QnA
+								추가하기</button>
 							<table class="table align-middle mb-0 bg-white">
 								<thead class="bg-light">
 									<tr>
@@ -283,77 +321,87 @@
 									<c:forEach var="tmp" items="${list }">
 										<tr>
 											<td>${tmp.writer }</td>
-											<td><a href="${pageContext.request.contextPath}/qna/qnadetail?num=${tmp.num}" style="text-decoration: none;">${tmp.title }</a></td>
+											<td><a
+												href="${pageContext.request.contextPath}/qna/qnadetail?num=${tmp.num}"
+												style="text-decoration: none;">${tmp.title }</a></td>
 											<td>${tmp.regdate }</td>
 											<c:if test="${ usersCode eq 1}">
-												<td>
-													<a href="qnaDelete?num=${tmp.num}&cate_num=${cate_num }&space_num=${space_num}" onClick="deleteLink(); return false;">삭제</a>
-												</td>
+												<td><a
+													href="qnaDelete?num=${tmp.num}&cate_num=${cate_num }&space_num=${space_num}"
+													onClick="deleteLink(); return false;">삭제</a></td>
 											</c:if>
 										</tr>
 									</c:forEach>
 								</tbody>
-						</table>
-						<%-- QnA 페이지네이션 --%>
-						<nav>
-							<ul class="pagination justify-content-center">
-								<%--
+							</table>
+							<%-- QnA 페이지네이션 --%>
+							<nav>
+								<ul class="pagination justify-content-center">
+									<%--
 						        	qnaStartPageNum 이 1 이 아닌 경우에만 Prev 링크를 제공한다. 
 						        	&condition=${condition}&keyword=${encodedK}
 						        --%>
-						        <c:if test="${qnaStartPageNum ne 1 }">
-									<li class="page-item">
-										<a class="page-link" href="detail?cate_num=${param.cate_num }&space_num=${param.space_num}&qnaPageNum=${qnaStartPageNum-1 }&condition=${condition}&keyword=${encodedK}">이전글</a>
-									</li>
-						        </c:if>
-						        <c:forEach var="i" begin="${qnaStartPageNum }" end="${qnaEndPageNum }">
-									<li class="page-item ${qnaPageNum eq i ? 'active' : '' }">
-										<a class="page-link" href="detail?cate_num=${param.cate_num }&space_num=${param.space_num}&qnaPageNum=${i }&condition=${condition}&keyword=${encodedK}">${i }</a>
-									</li>
-						        </c:forEach>
-						        <%--
+									<c:if test="${qnaStartPageNum ne 1 }">
+										<li class="page-item"><a class="page-link"
+											href="detail?cate_num=${param.cate_num }&space_num=${param.space_num}&qnaPageNum=${qnaStartPageNum-1 }&condition=${condition}&keyword=${encodedK}">이전글</a>
+										</li>
+									</c:if>
+									<c:forEach var="i" begin="${qnaStartPageNum }"
+										end="${qnaEndPageNum }">
+										<li class="page-item ${qnaPageNum eq i ? 'active' : '' }">
+											<a class="page-link"
+											href="detail?cate_num=${param.cate_num }&space_num=${param.space_num}&qnaPageNum=${i }&condition=${condition}&keyword=${encodedK}">${i }</a>
+										</li>
+									</c:forEach>
+									<%--
 						        	마지막 페이지 번호가 전체 페이지의 갯수보다 작으면 Next 링크를 제공한다. 
 						        --%>
-						        <c:if test="${qnaEndPageNum lt qnatotalPageCount }">
-									<li class="page-item">
-										<a class="page-link" href="detail?cate_num=${param.cate_num }&space_num=${param.space_num}&qnaPageNum=${qnaEndPageNum+1 }&condition=${condition}&keyword=${encodedK}">다음글</a>
-									</li>
-						        </c:if>
-							</ul>
-						</nav>
-						      
-						<!-- 검색 폼 -->
-						<form action="detail" method="get">
-							<div class="row">
-								<div class="col-2 text-center">
-									<label for="condition" class="form-label mt-1">검색조건</label>
+									<c:if test="${qnaEndPageNum lt qnatotalPageCount }">
+										<li class="page-item"><a class="page-link"
+											href="detail?cate_num=${param.cate_num }&space_num=${param.space_num}&qnaPageNum=${qnaEndPageNum+1 }&condition=${condition}&keyword=${encodedK}">다음글</a>
+										</li>
+									</c:if>
+								</ul>
+							</nav>
+
+							<!-- 검색 폼 -->
+							<form action="detail" method="get">
+								<div class="row">
+									<div class="col-2 text-center">
+										<label for="condition" class="form-label mt-1">검색조건</label>
+									</div>
+									<div class="col-3">
+										<select name="condition" id="condition" class="form-select">
+											<option value="title_content"
+												${condition eq 'title_content' ? 'selected' : '' }>제목
+												+ 내용</option>
+											<option value="title"
+												${condition eq 'title' ? 'selected' : '' }>제목</option>
+											<option value="writer"
+												${condition eq 'writer' ? 'selected' : '' }>작성자</option>
+										</select>
+									</div>
+									<div class="col-5">
+										<input type="text" name="keyword" class="form-control"
+											placeholder="검색어..." value="${keyword }" /> <input
+											type="hidden" name="cate_num" value=${param.cate_num }>
+										<input type="hidden" name="space_num"
+											value=${param.space_num }>
+									</div>
+									<div class="col-2">
+										<button type="submit" class="btn btn-outline-dark">검색</button>
+									</div>
 								</div>
-								<div class="col-3">
-									<select name="condition" id="condition" class="form-select">
-										<option value="title_content" ${condition eq 'title_content' ? 'selected' : '' }>제목 + 내용</option>
-										<option value="title" ${condition eq 'title' ? 'selected' : '' }>제목</option>
-										<option value="writer" ${condition eq 'writer' ? 'selected' : '' }>작성자</option>
-									</select>
-								</div>
-								<div class="col-5">
-									<input type="text" name="keyword" class="form-control" placeholder="검색어..." value="${keyword }" />
-							    	<input type="hidden" name="cate_num" value=${param.cate_num }>
-							    	<input type="hidden" name="space_num" value=${param.space_num }>
-						    	</div>
-						    	<div class="col-2">
-						    		<button type="submit" class="btn btn-outline-dark" >검색</button>	
-						    	</div>
-					    	</div>
-						</form>
-						<c:if test="${not empty condition }">
-							<p>
-								<strong>${qnatotalRow }</strong> 개의 자료가 검색 되었습니다.
-								<a href="${pageContext.request.contextPath}/space/detail?cate_num=${param.cate_num}&space_num=${param.space_num}">리셋</a>
-							</p>
-						</c:if>	
-					</div>
-					<div class="tab-pane fade" id="disabled-tab-pane" role="tabpanel"
-						aria-labelledby="disabled-tab" tabindex="0">...</div>
+							</form>
+							<c:if test="${not empty condition }">
+								<p>
+									<strong>${qnatotalRow }</strong> 개의 자료가 검색 되었습니다. <a
+										href="${pageContext.request.contextPath}/space/detail?cate_num=${param.cate_num}&space_num=${param.space_num}">리셋</a>
+								</p>
+							</c:if>
+						</div>
+						<div class="tab-pane fade" id="disabled-tab-pane" role="tabpanel"
+							aria-labelledby="disabled-tab" tabindex="0">...</div>
 					</div>
 				</div>
 			</div>
@@ -383,7 +431,8 @@
 							<div class="col-8 ">
 								<select name="reserv_count" id="reserv_count"
 									v-bind:value="reserv_count_value"
-									v-on:click="reservCountSelected"class="form-select" aria-label="Default select example">
+									v-on:click="reservCountSelected" class="form-select"
+									aria-label="Default select example">
 									<option value="0">--</option>
 									<option value="1">1명</option>
 									<option value="2">2명</option>
@@ -399,9 +448,9 @@
 							</div>
 							<div class="col-8 ">
 								<%--최소: 내일부터, 최대: 2달 --%>
-								<input type="date" id="reserv_date" name="reserv_date" class="form-control"
-									min="${minday }" max="${maxday }" v-model="day"
-									v-on:input="dayBtnClicked" />
+								<input type="date" id="reserv_date" name="reserv_date"
+									class="form-control" min="${minday }" max="${maxday }"
+									v-model="day" v-on:input="dayBtnClicked" />
 							</div>
 						</div>
 						<!--시간 선택-->
@@ -410,38 +459,44 @@
 								<div>시간 선택</div>
 							</div>
 							<div class="col-8">
-								<div class="row">
-									<div>
-										<div class="grid-container">
-											<c:forEach var="i" begin="7" end="10">
-												<button type="button" class="btn btn-outline-dark" value="${i }"
-													id="timeBtn${i }" v-on:click="timeBtnClicked">${i }:00</button>
-											</c:forEach>
-										</div>
-										<div class="grid-container">
-											<c:forEach var="i" begin="11" end="14">
-												<button type="button" class="btn btn-outline-dark"
+								<div>
+									<div class="row row-cols-4 row-cols-md-2 row-cols-lg-4">
+										<c:forEach var="i" begin="7" end="10">
+											<div class="col" style="padding:1px;">
+												<button type="button" class="btn btn-outline-dark" style="width:100%;"
 													value="${i }" id="timeBtn${i }" v-on:click="timeBtnClicked">${i }:00</button>
-											</c:forEach>
-										</div>
-										<div class="grid-container">
-											<c:forEach var="i" begin="15" end="18">
-												<button type="button" class="btn btn-outline-dark" value="${i }"
-													id="timeBtn${i }" v-on:click="timeBtnClicked">${i }:00</button>
-											</c:forEach>
-										</div>
-										<div class="grid-container">
-											<c:forEach var="i" begin="19" end="22">
-												<button type="button" class="btn-outline-dark btn" value="${i }"
-													id="timeBtn${i }" v-on:click="timeBtnClicked">${i }:00</button>
-											</c:forEach>
-										</div>
+											</div>
+										</c:forEach>
 									</div>
-									<p id="noneVisible">{{count}}{{time1}}{{time2}}</p>
-									<br />
+									<div class="row row-cols-4 row-cols-md-2 row-cols-lg-4">
+										<c:forEach var="i" begin="11" end="14">
+											<div class="col" style="padding:1px;">
+												<button type="button" class="btn btn-outline-dark" style="width:100%;"
+													value="${i }" id="timeBtn${i }" v-on:click="timeBtnClicked">${i }:00</button>
+											</div>
+										</c:forEach>
+									</div>
+									<div class="row row-cols-4 row-cols-md-2 row-cols-lg-4">
+										<c:forEach var="i" begin="15" end="18">
+											<div class="col" style="padding:1px;">
+												<button type="button" class="btn btn-outline-dark" style="width:100%;"
+													value="${i }" id="timeBtn${i }" v-on:click="timeBtnClicked">${i }:00</button>
+											</div>
+										</c:forEach>
+									</div>
+									<div class="row row-cols-4 row-cols-md-2 row-cols-lg-4">
+										<c:forEach var="i" begin="19" end="22">
+											<div class="col" style="padding:1px;">
+												<button type="button" class="btn-outline-dark btn" style="width:100%;"
+													value="${i }" id="timeBtn${i }" v-on:click="timeBtnClicked">${i }:00</button>
+											</div>
+										</c:forEach>
+									</div>
 								</div>
+								<p id="noneVisible">{{count}}{{time1}}{{time2}}</p>
 								<br />
 							</div>
+							<br />
 						</div>
 						<hr class="my-4">
 						<div class="row text-center">
@@ -449,19 +504,28 @@
 							<div class="col-8">
 								<div class="accordion" id="accordionExample">
 									<div class="accordion-item">
-								    	<h2 class="accordion-header" id="headingOne">
-										    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-										        예약 정보 상세 보기
-										    </button>
-								    	</h2>
-								    	<div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-								      		<div class="accordion-body">
-								        		<p><strong>입실 시간: </strong>{{checkInTime}}</p>
-								        		<p><strong>퇴실 시간: </strong>{{checkOutTime}}</p>
-								        		<p><strong>비용: </strong>{{totalMoney}}</p>
-								     		</div>
-								    	</div>
-								  	</div>
+										<h2 class="accordion-header" id="headingOne">
+											<button class="accordion-button collapsed" type="button"
+												data-bs-toggle="collapse" data-bs-target="#collapseOne"
+												aria-expanded="true" aria-controls="collapseOne">예약
+												정보 상세 보기</button>
+										</h2>
+										<div id="collapseOne" class="accordion-collapse collapse"
+											aria-labelledby="headingOne"
+											data-bs-parent="#accordionExample">
+											<div class="accordion-body">
+												<p>
+													<strong>입실 시간: </strong>{{checkInTime}}
+												</p>
+												<p>
+													<strong>퇴실 시간: </strong>{{checkOutTime}}
+												</p>
+												<p>
+													<strong>비용: </strong>{{totalMoney}}
+												</p>
+											</div>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -482,12 +546,14 @@
 						<p class="fw-bold ">예약변경 및 취소는 판매자에게 문의 바랍니다.</p>
 						<hr class="my-4">
 						<input type="hidden" name="reserv_time" v-bind:value="timeData" />
-						<input type="hidden" name="space_num" value="${spaceDto.space_num }" />
-						<input type="hidden" name="users_id" value="${id }" />
-						<input type="hidden" name="totalMoney" v-bind:value="totalMoney" />
+						<input type="hidden" name="space_num"
+							value="${spaceDto.space_num }" /> <input type="hidden"
+							name="users_id" value="${id }" /> <input type="hidden"
+							name="totalMoney" v-bind:value="totalMoney" />
 						<div class="text-center">
-							<button type="button" class="btn btn-outline-dark" v-on:click="resetBtnClicked">다시 선택하기</button>
-							<button type="submit" class="btn btn-dark">예약하기</button>
+							<button type="button" class="btn btn-outline-dark mb-2"
+								v-on:click="resetBtnClicked">다시 선택하기</button>
+							<button type="submit" class="btn btn-dark mb-2">예약하기</button>
 						</div>
 					</form>
 				</div>
