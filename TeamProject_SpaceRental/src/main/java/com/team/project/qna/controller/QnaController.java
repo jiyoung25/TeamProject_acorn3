@@ -80,6 +80,12 @@ public class QnaController {
 		return "qna/qnadetail";
 	}
 	
+	@RequestMapping("/users/usersQnaDetail")
+	public String usersQnaDetail(HttpServletRequest request) {
+		service.usersQnaDetail(request);
+		return "users/usersQnaDetail";
+	}
+	
 	@RequestMapping("/qna/qnalist")
 	public String qnalist(HttpServletRequest request, int space_num) {
 		service.getQnaList(request, space_num);

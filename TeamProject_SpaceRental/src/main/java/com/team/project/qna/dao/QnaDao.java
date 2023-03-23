@@ -27,6 +27,10 @@ public interface QnaDao {
 	public void insert(QnaDto dto);
 	//Qna정보 얻어오기
 	public QnaDto getData(int num);
+	//seller가 올린 공간들의 Qna정보 얻어오기
+	public QnaDto sellerQnaData(QnaDto dto);
+	//user가 쓴 Qna정보 얻어오기
+	public QnaDto usersQnaData(QnaDto dto);
 	//키워드를 활용한 Qna 정보 얻어오기 (키워드에 부합하는 글 중에서 이전글, 다음글의 글번호도 얻어올수 있도록)
 	public QnaDto getData(QnaDto dto);
 	//조회수 증가 시키기

@@ -64,6 +64,12 @@ public class SellerController {
 		return mView;
 	}
 	
+	@RequestMapping("/seller/sellerQnaDetail")
+	public String qnadetail(HttpServletRequest request) {
+		qnaService.sellerQnaDetail(request);
+		return "seller/sellerQnaDetail";
+	}
+	
 	@Auth(role = Role.SELLER)
 	@RequestMapping("/seller/spaceinfo")
 	public String spaceinfo(HttpSession session,ModelAndView mView) {
