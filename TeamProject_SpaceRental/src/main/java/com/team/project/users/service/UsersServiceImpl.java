@@ -253,7 +253,6 @@ public class UsersServiceImpl implements UsersService{
 			
 			int cpathnum = requesturl.indexOf(cpath);
 			String gopath = requesturl.substring(0, cpathnum);
-			System.out.println(gopath);
 			
 			sb.append("grant_type=authorization_code");
 			sb.append("&client_id=2d35e9bcdd28d0e1fb622729f22bab0e"); //본인이 발급받은 key

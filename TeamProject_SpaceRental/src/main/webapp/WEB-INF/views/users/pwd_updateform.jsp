@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,6 +21,14 @@
 </style>
 </head>
 <body>
+	<%-- 카카오 로그인 회원이라면 비밀번호를 바꿀 수 없다. --%>
+	<c:if test="${fn:contains(sessionScope.id, 'kakao_') }">
+		<script>
+			alert("소셜 로그인 회원은 비밀번호를 바꿀 수 없습니다.");
+			history.back();
+		</script>
+	</c:if>
+
 	<%-- 네비바 --%>
 	<c:choose>
 		<c:when test="${empty sessionScope.id }">

@@ -19,23 +19,36 @@
 <body>
 	<%--
 		만약, 카카오계정으로 회원가입한 아이디가 존재하면 kakaoExist = "true", 아이디가 없으면 kakaoExist = "false"가 된다.
-		kakaoExist가 "true"이면 로그인이 되었다는 팝업이 뜨고, home으로 리다이렉트 시킨다.
+		kakaoExist가 "true"이면 로그인이 되었다는 팝업이 뜨고, 리다이렉트 시킨다.
 		kakaoExist가 "false"이면 추가 회원가입 정보 입력 창이 뜬다.
 	--%>
-	<c:if test="${kakaoExist eq 'true' }">
+	<c:if test="${kakaoExist eq true }">
 		<script>
-			//쿠키값을 받아오는 함수
-			var getCookie = function(name) {
-				var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
-			    
-				return value? value[2] : null;
-			};
-			//url쿠키값을 변수에 저장한다.
-			const url = getCookie("url");
-			//쿠키를 삭제한다.
+			// 쿠키값을 받아오는 함수
+			const getCookieValue = (key) => {
+				let cookieKey = key + "="; 
+				let result = "";
+				const cookieArr = document.cookie.split(";");
+				for(let i = 0; i < cookieArr.length; i++) {
+					if(cookieArr[i][0] === " ") {
+				    	cookieArr[i] = cookieArr[i].substring(1);
+				    }
+				    if(cookieArr[i].indexOf(cookieKey) === 0) {
+				    	result = cookieArr[i].slice(cookieKey.length, cookieArr[i].length);
+				    	return result;
+				    }
+				}
+				return result;
+			}
+			//url이라는 이름으로 저장된 쿠키 값을 가져와서
+			let url = getCookieValue("url");
+			url = url == '' ? "${pageContext.request.contextPath}/" : url;
+			console.log("url"+url);
+			//쿠키를 삭제하고
 			document.cookie = 'url=; expires=Thu, 01 Jan 1970 00:00:01 GMT;'
+			//알림 + redirect시키기
 			alert("로그인 되었습니다.");
-			location.href=url;
+			location.href = url;
 		</script>
 	</c:if>
 	
