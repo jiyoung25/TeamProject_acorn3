@@ -11,6 +11,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -335,7 +336,8 @@ public class UsersServiceImpl implements UsersService{
 			};
 			
 			//pwd값 생성하기
-			String kakaoPwd= "kakao"+System.currentTimeMillis()/1000;
+			String kakaoPwd= "kakao"+UUID.randomUUID();
+			System.out.println(kakaoPwd);
 			
 			System.out.println(kakaoExist);
 			mView.addObject("kakaoId", kakaoId);
