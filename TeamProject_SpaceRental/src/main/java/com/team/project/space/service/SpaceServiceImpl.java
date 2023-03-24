@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -35,6 +36,8 @@ import com.team.project.space.dto.SpaceDto;
 public class SpaceServiceImpl implements SpaceService {
 	@Autowired private SpaceDao dao;
 	@Autowired private ReviewService reviewService;
+	@Value("${file.location}")
+	private String fileLocation;
 	
 	@Override
 	//나중에 space Service가 생기면 그쪽으로 옮길 예정
@@ -230,7 +233,7 @@ public class SpaceServiceImpl implements SpaceService {
 						//파일을 바이트 타입으로 변경
 						bytes = file.getBytes();
 						//파일이 실제로 저장되는 경로 
-						String uploadPath = request.getServletContext().getRealPath("/resources/upload/");
+						String uploadPath = fileLocation;
 						//저장되는 파일에 경로 설정
 						File uploadFile = new File(uploadPath);
 						if (!uploadFile.exists()) {
@@ -239,7 +242,7 @@ public class SpaceServiceImpl implements SpaceService {
 						//파일이름을 랜덤하게 생성
 						fileName = UUID.randomUUID().toString();
 						//업로드 경로 + 파일이름을 줘서  데이터를 서버에 전송
-						uploadPath = uploadPath + "/" + fileName;
+						uploadPath = uploadPath + fileName;
 						out = new FileOutputStream(new File(uploadPath));
 						out.write(bytes);
 						
@@ -248,7 +251,7 @@ public class SpaceServiceImpl implements SpaceService {
 						response.setContentType("text/html");
 						
 						//파일이 연결되는 Url 주소 설정
-						String fileUrl = request.getContextPath() + "/resources/upload/" + fileName;
+						String fileUrl = uploadPath + fileName;
 						
 						//생성된 jason 객체를 이용해 파일 업로드 + 이름 + 주소를 CkEditor에 전송
 						json.addProperty("uploaded", 1);
