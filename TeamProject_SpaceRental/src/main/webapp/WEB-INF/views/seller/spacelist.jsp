@@ -83,7 +83,7 @@
 					<div class="col-4 col-md-3 col-lg-2">
 		         		<div class="card mb-3">	            		
 		               		<div class="img-wrapper" onclick="location.href=`${pageContext.request.contextPath}/space/detail?space_num=${tmp.space_num}`">
-		                  		<img class="card-img-top" src="${pageContext.request.contextPath }/seller/images/${tmp.mainImagePath}" style="cursor:pointer;" />
+		                  		<img class="card-img-top" src="${pageContext.request.contextPath }${tmp.mainImagePath}" style="cursor:pointer;" />
 		               		</div>
 		            		<div class="card-body">
 		            			<p class="card-text"><strong>${tmp.space_name}</strong></p>

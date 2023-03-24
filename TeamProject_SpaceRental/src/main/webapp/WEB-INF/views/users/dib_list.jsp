@@ -44,7 +44,7 @@
 							<div  class="card lift h-100">
 								<a href="${pageContext.request.contextPath}/space/detail?cate_num=${tmp.cate_num}&space_num=${tmp.space_num}"
 									style='text-decoration: none; color: black'>
-									<img src="${pageContext.request.contextPath}/seller/images/${tmp.mainImagePath}" style="height: 155px; width:100%"/>
+									<img src="${pageContext.request.contextPath}${tmp.mainImagePath}" style="height: 155px; width:100%"/>
 									<div class="card-body row">
 										<div>
 											<h6 class="small text-center">ÆÄÆ¼·ë</h6>

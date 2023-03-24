@@ -123,7 +123,7 @@ a:hover {
 					<div id="imgWrapper"
 						style="width: 100%; height: 400px; overflow: hidden;">
 						<img
-							src="${pageContext.request.contextPath}/seller/images/${spaceDto.mainImagePath }"
+							src="${pageContext.request.contextPath}${spaceDto.mainImagePath }"
 							class="img-fluid"
 							style="width: 100%; height: 100%; object-fit: cover;">
 					</div>

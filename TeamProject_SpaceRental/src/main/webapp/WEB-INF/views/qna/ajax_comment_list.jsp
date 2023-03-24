@@ -44,7 +44,7 @@
 	                        </svg>
 	                     </c:if>
 	                     <c:if test="${not empty tmp.profile }">
-	                        <img class="profile-image" src="${pageContext.request.contextPath}/users/images/${tmp.profile }"/>
+	                        <img class="profile-image" src="${pageContext.request.contextPath}${tmp.profile }"/>
 	                     </c:if>
 	                     <span>${tmp.writer }</span>
 	                     <c:if test="${tmp.num ne tmp.comment_group }">
@@ -104,7 +104,7 @@
 	                        </svg>
 	                     </c:if>
 	                     <c:if test="${not empty tmp.profile }">
-	                        <img class="profile-image" src="${pageContext.request.contextPath}/users/images/${tmp.profile }"/>
+	                        <img class="profile-image" src="${pageContext.request.contextPath}${tmp.profile }"/>
 	                     </c:if>
 	                     <span>${tmp.writer }</span>
 	                     <c:if test="${tmp.num ne tmp.comment_group }">

@@ -199,7 +199,7 @@ public class SellerServiceImpl implements SellerService{
 		String orgFileName = image.getOriginalFilename();
 		
 		//이미지를 저장할 실제 경로
-		String realPath=fileLocation;
+		String realPath=request.getServletContext().getRealPath("/resources/upload");
 		//디렉토리를 만들 파일 객체 생성
 		File upload = new File(realPath);
 		if(!upload.exists()) {
@@ -218,7 +218,7 @@ public class SellerServiceImpl implements SellerService{
 			e.printStackTrace();
 		}
 
-		String mainImagePath = saveFileName;
+		String mainImagePath = "/resources/upload/"+saveFileName;
 		
 		//ajax upload 를 위한 mainImagePath return
 		Map<String, Object> map = new HashMap<String, Object>();

@@ -103,7 +103,7 @@
 										</form>
 								  		<div class="img-wrapper">
 								  		<br/>
-								     		<img class="img-fluid" src="${pageContext.request.contextPath}/seller/images/${dto.mainImagePath }" value="${dto.mainImagePath }" />
+								     		<img class="img-fluid" src="${pageContext.request.contextPath}${dto.mainImagePath }" value="${dto.mainImagePath }" />
 								  		</div>
 								  		<br/>
 				  						<button id="submitBtn" class="btn btn-outline-secondary">저장</button>
