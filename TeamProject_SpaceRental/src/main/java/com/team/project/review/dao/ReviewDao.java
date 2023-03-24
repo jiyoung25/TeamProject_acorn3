@@ -29,6 +29,10 @@ public interface ReviewDao {
 	public ReviewDto getData(int num);
 	//키워드를 활용한 Review 정보 얻어오기
 	public ReviewDto getData(ReviewDto dto);
+	//seller가 오린 공간들의 review정도 얻어오기
+	public ReviewDto sellerReviewData(ReviewDto dto);
+	//user가 쓴 Qna정보 얻어오기
+	public ReviewDto usersReviewData(ReviewDto dto);
 	//조회수 증가 시키기
 	public void addReviewCount(int num);
 	//Review 삭제

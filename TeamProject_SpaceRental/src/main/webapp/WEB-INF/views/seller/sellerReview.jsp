@@ -67,7 +67,7 @@
 					<tr>
 						<td>${tmp.space_name }</td>
 						<td>${tmp.review_writer }</td>
-						<td><a href="${pageContext.request.contextPath}/review/reviewdetail?review_num=${tmp.review_num }">${tmp.review_title }</a></td>
+						<td><a href="${pageContext.request.contextPath}/seller/sellerReviewDetail?review_num=${tmp.review_num }">${tmp.review_title }</a></td>
 						<td>${tmp.viewcount }</td>
 						<td>
 							<%-- 별점 --%>

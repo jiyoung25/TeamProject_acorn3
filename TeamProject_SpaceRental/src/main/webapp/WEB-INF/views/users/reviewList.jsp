@@ -95,7 +95,7 @@
 					<tr>
 						<td>${tmp.space_name }</td>
 						<td>
-							<a href="${pageContext.request.contextPath}/review/reviewdetail?review_num=${tmp.review_num }">${tmp.review_title }</a>
+							<a href="${pageContext.request.contextPath}/users/usersReviewDetail?review_num=${tmp.review_num }">${tmp.review_title }</a>
 						</td>
 						<td>
 							<%-- 별점 --%>
