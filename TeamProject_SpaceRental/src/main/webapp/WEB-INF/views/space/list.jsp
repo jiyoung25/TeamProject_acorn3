@@ -7,8 +7,6 @@
 <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
 <%-- 부트스트랩 --%>
 <jsp:include page="/WEB-INF/include/cdnlink.jsp"/>
-<%--페비콘 링크 --%>
-<link rel="icon" href="${pageContext.request.contextPath}/image/ubiquitous_favicon.png">
 <%-- vue.js, axios --%>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
@@ -173,11 +171,11 @@
 	    		</div>
 	    		<div :class= "areaToggle ?'areaToggle' : ''">
 	    			<div class="areaStyle row">
-		    			<form v-on:submit="onAreaSearch">
+		    			<form v-on:submit.prevent="onAreaSearch()">
 		    				<div style="border:2px solid black;padding:5px 20px; margin: 0 30px;">
 			    				<div class="row" style="">
 				    				<ul class="form-check" style="width:100%; height:100%; position:relative;list-style:none;">
-				    					<li v-for="item in cities" id="cities" style="position:relative; height:100%; width:20%; float:left;"><input class="form-check-input" type="checkbox" :value="item" class="areaCheckbox"/>{{item}}</li>
+				    					<li v-for="item in cities" id="cities" style="position:relative; height:100%; width:20%; float:left;"><input class="form-check-input areaCheckbox" type="checkbox" :value="item"/>{{item}}</li>
 				    				</ul>
 			    				</div>
 			    				<div class="row">
@@ -290,8 +288,7 @@
 				onAreaClicked:function(){
 					this.areaToggle = !this.areaToggle;
 				},
-				onAreaSearch: function(e){
-					e.preventDefault();
+				onAreaSearch: function(){
 					let checkedCites = [];
 					const areaCheckboxes = document.querySelectorAll(".areaCheckbox");
 					for(let i=0; i<areaCheckboxes.length; i++){
@@ -299,7 +296,7 @@
 							checkedCites.push(areaCheckboxes[i].value);
 						}
 					}
-					
+					console.log(checkedCites.length);
 					if(checkedCites.length!=0){
 						location.href = '${pageContext.request.contextPath}/space/list?cate_num=${param.cate_num}&search='+checkedCites;
 					}
