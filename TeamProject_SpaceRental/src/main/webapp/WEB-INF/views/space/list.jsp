@@ -198,7 +198,7 @@
 			<c:forEach var="tmp" items="${list }">
 				<div class="col-lg-3 mb-5 ">
 					<a class="card lift h-100" href="${pageContext.request.contextPath}/space/detail?cate_num=${cate_num}&space_num=${tmp.space_num}" style="text-decoration: none; color:black" >
-				    	<img src="${pageContext.request.contextPath}${tmp.mainImagePath}"  style="height:155px;"/>
+				    	<img src="${pageContext.request.contextPath}/seller/images/${tmp.mainImagePath}"  style="height:155px;"/>
 				        <div class="card-body row">
 				        	<div>
 				            	<h4 class="card-title mb-2 text-center">${tmp.space_name }</h4>
