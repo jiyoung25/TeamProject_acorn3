@@ -47,7 +47,7 @@
 									<div class="container text-center">
 										<div class="row">
 											<div class="col-md-12">
-												<h1>공간 등록</h1>
+												<h1>공간 수정</h1>
 												<form action="${pageContext.request.contextPath}/seller/update" method="post" id="updateForm">
 													<div>
 														<label for="space_name">공간명</label><br />
@@ -97,13 +97,13 @@
 						    				<div class="text-center"><br><br>
 										    	<label class="form-label" for="image">이미지를 다시 선택해주세요</label>
 										    	<br>
-										    	<input class="form-control" type="file" name="image" id="image" 
+										    	<input class="form-control" type="file" name="image" id="image"
 										    		accept=".jpg, .jpeg, .png, .JPG, .JPEG"/>
 										    </div>
 										</form>
 								  		<div class="img-wrapper">
 								  		<br/>
-								     		<img class="img-fluid" src="${pageContext.request.contextPath}/${dto.mainImagePath }" value="${dto.mainImagePath }" />
+								     		<img class="img-fluid" src="${pageContext.request.contextPath}/seller/images/${dto.mainImagePath }" value="${dto.mainImagePath }" />
 								  		</div>
 								  		<br/>
 				  						<button id="submitBtn" class="btn btn-outline-secondary">저장</button>
@@ -131,10 +131,10 @@
 				return response.json();
 			})
 			.then(function(data){
-				//data : {mainImagePath:"/upload/xxx.jpg"} 형식의 obj
+				//data : {mainImagePath:"xxx.jpg"} 형식의 obj
 				console.log(data);
 				//이미지 경로에 context Path 추가하기
-				const path = "${pageContext.request.contextPath}" + data.mainImagePath;
+				const path = "${pageContext.request.contextPath}/seller/images/" + data.mainImagePath;
 				//img 태그에 경로 추가
 				document.querySelector(".img-wrapper img").setAttribute("src", path);
 				//위의 form 의 input hidden 요소에 value 로 넣어서 db 에 저장

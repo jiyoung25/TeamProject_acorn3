@@ -25,6 +25,7 @@
 				WHERE users_id=#{users_id}) result1
 			INNER JOIN space_category ON result1.cate_name=space_category.cate_name) result2
 		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
+		ORDER BY dibson_num DESC
 	</select>
 	<select id="getDetailData" parameterType="dibDto" resultType="dibDto">
 		SELECT dibson_num

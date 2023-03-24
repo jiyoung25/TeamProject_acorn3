@@ -1,12 +1,21 @@
 package com.team.project.seller.controller;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -38,6 +47,23 @@ public class SellerController {
 	private DibService dibService;
 	@Autowired
 	private ReservService reservService;
+	
+	@Value("${file.location}")
+	private String fileLocation;
+	
+	@GetMapping(
+			value="/seller/images/{imageName}",
+			produces = {MediaType.IMAGE_JPEG_VALUE, MediaType.IMAGE_PNG_VALUE, MediaType.IMAGE_GIF_VALUE}
+		)
+	@ResponseBody
+	public byte[] profileImage(@PathVariable("imageName") String imageName) throws IOException {
+		
+		String absolutePath=fileLocation+File.separator+imageName;
+		//파일에서 읽어들일 InputStream
+		InputStream is=new FileInputStream(absolutePath);
+		// 이미지 데이터(byte) 를 읽어서 배열에 담아서 클라이언트에게 응답한다.
+		return IOUtils.toByteArray(is);
+	}
 	
 	@Auth(role = Role.SELLER)
 	@RequestMapping("/seller/spacelist")

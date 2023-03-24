@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -38,7 +39,9 @@ public class SellerServiceImpl implements SellerService{
 	private ReviewDao reviewDao;
 	@Autowired
 	private QnaDao qnaDao;
-
+	@Value("${file.location}")
+	private String fileLocation;
+	
 	@Override
 	public void getList(ModelAndView mView, HttpServletRequest request) {
 		String id = (String)request.getSession().getAttribute("id");		
@@ -194,15 +197,11 @@ public class SellerServiceImpl implements SellerService{
 		MultipartFile image = dto.getImage();
 		//원본 파일명 -> 저장할 파일 이름 만들기위해서 사용됨
 		String orgFileName = image.getOriginalFilename();
-		//파일 크기
-		long fileSize = image.getSize();
 		
-		// webapp/upload 폴더 까지의 실제 경로(서버의 파일 시스템 상에서의 경로)
-		String realPath = request.getServletContext().getRealPath("/resources/upload");
-		//db 에 저장할 저장할 파일의 상세 경로
-		String filePath = realPath + File.separator;
+		//이미지를 저장할 실제 경로
+		String realPath=fileLocation;
 		//디렉토리를 만들 파일 객체 생성
-		File upload = new File(filePath);
+		File upload = new File(realPath);
 		if(!upload.exists()) {
 			//만약 디렉토리가 존재하지X
 			upload.mkdir();//폴더 생성
@@ -211,14 +210,15 @@ public class SellerServiceImpl implements SellerService{
 		String saveFileName = System.currentTimeMillis() + orgFileName;
 		
 		try {
-			//upload 폴더에 파일을 저장한다.
-			image.transferTo(new File(filePath + saveFileName));
-			System.out.println();	//임시 출력
+			//파일을 저장할 전체 경로를 구성한다.  
+			String savePath=realPath+File.separator+saveFileName;
+			//임시폴더에 업로드된 파일을 원하는 파일을 저장할 경로에 전송한다.
+			image.transferTo(new File(savePath));
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
 
-		String mainImagePath = "/resources/upload/" + saveFileName;
+		String mainImagePath = saveFileName;
 		
 		//ajax upload 를 위한 mainImagePath return
 		Map<String, Object> map = new HashMap<String, Object>();

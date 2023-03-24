@@ -71,7 +71,7 @@
 			                        alt="..." style="max-width: 150px; max-height: 150px">
 						</c:when>
 						<c:otherwise>
-							<img id="profileImage" src="${pageContext.request.contextPath }${ dto.profile}">
+							<img id="profileImage" src="${pageContext.request.contextPath }/users/images/${ dto.profile}">
 						</c:otherwise>
 					</c:choose>
                 </div>

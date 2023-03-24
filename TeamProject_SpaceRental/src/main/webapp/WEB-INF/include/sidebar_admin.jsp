@@ -30,7 +30,7 @@
 					        	alt="..." style="max-width: 150px; max-height: 150px">
 						</c:when>
 						<c:otherwise>
-							<img id="profileImage" src="${pageContext.request.contextPath }${profile}">
+							<img id="profileImage" src="${pageContext.request.contextPath }/users/images/${profile}">
 						</c:otherwise>
 					</c:choose>
 	            	<!-- 시용자 이름-->
