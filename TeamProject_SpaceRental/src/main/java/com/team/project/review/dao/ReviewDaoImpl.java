@@ -80,6 +80,16 @@ public class ReviewDaoImpl implements ReviewDao{
 	public ReviewDto getData(ReviewDto dto) {
 		return session.selectOne("review.getData2", dto);
 	}
+	
+	@Override
+	public ReviewDto sellerReviewData(ReviewDto dto) {
+		return session.selectOne("review.sellerReviewData", dto);
+	}
+	
+	@Override
+	public ReviewDto usersReviewData(ReviewDto dto) {
+		return session.selectOne("review.usersReviewData", dto);
+	}
 
 	@Override //조회수 증가 시키기
 	public void addReviewCount(int review_num) {

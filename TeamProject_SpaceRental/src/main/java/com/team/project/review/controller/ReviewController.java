@@ -79,6 +79,12 @@ public class ReviewController {
 		return "review/reviewdetail";
 	}
 	
+	@RequestMapping("/users/usersReviewDetail")
+	public String usersReviewDetail(HttpServletRequest request) {
+		service.usersReviewDetail(request);
+		return "users/usersReviewDetail";
+	}
+	
 	@RequestMapping("/review/reviewlist")
 	public String reviewlist(HttpServletRequest request, int space_num) {
 		service.getList(request, space_num);

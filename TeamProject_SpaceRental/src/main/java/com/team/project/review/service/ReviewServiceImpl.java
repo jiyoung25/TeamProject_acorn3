@@ -215,6 +215,47 @@ public class ReviewServiceImpl implements ReviewService{
 		//request scope 에 글 하나의 정보 담기
 		request.setAttribute("dto", resultDto);
 	}
+	
+	@Override
+	public void sellerReviewDetail(HttpServletRequest request) {
+		//자세히 보여줄 글번호를 읽어온다. 
+		int num=Integer.parseInt(request.getParameter("review_num"));
+		//자세히 보여줄 판매자의 id를 읽어온다
+		String id = (String)request.getSession().getAttribute("id");
+		//조회수 올리기
+		reviewDao.addReviewCount(num);
+		//ReviewDto 객체를 생성해서 
+		ReviewDto dto=new ReviewDto();
+		//자세히 보여줄 글번호를 넣어준다. 
+		dto.setReview_num(num);
+		dto.setSellerId(id);
+		//글하나의 정보를 얻어온다.
+		ReviewDto resultDto=reviewDao.sellerReviewData(dto);
+		
+		//request scope 에 글 하나의 정보 담기
+		request.setAttribute("dto", resultDto);
+	}
+	
+	@Override
+	public void usersReviewDetail(HttpServletRequest request) {
+		//자세히 보여줄 글번호를 읽어온다. 
+		int num=Integer.parseInt(request.getParameter("review_num"));
+		//자세히 보여줄 판매자의 id를 읽어온다
+		String id = (String)request.getSession().getAttribute("id");
+		int users_num=reviewDao.getUsersNum(id);
+		//조회수 올리기
+		reviewDao.addReviewCount(num);
+		//ReviewDto 객체를 생성해서 
+		ReviewDto dto=new ReviewDto();
+		//자세히 보여줄 글번호를 넣어준다. 
+		dto.setReview_num(num);
+		dto.setUsers_num(users_num);
+		//글하나의 정보를 얻어온다.
+		ReviewDto resultDto=reviewDao.usersReviewData(dto);
+		
+		//request scope 에 글 하나의 정보 담기
+		request.setAttribute("dto", resultDto);
+	}
 
 	@Override
 	public void saveContent(ReviewDto dto, HttpServletRequest request) {
