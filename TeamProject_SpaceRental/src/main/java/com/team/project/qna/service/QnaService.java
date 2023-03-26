@@ -13,7 +13,7 @@ public interface QnaService {
 	public void getList2(ModelAndView mView, HttpServletRequest request);
 	public void adminQna(ModelAndView mView, HttpServletRequest request);
 	public void getUsersNum(HttpServletRequest request, HttpSession session);
-	public void getDetail(HttpServletRequest request);
+	public void getDetail(HttpServletRequest request, int space_num);
 	public void sellerQnaDetail(HttpServletRequest request);
 	public void usersQnaDetail(HttpServletRequest request);
 	public void saveContent(QnaDto dto);

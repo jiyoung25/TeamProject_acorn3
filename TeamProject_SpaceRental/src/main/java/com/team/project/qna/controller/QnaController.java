@@ -75,8 +75,8 @@ public class QnaController {
 	}
 	
 	@RequestMapping("/qna/qnadetail")
-	public String qnadetail(HttpServletRequest request) {
-		service.getDetail(request);
+	public String qnadetail(HttpServletRequest request, int space_num) {
+		service.getDetail(request, space_num);
 		return "qna/qnadetail";
 	}
 	
