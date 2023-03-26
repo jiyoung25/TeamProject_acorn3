@@ -232,7 +232,7 @@ public class QnaServiceImpl implements QnaService{
 	}
 	
 	@Override
-	public void getDetail(HttpServletRequest request) {
+	public void getDetail(HttpServletRequest request, int space_num) {
 		
 		//자세히 보여줄 글번호를 읽어온다. 
 		int num=Integer.parseInt(request.getParameter("num"));
@@ -256,6 +256,7 @@ public class QnaServiceImpl implements QnaService{
 		QnaDto dto=new QnaDto();
 		//자세히 보여줄 글번호를 넣어준다. 
 		dto.setNum(num);
+		dto.setSpace_num(space_num);
 		//만일 검색 키워드가 넘어온다면 
 		if(!keyword.equals("")){
 			//검색 조건이 무엇이냐에 따라 분기 하기

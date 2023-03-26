@@ -200,7 +200,7 @@ public class ReviewServiceImpl implements ReviewService{
 	}
 	
 	@Override
-	public void getDetail(HttpServletRequest request) {
+	public void getDetail(HttpServletRequest request, int space_num) {
 		//자세히 보여줄 글번호를 읽어온다. 
 		int num=Integer.parseInt(request.getParameter("review_num"));
 		//조회수 올리기
@@ -209,6 +209,7 @@ public class ReviewServiceImpl implements ReviewService{
 		ReviewDto dto=new ReviewDto();
 		//자세히 보여줄 글번호를 넣어준다. 
 		dto.setReview_num(num);
+		dto.setSpace_num(space_num);
 		//글하나의 정보를 얻어온다.
 		ReviewDto resultDto=reviewDao.getData(dto);
 		

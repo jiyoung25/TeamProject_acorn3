@@ -29,6 +29,10 @@
 			<when test="writer != null">
             	WHERE writer LIKE '%'||#{writer}||'%'
 			</when>
+			<otherwise>
+				WHERE B.space_num=#{space_num}
+			</otherwise>
+			
 		</choose>
 	</sql>
 	
@@ -66,7 +70,7 @@
 		FROM (
 		    SELECT result1.*, ROWNUM AS rnum
 		    FROM (
-		        SELECT num, writer, title, content, viewCount, TO_CHAR(regdate, 'YY.MM.DD HH24:MI') AS regdate, seller_space.space_name
+		        SELECT qna.num, qna.writer, qna.title, qna.content, qna.viewCount, TO_CHAR(qna.regdate, 'YY.MM.DD HH24:MI') AS regdate, seller_space.space_name
 		        FROM qna
 		        INNER JOIN seller_space ON qna.space_num = seller_space.space_num
 		        INNER JOIN space_users ON seller_space.users_num = space_users.users_num
@@ -145,7 +149,7 @@
 	<select id="getData2" parameterType="qnaDto" resultType="qnaDto">
 		SELECT result1.*
 		FROM
-			(SELECT space_name, num, writer,title,content,viewCount,TO_CHAR(regdate, 'YY.MM.DD HH24:MI') AS regdate,
+			(SELECT B.space_name, num, writer,title,content,viewCount,TO_CHAR(regdate, 'YY.MM.DD HH24:MI') AS regdate, B.space_num,
 				LAG(num, 1, 0) OVER (ORDER BY num DESC) qnaPrevNum,
 	   			LEAD(num, 1, 0) OVER (ORDER BY num DESC) qnaNextNum
 			FROM qna A

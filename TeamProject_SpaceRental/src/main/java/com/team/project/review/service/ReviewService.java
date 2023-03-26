@@ -17,7 +17,7 @@ public interface ReviewService {
 	public void getList2(ModelAndView mView, HttpServletRequest request);
 	public void adminReview(ModelAndView mView, HttpServletRequest request);
 	public void getUsersNum(HttpServletRequest request, HttpSession session);
-	public void getDetail(HttpServletRequest request);
+	public void getDetail(HttpServletRequest request, int space_num);
 	public void sellerReviewDetail(HttpServletRequest request);
 	public void usersReviewDetail(HttpServletRequest request);
 	public void saveContent(ReviewDto dto, HttpServletRequest request);
