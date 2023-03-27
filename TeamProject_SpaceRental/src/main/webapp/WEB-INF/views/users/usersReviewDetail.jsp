@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>리뷰 :Ubiquitous</title>
+<title>Users Reivew Detail :Ubiquitous</title>
 <%--페비콘 링크 --%>
 <link rel="icon" href="${pageContext.request.contextPath}/image/ubiquitous_favicon.png">
 <%-- 부트스트랩 --%>
@@ -112,7 +112,7 @@
    
    #grid-a-button{
    		display: grid;
-    	grid-template-columns: 2fr 3fr 2.5fr;
+    	grid-template-columns: 2fr 3fr 1.5fr;
    }
    
 	.container img {
@@ -139,8 +139,6 @@
 			      	<jsp:include page="/WEB-INF/include/sidebar_user.jsp"/>
 	      		</c:when>
 	      		<c:when test = "${usersCode eq 1 }">
-	      			<jsp:include page="/WEB-INF/include/navbar_sessionO_admin.jsp"/>
-			      	<jsp:include page="/WEB-INF/include/sidebar_admin.jsp"/>
 	      		</c:when>
 	      	</c:choose>
       	</c:otherwise>
@@ -158,15 +156,17 @@
 			<h3>${dto.review_title  }</h3>
 		</div>
 		<!-- 작성자, 등록일, 조회수, 별점 -->
-		<div class="user" style="font-size:1.2rem">
-			<strong>by.</strong>${dto.review_writer } 
-	    	<strong>작성일</strong>: ${dto.review_regdate }
-	    	<strong>조회수</strong>: ${dto.viewcount }
-	    	<strong>별점</strong>:
-			<span class="star">
-				★★★★★
-				<span style="width: ${dto.star *10 }%;">★★★★★</span>
-			</span>
+		<div class="user">
+			얖	
+				<strong>by.</strong>${dto.review_writer } 
+		    	<strong>작성일</strong>: ${dto.review_regdate }
+		    	<strong>조회수</strong>: ${dto.viewcount }
+		    	<strong>별점</strong>:
+				<span class="star">
+					★★★★★
+					<span style="width: ${dto.star *10 }%;">★★★★★</span>
+				</span>
+      		</h4>
 		</div>
 		
 		<br>
@@ -181,19 +181,18 @@
     	<div id="grid-a-button">
     		<div>
 				<%-- 만일 이전글(더 옛날글)의 글번호가 0 이 아니라면 (이전글이 존재한다면) --%>
-				<c:if test="${dto.prevNum ne 0 }"> 
-					<a href="reviewdetail?review_num=${dto.prevNum }&space_num=${param.space_num}" class="btn btn-outline-dark" role="button">이전 글</a>
+				<c:if test="${dto.prevNum ne 0 }">
+					<a href="usersReviewDetail?review_num=${dto.prevNum }" class="btn btn-outline-dark" role="button">이전 글</a>
 				</c:if>
 				<%-- 만일 다음글(더 최신글)의 글번호가 0 이 아니라면 (다음글이 존재한다면) --%>
 				<c:if test="${dto.nextNum ne 0 }">
-					<a href="reviewdetail?review_num=${dto.nextNum }&space_num=${param.space_num}" class="btn btn-outline-dark" role="button">다음 글</a>
+					<a href="usersReviewDetail?review_num=${dto.nextNum }" class="btn btn-outline-dark" role="button">다음 글</a>
 				</c:if>
 			</div>
 			
 			<div> </div>
 			
     		<div style="text-align: right;">
-    			<a href="${pageContext.request.contextPath}" class="btn btn-outline-dark" role="button">메인 페이지로</a>
 				<c:if test="${usersCode eq 2 }">
 					<a href="${pageContext.request.contextPath}/seller/sellerReview" class="btn btn-outline-dark" role="button">리뷰 목록으로</a>
 				</c:if>

@@ -74,9 +74,15 @@ public class ReviewController {
 	}
 	
 	@RequestMapping("/review/reviewdetail")
-	public String reviewdetail(HttpServletRequest request) {
-		service.getDetail(request);
+	public String reviewdetail(HttpServletRequest request, int space_num) {
+		service.getDetail(request, space_num);
 		return "review/reviewdetail";
+	}
+	
+	@RequestMapping("/users/usersReviewDetail")
+	public String usersReviewDetail(HttpServletRequest request) {
+		service.usersReviewDetail(request);
+		return "users/usersReviewDetail";
 	}
 	
 	@RequestMapping("/review/reviewlist")

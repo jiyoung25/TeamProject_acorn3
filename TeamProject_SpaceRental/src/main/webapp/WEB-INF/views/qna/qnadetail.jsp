@@ -113,7 +113,7 @@
  	
 	#grid-a-button{
    		display: grid;
-    	grid-template-columns: 2fr 3fr 1.5fr;
+    	grid-template-columns: 2fr 3fr 2.5fr;
    }
    	.container img {
 		max-width: 100%;
@@ -139,6 +139,8 @@
 			      	<jsp:include page="/WEB-INF/include/sidebar_user.jsp"/>
 	      		</c:when>
 	      		<c:when test = "${usersCode eq 1 }">
+	      			<jsp:include page="/WEB-INF/include/navbar_sessionO_admin.jsp"/>
+			      	<jsp:include page="/WEB-INF/include/sidebar_admin.jsp"/>
 	      		</c:when>
 	      	</c:choose>
       	</c:otherwise>
@@ -156,10 +158,10 @@
 			<h3>${dto.title  }</h3>
 		</div>
 		<!-- 작성자, 등록일, 조회수, 별점 -->
-		<div class="user row">
-			<div class="col-md-4" style="font-size:1.5rem;"><strong>by.</strong>${dto.writer }</div>
-			<div class="col-md-4" style="font-size:1.5rem;"><strong>작성일</strong>: ${dto.regdate  }</div>
-    		<div class="col-md-4" style="font-size:1.5rem;"><strong>조회수</strong>: ${dto.viewCount }</div>
+		<div class="user" style="font-size:1.2rem">
+			<strong>by.</strong>${dto.writer  }
+			<strong>작성일</strong>: ${dto.regdate  }
+			<strong>조회수</strong>: ${dto.viewCount }
 		</div>
 		<br>
 		<!-- 내용 -->
@@ -173,11 +175,11 @@
 			<div class="col-4">	
 				<%-- 만일 이전글(더 옛날글)의 글번호가 0 이 아니라면 (이전글이 존재한다면) --%>
 				<c:if test="${dto.qnaPrevNum ne 0 }">
-					<a href="qnadetail?num=${dto.qnaPrevNum }&condition=${condition}&keyword=${encodedK}" class="btn btn-outline-dark" role="button">이전글</a>
+					<a href="qnadetail?num=${dto.qnaPrevNum }&space_num=${param.space_num}&condition=${condition}&keyword=${encodedK}" class="btn btn-outline-dark" role="button">이전글</a>
 				</c:if>
 				<%-- 만일 다음글(더 최신글)의 글번호가 0 이 아니라면 (다음글이 존재한다면) --%>
 				<c:if test="${dto.qnaNextNum ne 0 }">
-					<a href="qnadetail?num=${dto.qnaNextNum }&condition=${condition}&keyword=${encodedK}" class="btn btn-outline-dark" role="button">다음글</a>
+					<a href="qnadetail?num=${dto.qnaNextNum }&space_num=${param.space_num}&condition=${condition}&keyword=${encodedK}" class="btn btn-outline-dark" role="button">다음글</a>
 				</c:if>
 				<%-- 만일 검색 키워드가 있다면 --%>
 				<c:if test="${not empty keyword }">
@@ -188,6 +190,7 @@
 			</div>
 			
 			<div class="col-8" style="text-align: right;">
+				<a href="${pageContext.request.contextPath}" class="btn btn-outline-dark" role="button">메인 페이지로</a>
 				<c:if test="${usersCode eq 2 }">
 					<a href="${pageContext.request.contextPath}/seller/sellerQna" class="btn btn-outline-dark" role="button">QnA목록으로</a>
 				</c:if>

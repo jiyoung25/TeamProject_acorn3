@@ -96,6 +96,12 @@ public class SellerController {
 		return "seller/sellerQnaDetail";
 	}
 	
+	@RequestMapping("/seller/sellerReviewDetail")
+	public String reviewdetail(HttpServletRequest request) {
+		reviewService.sellerReviewDetail(request);
+		return "seller/sellerReviewDetail";
+	}
+	
 	@Auth(role = Role.SELLER)
 	@RequestMapping("/seller/spaceinfo")
 	public String spaceinfo(HttpSession session,ModelAndView mView) {
