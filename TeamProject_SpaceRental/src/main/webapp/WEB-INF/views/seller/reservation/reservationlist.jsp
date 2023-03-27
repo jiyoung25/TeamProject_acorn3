@@ -25,23 +25,25 @@
 	<%-- 네비바 --%>
 	<c:choose>
 		<c:when test="${empty sessionScope.id }">
-        	<jsp:include page="/WEB-INF/include/navbar_sidebar_SessionX.jsp"/>
-      	</c:when>
-      	<c:otherwise>
-	      	<c:choose>
-	      		<c:when test="${usersCode eq 2 }">
-	      	  		<jsp:include page="/WEB-INF/include/navbar_sessionO_seller.jsp"/>
-	         		<jsp:include page="/WEB-INF/include/sidebar_seller.jsp"/>
-	      		</c:when>
-	      		<c:when test ="${usersCode eq 3 }">
+			<jsp:include page="/WEB-INF/include/navbar_sidebar_SessionX.jsp"/>
+	    </c:when>
+		<c:otherwise>
+			<c:choose>
+				<c:when test="${usersCode eq 2 }">
+					<jsp:include page="/WEB-INF/include/navbar_sessionO_seller.jsp"/>
+					<jsp:include page="/WEB-INF/include/sidebar_seller.jsp"/>
+				</c:when>
+	            <c:when test ="${usersCode eq 3 }">
 					<jsp:include page="/WEB-INF/include/navbar_sessionO_users.jsp"/>
-			      	<jsp:include page="/WEB-INF/include/sidebar_user.jsp"/>
-	      		</c:when>
-	      		<c:when test = "${usersCode eq 1 }">
-	      		</c:when>
-	      	</c:choose>
-      	</c:otherwise>
-   	</c:choose>
+					<jsp:include page="/WEB-INF/include/sidebar_user.jsp"/>
+	            </c:when>
+	            <c:when test = "${usersCode eq 1 }">
+					<jsp:include page="/WEB-INF/include/navbar_sessionO_admin.jsp"/>
+					<jsp:include page="/WEB-INF/include/sidebar_admin.jsp"/>
+	            </c:when>
+			</c:choose>
+		</c:otherwise>
+	</c:choose>
    	
 	<div class="container">
 		<div class="row">
@@ -163,8 +165,7 @@
 			</div>
 		</div>
 	</div>
-	<!-- footer include -->
-	<jsp:include page="/WEB-INF/include/footer.jsp"/>
+
 	<!-- 결제 수락/ 예약 거절 버튼 -->
 	<script>
 		const checkBtn = async function(clickedId, event){
