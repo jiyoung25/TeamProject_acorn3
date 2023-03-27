@@ -206,31 +206,42 @@ a:hover {
 								<form
 									action="${pageContext.request.contextPath}/review/reviewInsertform"
 									method="POST">
-									<div class="row">
-										<div class="col-9">
-											<select name="possibleReview" id="possibleReview"
-												class="form-select">
-												<c:choose>
-													<c:when test="${empty sessionScope.id }">
-													</c:when>
-													<c:when test="${empty possibleReview }">
+									<c:choose>
+										<c:when
+											test="${empty possibleReview && not empty sessionScope.id}">
+											<div class="row">
+												<div class="col-9">
+													<select name="possibleReview" id="possibleReview"
+														class="form-select">
 														<option value="">방을 이용해주세요.</option>
-													</c:when>
-													<c:when test="${not empty possibleReview }">
+													</select>
+												</div>
+												<div class="col-3">
+													<button class="btn btn-outline-dark" style="width: 100%;"
+														disabled>리뷰 쓰기</button>
+												</div>
+											</div>
+										</c:when>
+										<c:when
+											test="${not empty possibleReview && not empty sessionScope.id}">
+											<div class="row">
+												<div class="col-9">
+													<select name="possibleReview" id="possibleReview"
+														class="form-select">
 														<c:forEach items="${possibleReview }" var="item">
 															<option
 																value="${item.reserv_num }&&${item.space_num}&&${item.cate_num}"><strong>${item.space_name }
 																	방 리뷰쓰기</strong></option>
 														</c:forEach>
-													</c:when>
-												</c:choose>
-											</select>
-										</div>
-										<div class="col-3">
-											<button class="btn btn-outline-dark" style="width: 100%;">리뷰
-												쓰기</button>
-										</div>
-									</div>
+													</select>
+												</div>
+												<div class="col-3">
+													<button class="btn btn-outline-dark" style="width: 100%;">리뷰
+														쓰기</button>
+												</div>
+											</div>
+										</c:when>
+									</c:choose>
 								</form>
 							</div>
 							<div class="container">
@@ -247,25 +258,34 @@ a:hover {
 										</tr>
 									</thead>
 									<tbody>
-										<c:forEach var="tmp" items="${reviewlist }">
-											<tr>
-												<td>${tmp.review_writer }</td>
-												<td><a
-													href="${pageContext.request.contextPath}/review/reviewdetail?review_num=${tmp.review_num}"
-													style="text-decoration: none;">${tmp.review_title }</a></td>
-												<td>
-													<%-- 별점 --%> <span class="star"> ★★★★★ <span
-														style="width: ${tmp.star *10 }%;">★★★★★</span>
-												</span>
-												</td>
-												<td>${tmp.review_regdate }</td>
-												<c:if test="${ usersCode eq 1}">
-													<td><a
-														href="${pageContext.request.contextPath}/space/reviewDelete?review_num=${tmp.review_num}&cate_num=${cate_num }&space_num=${space_num}"
-														onClick="deleteLink(); return false;">삭제</a></td>
-												</c:if>
-											</tr>
-										</c:forEach>
+										<c:choose>
+											<c:when test="${not empty reviewlist }">
+												<c:forEach var="tmp" items="${reviewlist }">
+													<tr>
+														<td>${tmp.review_writer }</td>
+														<td><a
+															href="${pageContext.request.contextPath}/review/reviewdetail?review_num=${tmp.review_num}"
+															style="text-decoration: none;">${tmp.review_title }</a></td>
+														<td>
+															<%-- 별점 --%> <span class="star"> ★★★★★ <span
+																style="width: ${tmp.star *10 }%;">★★★★★</span>
+														</span>
+														</td>
+														<td>${tmp.review_regdate }</td>
+														<c:if test="${ usersCode eq 1}">
+															<td><a
+																href="${pageContext.request.contextPath}/space/reviewDelete?review_num=${tmp.review_num}&cate_num=${cate_num }&space_num=${space_num}"
+																onClick="deleteLink(); return false;">삭제</a></td>
+														</c:if>
+													</tr>
+												</c:forEach>
+											</c:when>
+											<c:otherwise>
+												<tr>
+													<td colspan='4' class="text-center">등록된 리뷰가 존재하지 않습니다.</td>
+												</tr>
+											</c:otherwise>
+										</c:choose>
 									</tbody>
 								</table>
 
@@ -282,8 +302,8 @@ a:hover {
 										</c:if>
 										<c:forEach var="i" begin="${startPageNum }"
 											end="${endPageNum }">
-											<li class="page-item ${pageNum eq i ? 'active' : '' }">
-												<a class="page-link"
+											<li class="page-item ${pageNum eq i ? 'active' : '' }"><a
+												class="page-link"
 												href="detail?cate_num=${param.cate_num }&space_num=${param.space_num}&pageNum=${i }">${i }</a>
 											</li>
 										</c:forEach>
@@ -318,20 +338,29 @@ a:hover {
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach var="tmp" items="${list }">
-										<tr>
-											<td>${tmp.writer }</td>
-											<td><a
-												href="${pageContext.request.contextPath}/qna/qnadetail?num=${tmp.num}"
-												style="text-decoration: none;">${tmp.title }</a></td>
-											<td>${tmp.regdate }</td>
-											<c:if test="${ usersCode eq 1}">
-												<td><a
-													href="qnaDelete?num=${tmp.num}&cate_num=${cate_num }&space_num=${space_num}"
-													onClick="deleteLink(); return false;">삭제</a></td>
-											</c:if>
-										</tr>
-									</c:forEach>
+									<c:choose>
+										<c:when test="${not empty list }">
+											<c:forEach var="tmp" items="${list }">
+												<tr>
+													<td>${tmp.writer }</td>
+													<td><a
+														href="${pageContext.request.contextPath}/qna/qnadetail?num=${tmp.num}"
+														style="text-decoration: none;">${tmp.title }</a></td>
+													<td>${tmp.regdate }</td>
+													<c:if test="${ usersCode eq 1}">
+														<td><a
+															href="qnaDelete?num=${tmp.num}&cate_num=${cate_num }&space_num=${space_num}"
+															onClick="deleteLink(); return false;">삭제</a></td>
+													</c:if>
+												</tr>
+											</c:forEach>
+										</c:when>
+										<c:otherwise>
+											<tr>
+												<td colspan='4' class="text-center">등록된 QnA가 존재하지 않습니다.</td>
+											</tr>
+										</c:otherwise>
+									</c:choose>
 								</tbody>
 							</table>
 							<%-- QnA 페이지네이션 --%>
@@ -367,9 +396,6 @@ a:hover {
 							<!-- 검색 폼 -->
 							<form action="detail" method="get">
 								<div class="row">
-									<div class="col-2 text-center">
-										<label for="condition" class="form-label mt-1">검색조건</label>
-									</div>
 									<div class="col-3">
 										<select name="condition" id="condition" class="form-select">
 											<option value="title_content"
@@ -381,7 +407,7 @@ a:hover {
 												${condition eq 'writer' ? 'selected' : '' }>작성자</option>
 										</select>
 									</div>
-									<div class="col-5">
+									<div class="col-7">
 										<input type="text" name="keyword" class="form-control"
 											placeholder="검색어..." value="${keyword }" /> <input
 											type="hidden" name="cate_num" value=${param.cate_num }>
@@ -462,33 +488,37 @@ a:hover {
 								<div>
 									<div class="row row-cols-4 row-cols-md-2 row-cols-lg-4">
 										<c:forEach var="i" begin="7" end="10">
-											<div class="col" style="padding:1px;">
-												<button type="button" class="btn btn-outline-dark" style="width:100%;"
-													value="${i }" id="timeBtn${i }" v-on:click="timeBtnClicked">${i }:00</button>
+											<div class="col" style="padding: 1px;">
+												<button type="button" class="btn btn-outline-dark"
+													style="width: 100%;" value="${i }" id="timeBtn${i }"
+													v-on:click="timeBtnClicked">${i }:00</button>
 											</div>
 										</c:forEach>
 									</div>
 									<div class="row row-cols-4 row-cols-md-2 row-cols-lg-4">
 										<c:forEach var="i" begin="11" end="14">
-											<div class="col" style="padding:1px;">
-												<button type="button" class="btn btn-outline-dark" style="width:100%;"
-													value="${i }" id="timeBtn${i }" v-on:click="timeBtnClicked">${i }:00</button>
+											<div class="col" style="padding: 1px;">
+												<button type="button" class="btn btn-outline-dark"
+													style="width: 100%;" value="${i }" id="timeBtn${i }"
+													v-on:click="timeBtnClicked">${i }:00</button>
 											</div>
 										</c:forEach>
 									</div>
 									<div class="row row-cols-4 row-cols-md-2 row-cols-lg-4">
 										<c:forEach var="i" begin="15" end="18">
-											<div class="col" style="padding:1px;">
-												<button type="button" class="btn btn-outline-dark" style="width:100%;"
-													value="${i }" id="timeBtn${i }" v-on:click="timeBtnClicked">${i }:00</button>
+											<div class="col" style="padding: 1px;">
+												<button type="button" class="btn btn-outline-dark"
+													style="width: 100%;" value="${i }" id="timeBtn${i }"
+													v-on:click="timeBtnClicked">${i }:00</button>
 											</div>
 										</c:forEach>
 									</div>
 									<div class="row row-cols-4 row-cols-md-2 row-cols-lg-4">
 										<c:forEach var="i" begin="19" end="22">
-											<div class="col" style="padding:1px;">
-												<button type="button" class="btn-outline-dark btn" style="width:100%;"
-													value="${i }" id="timeBtn${i }" v-on:click="timeBtnClicked">${i }:00</button>
+											<div class="col" style="padding: 1px;">
+												<button type="button" class="btn-outline-dark btn"
+													style="width: 100%;" value="${i }" id="timeBtn${i }"
+													v-on:click="timeBtnClicked">${i }:00</button>
 											</div>
 										</c:forEach>
 									</div>
@@ -653,13 +683,17 @@ a:hover {
 			methods:{
 				timeBtnClicked: async function(e){
 					this.count++;
-					if(this.count*1%2 == 1){
+					if((this.count*1)%2 === 1){
 						this.time1 = e.target.value;
 						this.time1 *= 1
+						for(let i=7; i<23; i++){
+							document.querySelector("#timeBtn"+i).classList.remove("active");
+						}
 					}
-					if(this.count*1%2 == 0){
+					if((this.count*1)%2 === 0){
 						this.time2 = e.target.value;
-						this.time2 *= 1
+						this.time2 *= 1;
+						
 						if(this.time1==this.time2){
 							this.count=0;
 							this.time1=0;

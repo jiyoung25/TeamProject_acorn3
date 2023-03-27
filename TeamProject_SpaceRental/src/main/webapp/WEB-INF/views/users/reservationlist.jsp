@@ -9,7 +9,9 @@
 <title>예약리스트 :Ubiquitous</title>
 <%-- 부트스트랩 --%>
 <jsp:include page="/WEB-INF/include/cdnlink.jsp"/>
+<%-- vue --%>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+<%-- axios --%>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <%--페비콘 링크 --%>
 <link rel="icon" href="${pageContext.request.contextPath}/image/ubiquitous_favicon.png">
@@ -271,7 +273,5 @@
 			}
 		})
 	</script>
-	<!-- footer include -->
-	<jsp:include page="/WEB-INF/include/footer.jsp"/>
 </body>
 </html>

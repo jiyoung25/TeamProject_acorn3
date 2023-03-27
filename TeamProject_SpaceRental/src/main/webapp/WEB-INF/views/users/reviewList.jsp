@@ -64,7 +64,7 @@
 									</c:forEach>
 								</c:when>
 								<c:otherwise>
-									<option value=""><strong>방을 이용해주세요.</strong></option>
+									<option value="">방을 이용해주세요.</option>
 								</c:otherwise>
 							</c:choose>
 						</select>

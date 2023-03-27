@@ -6,9 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>예약리스트 (판매자) :Ubiquitous</title>
 <%-- 부트스트랩 --%>
 <jsp:include page="/WEB-INF/include/cdnlink.jsp"/>
-<title>예약리스트 (판매자) :Ubiquitous</title>
+<%-- axios --%>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <%--페비콘 링크 --%>
 <link rel="icon" href="${pageContext.request.contextPath}/image/ubiquitous_favicon.png">
@@ -49,7 +50,7 @@
 			<div class="col-lg-2" style="margin-top:97px;">
 				<ul class="list-group" id="reservListMenu">
 					<li class="list-group-item list-group-item-dark">예약 리스트 확인</li>
-					<li class="list-group-item list-group-item-secondary list-group-item-action reservMenuList ${param.reservCateNum eq 1 ? 'active' : '' }"
+					<li class="list-group-item list-group-item-secondary list-group-item-action reservMenuList ${empty param.reservCateNum || param.reservCateNum eq 1 ? 'active' : '' }"
 					  	onClick="location.href='${pageContext.request.contextPath}/seller/reservation/reservationlist?reservCateNum=1'" 
 						id="request_reserv" value="1">예약 요청</li>
 					<li class="list-group-item list-group-item-secondary list-group-item-action reservMenuList ${param.reservCateNum eq 2 ? 'active' : '' }"
@@ -67,7 +68,7 @@
 	   		<%-- 예약 목록 --%>
 	   		<div class="col-lg-10 mt-3 mb-1">
 				<c:choose>
-					<c:when test="${(param.reservCateNum eq 1) or ( empty param.reservCateNum) }">
+					<c:when test="${(param.reservCateNum eq 1) || ( empty param.reservCateNum) }">
 						<h3>예약 요청 목록</h3><p>들어온 예약 요청 목록입니다.</p>
 					</c:when>
 					<c:when test="${param.reservCateNum eq 2 }">
@@ -248,7 +249,5 @@
 			}
 		}
 	</script>
-	<!-- footer include -->
-	<jsp:include page="/WEB-INF/include/footer.jsp"/>
 </body>
 </html>
