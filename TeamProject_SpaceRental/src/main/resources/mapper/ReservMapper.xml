@@ -106,7 +106,7 @@
 		WHERE seller_space.space_num = (SELECT seller_space.space_num
 										FROM seller_space
 										INNER JOIN reservationform ON seller_space.space_num=reservationform.space_num
-										WHERE reservationform.reserv_num=123)
+										WHERE reservationform.reserv_num=#{reserv_num})
 	</select>
 	<delete id="delete" parameterType="int">
 		DELETE FROM reservationform

@@ -9,9 +9,10 @@
 			FROM
 				(SELECT space_num, users_num, space_name, mainImagePath, addr, addr2, seller_space.cate_name cate_name, oneliner
 				FROM seller_space
-				INNER JOIN space_category ON seller_space.cate_name=space_category.cate_name) result1)
+				INNER JOIN space_category ON seller_space.cate_name=space_category.cate_name
+				ORDER BY space_num DESC) result1)
 		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
-		ORDER BY rnum ASC
+		ORDER BY rnum DESC
 	</select>
 	<select id="getSpaceList" resultType="spaceDto" parameterType="spaceDto">
 		SELECT *
@@ -27,6 +28,7 @@
 				               	#{item}
 							</foreach>
 						</if>
+						ORDER BY seller_space.space_num DESC
 				) result1)
 		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
 		ORDER BY space_num DESC
