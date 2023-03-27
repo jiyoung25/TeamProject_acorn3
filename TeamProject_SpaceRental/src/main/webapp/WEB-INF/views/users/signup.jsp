@@ -45,6 +45,7 @@
    	</c:choose>  
    
 	<div class="container">
+		<h1 class="mb-3 mt-3">회원가입</h1>
 		<p class="alert alert-success">
 			<c:choose>
 				<c:when test="${code eq 1 }">
@@ -57,7 +58,7 @@
 					<strong>회원으로</strong> 가입되었습니다.
 				</c:otherwise>
 			</c:choose>
-			<a href="${pageContext.request.contextPath}/users/loginform">로그인 하러가기</a>
+			<a href="${pageContext.request.contextPath}/users/loginform" class='alert-link'>로그인 하러가기</a>
 		</p>
 	</div>
 	

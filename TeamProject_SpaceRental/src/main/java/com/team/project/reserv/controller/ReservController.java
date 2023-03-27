@@ -28,21 +28,20 @@ public class ReservController {
 		return "space/reservation";
 	}
 	
-	@Auth(role = Role.SELLER)
 	@RequestMapping("/seller/reservation/reservationlist")
 	public String reservationlistToSeller(HttpServletRequest request, HttpSession session, ReservDto dto) {
 		service.reservationlistToSeller(request, session, dto);
 		return "seller/reservation/reservationlist";
 	}
 	
-	@Auth(role = Role.SELLER)
 	@RequestMapping("/seller/reservation/check-reserv")
 	@ResponseBody
 	public String checkReserv(ReservDto dto, String num, String isReservOk, HttpSession session){
 		dto.setReserv_num(Integer.parseInt(num));
 		String sellerId = service.getSellerId(dto);
-		String id = (String)session.getAttribute("id");
-		if(!sellerId.equals(id)) {
+		String userId = service.getUserId(dto);
+		String sessionId = (String)session.getAttribute("id");
+		if(!sellerId.equals(sessionId)&&!userId.equals(sessionId)) {
 			throw new NotUpdateException("타인의 예약을 수정하지 말아주세요.");
 		}
 		dto.setCheckReserv(isReservOk);
@@ -51,6 +50,7 @@ public class ReservController {
 	}
 	
 	//ajax로 reservationlistToUser받는 것
+	@Auth(role= Role.USER)
 	@RequestMapping("/users/getreservationlistToUser")
 	@ResponseBody
 	public List<ReservDto> getreservationlistToUser(HttpServletRequest request, HttpSession session, ReservDto dto, String pageNum) {
@@ -73,14 +73,14 @@ public class ReservController {
 		return "users/reservationlist";
 	}
 	
-	@Auth(role = Role.USER)
 	@RequestMapping("/users/reservation/goPay")
 	@ResponseBody
 	public String goPay(ReservDto dto, String num, String isPaid, HttpSession session){
 		dto.setReserv_num(Integer.parseInt(num));
+		String sellerId = service.getSellerId(dto);
 		String userId = service.getUserId(dto);
-		String id = (String)session.getAttribute("id");
-		if(!userId.equals(id)) {
+		String sessionId = (String)session.getAttribute("id");
+		if(!sellerId.equals(sessionId)&&!userId.equals(sessionId)) {
 			throw new NotUpdateException("타인의 예약을 수정하지 말아주세요.");
 		}
 		dto.setIsPaid(isPaid);
