@@ -53,27 +53,28 @@
 </style>
 </head>
 <body>
-
 	<%-- 네비바 --%>
 	<c:choose>
 		<c:when test="${empty sessionScope.id }">
-        	<jsp:include page="/WEB-INF/include/navbar_sidebar_SessionX.jsp"/>
-      	</c:when>
-      	<c:otherwise>
-	      	<c:choose>
-	      		<c:when test="${usersCode eq 2 }">
-	      	  		<jsp:include page="/WEB-INF/include/navbar_sessionO_seller.jsp"/>
-	         		<jsp:include page="/WEB-INF/include/sidebar_seller.jsp"/>
-	      		</c:when>
-	      		<c:when test ="${usersCode eq 3 }">
+			<jsp:include page="/WEB-INF/include/navbar_sidebar_SessionX.jsp"/>
+	    </c:when>
+		<c:otherwise>
+			<c:choose>
+				<c:when test="${usersCode eq 2 }">
+					<jsp:include page="/WEB-INF/include/navbar_sessionO_seller.jsp"/>
+					<jsp:include page="/WEB-INF/include/sidebar_seller.jsp"/>
+				</c:when>
+	            <c:when test ="${usersCode eq 3 }">
 					<jsp:include page="/WEB-INF/include/navbar_sessionO_users.jsp"/>
-			      	<jsp:include page="/WEB-INF/include/sidebar_user.jsp"/>
-	      		</c:when>
-	      		<c:when test = "${usersCode eq 1 }">
-	      		</c:when>
-	      	</c:choose>
-      	</c:otherwise>
-   	</c:choose>	
+					<jsp:include page="/WEB-INF/include/sidebar_user.jsp"/>
+	            </c:when>
+	            <c:when test = "${usersCode eq 1 }">
+					<jsp:include page="/WEB-INF/include/navbar_sessionO_admin.jsp"/>
+					<jsp:include page="/WEB-INF/include/sidebar_admin.jsp"/>
+	            </c:when>
+			</c:choose>
+		</c:otherwise>
+	</c:choose>
 	<div class="container">	
 		<h1 class="mt-3 mb-3">내 공간정보 관리</h1>
 			<button class="btn btn-outline-dark" onclick="location.href=`${pageContext.request.contextPath}/seller/spaceinfo`">새 공간 등록하기</button>
