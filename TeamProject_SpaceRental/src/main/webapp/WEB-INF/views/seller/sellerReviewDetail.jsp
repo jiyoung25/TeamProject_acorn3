@@ -183,11 +183,11 @@
     		<div>
 				<%-- 만일 이전글(더 옛날글)의 글번호가 0 이 아니라면 (이전글이 존재한다면) --%>
 				<c:if test="${dto.prevNum ne 0 }">
-					<a href="sellerReviewDetail?review_num=${dto.prevNum }" class="btn btn-outline-dark" role="button">이전 글</a>
+					<a href="sellerReviewDetail?review_num=${dto.prevNum }" class="btn btn-outline-dark" role="button">이전글</a>
 				</c:if>
 				<%-- 만일 다음글(더 최신글)의 글번호가 0 이 아니라면 (다음글이 존재한다면) --%>
 				<c:if test="${dto.nextNum ne 0 }">
-					<a href="sellerReviewDetail?review_num=${dto.nextNum }" class="btn btn-outline-dark" role="button">다음 글</a>
+					<a href="sellerReviewDetail?review_num=${dto.nextNum }" class="btn btn-outline-dark" role="button">다음글</a>
 				</c:if>
 			</div>
 			

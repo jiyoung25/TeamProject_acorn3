@@ -85,7 +85,6 @@
    .loader{
       /* 로딩 이미지를 가운데 정렬하기 위해 */
       text-align: center;
-      /* 일단 숨겨 놓기 */
       display: none;
    }   
    
@@ -227,6 +226,7 @@
 			method="post">
 			<!-- 원글의 글번호가 댓글의 ref_group 번호가 된다. -->
 			<input type="hidden" name="ref_group" value="${dto.num }" />
+			<input type="hidden" name="space_num" value="${dto.space_num }"/>
 			<!-- 원글의 작성자가 댓글의 대상자가 된다. -->
 			<input type="hidden" name="target_id" value="${dto.writer }" />
 	
@@ -290,10 +290,10 @@
 							<form id="reForm${tmp.num }"
 								class="animate__animated comment-form re-insert-form"
 								action="comment_insert" method="post">
-								<input type="hidden" name="ref_group" value="${dto.num }" /> <input
-									type="hidden" name="target_id" value="${tmp.writer }" /> <input
-									type="hidden" name="comment_group"
-									value="${tmp.comment_group }" />
+								<input type="hidden" name="ref_group" value="${dto.num }" /> 
+								<input type="hidden" name="space_num" value="${dto.space_num }"/>
+								<input type="hidden" name="target_id" value="${tmp.writer }" /> 
+								<input type="hidden" name="comment_group" value="${tmp.comment_group }" />
 								<textarea name="content" class="form-control"></textarea>
 								<button type="submit" class="btn btn-dark">등록</button>
 							</form>
@@ -344,7 +344,7 @@
 	            e.preventDefault();
 	            //로그인 폼으로 이동 시킨다.
 	            location.href=
-	               "${pageContext.request.contextPath}/users/loginform?url=${pageContext.request.contextPath}/qna/qnadetail?num=${dto.num}";
+	               "${pageContext.request.contextPath}/users/loginform?url=${pageContext.request.contextPath}/qna/qnadetail?num=${dto.num}&space_num=${dto.space_num}";
 	         }
 	    });
    
@@ -363,26 +363,25 @@
 	   let currentPage=1;
 	   //마지막 페이지는 totalPageCount 이다.  
 	   <%-- 댓글의 갯수가 0일때 오류를 방지하기 위해 --%>
-	   let lastPage=1;
-	   
-	   //추가로 댓글을 요청하고 그 작업이 끝났는지 여부를 관리할 변수 
-	   let isLoading=false; //현재 로딩중인지 여부 
-	   
+	   let lastPage=${totalPageCount};
+		
 	   /*
 	      window.scrollY => 위쪽으로 스크롤된 길이
 	      window.innerHeight => 웹브라우저의 창의 높이
 	      document.body.offsetHeight => body 의 높이 (문서객체가 차지하는 높이)
 	   */
-	   window.addEventListener("scroll", function(){
-	      //바닥 까지 스크롤 했는지 여부 
-	      const isBottom = 
-	         window.innerHeight + window.scrollY  >= document.body.offsetHeight;
-	      //현재 페이지가 마지막 페이지인지 여부 알아내기
-	      let isLast = currentPage == lastPage;   
-	      //현재 바닥까지 스크롤 했고 로딩중이 아니고 현재 페이지가 마지막이 아니라면
-	      if(isBottom && !isLoading && !isLast){
-	         //로딩바 띄우기
-	         document.querySelector(".loader").style.display="block";
+		window.addEventListener("scroll", function(){
+			//바닥 까지 스크롤 했는지 여부 
+			const isBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight;
+			//추가로 댓글을 요청하고 그 작업이 끝났는지 여부를 관리할 변수 
+			let isLoading=false; //현재 로딩중인지 여부
+			//현재 페이지가 마지막 페이지인지 여부 알아내기
+			let isLast = currentPage == lastPage;
+			
+			//현재 바닥까지 스크롤 했고 로딩중이 아니고 현재 페이지가 마지막이 아니라면
+			if(isBottom && !isLoading && !isLast){
+	    	//로딩바 띄우기
+	    	document.querySelector(".loader").style.display = "block";
 	         
 	         //로딩 작업중이라고 표시
 	         isLoading=true;
@@ -394,29 +393,26 @@
 	            해당 페이지의 내용을 ajax 요청을 통해서 받아온다.
 	            "pageNum=xxx&num=xxx" 형식으로 GET 방식 파라미터를 전달한다. 
 	         */
-	         ajaxPromise("ajax_comment_list","get",
-	               "pageNum="+currentPage+"&num=${dto.num}")
-	         .then(function(response){
-	            //json 이 아닌 html 문자열을 응답받았기 때문에  return response.text() 해준다.
-	            return response.text();
+	         fetch("ajax_comment_list?pageNum=" + currentPage + "&num=${dto.num}")
+	         .then(function(response) {
+	           //json 이 아닌 html 문자열을 응답받았기 때문에  return response.text() 해준다.
+	           return response.text();
 	         })
-	         .then(function(data){
-	            //data 는 html 형식의 문자열이다. 
-	            console.log(data);
-	            // beforebegin | afterbegin | beforeend | afterend
-	            document.querySelector(".comments ul")
-	               .insertAdjacentHTML("beforeend", data);
-	            //로딩이 끝났다고 표시한다.
-	            isLoading=false;
-	            //새로 추가된 댓글 li 요소 안에 있는 a 요소를 찾아서 이벤트 리스너 등록 하기 
-	            addUpdateListener(".page-"+currentPage+" .update-link");
-	            addDeleteListener(".page-"+currentPage+" .delete-link");
-	            addReplyListener(".page-"+currentPage+" .reply-link");
-	            //새로 추가된 댓글 li 요소 안에 있는 댓글 수정폼에 이벤트 리스너 등록하기
-	            addUpdateFormListener(".page-"+currentPage+" .update-form");
-	            
-	            //로딩바 숨기기
-	            document.querySelector(".loader").style.display="none";
+	         .then(function(data) {
+	           // beforebegin | afterbegin | beforeend | afterend
+	           document.querySelector(".comments ul")
+	             .insertAdjacentHTML("beforeend", data);
+	           //로딩이 끝났다고 표시한다.
+	           isLoading=false;
+	           //새로 추가된 댓글 li 요소 안에 있는 a 요소를 찾아서 이벤트 리스너 등록 하기 
+	           addUpdateListener(".page-"+currentPage+" .update-link");
+	           addDeleteListener(".page-"+currentPage+" .delete-link");
+	           addReplyListener(".page-"+currentPage+" .reply-link");
+	           //새로 추가된 댓글 li 요소 안에 있는 댓글 수정폼에 이벤트 리스너 등록하기
+	           addUpdateFormListener(".page-"+currentPage+" .update-form");
+	           
+	           //로딩바 숨기기
+	           document.querySelector(".loader").style.display="none";
 	         });
 	      }
 	   });
@@ -435,6 +431,7 @@
 	         });
 	      }
 	   }
+	   
 	   function addDeleteListener(sel){
 	      //댓글 삭제 링크의 참조값을 배열에 담아오기 
 	      let deleteLinks=document.querySelectorAll(sel);
@@ -460,6 +457,7 @@
 	         });
 	      }
 	   }
+	   
 	   function addReplyListener(sel){
 	      //댓글 링크의 참조값을 배열에 담아오기 
 	      let replyLinks=document.querySelectorAll(sel);
@@ -471,7 +469,7 @@
 	               const isMove=confirm("로그인이 필요 합니다. 로그인 페이지로 이동 하시겠습니까?");
 	               if(isMove){
 	                  location.href=
-	                     "${pageContext.request.contextPath}/users/loginform?url=${pageContext.request.contextPath}/qna/qnadetail?num=${dto.num}";
+	                     "${pageContext.request.contextPath}/users/loginform?url=${pageContext.request.contextPath}/qna/qnadetail?num=${dto.num}&space_num=${dto.space_num}";
 	               }
 	               return;
 	            }

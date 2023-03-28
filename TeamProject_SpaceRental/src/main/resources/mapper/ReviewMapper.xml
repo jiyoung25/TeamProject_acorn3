@@ -37,18 +37,22 @@
 	<select id="getList3" parameterType="reviewDto" resultType="reviewDto">
 		SELECT *
 		FROM (
-		    SELECT review_num, review_writer, review_title, review_content, viewcount, 
-		           TO_CHAR(review_regdate, 'YY.MM.DD HH24:MI') AS review_regdate, star, seller_space.space_name,
-		           ROW_NUMBER() OVER (ORDER BY review_num) AS rnum
-		    FROM review
-		    INNER JOIN seller_space ON review.space_num = seller_space.space_num
-		    INNER JOIN space_users ON seller_space.users_num = space_users.users_num
-		    WHERE space_users.id = #{sellerId}
-		) sub
-		<![CDATA[
+  			SELECT result1.*, ROWNUM AS rnum
+  			FROM (
+    			SELECT review_num, review_writer, review_title, review_content, viewcount, 
+           			TO_CHAR(review_regdate, 'YY.MM.DD HH24:MI') AS review_regdate, star, seller_space.space_name
+    			FROM review
+    			INNER JOIN seller_space ON review.space_num = seller_space.space_num
+    			INNER JOIN space_users ON seller_space.users_num = space_users.users_num
+    			WHERE space_users.id = #{sellerId}
+    			ORDER BY review_num DESC
+  			) result1
+		)
+		<![CDATA[ 
 		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
 		]]>
-		ORDER BY review_num DESC
+
+		
 	</select>
 	
 	<select id="adminReview" parameterType="reviewDto" resultType="reviewDto">
@@ -60,7 +64,7 @@
 						TO_CHAR(review_regdate, 'YY.MM.DD HH24:MI') AS review_regdate, reserv_num, star, seller_space.space_name
 				FROM review
 				Inner Join seller_space ON review.space_num = seller_space.space_num
-				ORDER BY review_num) result1)
+				ORDER BY review_num DESC) result1)
 		<![CDATA[ 
 		WHERE rnum >= #{startRowNum} AND rnum <= #{endRowNum}
 		]]>	
@@ -135,9 +139,9 @@
 			FROM review
 			INNER JOIN seller_space ON review.space_num = seller_space.space_num
 		    INNER JOIN space_users ON seller_space.users_num = space_users.users_num
-		    WHERE space_users.id = #{sellerId} 
-		    ORDER BY review_num DESC) result1
+		    WHERE space_users.id = #{sellerId} ) result1
 		WHERE review_num=#{review_num}
+		ORDER BY review_num
 	</select>
 	
 	<select id="usersReviewData" parameterType="reviewDto" resultType="reviewDto">

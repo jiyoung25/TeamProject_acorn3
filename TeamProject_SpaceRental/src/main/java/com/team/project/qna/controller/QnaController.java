@@ -132,28 +132,65 @@ public class QnaController {
 	
 	//새로운 댓글 저장 요청 처리
 	@RequestMapping("/qna/comment_insert")
-	public String commentInsert(HttpServletRequest request, int ref_group) {
+	public String commentInsert(HttpServletRequest request, int ref_group, int space_num) {
 		
 		service.saveComment(request);
 	
-		return "redirect:/qna/qnadetail?num="+ref_group;
+		return "redirect:/qna/qnadetail?num="+ref_group+"&space_num="+space_num;
+	}
+	@RequestMapping("/users/comment_insert")
+	public String userCommentInsert(HttpServletRequest request, int ref_group) {
+		
+		service.saveComment(request);
+	
+		return "redirect:/users/usersQnaDetail?num="+ref_group;
+	}
+	@RequestMapping("/seller/comment_insert")
+	public String sellerCommentInsert(HttpServletRequest request, int ref_group) {
+		
+		service.saveComment(request);
+	
+		return "redirect:/seller/sellerQnaDetail?num="+ref_group;
 	}
 	
 	//댓글 더보기 요청 처리
 	@RequestMapping("/qna/ajax_comment_list")
 	public String commentList(HttpServletRequest request) {
-		
-		//테스트를 위해 시간 지연 시키기
+		//시간 지연 시키기
 		try {
-			Thread.sleep(3000);
+			Thread.sleep(700);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		
 		service.moreCommentList(request);
 		
 		return "qna/ajax_comment_list";
 	}
+	@RequestMapping("/users/ajax_comment_list")
+	public String usersCommentList(HttpServletRequest request) {
+		//시간 지연 시키기
+		try {
+			Thread.sleep(700);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		service.moreCommentList(request);
+		
+		return "users/ajax_comment_list";
+	}
+	@RequestMapping("/seller/ajax_comment_list")
+	public String sellerCommentList(HttpServletRequest request) {
+		//시간 지연 시키기
+		try {
+			Thread.sleep(700);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		service.moreCommentList(request);
+		
+		return "seller/ajax_comment_list";
+	}
+	
 	//댓글 삭제 요청 처리
 	@RequestMapping("/qna/comment_delete")
 	@ResponseBody
@@ -164,10 +201,47 @@ public class QnaController {
 		// {"isSuccess":true} 형식의 JSON 문자열이 응답되도록 한다. 
 		return map;
 	}
+	@RequestMapping("/users/comment_delete")
+	@ResponseBody
+	public Map<String, Object> usersCommentDelete(HttpServletRequest request) {
+		service.deleteComment(request);
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("isSuccess", true);
+		// {"isSuccess":true} 형식의 JSON 문자열이 응답되도록 한다. 
+		return map;
+	}
+	@RequestMapping("/seller/comment_delete")
+	@ResponseBody
+	public Map<String, Object> sellerCommentDelete(HttpServletRequest request) {
+		service.deleteComment(request);
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("isSuccess", true);
+		// {"isSuccess":true} 형식의 JSON 문자열이 응답되도록 한다. 
+		return map;
+	}
+	
 	//댓글 수정 요청처리 (JSON 을 응답하도록 한다)
 	@RequestMapping("/qna/comment_update")
 	@ResponseBody
 	public Map<String, Object> commentUpdate(QnaCommentDto dto, HttpServletRequest request){
+		service.updateComment(dto);
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("isSuccess", true);
+		// {"isSuccess":true} 형식의 JSON 문자열이 응답되도록 한다. 
+		return map;
+	}
+	@RequestMapping("/users/comment_update")
+	@ResponseBody
+	public Map<String, Object> usersCommentUpdate(QnaCommentDto dto, HttpServletRequest request){
+		service.updateComment(dto);
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("isSuccess", true);
+		// {"isSuccess":true} 형식의 JSON 문자열이 응답되도록 한다. 
+		return map;
+	}
+	@RequestMapping("/seller/comment_update")
+	@ResponseBody
+	public Map<String, Object> sellerCommentUpdate(QnaCommentDto dto, HttpServletRequest request){
 		service.updateComment(dto);
 		Map<String, Object> map=new HashMap<String, Object>();
 		map.put("isSuccess", true);

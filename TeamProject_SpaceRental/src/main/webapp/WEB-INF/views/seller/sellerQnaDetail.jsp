@@ -361,7 +361,7 @@
 	   let currentPage=1;
 	   //마지막 페이지는 totalPageCount 이다.  
 	   <%-- 댓글의 갯수가 0일때 오류를 방지하기 위해 --%>
-	   let lastPage=1;
+	   let lastPage=${totalPageCount};
 	   
 	   //추가로 댓글을 요청하고 그 작업이 끝났는지 여부를 관리할 변수 
 	   let isLoading=false; //현재 로딩중인지 여부 
@@ -392,8 +392,7 @@
 	            해당 페이지의 내용을 ajax 요청을 통해서 받아온다.
 	            "pageNum=xxx&num=xxx" 형식으로 GET 방식 파라미터를 전달한다. 
 	         */
-	         ajaxPromise("ajax_comment_list","get",
-	               "pageNum="+currentPage+"&num=${dto.num}")
+	         fetch("ajax_comment_list?pageNum=" + currentPage + "&num=${dto.num}")
 	         .then(function(response){
 	            //json 이 아닌 html 문자열을 응답받았기 때문에  return response.text() 해준다.
 	            return response.text();
