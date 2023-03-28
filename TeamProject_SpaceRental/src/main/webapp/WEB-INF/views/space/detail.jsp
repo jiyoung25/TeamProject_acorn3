@@ -266,7 +266,7 @@ a:hover {
 													<tr>
 														<td>${tmp.review_writer }</td>
 														<td><a
-															href="${pageContext.request.contextPath}/review/reviewdetail?review_num=${tmp.review_num}"
+															href="${pageContext.request.contextPath}/review/reviewdetail?review_num=${tmp.review_num}&space_num=${param.space_num}"
 															style="text-decoration: none;">${tmp.review_title }</a></td>
 														<td>
 															<%-- 별점 --%> <span class="star"> ★★★★★ <span
@@ -346,7 +346,7 @@ a:hover {
 												<tr>
 													<td>${tmp.writer }</td>
 													<td><a
-														href="${pageContext.request.contextPath}/qna/qnadetail?num=${tmp.num}"
+														href="${pageContext.request.contextPath}/qna/qnadetail?num=${tmp.num}&space_num=${param.space_num}"
 														style="text-decoration: none;">${tmp.title }</a></td>
 													<td>${tmp.regdate }</td>
 													<c:if test="${ usersCode eq 1}">
