@@ -210,7 +210,7 @@
 						function deleteConfirm() {
 							const isDelete = confirm("이 글을 삭제 하겠습니까?");
 							if (isDelete) {
-								location.href = "${pageContext.request.contextPath}/qna/usersDelete?num=${dto.num}";
+								location.href = "qnaDelete?num=${dto.num}";
 							}
 						}
 					</script>
