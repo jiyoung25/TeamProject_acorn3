@@ -39,10 +39,29 @@ public class QnaController {
 		return "qna/qnaupdateform";
 	}
 	
+	@RequestMapping("/users/qnaupdateform")
+	public String qnaUsersUpdateForm(HttpServletRequest request) {
+		QnaDto dto = service.getData(request);
+		String qna_writer = dto.getWriter();
+		String id = (String)request.getSession().getAttribute("id");
+		
+		if(!qna_writer.equals(id)) {
+			throw new NotUpdateException("타인의 QnA를 수정하지 말아주세요.");
+		}
+		return "users/qnaupdateform";
+	}
+	
+	
 	@RequestMapping("/qna/qnaupdate")
 	public String update(QnaDto dto) {
 		service.updateContent(dto);
 		return "qna/qnaupdate";
+	}
+	
+	@RequestMapping("/users/qnaupdate")
+	public String qnaUsersUpdate(QnaDto dto) {
+		service.updateContent(dto);
+		return "users/qnaupdate";
 	}
 	
 	@RequestMapping("/qna/delete")
