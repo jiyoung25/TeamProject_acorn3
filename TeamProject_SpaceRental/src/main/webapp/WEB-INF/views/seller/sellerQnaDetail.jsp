@@ -190,6 +190,7 @@
 			</div>
 			
 			<div class="col-8" style="text-align: right;">
+				<a href="${pageContext.request.contextPath}" class="btn btn-outline-dark" role="button">메인 페이지로</a>
 				<c:if test="${usersCode eq 2 }">
 					<a href="${pageContext.request.contextPath}/seller/sellerQna" class="btn btn-outline-dark" role="button">QnA목록으로</a>
 				</c:if>
