@@ -42,7 +42,7 @@
 	  
 	<script>
 		alert("${id} 님 글을 수정 했습니다.");
-		location.href = "${pageContext.request.contextPath}/qna/qnadetail?num=${param.num}";
+		location.href = "${pageContext.request.contextPath}/qna/qnadetail?num=${param.num}&space_num=${param.space_num}";
 	</script>
 </body>
 </html>

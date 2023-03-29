@@ -8,7 +8,9 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -28,14 +30,14 @@ public class QnaController {
 	private UsersService usersService;
 	
 	@RequestMapping("/qna/qnaupdateform")
-	public String updateForm(HttpServletRequest request) {
+	public String updateForm(HttpServletRequest request, int space_num, Model model) {
 		QnaDto dto = service.getData(request);
 		String qna_writer = dto.getWriter();
 		String id = (String)request.getSession().getAttribute("id");
-		
 		if(!qna_writer.equals(id)) {
 			throw new NotUpdateException("타인의 QnA를 수정하지 말아주세요.");
 		}
+		model.addAttribute("space_num", space_num);
 		return "qna/qnaupdateform";
 	}
 	

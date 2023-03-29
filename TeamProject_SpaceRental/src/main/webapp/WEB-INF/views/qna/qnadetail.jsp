@@ -199,7 +199,7 @@
 						나의 QnA 목록
 					</button>
 					<button type="button" class="btn btn-outline-dark" 
-						onclick="location.href=`qnaupdateform?num=${dto.num }`">
+						onclick="location.href=`qnaupdateform?num=${dto.num }&space_num=${dto.space_num }`">
 						수정
 					</button>
 					<button type="button" class="btn btn-outline-dark" onclick="deleteConfirm()">

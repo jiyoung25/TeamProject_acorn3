@@ -42,6 +42,7 @@
 		<h1>Q&A 수정</h1>
 		<form action="qnaupdate" method="post" id="updateForm">
 			<input type="hidden" name="num" value="${dto.num }" />
+			<input type="hidden" name="space_num" value="${space_num }" />
 			<div class="input-group mb-3">
 				<span class="input-group-text" style="width:10%; justify-content: center; align-items: center; display: flex;">작성자</span>
 				<input type="text" id="writer" class="form-control" value="${dto.writer }" disabled />
