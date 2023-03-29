@@ -56,6 +56,17 @@ public class QnaController {
 		return "redirect:/users/qnaList";
 	}
 	
+	@RequestMapping("/qna/usersDelete")
+	public String usersDelete(int num, HttpServletRequest request) {
+		String qna_writer = service.getData(request).getWriter();
+		String id = (String)request.getSession().getAttribute("id");
+		if(!qna_writer.equals(id)) {
+			throw new NotUpdateException("타인의 QnA를 삭제하지 말아주세요.");
+		}
+		service.deleteContent(num, request);
+		return "redirect:/users/qnaList";
+	}
+	
 	@RequestMapping("/admin/qnaDelete")
 	public String adminDelete(int num, HttpServletRequest request) {
 		

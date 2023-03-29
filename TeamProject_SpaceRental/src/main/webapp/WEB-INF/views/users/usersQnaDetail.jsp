@@ -190,6 +190,7 @@
 			</div>
 			
 			<div class="col-8" style="text-align: right;">
+				<a href="${pageContext.request.contextPath}" class="btn btn-outline-dark" role="button">메인 페이지로</a>
 				<c:if test="${usersCode eq 2 }">
 					<a href="${pageContext.request.contextPath}/users/qnaList" class="btn btn-outline-dark" role="button">QnA목록으로</a>
 				</c:if>
@@ -209,7 +210,7 @@
 						function deleteConfirm() {
 							const isDelete = confirm("이 글을 삭제 하겠습니까?");
 							if (isDelete) {
-								location.href = "delete?num=${dto.num}";
+								location.href = "${pageContext.request.contextPath}/qna/usersDelete?num=${dto.num}";
 							}
 						}
 					</script>
