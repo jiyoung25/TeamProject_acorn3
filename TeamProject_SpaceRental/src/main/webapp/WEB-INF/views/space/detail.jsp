@@ -703,19 +703,13 @@ a:hover {
 							this.checkInTime=0;
 							this.checkOutTime=0;
 							alert("시간을 다시 선택해주세요.");
+							return;
 						} else if(this.time1>this.time2){
 							this.checkInTime = this.time2;
 							this.checkOutTime = this.time1;
 						} else{
 							this.checkInTime = this.time1;
 							this.checkOutTime = this.time2;
-						}
-						console.log((this.checkInTime)*1);
-						console.log(typeof ((this.checkInTime)*1));
-						console.log((this.checkOutTime)*1);
-						for(let i=((this.checkInTime)*1); i<=((this.checkOutTime)*1); i++){
-							let timeBtn = "#timeBtn" + i; 
-							document.querySelector(timeBtn).classList.add("active");
 						}
 						
 						console.log(this.timeList);
@@ -736,9 +730,19 @@ a:hover {
 									this.checkInTime=0;
 									this.checkOutTime=0;
 									alert("이미 예약되어있는 시간입니다.\n시간을 다시 선택해주세요.");
+									return;
 								}
 							}
 						}
+
+						console.log((this.checkInTime)*1);
+						console.log(typeof ((this.checkInTime)*1));
+						console.log((this.checkOutTime)*1);
+						for(let i=((this.checkInTime)*1); i<=((this.checkOutTime)*1); i++){
+							let timeBtn = "#timeBtn" + i; 
+							document.querySelector(timeBtn).classList.add("active");
+						}
+						
 						
 						this.totalMoney = Math.abs(this.checkOutTime-this.checkInTime)*this.money*this.reserv_count;
 						this.timeData= this.checkInTime + '-' +this.checkOutTime
@@ -748,8 +752,10 @@ a:hover {
 					this.count=0;
 					this.time1=0;
 					this.time2=0;
-					for(let i=this.checkInTime; i<=this.checkOutTime; i++){
-						document.querySelector("#timeBtn"+i).classList.remove("active");
+					if(this.checkInTime!=0 &&this.checkOutTime!=0){
+						for(let i=this.checkInTime; i<=this.checkOutTime; i++){
+							document.querySelector("#timeBtn"+i).classList.remove("active");
+						}
 					}
 					this.checkInTime=0;
 					this.checkOutTime=0;
@@ -761,7 +767,7 @@ a:hover {
 					console.log(this.day);
 					//정보를 리셋한다. (다른 날짜를 갔다 오면 현재 입력한 예약한 시간이 미리 선택되어있을 수도 있음.)
 					this.resetBtnClicked();
-					for(let i=0; i<=24; i++){
+					for(let i=7; i<=22; i++){
 						let timeBtn = "#timeBtn"+i;
 						document.querySelector(timeBtn).classList.remove("disabled");
 						document.querySelector(timeBtn).classList.remove("duplicate");

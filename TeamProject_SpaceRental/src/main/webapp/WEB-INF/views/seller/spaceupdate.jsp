@@ -53,7 +53,7 @@
 												<form action="${pageContext.request.contextPath}/seller/update" method="post" id="updateForm">
 													<div>
 														<label for="space_name">공간명</label><br />
-										            	<input class="form-control" type="text" name="space_name" id="space_name" style="margin-left:auto;margin-right:auto;width: 320px" value=${dto.space_name } />
+										            	<input class="form-control" type="text" name="space_name" id="space_name" style="margin-left:auto;margin-right:auto;width: 320px" value='${dto.space_name }' />
 													</div>
 													<div style="display:hidden">
 														카테고리
