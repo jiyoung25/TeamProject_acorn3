@@ -12,7 +12,7 @@
 <jsp:include page="/WEB-INF/include/cdnlink.jsp"/>
 <%-- animate.css --%>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-<title>Q&A detail:Ubiquitous</title>
+<title>Q&A :Ubiquitous</title>
 <style>
    .content{
       border: 1px dotted gray;
@@ -148,7 +148,7 @@
    	
 	<%-- 리뷰 내용 --%>
 	<div class="container">
-		<h1 class="mt-3 mb-3">QnA 상세 보기</h1>	
+		<h1 class="mt-3 mb-3">Q&A 상세 보기</h1>	
 		<!-- 룸넘버, 룸이름 -->
 		<!-- 리뷰제목 -->
 		<div class="title" style="padding: .43em 0em .35em .7em; margin: 1em 0; font-weight: bold; color: #232323; background: #f1f3f5; border-left: solid 10px;">
@@ -192,12 +192,12 @@
 			<div class="col-8" style="text-align: right;">
 				<a href="${pageContext.request.contextPath}" class="btn btn-outline-dark" role="button">메인 페이지로</a>
 				<c:if test="${usersCode eq 2 }">
-					<a href="${pageContext.request.contextPath}/seller/sellerQna" class="btn btn-outline-dark" role="button">QnA목록으로</a>
+					<a href="${pageContext.request.contextPath}/seller/sellerQna" class="btn btn-outline-dark" role="button">Q&A목록으로</a>
 				</c:if>
 				<c:if test="${sessionScope.id eq dto.writer }">
 					<button type="button" class="btn btn-outline-dark" 
 						onclick="location.href=`${pageContext.request.contextPath}/users/qnaList`">
-						나의 QnA 목록
+						나의 Q&A 목록
 					</button>
 					<button type="button" class="btn btn-outline-dark" 
 						onclick="location.href=`qnaupdateform?num=${dto.num }`">

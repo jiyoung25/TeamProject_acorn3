@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
-<title>Error 수정금지 :Ubiquitous</title>
+<title>수정 금지 :Ubiquitous</title>
 <%-- 부트스트랩 --%>
 <jsp:include page="/WEB-INF/include/cdnlink.jsp" />
 <%-- vue.js --%>
@@ -40,7 +40,7 @@
 		<h3>Don't update other user's posts.</h3>
 		<p class="alert alert-info">
 			${exception.message }
-			<a href="${pageContext.request.contextPath}/">인덱스로</a>
+			<a href="${pageContext.request.contextPath}/" class='alert-link'>인덱스로</a>
 		</p>
 	</div>
 	<!-- footer include -->

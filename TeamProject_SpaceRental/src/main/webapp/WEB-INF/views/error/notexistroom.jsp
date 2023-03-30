@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+<title>존재하지 않는 방 :Ubiquitous</title>
 <%--페비콘 링크 --%>
 <link rel="icon" href="${pageContext.request.contextPath}/image/ubiquitous_favicon.png">
 <%-- 부트스트랩 --%>
@@ -39,7 +40,7 @@
 		<h3>NON-EXISTENT ROOM</h3>
 		<p class="alert alert-info">
 			${info }
-			<a href="${pageContext.request.contextPath}/">인덱스로</a>
+			<a href="${pageContext.request.contextPath}/" class='alert-link'>인덱스로</a>
 		</p>
 	</div>
 	<!-- footer include -->

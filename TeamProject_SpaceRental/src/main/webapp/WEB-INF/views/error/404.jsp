@@ -40,7 +40,7 @@
 		<h3>404</h3>
 		<p>
 			요청하신 페이지는 존재 하지 않습니다.
-			<a href="${pageContext.request.contextPath}/">인덱스로</a>
+			<a href="${pageContext.request.contextPath}/" class='alert-link'>인덱스로</a>
 		</p>
 	</div>
 	<!-- footer include -->

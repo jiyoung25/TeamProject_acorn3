@@ -40,7 +40,7 @@
 		<h3>500</h3>
 		<p>
 			서버 내부에서 에러가 발생했습니다. 신속히 복구 하겠습니다.
-			<a href="${pageContext.request.contextPath}/">인덱스로</a>
+			<a href="${pageContext.request.contextPath}/" class='alert-link'>인덱스로</a>
 		</p>
 	</div>
 	<!-- footer include -->

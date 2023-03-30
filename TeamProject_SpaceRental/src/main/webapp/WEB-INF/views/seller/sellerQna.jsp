@@ -10,7 +10,7 @@
 <jsp:include page="/WEB-INF/include/cdnlink.jsp"/>
 <%--페비콘 링크 --%>
 <link rel="icon" href="${pageContext.request.contextPath}/image/ubiquitous_favicon.png">
-<title>Q&A 관리(판매자) :Ubiquitous</title>
+<title>Q&A 관리 :Ubiquitous</title>
 <style>
 	a {
 		text-decoration: none;
@@ -47,7 +47,7 @@
 	</c:choose>
    	
 	<div class="container">
-		<h1>QnA 관리</h1>
+		<h1>Q&A 관리</h1>
 		<%-- Q&A 리스트 --%>
 		<table class="table align-middle mb-0 bg-white">
 			<thead class="bg-light">

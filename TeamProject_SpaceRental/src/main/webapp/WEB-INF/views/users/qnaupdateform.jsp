@@ -74,7 +74,7 @@
 		document.querySelector("#submitBtn").addEventListener("click", function(e){
 	        if(document.getElementById('title').value == ''){
 				e.preventDefault();//제출완료 페이지로 넘어가는 것 방지
-				alert('QnA제목을 입력해 주세요.');
+				alert('Q&A 제목을 입력해 주세요.');
 			} else{
 	        	document.querySelector("#updateForm").submit();
 	        }	        

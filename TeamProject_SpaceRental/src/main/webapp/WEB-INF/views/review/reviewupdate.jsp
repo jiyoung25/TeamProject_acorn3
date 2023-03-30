@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <%--페비콘 링크 --%>
 <link rel="icon" href="${pageContext.request.contextPath}/image/ubiquitous_favicon.png">
-<title>리뷰 업데이트메세지 :Ubiquitous</title>
+<title>Review 수정 메시지 :Ubiquitous</title>
 </head>
 <body>
 	<%-- 네비바 --%>

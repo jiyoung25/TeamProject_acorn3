@@ -10,7 +10,7 @@
 <jsp:include page="/WEB-INF/include/cdnlink.jsp"/>
 <%--페비콘 링크 --%>
 <link rel="icon" href="${pageContext.request.contextPath}/image/ubiquitous_favicon.png">
-<title>리뷰 리스트보기 :Ubiquitous</title>
+<title>Review 리스트 보기 :Ubiquitous</title>
 </head>
 <body>
 	<%-- 네비바 --%>

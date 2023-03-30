@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/star.css" />
 <%--其厚能 傅农 --%>
 <link rel="icon" href="${pageContext.request.contextPath}/image/ubiquitous_favicon.png">
-<title>包府磊 Qna 包府</title>
+<title>包府磊 Q&A 包府 :Ubiquitous</title>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/include/navbar_sessionO_admin.jsp"/>
@@ -21,7 +21,7 @@
 	<br>
 	<%-- Q&A 府胶飘 --%>
 	<div class="container">
-		<h1>包府磊 Qna 包府</h1>
+		<h1>包府磊 Q&A 包府</h1>
 		<br>
 		<table class="table align-middle mb-0 bg-white">
 			<thead class="bg-light">

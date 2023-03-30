@@ -10,7 +10,7 @@
 <jsp:include page="/WEB-INF/include/cdnlink.jsp"/>
 <%--페비콘 링크 --%>
 <link rel="icon" href="${pageContext.request.contextPath}/image/ubiquitous_favicon.png">
-<title>공간리스트(판매자) :Ubiquitous</title>
+<title>공간 리스트(판매자) :Ubiquitous</title>
 <style>
    /* card 이미지 부모요소의 높이 지정 */
    .img-wrapper{

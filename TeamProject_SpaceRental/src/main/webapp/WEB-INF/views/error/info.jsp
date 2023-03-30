@@ -41,7 +41,7 @@
 		<h1>Oops!</h1>
 		<p class="alert alert-danger">
 			<strong>${exception.message}</strong>
-			<a href="${pageContext.request.contextPath}/">인덱스로 돌아가기</a>
+			<a href="${pageContext.request.contextPath}/" class='alert-link'>인덱스로 돌아가기</a>
 		</p>
 	</div>
 	<!-- footer include -->

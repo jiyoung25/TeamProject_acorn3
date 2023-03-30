@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
-<title>Error 리뷰작성 :Ubiquitous</title>
+<title>리뷰 작성 금지 :Ubiquitous</title>
 <%-- 부트스트랩 --%>
 <jsp:include page="/WEB-INF/include/cdnlink.jsp" />
 <%-- vue.js --%>
@@ -40,7 +40,7 @@
 		<h3>Review Insert Exception</h3>
 		<p class="alert alert-info">
 			${info }
-			<a href="${pageContext.request.contextPath}/">인덱스로</a>
+			<a href="${pageContext.request.contextPath}/" class='alert-link'>인덱스로</a>
 		</p>
 	</div>
 	<!-- footer include -->

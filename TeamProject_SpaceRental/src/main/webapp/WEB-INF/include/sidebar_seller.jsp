@@ -59,7 +59,7 @@
 	        	</li>
 	        	<hr class="my-2">
 	        	<li class="nav-item">
-	        		<a class="nav-link" href="${pageContext.request.contextPath }/seller/sellerQna">Qna 관리</a>
+	        		<a class="nav-link" href="${pageContext.request.contextPath }/seller/sellerQna">Q&A 관리</a>
 	        	</li>
 			</ul>
 		</div>

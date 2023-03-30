@@ -15,7 +15,7 @@
 <script src = "${pageContext.request.contextPath}/js/star.js"></script>
 <%--페비콘 링크 --%>
 <link rel="icon" href="${pageContext.request.contextPath}/image/ubiquitous_favicon.png">
-<title>리뷰 업데이트 :Ubiquitous</title>
+<title>Review 업데이트 :Ubiquitous</title>
 <style>
 	
 </style>
@@ -90,7 +90,7 @@
 		document.querySelector("#submitBtn").addEventListener("click", function(e){
 	        if(document.getElementById('review_title').value == ''){
 				e.preventDefault();//제출완료 페이지로 넘어가는 것 방지
-				alert('리뷰 제목을 입력해 주세요.');
+				alert('제목을 입력해 주세요.');
 			} else if(document.getElementById('star').value == 0){
 	          	e.preventDefault();
 	          	alert('별점을 입력해 주세요.');

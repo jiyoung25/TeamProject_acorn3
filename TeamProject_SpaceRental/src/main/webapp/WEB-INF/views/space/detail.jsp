@@ -173,12 +173,12 @@ a:hover {
 						<li class="nav-item" role="presentation">
 							<button class="nav-link" id="review-tab" data-bs-toggle="tab"
 								data-bs-target="#review-tab-pane" type="button" role="tab"
-								aria-controls="review-tab-pane" aria-selected="false">리뷰</button>
+								aria-controls="review-tab-pane" aria-selected="false">Review</button>
 						</li>
 						<li class="nav-item" role="presentation">
 							<button class="nav-link" id="qna-tab" data-bs-toggle="tab"
 								data-bs-target="#qna-tab-pane" type="button" role="tab"
-								aria-controls="qna-tab-pane" aria-selected="false">QnA</button>
+								aria-controls="qna-tab-pane" aria-selected="false">Q&A</button>
 						</li>
 					</ul>
 					<!-- 탭 내용 -->
@@ -326,7 +326,7 @@ a:hover {
 							aria-labelledby="qna-tab" tabindex="0">
 							<button type="button"
 								onclick="location.href='${pageContext.request.contextPath}/qna/qnaInsertform?cate_num=${param.cate_num }&space_num=${param.space_num}'"
-								class="btn btn-outline-dark mt-3 mb-3" style="width: 100%;">QnA
+								class="btn btn-outline-dark mt-3 mb-3" style="width: 100%;">Q&A
 								추가하기</button>
 							<table class="table align-middle mb-0 bg-white">
 								<thead class="bg-light">
@@ -359,7 +359,7 @@ a:hover {
 										</c:when>
 										<c:otherwise>
 											<tr>
-												<td colspan='4' class="text-center">등록된 QnA가 존재하지 않습니다.</td>
+												<td colspan='4' class="text-center">등록된 Q&A가 존재하지 않습니다.</td>
 											</tr>
 										</c:otherwise>
 									</c:choose>

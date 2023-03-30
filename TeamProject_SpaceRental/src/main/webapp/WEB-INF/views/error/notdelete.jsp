@@ -7,7 +7,7 @@
 <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
 <%--페비콘 링크 --%>
 <link rel="icon" href="${pageContext.request.contextPath}/image/ubiquitous_favicon.png">
-<title>Error 삭제금지 :Ubiquitous</title>
+<title>삭제 금지 :Ubiquitous</title>
 <%-- 부트스트랩 --%>
 <jsp:include page="/WEB-INF/include/cdnlink.jsp" />
 <%-- vue.js --%>
@@ -40,7 +40,7 @@
 		<h3>Don't delete other user's posts.</h3>
 		<p class="alert alert-info">
 			${exception.message }
-			<a href="${pageContext.request.contextPath}/">인덱스로</a>
+			<a href="${pageContext.request.contextPath}/" class='alert-link'>인덱스로</a>
 		</p>
 	</div>
 	<!-- footer include -->
