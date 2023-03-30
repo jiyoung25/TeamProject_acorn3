@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="review">
-	
+	<sql id="reviewCondition">
+		<choose>
+			<when test="space_num != null">
+				AND space_num = #{space_num}
+			</when>
+		</choose>
+	</sql>
 	<select id="getList" parameterType="reviewDto" resultType="reviewDto">
 		SELECT *
 		FROM
@@ -198,12 +204,18 @@
 	        	#{item}
 			</foreach>
 		</if>
+		<if test="space_num != 0">
+			AND reservationform.space_num = #{space_num}
+		</if>
 	</select>
 	
-	<select id="getReservNum" parameterType="string" resultType="int">
+	<select id="getReservNum" parameterType="reviewDto" resultType="int">
 		SELECT reserv_num
 		FROM review
 		WHERE review_writer = #{review_writer}
+		<if test="space_num != 0">
+			AND space_num = #{space_num}
+		</if>
 	</select>
 </mapper>
 

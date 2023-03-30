@@ -211,7 +211,7 @@ public class SpaceServiceImpl implements SpaceService {
 	@Override
 	public String uploadImage(HttpServletRequest request, HttpServletResponse response,
 			MultipartHttpServletRequest multiFile) throws IOException {
-		
+
 		//Json 객체 생성
 		JsonObject json = new JsonObject();
 		// Json 객체를 출력하기 위해 PrintWriter 생성
@@ -233,7 +233,7 @@ public class SpaceServiceImpl implements SpaceService {
 						//파일을 바이트 타입으로 변경
 						bytes = file.getBytes();
 						//파일이 실제로 저장되는 경로 
-						String uploadPath = fileLocation;
+						String uploadPath = request.getServletContext().getRealPath("/resources/upload/");
 						//저장되는 파일에 경로 설정
 						File uploadFile = new File(uploadPath);
 						if (!uploadFile.exists()) {
@@ -242,17 +242,17 @@ public class SpaceServiceImpl implements SpaceService {
 						//파일이름을 랜덤하게 생성
 						fileName = UUID.randomUUID().toString();
 						//업로드 경로 + 파일이름을 줘서  데이터를 서버에 전송
-						uploadPath = uploadPath + fileName;
+						uploadPath = uploadPath + "/" + fileName;
 						out = new FileOutputStream(new File(uploadPath));
 						out.write(bytes);
-						
+
 						//클라이언트에 이벤트 추가
 						printWriter = response.getWriter();
 						response.setContentType("text/html");
-						
+
 						//파일이 연결되는 Url 주소 설정
-						String fileUrl = uploadPath + fileName;
-						
+						String fileUrl = request.getContextPath() + "/resources/upload/" + fileName;
+
 						//생성된 jason 객체를 이용해 파일 업로드 + 이름 + 주소를 CkEditor에 전송
 						json.addProperty("uploaded", 1);
 						json.addProperty("fileName", fileName);

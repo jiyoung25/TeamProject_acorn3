@@ -46,7 +46,7 @@
 	
 	<!-- 본문 -->
 	<div class="container">
-		<h2 class="mt-2 mb-3">QnA Insert</h2>
+		<h2 class="mt-2 mb-3">QnA 추가</h2>
 		<form id="insertForm" action="${pageContext.request.contextPath}/qna/qnaInsert?cate_num=${cate_num}&space_num=${space_num}" method="post">
 			<div class="input-group mb-3">
 				<span class="input-group-text" style="width:10%; justify-content: center; align-items: center; display: flex;">제목</span>
