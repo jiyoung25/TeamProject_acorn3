@@ -112,7 +112,7 @@
    
    #grid-a-button{
    		display: grid;
-    	grid-template-columns: 2fr 3fr 2.5fr;
+    	grid-template-columns: 5fr 1fr 7fr;
    }
    
 	.container img {

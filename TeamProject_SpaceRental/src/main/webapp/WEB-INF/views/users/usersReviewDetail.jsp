@@ -110,9 +110,9 @@
 		font-size: 1.5rem;
    }
    
-   #grid-a-button{
+   .grid-a-button{
    		display: grid;
-    	grid-template-columns: 2fr 3fr 1.5fr;
+    	grid-template-columns: 5fr 1fr 7fr;
    }
    
 	.container img {
@@ -159,16 +159,14 @@
 		</div>
 		<!-- 작성자, 등록일, 조회수, 별점 -->
 		<div class="user">
-			얖	
-				<strong>by.</strong>${dto.review_writer } 
-		    	<strong>작성일</strong>: ${dto.review_regdate }
-		    	<strong>조회수</strong>: ${dto.viewcount }
-		    	<strong>별점</strong>:
-				<span class="star">
-					★★★★★
-					<span style="width: ${dto.star *10 }%;">★★★★★</span>
-				</span>
-      		</h4>
+			<strong>by.</strong>${dto.review_writer } 
+	    	<strong>작성일</strong>: ${dto.review_regdate }
+	    	<strong>조회수</strong>: ${dto.viewcount }
+	    	<strong>별점</strong>:
+			<span class="star">
+				★★★★★
+				<span style="width: ${dto.star *10 }%;">★★★★★</span>
+			</span>
 		</div>
 		
 		<br>
@@ -180,7 +178,7 @@
     	
     	<br>
     	
-    	<div id="grid-a-button">
+    	<div class="grid-a-button">
     		<div>
 				<%-- 만일 이전글(더 옛날글)의 글번호가 0 이 아니라면 (이전글이 존재한다면) --%>
 				<c:if test="${dto.prevNum ne 0 }">
@@ -204,7 +202,7 @@
 						나의 리뷰 목록
 					</button>
 					<button type="button" class="btn btn-outline-dark"
-						onclick="location.href=`reviewupdateform?review_num=${dto.review_num }`">
+						onclick="location.href=`${pageContext.request.contextPath}/users/reviewupdateform?review_num=${dto.review_num }`">
 						수정
 					</button>
 					<button type="button" class="btn btn-outline-dark" onclick="deleteConfirm()">
@@ -215,7 +213,7 @@
 						function deleteConfirm() {
 							const isDelete = confirm("이 글을 삭제 하겠습니까?");
 							if (isDelete) {
-								location.href = "delete?review_num=${dto.review_num}";
+								location.href = "reviewDelete?review_num=${dto.review_num}";
 							}
 						}
 					</script>

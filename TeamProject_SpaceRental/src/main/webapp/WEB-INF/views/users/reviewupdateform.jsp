@@ -48,7 +48,6 @@
 		<h2 class="mt-2 mb-3">Review Update</h2>
 		<form id="updateForm" action="reviewupdate" method="post">
 			<input type="hidden" name="review_num" value="${dto.review_num }" />
-			<input type="hidden" name="space_num" value="${dto.space_num }" />
 			<div class="input-group mb-3">
 				<span class="input-group-text" style="width:10%; justify-content: center; align-items: center; display: flex;">작성자</span>
 				<input type="text" id="review_writer" class="form-control" value="${dto.review_writer }" disabled />
