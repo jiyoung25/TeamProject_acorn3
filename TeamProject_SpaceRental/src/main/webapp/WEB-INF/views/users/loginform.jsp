@@ -128,7 +128,7 @@
 			//카카오 로그인시에는 redirect url을 cookie값으로 보낸다.
 			let url = "${param.url}";
 			document.cookie = 'url=${param.url}';
-			window.location.href='https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=2d35e9bcdd28d0e1fb622729f22bab0e&redirect_uri=http://localhost:9000/ubiquitous/users/kakaoLoginCode';
+			window.location.href='https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=2d35e9bcdd28d0e1fb622729f22bab0e&redirect_uri=http://3.39.204.231:8080/ubiquitous/users/kakaoLoginCode';
 		};
 	</script>
 	<!-- footer include -->

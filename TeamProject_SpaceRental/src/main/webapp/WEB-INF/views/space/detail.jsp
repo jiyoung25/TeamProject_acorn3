@@ -165,18 +165,18 @@ a:hover {
 					<!-- 탭 이름 -->
 					<ul class="nav nav-tabs" id="myTab" role="tablist">
 						<li class="nav-item" role="presentation">
-							<button class="nav-link active" id="home-tab"
+							<button class="nav-link ${empty param.tab? 'active':'' }" id="home-tab"
 								data-bs-toggle="tab" data-bs-target="#home-tab-pane"
 								type="button" role="tab" aria-controls="home-tab-pane"
 								aria-selected="true">공간 소개</button>
 						</li>
 						<li class="nav-item" role="presentation">
-							<button class="nav-link" id="review-tab" data-bs-toggle="tab"
+							<button class="nav-link ${param.tab == 'review'? 'active':'' }" id="review-tab" data-bs-toggle="tab"
 								data-bs-target="#review-tab-pane" type="button" role="tab"
 								aria-controls="review-tab-pane" aria-selected="false">Review</button>
 						</li>
 						<li class="nav-item" role="presentation">
-							<button class="nav-link" id="qna-tab" data-bs-toggle="tab"
+							<button class="nav-link ${param.tab == 'qna'? 'active':'' }" id="qna-tab" data-bs-toggle="tab"
 								data-bs-target="#qna-tab-pane" type="button" role="tab"
 								aria-controls="qna-tab-pane" aria-selected="false">Q&A</button>
 						</li>
@@ -184,7 +184,7 @@ a:hover {
 					<!-- 탭 내용 -->
 					<div class="tab-content" id="myTabContent">
 						<%-- 1. 공간 소개 --%>
-						<div class="tab-pane fade show active" id="home-tab-pane"
+						<div class="tab-pane fade ${empty param.tab? 'show active':'' }" id="home-tab-pane"
 							role="tabpanel" aria-labelledby="home-tab" tabindex="0">
 							<div class="alert alert-secondary text-black mt-3" role="alert">
 								<h4 class="alert-heading">한 줄 소개</h4>
@@ -202,7 +202,7 @@ a:hover {
 							<div id="map" style="width: 100%; height: 350px;"></div>
 						</div>
 						<%-- 2. 사용자가 사용한 방 -> 리뷰 쓰기 가능 --%>
-						<div class="tab-pane fade" id="review-tab-pane" role="tabpanel"
+						<div class="tab-pane fade ${param.tab == 'review'? 'show active':'' }" id="review-tab-pane" role="tabpanel"
 							aria-labelledby="review-tab" tabindex="0">
 							<div class="mt-3 mb-3">
 								<form
@@ -299,14 +299,14 @@ a:hover {
 										--%>
 										<c:if test="${startPageNum ne 1 }">
 											<li class="page-item"><a class="page-link"
-												href="detail?cate_num=${param.cate_num }&space_num=${param.space_num}&pageNum=${startPageNum-1 }">Prev</a>
+												href="detail?cate_num=${param.cate_num }&space_num=${param.space_num}&pageNum=${startPageNum-1 }&tab=review">Prev</a>
 											</li>
 										</c:if>
 										<c:forEach var="i" begin="${startPageNum }"
 											end="${endPageNum }">
 											<li class="page-item ${pageNum eq i ? 'active' : '' }"><a
 												class="page-link"
-												href="detail?cate_num=${param.cate_num }&space_num=${param.space_num}&pageNum=${i }">${i }</a>
+												href="detail?cate_num=${param.cate_num }&space_num=${param.space_num}&pageNum=${i }&tab=review">${i }</a>
 											</li>
 										</c:forEach>
 										<%--
@@ -314,7 +314,7 @@ a:hover {
 										--%>
 										<c:if test="${endPageNum lt totalPageCount }">
 											<li class="page-item"><a class="page-link"
-												href="detail?cate_num=${param.cate_num }&space_num=${param.space_num}&pageNum=${endPageNum+1 }">Next</a>
+												href="detail?cate_num=${param.cate_num }&space_num=${param.space_num}&pageNum=${endPageNum+1 }&tab=review">Next</a>
 											</li>
 										</c:if>
 									</ul>
@@ -322,7 +322,7 @@ a:hover {
 							</div>
 						</div>
 						<%-- QnA --%>
-						<div class="tab-pane fade" id="qna-tab-pane" role="tabpanel"
+						<div class="tab-pane fade ${param.tab == 'qna'? 'show active':'' }" id="qna-tab-pane" role="tabpanel"
 							aria-labelledby="qna-tab" tabindex="0">
 							<button type="button"
 								onclick="location.href='${pageContext.request.contextPath}/qna/qnaInsertform?cate_num=${param.cate_num }&space_num=${param.space_num}'"
@@ -374,14 +374,14 @@ a:hover {
 						        --%>
 									<c:if test="${qnaStartPageNum ne 1 }">
 										<li class="page-item"><a class="page-link"
-											href="detail?cate_num=${param.cate_num }&space_num=${param.space_num}&qnaPageNum=${qnaStartPageNum-1 }&condition=${condition}&keyword=${encodedK}">이전글</a>
+											href="detail?cate_num=${param.cate_num }&space_num=${param.space_num}&qnaPageNum=${qnaStartPageNum-1 }&condition=${condition}&keyword=${encodedK}&tab=qna">이전글</a>
 										</li>
 									</c:if>
 									<c:forEach var="i" begin="${qnaStartPageNum }"
 										end="${qnaEndPageNum }">
 										<li class="page-item ${qnaPageNum eq i ? 'active' : '' }">
 											<a class="page-link"
-											href="detail?cate_num=${param.cate_num }&space_num=${param.space_num}&qnaPageNum=${i }&condition=${condition}&keyword=${encodedK}">${i }</a>
+											href="detail?cate_num=${param.cate_num }&space_num=${param.space_num}&qnaPageNum=${i }&condition=${condition}&keyword=${encodedK}&tab=qna">${i }</a>
 										</li>
 									</c:forEach>
 									<%--
@@ -389,7 +389,7 @@ a:hover {
 						        --%>
 									<c:if test="${qnaEndPageNum lt qnatotalPageCount }">
 										<li class="page-item"><a class="page-link"
-											href="detail?cate_num=${param.cate_num }&space_num=${param.space_num}&qnaPageNum=${qnaEndPageNum+1 }&condition=${condition}&keyword=${encodedK}">다음글</a>
+											href="detail?cate_num=${param.cate_num }&space_num=${param.space_num}&qnaPageNum=${qnaEndPageNum+1 }&condition=${condition}&keyword=${encodedK}&tab=qna">다음글</a>
 										</li>
 									</c:if>
 								</ul>
