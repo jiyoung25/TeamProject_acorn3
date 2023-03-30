@@ -3,6 +3,7 @@ package com.team.project.review.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,7 +27,7 @@ public class ReviewController {
 	@Autowired
 	private UsersService usersService;
 	
-	@RequestMapping("review/reviewupdateform")
+	@RequestMapping("/review/reviewupdateform")
 	public String updateForm(HttpServletRequest request) {
 		ReviewDto dto = service.getData(request);
 		String review_writer = dto.getReview_writer();
@@ -36,11 +37,26 @@ public class ReviewController {
 		}
 		return "review/reviewupdateform";
 	}
+	@RequestMapping("/users/reviewupdateform")
+	public String usersReviewUpdateForm(HttpServletRequest request){
+		ReviewDto dto = service.getData(request);
+		String review_writer = dto.getReview_writer();
+		String id = (String)request.getSession().getAttribute("id");
+		if(!review_writer.equals(id)) {
+			throw new NotUpdateException("타인의 리뷰를 수정하지 말아주세요.");
+		}
+		return "users/reviewupdateform";
+	}
 	
 	@RequestMapping("/review/reviewupdate")
 	public String update(ReviewDto dto) {
 		service.updateContent(dto);
 		return "review/reviewupdate";
+	}
+	@RequestMapping("/users/reviewupdate")
+	public String usersReviewUpdate(ReviewDto dto) {
+		service.updateContent(dto);
+		return "users/reviewupdate";
 	}
 	
 	@RequestMapping("/review/delete")

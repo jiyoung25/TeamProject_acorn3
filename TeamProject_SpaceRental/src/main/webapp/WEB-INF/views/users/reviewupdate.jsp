@@ -6,11 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<%-- 부트스트랩 --%>
-<jsp:include page="/WEB-INF/include/cdnlink.jsp"/>
 <%--페비콘 링크 --%>
 <link rel="icon" href="${pageContext.request.contextPath}/image/ubiquitous_favicon.png">
-<title>Q&A 업데이트메세지 :Ubiquitous</title>
+<title>리뷰 업데이트메세지 :Ubiquitous</title>
 </head>
 <body>
 	<%-- 네비바 --%>
@@ -35,14 +33,10 @@
 			</c:choose>
 		</c:otherwise>
 	</c:choose>
-
-	<!-- footer include -->
-	<jsp:include page="/WEB-INF/include/footer.jsp"/>
-	  
-	  
+	
 	<script>
 		alert("${id} 님 글을 수정 했습니다.");
-		location.href = "${pageContext.request.contextPath}/qna/qnadetail?num=${param.num}&space_num=${param.space_num}";
+		location.href = "${pageContext.request.contextPath}/users/usersReviewDetail?review_num=${param.review_num}";
 	</script>
 </body>
 </html>
